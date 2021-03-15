@@ -1,3 +1,6 @@
 hello : from thach
 hee hee : from phat
 haa haa : from phat
+Thu2 8h43p 
+day la thach 
+10h 21 : thach test pull request
