@@ -7,4 +7,5 @@ day la thach
 test conflict : phat
 test conflict 2 : phat
 test conflict 3 : phat
+test conflict 4 : phat
 test conflict 5 : phat
