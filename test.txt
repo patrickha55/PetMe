@@ -1,2 +1,11 @@
 hello : from thach
-hee hee: from phat
+hee hee : from phat
+What's up : from phat
+Thu2 8h43p
+day la thach
+10h 21 : thach test pull request
+test conflict : phat
+test conflict 2 : phat
+test conflict 3 : phat
+test conflict 4 : phat
+test conflict 5 : phat
