@@ -1,5 +1,5 @@
 PetMe project Group-4
 
-Using TailWindCss
+Dùng Bootstrap 5 và TailWindCss
 
 
