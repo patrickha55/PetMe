@@ -111,7 +111,7 @@ body, html {
                         <img src="https://cdn.freebiesupply.com/logos/large/2x/pinterest-circle-logo-png-transparent.png" alt=""/>
                         <h3>Welcome</h3>
                         <p>Get started with your free account</p>
-                        <input type="submit" name="" value="Login"/><br/>
+                        <a href="{{url('/login')}}"><input type="submit" name="" value="Login"></a>
                     </div>
                     <div class="col-md-9 register-right">
                         <div class="tab-content" id="myTabContent">

@@ -92,7 +92,7 @@
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
 					<div class="brand_logo_container">
-						<a href="home.blade.php"><img src="https://cdn.freebiesupply.com/logos/large/2x/pinterest-circle-logo-png-transparent.png" class="brand_logo" alt="Logo"></a>
+						<a href="{{url('/')}}"><img src="https://cdn.freebiesupply.com/logos/large/2x/pinterest-circle-logo-png-transparent.png" class="brand_logo" alt="Logo"></a>
 					</div>
 				</div>
 				<div class="d-flex justify-content-center form_container">
@@ -117,7 +117,7 @@
 		
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+						Don't have an account? <a href="{{url('/register')}}" class="ml-2">Sign Up</a>
 					</div>
 				</div>
 			</div>

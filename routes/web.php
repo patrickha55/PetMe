@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('product');
+    return view('users');
 });
 
 
@@ -23,3 +23,6 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/login', 'Auth\LoginController@index')->name('login');
+Route::get('/register', 'Auth\LoginController@register')->name('register');
+
+
