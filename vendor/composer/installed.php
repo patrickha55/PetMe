@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => 'f664921c9deabaf72c292a98228bbcb95db68f1a',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -399,6 +399,15 @@
         0 => 'v7.30.4',
       ),
     ),
+    'kkszymanowski/traitor' => 
+    array (
+      'pretty_version' => '0.2.5',
+      'version' => '0.2.5.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9770fc7de72ff585601dc9c42b31715d9fc40a24',
+    ),
     'kodova/hamcrest-php' => 
     array (
       'replaced' => 
@@ -417,12 +426,12 @@
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => 'f664921c9deabaf72c292a98228bbcb95db68f1a',
     ),
     'laravel/tinker' => 
     array (
@@ -769,6 +778,15 @@
       array (
         0 => '4.1.1',
       ),
+    ),
+    'santigarcor/laratrust' => 
+    array (
+      'pretty_version' => '6.3.2',
+      'version' => '6.3.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9ab3bfdc06afe18b17f69b77cb77291c36dae9f6',
     ),
     'sebastian/code-unit-reverse-lookup' => 
     array (

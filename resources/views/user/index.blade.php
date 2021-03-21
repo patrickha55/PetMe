@@ -23,7 +23,7 @@
 }
 </style>
 
-@extends('layouts.client.app')
+@extends('layouts.client.deapp')
 @section('content')
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -36,7 +36,7 @@
        <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search product..." aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
-        </form> 
+        </form>
     <div class="row">
         <div class="col-md-3 col-sm-6">
             <div class="product-grid7">
@@ -144,7 +144,7 @@
                         <li class="fa fa-star"></li>
                         <li class="fa fa-star"></li>
                         <li class="fa fa-star"></li>
-                    </ul> 
+                    </ul>
                     <div class="price">$15.00
                         <span>$20.00</span>
                     </div>
@@ -259,7 +259,7 @@
                         <li class="fa fa-star"></li>
                         <li class="fa fa-star"></li>
                         <li class="fa fa-star"></li>
-                    </ul> 
+                    </ul>
                     <div class="price">$15.00
                         <span>$20.00</span>
                     </div>
@@ -374,7 +374,7 @@
                         <li class="fa fa-star"></li>
                         <li class="fa fa-star"></li>
                         <li class="fa fa-star"></li>
-                    </ul> 
+                    </ul>
                     <div class="price">$15.00
                         <span>$20.00</span>
                     </div>

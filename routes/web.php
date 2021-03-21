@@ -14,15 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('product');
-});
-
-
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/login', 'Auth\LoginController@index')->name('login');
-Route::get('/register', 'Auth\LoginController@register')->name('register');
 
+Route::get('/', 'HomeController@index')->name('home');
 
+Route::group(['namespace' => 'Auth'], function(){
+    Route::get('/login', 'LoginController@create')->name('login');
+    Route::post('/login','LoginController@login');
+    Route::get('/register', 'RegisterController@create')->name('register');
+});
+
+Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
+    Route::get('/', 'UserController@index');
+});
