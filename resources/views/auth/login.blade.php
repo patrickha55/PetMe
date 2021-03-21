@@ -1,3 +1,4 @@
+
 @extends('layouts.client.app')
 @section('styles')
     <style>
@@ -71,6 +72,7 @@
             background-color: #c0392b !important;
         }
     </style>
+
 @section('content')
 <div class="container h-100">
     <div class="d-flex justify-content-center h-100">
@@ -125,4 +127,5 @@
     </div>
 </div>
 @endsection
+
 
