@@ -80,26 +80,26 @@
     <li class="nav-item active  ">
         <a class="nav-link" href="/admin">
             <i class="material-icons">dashboard</i>
-            <p>Dashboard</p>
+            <p class="">Dashboard</p>
         </a>
     </li>
-  
+
   {{-- usermanagement  --}}
   <li class="nav-item dropdown">
     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="material-icons">content_paste</i>
         <p>User Management </p>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="# ">
                 <i class="material-icons">content_paste</i>
                 <p>Role</p>
             </a>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="{{ url('/admin/user-management/admins') }}">
                 <i class="material-icons">content_paste</i>
                 <p>Admin</p>
             </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="{{ url('/admin/user-management/users') }}">
                 <i class="material-icons">content_paste</i>
                 <p>Customer</p>
             </a>
@@ -107,7 +107,7 @@
     </a>
 </li>
 
-    
+
     <li class="nav-item dropdown">
         <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons">content_paste</i>
