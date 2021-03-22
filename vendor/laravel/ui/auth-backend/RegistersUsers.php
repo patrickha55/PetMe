@@ -31,7 +31,7 @@ trait RegistersUsers
     {
         $this->validator($request->all())->validate();
 
-        event(new Registered($user = $this->create($request->all())));
+        event(new Registered($user = $this->store($request->all())));
 
         $this->guard()->login($user);
 

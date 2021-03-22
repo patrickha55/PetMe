@@ -22,7 +22,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::group(['namespace' => 'Auth'], function(){
     Route::get('/login', 'LoginController@create')->name('login');
     Route::post('/login','LoginController@login');
-    Route::get('/register', 'RegisterController@create')->name('register');
+    Route::get('/register', 'RegisterController@create');
+    Route::post('/register', 'RegisterController@register');
 });
 
 Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
