@@ -28,3 +28,18 @@ Route::group(['namespace' => 'Auth'], function(){
 Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
     Route::get('/', 'UserController@index');
 });
+
+// // check view by thach 
+// Route::get('theme/',function () {
+//     return view('admin.index');
+// });
+// Route::get('show/',function () {
+//     return view('admin.showAdmin');
+// });
+// Route::get('admin/',function () {
+//     return view('admin.index');
+// });
+// Route::get('showcate/',function () {
+//     return view('admin.showCategories');
+// });
+
