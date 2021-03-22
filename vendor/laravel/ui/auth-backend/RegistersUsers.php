@@ -36,6 +36,7 @@ trait RegistersUsers
         $this->guard()->login($user);
 
         if ($response = $this->registered($request, $user)) {
+            dd($response);
             return $response;
         }
 

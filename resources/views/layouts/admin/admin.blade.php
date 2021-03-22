@@ -15,7 +15,9 @@
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
         <!-- CSS Files -->
-        <link href="{{ asset('/css/admin.css') }}" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ asset('/css/app.css') }}"/>
+        <link href="{{ asset('/css/admin.css') }}" rel="stylesheet"/>
+        
 <!--        &lt;!&ndash; Scripts &ndash;&gt;
         <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -51,7 +53,7 @@
     <body>
     <div id="app">
         <div class="wrapper ">
-            <div class="sidebar" data-color="azure" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+            <div class="sidebar" data-color="orange" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
                 <!--
                   Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 

@@ -24,12 +24,14 @@ Route::group(['namespace' => 'Auth'], function(){
     Route::post('/login','LoginController@login');
     Route::get('/register', 'RegisterController@create');
     Route::post('/register', 'RegisterController@register');
+    Route::post('/logout', 'LoginController@logout');
 });
 
 Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
     Route::get('/', 'DashboardController@index');
     Route::prefix('user-management')->group(function (){
         Route::resource('/users','UserController');
+        Route::resource('/admins', 'AdminController');
     });
 });
 

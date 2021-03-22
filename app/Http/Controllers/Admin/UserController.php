@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -31,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user-management.create.create');
     }
 
     /**
@@ -41,8 +42,32 @@ class UserController extends Controller
      * @return Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $this->validate($request,[
+            'firstName' => ['required', 'string', 'max:255'],
+            'lastName' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'userName' => ['required', 'max:255'],
+            'dob' => ['required'],
+            'gender' => ['required', 'max:1'],
+            'phoneNumber' => ['required','regex:/^[0-9]{10,11}$/i']
+        ]);
+            
+        $gender = $request -> gender;
+        
+        User::create([
+            'firstName' => $request->firstName,
+            'lastName' => $request->lastName,
+            'userName' => $request->userName,
+            'dob' => $request->dob,
+            'gender' => $gender,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phoneNumber' => $request->phoneNumber,
+        ]);
+
+        return redirect('/admin/user-management/users');
     }
 
     /**

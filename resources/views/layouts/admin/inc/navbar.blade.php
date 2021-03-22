@@ -55,7 +55,7 @@
                         <a class="dropdown-item" href="#">Profile</a>
                         <a class="dropdown-item" href="#">Settings</a>
                         <div class="dropdown-divider"></div>
-                        <form action="/logout" method="post">
+                        <form action="{{ url('/logout') }}" method="post">
                             @csrf
                             <button class="dropdown-item" type="submit" >Log out</button>
                         </form>
