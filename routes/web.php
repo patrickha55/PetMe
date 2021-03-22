@@ -28,3 +28,13 @@ Route::group(['namespace' => 'Auth'], function(){
 Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
     Route::get('/', 'UserController@index');
 });
+
+
+
+// check view path
+// Route::get('theme/',function () {
+//     return view('admin.index');
+// });
+// Route::get('sidebar/',function () {
+//     return view('layouts.admin.inc.sidebar');
+// });
