@@ -2,6 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/img/apple-icon.png') }}">
+        <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <!-- CSRF Token -->
@@ -13,7 +15,9 @@
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
         <!-- CSS Files -->
-        <link href="{{ asset('/css/admin.css') }}" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ asset('/css/app.css') }}"/>
+        <link href="{{ asset('/css/admin.css') }}" rel="stylesheet"/>
+        
 <!--        &lt;!&ndash; Scripts &ndash;&gt;
         <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -49,7 +53,7 @@
     <body>
     <div id="app">
         <div class="wrapper ">
-            <div class="sidebar" data-color="danger" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+            <div class="sidebar" data-color="orange" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
                 <!--
                   Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -68,6 +72,7 @@
                 <!-- Navbar -->
                 @include('layouts.admin.inc.navbar')
                 <!-- End Navbar -->
+
                 <!-- Content -->
                 @yield('content')
                 <!-- End Content-->
@@ -83,7 +88,36 @@
     <script src="{{ asset('/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('/js/core/bootstrap-material-design.min.js') }}"></script>
     <script src="{{ asset('/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
-<!--    <script>
+    <script src="{{ asset('/js/plugins/bootstrap-selectpicker.js') }}"></script>
+    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+    <script src="{{ asset('/js/plugins/bootstrap-datetimepicker.min.js') }}"></script>
+    <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+    <script src="{{ asset('/js/plugins/jquery.dataTables.min.js') }}"></script>
+    <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+    <script src="{{ asset('/js/plugins/bootstrap-tagsinput.js') }}"></script>
+    <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+    <script src="{{ asset('/js/plugins/jasny-bootstrap.min.js') }}"></script>
+    <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+    <script src="{{ asset('/js/plugins/fullcalendar.min.js') }}"></script>
+    <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+    <script src="{{ asset('/js/plugins/jquery-jvectormap.js') }}"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="{{ asset('/js/plugins/nouislider.min.js') }}"></script>
+    <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <!-- Library for adding dinamically elements -->
+    <script src="{{ asset('/js/plugins/arrive.min.js') }}"></script>
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_gdNpReCRY9fzGtlc0QEJ7FWQVbtgta4"></script>
+    <!-- Chartist JS -->
+    <script src="{{ asset('/js/plugins/chartist.min.js') }}"></script>
+    <!--  Notifications Plugin    -->
+    <script src="{{ asset('/js/plugins/bootstrap-notify.js') }}"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="{{ asset('/js/material-dashboard.js?v=2.1.2') }}" type="text/javascript"></script>
+    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+    <script src="{{ asset('/demo/demo.js') }}"></script>
+    <script>
         $(document).ready(function() {
             $().ready(function() {
                 $sidebar = $('.sidebar');
@@ -260,7 +294,7 @@
             md.initDashboardPageCharts();
 
         });
-    </script>-->
+    </script>
 <!--    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>-->
     </body>
