@@ -26,10 +26,13 @@ Route::group(['namespace' => 'Auth'], function(){
 });
 
 Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
-    Route::get('/', 'UserController@index');
+    Route::get('/', 'DashboardController@index');
+    Route::prefix('user-management')->group(function (){
+        Route::resource('/users','UserController');
+    });
 });
 
-// // check view by thach 
+// // check view by thach
 // Route::get('theme/',function () {
 //     return view('admin.index');
 // });

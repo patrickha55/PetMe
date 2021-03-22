@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
@@ -16,9 +17,11 @@ class UserController extends Controller
         $this->middleware('role:administrator');
     }
 
+    //Hiện list ở UserManagement, Customer
     public function index()
     {
-        return view('admin.index');
+        $customers = User::whereDoesntHaveRole('administrator')->paginate(10);
+        return view('admin.user-management.showCustomers')->with('customers',$customers);
     }
 
     /**
