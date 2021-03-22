@@ -113,7 +113,7 @@
     <script src="{{ asset('/js/material-dashboard.js?v=2.1.2') }}" type="text/javascript"></script>
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ asset('/demo/demo.js') }}"></script>
-<!--    <script>
+    <script>
         $(document).ready(function() {
             $().ready(function() {
                 $sidebar = $('.sidebar');
@@ -290,7 +290,7 @@
             md.initDashboardPageCharts();
 
         });
-    </script>-->
+    </script>
 <!--    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>-->
     </body>
