@@ -58,7 +58,7 @@
                                             <tr>
                                                 <th>{{ $admin->id }}</th>
                                                 <th>
-                                                    <a href="{{ url('/admins/user-management/users/show') }}">{{ $admin->firstName }}</a>
+                                                    <a href="{{ route('users.show', ['user' => $admin]) }}">{{ $admin->firstName }}</a>
                                                     </th>
                                                 <th>{{ $admin->lastName }}</th>
                                                 <th>{{ $admin->userName }}</th>
