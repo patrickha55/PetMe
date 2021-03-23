@@ -184,7 +184,7 @@ trait AuthenticatesUsers
      */
     protected function loggedOut(Request $request)
     {
-        //
+        return view('user.index');
     }
 
     /**

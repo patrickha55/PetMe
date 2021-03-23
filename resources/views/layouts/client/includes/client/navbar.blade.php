@@ -40,13 +40,12 @@
             <button class="btn btn-outline-success my-2 my-sm-0 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile
             </button>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="{{url('/editprofile')}}">Edit profile</a></li>
               <li><a class="dropdown-item" href="#">Another action</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="{{url('/login')}}">Log out</a></li>
             </ul>
-          </li>
-         
+          </li> 
       </div>
     </div>
   </nav>

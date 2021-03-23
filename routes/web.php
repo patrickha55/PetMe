@@ -18,14 +18,36 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 
+
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['namespace' => 'Auth'], function(){
     Route::get('/login', 'LoginController@create')->name('login');
     Route::post('/login','LoginController@login');
-    Route::get('/register', 'RegisterController@create')->name('register');
+    Route::get('/register', 'RegisterController@create');
+    Route::post('/register', 'RegisterController@register');
+    Route::post('/logout', 'LoginController@logout');
 });
 
 Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
-    Route::get('/', 'UserController@index');
+    Route::get('/', 'DashboardController@index');
+    Route::prefix('user-management')->group(function (){
+        Route::resource('/users','UserController');
+        Route::resource('/admins', 'AdminController');
+    });
 });
+
+// check view by thach
+// Route::get('/editprofile',function () {
+//     return view('user.editprofile');
+// });
+// Route::get('/changepassword',function () {
+//     return view('user.changepassword');
+// });
+// Route::get('admin/',function () {
+//     return view('admin.index');
+// });
+// Route::get('showcate/',function () {
+//     return view('admin.showCategories');
+// });
+
