@@ -18,10 +18,12 @@ class CreateCategoriesTable extends Migration
             $table->unsignedBigInteger('pro_cat_id');
             $table->timestamps();
 
-            $table->primary('pro_cat_id');
-
             $table->foreign('animal_cat_id')->references('id')->on('animal_categories')
                 ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('pro_cat_id')->references('id')->on('product_categories')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->primary('pro_cat_id');
         });
     }
 

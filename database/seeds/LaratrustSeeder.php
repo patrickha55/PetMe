@@ -30,7 +30,7 @@ class LaratrustSeeder extends Seeder
         foreach ($config as $key => $modules) {
 
             // Create a new role
-            $role = \App\Model\User\Role::firstOrCreate([
+            $role = \App\Role::firstOrCreate([
                 'name' => $key,
                 'display_name' => ucwords(str_replace('_', ' ', $key)),
                 'description' => ucwords(str_replace('_', ' ', $key))
@@ -46,7 +46,7 @@ class LaratrustSeeder extends Seeder
 
                     $permissionValue = $mapPermission->get($perm);
 
-                    $permissions[] = \App\Model\User\Permission::firstOrCreate([
+                    $permissions[] = \App\Permission::firstOrCreate([
                         'name' => $module . '-' . $permissionValue,
                         'display_name' => ucfirst($permissionValue) . ' ' . ucfirst($module),
                         'description' => ucfirst($permissionValue) . ' ' . ucfirst($module),
@@ -64,7 +64,7 @@ class LaratrustSeeder extends Seeder
                 $gender = $faker->randomElement(['Male', 'Female']);
                 $this->command->info("Creating '{$key}' user");
                 // Create default user for each role
-                $user = \App\Model\User\User::create([
+                $user = \App\User::create([
                     'userName' => ucwords(str_replace('_', ' ', $key)),
                     'email' => $key.'@app.com',
                     'password' => bcrypt('password'),
@@ -95,7 +95,7 @@ class LaratrustSeeder extends Seeder
             DB::table('permissions')->truncate();
 
             if (Config::get('laratrust_seeder.create_users')) {
-                $usersTable = (new \App\Model\User\User)->getTable();
+                $usersTable = (new \App\User)->getTable();
                 DB::table($usersTable)->truncate();
             }
         }

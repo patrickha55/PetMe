@@ -14,15 +14,10 @@ class CreateAnimalCategoriesTable extends Migration
     public function up()
     {
         Schema::create('animal_categories', function (Blueprint $table) {
-            $table->id('id');
-            $table->unsignedBigInteger('pro_cat_id');
+            $table->id();
             $table->string('name');
             $table->integer('status');
             $table->timestamps();
-
-
-            $table->foreign('pro_cat_id')->references('id')->on('product_categories')
-                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
