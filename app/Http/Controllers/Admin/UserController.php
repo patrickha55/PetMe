@@ -21,7 +21,7 @@ class UserController extends Controller
     //Hiện list ở UserManagement, Customer
     public function index()
     {
-        $customers = User::whereDoesntHaveRole('administrator')->paginate(10);
+        $customers = User::whereRoleIs('user')->paginate(10);
         return view('admin.user-management.showCustomers')->with('customers',$customers);
     }
 
@@ -56,7 +56,7 @@ class UserController extends Controller
             
         $gender = $request -> gender;
         
-        User::create([
+        $user = User::create([
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
             'userName' => $request->userName,
@@ -67,6 +67,8 @@ class UserController extends Controller
             'phoneNumber' => $request->phoneNumber,
         ]);
 
+        $user->attachRole('user');
+
         return redirect('/admin/user-management/users');
     }
 
@@ -76,9 +78,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        // $user = User::where('id',$id)->get();
+        return view('admin.user-management.show.show', ['user' => $user]);
     }
 
     /**
