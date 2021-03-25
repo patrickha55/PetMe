@@ -56,4 +56,9 @@ Route::get('/editprofile',function () {
 Route::get('/changepassword',function () {
     return view('user.changepassword');
 });
-
+Route::get('/viewcart',function () {
+    return view('user.viewcart');
+});
+Route::get('/checkout',function () {
+    return view('user.checkout');
+});

@@ -27,7 +27,7 @@
         
         h4 {
             letter-spacing: -1px;
-            font-weight: 400
+            font-weight: 600;
         }
         
         .img {
@@ -90,15 +90,9 @@
             color: #0779e4
         }
         
-        /* .button:hover {
-            background-color: #0779e4;
-            color: #fff
-        } */
-        
         .btn-primary {
             background-color: #0779e4
         }
-        
 
         a {
             text-decoration: none;
