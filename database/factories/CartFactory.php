@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\OrderProduct;
+use App\Cart;
 use Faker\Generator as Faker;
 
-$factory->define(OrderProduct::class, function (Faker $faker) {
+$factory->define(Cart::class, function (Faker $faker) {
     return [
         //
     ];
