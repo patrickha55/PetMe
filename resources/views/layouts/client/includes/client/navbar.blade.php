@@ -1,51 +1,68 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Petme</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dog
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
+
+<section class="menu">
+  <nav class="navbar navigation">
+    <div class="container">
+      <!-- Navbar Links -->
+      <div id="navbar" class="navbar-collapse collapse text-center">
+        <a href="index.html" class="navbar-brand" id="navbar-menu-brand">A1 Uniform</a>
+        <ul class="nav navbar-nav">
+          <!-- Home -->
+          <li class="dropdown">
+            <a href="index.html">Home</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Cat
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
+
+          <!--Product-->
+          <li class="dropdown dropdown-slide">
+            <a href="">Product <span class="tf-ion-ios-arrow-down"></span></a>
+            <div class="dropdown-menu">
+                <!-- Primary School -->
+                  <ul>
+                    <p>
+                      <a href="cat-primary.html" class="menu-lv1">Dog</a>
+                    </p>
+                    <li role="separator" class="divider"></li>
+                    <p>
+                      <a href="cat-primary.html" class="menu-lv1">Cat</a>
+                    </p>
+                    <li role="separator" class="divider"></li>
+                  </ul>
+              <!-- / .row -->
+            </div>
+            <!-- / .dropdown-menu -->
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact us</a>
+          <!--Contact-->
+          <li class="dropdown">
+            <a href="contact.html">Contact</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{url('/login')}}">Login</a>
+
+          <!--Profile-->
+          <li class="dropdown dropdown-slide">
+            <a href="">Account<span class="tf-ion-ios-arrow-down"></span></a>
+            <div class="dropdown-menu">
+                  <ul>
+                    <p>
+                      <a href="{{url('/editprofile')}}" class="menu-lv1">Profile</a>
+                    </p>
+                    <li role="separator" class="divider"></li>
+                    <p>
+                      <a href="cat-primary.html" class="menu-lv1">Log Out</a>
+                    </p>
+                    <li role="separator" class="divider"></li>
+                  </ul>
+              <!-- / .row -->
+            </div>
+            <!-- / .dropdown-menu -->
+          </li>
+
+          <!--Feedback-->
+          <li class="dropdown">
+            <a href="{{url('/login')}}">Login</a>
           </li>
         </ul>
-      
-          <li class="nav-item dropdown">
-            <button class="btn btn-outline-success my-2 my-sm-0 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="{{url('/editprofile')}}">Edit profile</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{{url('/login')}}">Log out</a></li>
-            </ul>
-          </li> 
+        <!-- / .nav .navbar-nav -->
       </div>
+      <!--/.navbar-collapse -->
     </div>
+    <!-- / .container -->
   </nav>
+</section>
