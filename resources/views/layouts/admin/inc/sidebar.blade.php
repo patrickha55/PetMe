@@ -90,10 +90,6 @@
         <i class="material-icons">content_paste</i>
         <p>User Management </p>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="# ">
-                <i class="material-icons">content_paste</i>
-                <p>Role</p>
-            </a>
             <a class="dropdown-item" href="{{ url('/admin/user-management/admins') }}">
                 <i class="material-icons">content_paste</i>
                 <p>Admin</p>

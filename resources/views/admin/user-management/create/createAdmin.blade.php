@@ -1,11 +1,11 @@
 @extends('layouts.admin.admin')
 
 @section('content')
-<div class="content bg-yellow-50">
+    <div class="content bg-yellow-50">
         <div class="container-fluid">
             <div class="w-full bg-white rounded shadow-lg p-8 m-4l">
-                <h2 class="text-center">New Customer</h2>
-                <form class="row g-3" action="{{ url('/admin/user-management/users') }}" method="POST">
+                <h2 class="text-center">New Admin</h2>
+                <form class="row g-3" action="{{ url('admin/user-management/admins') }}" method="POST">
                     @csrf
                     <div class="col-md-6">
                         <label name="firstName" for="firstName" class="form-label font-semibold text-gray-500">First

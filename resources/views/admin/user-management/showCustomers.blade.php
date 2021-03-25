@@ -59,7 +59,7 @@
                                             <tr>
                                                 <th>{{ $customer->id }}</th>
                                                 <th>
-                                                    <a class="text-yellow-700" href="{{ url('/admins/user-management/users/show') }}">{{ $customer->firstName }}</a>
+                                                    <a class="text-yellow-700" href="{{ route('users.show', ['user' => $customer]) }}">{{ $customer->firstName }}</a>
                                                 </th>
                                                 <th>{{ $customer->lastName }}</th>
                                                 <th>{{ $customer->userName }}</th>
