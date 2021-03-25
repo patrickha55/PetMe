@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Auth::routes();
+
 
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -35,17 +37,23 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
     });
 });
 
-// // check view by thach
-// Route::get('theme/',function () {
-//     return view('admin.index');
-// });
-// Route::get('show/',function () {
-//     return view('admin.showAdmin');
-// });
+// check view by thach
 // Route::get('admin/',function () {
 //     return view('admin.index');
 // });
 // Route::get('showcate/',function () {
 //     return view('admin.showCategories');
 // });
+
+
+// check view by ngan
+Route::get('/index',function () {
+    return view('user.index');
+});
+Route::get('/editprofile',function () {
+    return view('user.editprofile');
+});
+Route::get('/changepassword',function () {
+    return view('user.changepassword');
+});
 
