@@ -37,4 +37,3 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
 
 // check view by thach
 
-
