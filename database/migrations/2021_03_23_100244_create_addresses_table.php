@@ -14,16 +14,12 @@ class CreateAddressesTable extends Migration
     public function up()
     {
         Schema::create('addresses', function (Blueprint $table) {
-            $table->id('id');
-            $table->unsignedBigInteger('user_id');
+            $table->id();
             $table->string('address');
             $table->string('ward');
             $table->string('district');
             $table->string('city');
             $table->timestamps();
-            
-            $table->foreign('user_id')->references('id')->on('users')
-                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

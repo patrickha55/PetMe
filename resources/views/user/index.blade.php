@@ -1,387 +1,479 @@
-<style>
-/********************* Shopping Demo-7 **********************/
-.product-grid7{font-family:'Roboto Slab',serif;position:relative;z-index:1}
-.product-grid7 .product-image7{border:1px solid rgba(0,0,0,.1);overflow:hidden;perspective:1500px;position:relative;transition:all .3s ease 0s}
-.product-grid7 .product-image7 a{display:block}
-.product-grid7 .product-image7 img{width:100%;height:auto}
-.product-grid7 .pic-1{opacity:1;transition:all .5s ease-out 0s}
-.product-grid7 .pic-2{opacity:0;transform:rotateY(-90deg);position:absolute;top:0;left:0;transition:all .5s ease-out 0s}
-.product-grid7:hover .pic-2{opacity:1;transform:rotateY(0)}
-.product-grid7 .social{padding:0;margin:0;list-style:none;position:absolute;bottom:3px;left:-20%;z-index:1;transition:all .5s ease 0s}
-.product-grid7:hover .social{left:17px}
-.product-grid7 .social li a{color:#fff;background-color:#333;font-size:16px;line-height:40px;text-align:center;height:40px;width:40px;margin:15px 0;border-radius:50%;display:block;transition:all .5s ease-in-out}
-.product-grid7 .social li a:hover{color:#fff;background-color:#78e08f}
-.product-grid7 .product-new-label{color:#fff;background-color:#333;padding:5px 10px;border-radius:5px;display:block;position:absolute;top:10px;left:10px}
-.product-grid7 .product-content{text-align:center;padding:20px 0 0}
-.product-grid7 .title{font-size:15px;font-weight:600;text-transform:capitalize;margin:0 0 10px;transition:all .3s ease 0s}
-.product-grid7 .title a{color:#333}
-.product-grid7 .title a:hover{color:#78e08f}
-.product-grid7 .rating{color:#78e08f;font-size:12px;padding:0;margin:0 0 10px;list-style:none}
-.product-grid7 .price{color:#333;font-size:20px;font-family:Lora,serif;font-weight:700;margin-bottom:8px;text-align:center;transition:all .3s}
-.product-grid7 .price span{color:#999;font-size:14px;font-weight:700;text-decoration:line-through;margin-left:7px;display:inline-block}
-@media only screen and (max-width:990px){.product-grid7{margin-bottom:30px}
-}
-</style>
-
 @extends('layouts.client.app')
 @section('content')
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-<br><br>
-<div class="container">
-       <form class="d-flex">
+
+
+<div id="body">
+	<!-- Cart shopping -->
+	<section class="shopping-cart">
+		<div class="cart-hover">
+			<span class="cart-count animate__animated animate__heartBeat"></span>
+			<a href="view-cart.html" data-toggle="dropdown"><i class="tf-ion-ios-cart-outline"
+					style="font-size: 50px;"></i></a>
+			<div class="dropdown-cart animate__animated animate__fadeInRight animate__fast">
+				<div class="show-cart-list">
+					<div class="cart-list">
+						<div style="flex: 3;">
+							<a class="pull-left" href="#">
+								<img class="media-object-cart" src="images/shop/cart/cart-2.jpg" alt="image" />
+							</a>
+						</div>
+						  <div class="media-body-cart">
+							<h4 class="media-heading"><a href="">Ladies Bag</a></h4>
+							<div class="cart-price">
+								<span>1 x</span>
+								<span>1250.00</span>
+							</div>
+							<h5><strong>$1200</strong></h5>
+						</div> 
+						<div style="flex: 1;">
+							<a href="#" class="remove"><i class="tf-ion-close"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="cart-summary-total">
+					<div style="flex: 2; text-align: left;">Total :</div>
+					<div class="total-price" style="flex: 4; text-align: left;">
+						$17555
+					</div>
+					<div class="clear-cart btn btn-danger outline">Clear All</div>
+				</div>
+				<ul class="text-center cart-buttons">
+					<li>
+						<a href="view-cart.html" class="btn btn-small">View Cart</a>
+					</li>
+					<li>
+						<a href="checkout.html" class="btn btn-small btn-solid-border">Checkout</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+	<!--? modal for shopping-cart-mobile -->
+	<div class="modal product-modal fade" id="shopping-cart-modal">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<i class="tf-ion-close"></i>
+		</button>
+		<div class="modal-dialog animate__animated animate__backInDown" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="row" style="display: flex; flex-direction: column;">
+						<br>
+						<div class="show-cart-list">
+							<div class="cart-list">
+								<div style="flex: 3;">
+									<a class="pull-left" href="#">
+										<img class="media-object-cart" src="images/shop/cart/cart-2.jpg" alt="image" />
+									</a>
+								</div>
+								<div class="media-body-cart">
+									<h4 class="media-heading"><a href="">Ladies Bag</a></h4>
+									<div class="cart-price">
+										<span>1 x</span>
+										<span>1250.00</span>
+									</div>
+									<h5><strong>1200</strong></h5>
+								</div>
+								<div style="flex: 1;">
+									<a href="#" class="remove"><i class="tf-ion-close"></i></a>
+								</div>
+							</div>
+						</div>
+						<div class="cart-summary-total">
+							<div style="flex: 2; text-align: left;">Total :</div>
+							<div class="total-price" style="flex: 4; text-align: left;">
+								17555
+							</div>
+							<div class="clear-cart btn btn-danger outline">Clear All</div>
+						</div>
+						<ul class="text-center cart-buttons">
+							<li>
+								<a href="view-cart.html" class="btn btn-small">View Cart</a>
+							</li>
+							<li>
+								<a href="checkout.html" class="btn btn-small btn-solid-border">Checkout</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--? end -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content">
+                        <h1 class="page-name">Product</h1>
+                        <ol class="breadcrumb">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active">product</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+      <form class="align-item-center">
+        <div class="col-md-11">
           <input class="form-control me-2" type="search" placeholder="Search product..." aria-label="Search">
+        </div>
+        <div>
           <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    <div class="row">
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid7">
-                <div class="product-image7">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-1.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-2.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" class="fa fa-search"></a></li>
-                        <li><a href="" class="fa fa-shopping-bag"></a></li>
-                        <li><a href="" class="fa fa-shopping-cart"></a></li>
-                    </ul>
-                    <span class="product-new-label">New</span>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                    </ul>
-                    <div class="price">$15.00
-                        <span>$20.00</span>
-                    </div>
-                </div>
-            </div>
         </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid7">
-                <div class="product-image7">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-3.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-4.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" class="fa fa-search"></a></li>
-                        <li><a href="" class="fa fa-shopping-bag"></a></li>
-                        <li><a href="" class="fa fa-shopping-cart"></a></li>
-                    </ul>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Women's White Shirt</a></h3>
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                    </ul>
-                    <div class="price">$15.00</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid7">
-                <div class="product-image7">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-5.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-6.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" class="fa fa-search"></a></li>
-                        <li><a href="" class="fa fa-shopping-bag"></a></li>
-                        <li><a href="" class="fa fa-shopping-cart"></a></li>
-                    </ul>
-                    <span class="product-new-label">New</span>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                    </ul>
-                    <div class="price">$15.00
-                        <span>$20.00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid7">
-                <div class="product-image7">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-7.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-8.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" class="fa fa-search"></a></li>
-                        <li><a href="" class="fa fa-shopping-bag"></a></li>
-                        <li><a href="" class="fa fa-shopping-cart"></a></li>
-                    </ul>
-                    <span class="product-new-label">New</span>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                    </ul>
-                    <div class="price">$15.00
-                        <span>$20.00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </form>
     </div>
-    <div class="row">
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid7">
-                <div class="product-image7">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-1.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-2.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" class="fa fa-search"></a></li>
-                        <li><a href="" class="fa fa-shopping-bag"></a></li>
-                        <li><a href="" class="fa fa-shopping-cart"></a></li>
-                    </ul>
-                    <span class="product-new-label">New</span>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                    </ul>
-                    <div class="price">$15.00
-                        <span>$20.00</span>
+    <section class="products section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="widget product-category">
+                        <h4 class="widget-title">Categories</h4>
+                        <div class="panel-group commonAccordion" id="accordion" role="tablist"
+                            aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Dog
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                                aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li>
+                                            <input type="checkbox" class="form-check-input" id="dog-food"
+                                                rel="dog-food">
+                                            <label class="form-check-label" for="dog-food">Food</label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" class="form-check-input" id="dog-toy"
+                                                rel="dog-toy">
+                                            <label class="form-check-label" for="dog-toy">Toys</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid7">
-                <div class="product-image7">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-3.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-4.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" class="fa fa-search"></a></li>
-                        <li><a href="" class="fa fa-shopping-bag"></a></li>
-                        <li><a href="" class="fa fa-shopping-cart"></a></li>
-                    </ul>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Women's White Shirt</a></h3>
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                    </ul>
-                    <div class="price">$15.00</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid7">
-                <div class="product-image7">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-5.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-6.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" class="fa fa-search"></a></li>
-                        <li><a href="" class="fa fa-shopping-bag"></a></li>
-                        <li><a href="" class="fa fa-shopping-cart"></a></li>
-                    </ul>
-                    <span class="product-new-label">New</span>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                    </ul>
-                    <div class="price">$15.00
-                        <span>$20.00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid7">
-                <div class="product-image7">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-7.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-8.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" class="fa fa-search"></a></li>
-                        <li><a href="" class="fa fa-shopping-bag"></a></li>
-                        <li><a href="" class="fa fa-shopping-cart"></a></li>
-                    </ul>
-                    <span class="product-new-label">New</span>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                    </ul>
-                    <div class="price">$15.00
-                        <span>$20.00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid7">
-                <div class="product-image7">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-1.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-2.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" class="fa fa-search"></a></li>
-                        <li><a href="" class="fa fa-shopping-bag"></a></li>
-                        <li><a href="" class="fa fa-shopping-cart"></a></li>
-                    </ul>
-                    <span class="product-new-label">New</span>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                    </ul>
-                    <div class="price">$15.00
-                        <span>$20.00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid7">
-                <div class="product-image7">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-3.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-4.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" class="fa fa-search"></a></li>
-                        <li><a href="" class="fa fa-shopping-bag"></a></li>
-                        <li><a href="" class="fa fa-shopping-cart"></a></li>
-                    </ul>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Women's White Shirt</a></h3>
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                    </ul>
-                    <div class="price">$15.00</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid7">
-                <div class="product-image7">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-5.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-6.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" class="fa fa-search"></a></li>
-                        <li><a href="" class="fa fa-shopping-bag"></a></li>
-                        <li><a href="" class="fa fa-shopping-cart"></a></li>
-                    </ul>
-                    <span class="product-new-label">New</span>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                    </ul>
-                    <div class="price">$15.00
-                        <span>$20.00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid7">
-                <div class="product-image7">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-7.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo8/images/img-8.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" class="fa fa-search"></a></li>
-                        <li><a href="" class="fa fa-shopping-bag"></a></li>
-                        <li><a href="" class="fa fa-shopping-cart"></a></li>
-                    </ul>
-                    <span class="product-new-label">New</span>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Men's Blazer</a></h3>
-                    <ul class="rating">
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                        <li class="fa fa-star"></li>
-                    </ul>
-                    <div class="price">$15.00
-                        <span>$20.00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                <div class="col-md-9">
+                    <div class="row" style="display: flex; flex-wrap: wrap;">
+                        <!--Product-->
+                        <div class="col-md-4 cat dog-toy">
+                            <div class="product-item">
+                              <div class="product-thumb">
+                                {{-- <span class="bage">Sale</span> --}}
+                                <img
+                                  class="img-responsive"
+                                  src="https://product.hstatic.net/200000268761/product/ho_lo_ngau_nhien_d0e6da52753b41839271256a6cea394f_master.jpg"
+                                  alt="product-img"
+                                />
+                                <div class="preview-meta">
+                                  <ul>
+                                    <li>
+                                      <span data-toggle="modal" data-target="#modal-fball-1">
+                                        <i class="tf-ion-ios-search-strong"></i>
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <a href="#"><i class="tf-ion-ios-heart"></i></a>
+                                    </li>
+                                    <li>
+                                      <a href="#" class="add-to-cart" data-name="Bóng hồ lô" data-price="120000"
+                                      data-img="https://product.hstatic.net/200000268761/product/ho_lo_ngau_nhien_d0e6da52753b41839271256a6cea394f_master.jpg"><i class="tf-ion-android-cart"></i></a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <div class="product-content">
+                                <h4><a href="product-single.html">Bóng hồ lô</a></h4>
+                                <p class="price">120 000đ</p>
+                              </div>
+                            </div>
+                          </div>
 
+                          <div class="col-md-4 cat dog-toy">
+                            <div class="product-item">
+                              <div class="product-thumb">
+                                <img
+                                  class="img-responsive"
+                                  src="https://www.petmart.vn/wp-content/uploads/2016/01/do-choi-cho-cho-meo-paw-hinh-con-ga.jpg"
+                                  alt="product-img"
+                                />
+                                <div class="preview-meta">
+                                  <ul>
+                                    <li>
+                                      <span data-toggle="modal" data-target="#modal-fball-2">
+                                        <i class="tf-ion-ios-search-strong"></i>
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <a href="#"><i class="tf-ion-ios-heart"></i></a>
+                                    </li>
+                                    <li>
+                                      <a href="#" class="add-to-cart" data-name="Paw hình con gà" data-price="70000"
+                                      data-img="https://www.petmart.vn/wp-content/uploads/2016/01/do-choi-cho-cho-meo-paw-hinh-con-ga.jpg"><i class="tf-ion-android-cart"></i></a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <div class="product-content">
+                                <h4><a href="product-single.html">Paw hình con gà</a></h4>
+                                <p class="price">70 000đ</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4 cat dog-food">
+                            <div class="product-item">
+                              <div class="product-thumb">
+                                <img
+                                  class="img-responsive"
+                                  src="https://www.petmart.vn/wp-content/uploads/2012/08/pate-cho-cho-con-vi-ga-pedigree-puppy-pouch-chicken.jpg"
+                                  alt="product-img"
+                                />
+                                <div class="preview-meta">
+                                  <ul>
+                                    <li>
+                                      <span data-toggle="modal" data-target="#modal-fball-3">
+                                        <i class="tf-ion-ios-search-strong"></i>
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <a href="#"><i class="tf-ion-ios-heart"></i></a>
+                                    </li>
+                                    <li>
+                                      <a href="#" class="add-to-cart" data-name="Pate vị gà" data-price="110000"
+                                      data-img="https://www.petmart.vn/wp-content/uploads/2012/08/pate-cho-cho-con-vi-ga-pedigree-puppy-pouch-chicken.jpg"><i class="tf-ion-android-cart"></i></a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <div class="product-content">
+                                <h4><a href="product-single.html">Pate vị gà</a></h4>
+                                <p class="price">110 000đ</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4 cat dog-food">
+                            <div class="product-item">
+                              <div class="product-thumb">
+                                <img
+                                  class="img-responsive"
+                                  src="https://www.petmart.vn/wp-content/uploads/2018/11/thuc-an-cho-cho-truong-thanh-royal-canin-maxi-adult.jpg"
+                                  alt="product-img"
+                                />
+                                <div class="preview-meta">
+                                  <ul>
+                                    <li>
+                                      <span data-toggle="modal" data-target="#modal-fball-4">
+                                        <i class="tf-ion-ios-search-strong"></i>
+                                      </span>
+                                    </li>
+                                    <li>
+                                      <a href="#"><i class="tf-ion-ios-heart"></i></a>
+                                    </li>
+                                    <li>
+                                      <a href="#" class="add-to-cart" data-name="Hạt dinh dưỡng" data-price="200000"
+                                      data-img="https://www.petmart.vn/wp-content/uploads/2018/11/thuc-an-cho-cho-truong-thanh-royal-canin-maxi-adult.jpg"><i class="tf-ion-android-cart"></i></a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <div class="product-content">
+                                <h4><a href="product-single.html">Hạt dinh dưỡng</a></h4>
+                                <p class="price">200 000đ</p>
+                              </div>
+                            </div>
+                          </div>
+                            
+                        <!-- /Product-->
+                        <!-- Modal -->
+                        <div class="modal product-modal fade" id="modal-fball-1">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="tf-ion-close"></i>
+                            </button>
+                            <div class="modal-dialog animate__animated animate__backInDown " role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                                <div class="modal-image">
+                                                    <img class="img-responsive"
+                                                         src="https://product.hstatic.net/200000268761/product/ho_lo_ngau_nhien_d0e6da52753b41839271256a6cea394f_master.jpg"
+                                                         alt="product-img"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="product-short-details">
+                                                    <h2 class="product-title">Bóng hồ lô</h2>
+                                                    <p class="product-price">120 000đ</p>
+                                                    <p class="product-short-description">
+                                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim recusandae dignissimos eligendi eius deleniti, ad neque similique! Quo, molestias! Tempora saepe omnis quis rerum officiis nam nulla esse molestiae necessitatibus?
+                                                    </p>
+                                                    <a href="primary-girl.html" class="btn btn-main add-to-cart"
+                                                       data-dismiss="modal" data-name="Bóng hồ lô" data-price="120000"
+                                                       data-img="https://product.hstatic.net/200000268761/product/ho_lo_ngau_nhien_d0e6da52753b41839271256a6cea394f_master.jpg">Add To
+                                                        Cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="modal product-modal fade" id="modal-fball-2">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="tf-ion-close"></i>
+                            </button>
+                            <div class="modal-dialog animate__animated animate__backInDown " role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                                <div class="modal-image">
+                                                    <img class="img-responsive"
+                                                         src="https://www.petmart.vn/wp-content/uploads/2016/01/do-choi-cho-cho-meo-paw-hinh-con-ga.jpg"
+                                                         alt="product-img"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="product-short-details">
+                                                    <h2 class="product-title">Paw hình con gà</h2>
+                                                    <p class="product-price">70 000đ</p>
+                                                    <p class="product-short-description">
+                                                       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis ipsam debitis consectetur eos soluta dolores similique nostrum dolorum aspernatur quibusdam culpa fuga explicabo, cum, ab libero dolorem suscipit sed. Nam.
+                                                    </p>
+                                                    <a href="primary-girl.html" class="btn btn-main add-to-cart"
+                                                       data-dismiss="modal" data-name="Paw hình con gà" data-price="70000"
+                                                       data-img="https://www.petmart.vn/wp-content/uploads/2016/01/do-choi-cho-cho-meo-paw-hinh-con-ga.jpg">Add To
+                                                        Cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="modal product-modal fade" id="modal-fball-3">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="tf-ion-close"></i>
+                            </button>
+                            <div class="modal-dialog animate__animated animate__backInDown " role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                                <div class="modal-image">
+                                                    <img class="img-responsive"
+                                                         src="https://www.petmart.vn/wp-content/uploads/2012/08/pate-cho-cho-con-vi-ga-pedigree-puppy-pouch-chicken.jpg"
+                                                         alt="product-img"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="product-short-details">
+                                                    <h2 class="product-title">Pate vị gà</h2>
+                                                    <p class="product-price">110 000đ</p>
+                                                    <p class="product-short-description">
+                                                        We updated our trusted, customer-loved crew socks with a seamless
+                                                        toe for smooth comfort and striped patterns for more variety. An
+                                                        elasticized cuff resists sagging and extra reinforcement in the heel
+                                                        and toe enhances durability.
+                                                    </p>
+                                                    <a href="primary-girl.html" class="btn btn-main add-to-cart"
+                                                       data-dismiss="modal" data-name="Pate vị gà" data-price="110000"
+                                                       data-img="https://www.petmart.vn/wp-content/uploads/2012/08/pate-cho-cho-con-vi-ga-pedigree-puppy-pouch-chicken.jpg">Add To
+                                                        Cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal product-modal fade" id="modal-fball-4">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="tf-ion-close"></i>
+                            </button>
+                            <div class="modal-dialog animate__animated animate__backInDown " role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                                <div class="modal-image">
+                                                    <img class="img-responsive"
+                                                         src="https://www.petmart.vn/wp-content/uploads/2018/11/thuc-an-cho-cho-truong-thanh-royal-canin-maxi-adult.jpg"
+                                                         alt="product-img"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="product-short-details">
+                                                    <h2 class="product-title">Hạt dinh dưỡng</h2>
+                                                    <p class="product-price">200 000đ</p>
+                                                    <p class="product-short-description">
+                                                        We updated our trusted, customer-loved crew socks with a seamless
+                                                        toe for smooth comfort and striped patterns for more variety. An
+                                                        elasticized cuff resists sagging and extra reinforcement in the heel
+                                                        and toe enhances durability.
+                                                    </p>
+                                                    <a href="primary-girl.html" class="btn btn-main add-to-cart"
+                                                       data-dismiss="modal" data-name="Hạt dinh dưỡng" data-price="200000"
+                                                       data-img="https://www.petmart.vn/wp-content/uploads/2018/11/thuc-an-cho-cho-truong-thanh-royal-canin-maxi-adult.jpg">Add To
+                                                        Cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                                                                                                                     
+                      <!-- /.modal -->
+                    </div>
+                </div>
+            </div>
+        </div>
+	</section>
+    <script src="{{ asset('/css/customer/js/script.js')}}" defer></script>
+    <script src="{{ asset('/css/customer/js/script.js')}}"></script>
+    <!-- Main jQuery -->
+    <script src="{{asset('/css/customer/plugins/jquery/dist/jquery.min.js')}}"></script>
+    <!-- navbar mobile js -->
+    <script src="{{asset('/css/customer/plugins/multi-level-dropdown-vegas-nav/dist/js/vgnav.js')}}"></script>
+    <!-- Bootstrap 3.1 -->
+    <script src="{{asset('/css/customer/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+    <!-- Bootstrap Touchpin -->
+    <script src="{{asset('/css/customer/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js')}}"></script>
+    <!-- Video Lightbox Plugin -->
+    <script src="{{asset('/css/customer/plugins/ekko-lightbox/dist/ekko-lightbox.min.js')}}"></script>
+    <!-- Count Down Js -->
+    <script src="{{asset('/css/customer/plugins/SyoTimer/build/jquery.syotimer.min.js')}}"></script>
+
+    <!-- Main Js File -->
+    <script>
+        $(document).ready(function () {
+            $('.panel-body>ul>li').find('input:checkbox').on('click', function () {
+                if ($('.panel-body>ul>li').find('input:checkbox:checked').length > 0) {
+                    $('.cat').hide();
+                    $('.panel-body>ul>li').find('input:checked').each(function () {
+                        $('.cat.' + $(this).attr('rel')).not('.hidden').show('slow');
+                    });
+                } else {
+                    $('.cat').not('.hidden').show('slow');
+                }
+            });
+        });
+    </script>
+</div>
 @endsection
+
