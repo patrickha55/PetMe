@@ -8,8 +8,8 @@
                     <div class="content">
                         <h1 class="page-name">Checkout</h1>
                         <ol class="breadcrumb">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="view-cart.html">View Cart</a></li>
+                            <li><a href="{{url('/index')}}">Home</a></li>
+                            <li><a href="{{url('/viewcart')}}">View Cart</a></li>
                             <li class="active">checkout</li>
                         </ol>
                     </div>
@@ -48,14 +48,21 @@
                                     <label for="user_country">Phone</label>
                                     <input type="text" class="form-control" id="user_country" placeholder="">
                                 </div>
-                                <button type="submit" id="submit-btn" value="submit" class="btn btn-main mt-20">Place Order</button>
                             </form>
                         </div>
+                        <div class="block">
+                            <form class="checkout-form" action='' onsubmit="return validateform()">
+                            <h4 class="widget-title">Payment Method</h4>
+                            <input class="" type="radio" checked> Cash on Delivery<br><br>
+                            <button type="submit" id="submit-btn" value="submit" class="btn btn-main mt-20">Place Order</button>
+                            </form>                         
+                        </div>                                                   
                     </div>
                     <div class="col-md-4">
                         <div class="product-checkout-details">
                             <div class="block">
                                 <h4 class="widget-title">Order Summary</h4>
+                                <input type="radio" checked> Standard Delivery (3-5 days working)<hr>
                                 <div class="checkOut-list">
                                 </div>
                                 <hr>
@@ -63,7 +70,7 @@
                                     <span>Total</span>
                                     <span class="total-price"></span>
                                 </div>
-                            </div>
+                            </div>                       
                         </div>
                     </div>
                 </div>
@@ -72,7 +79,7 @@
     </div>
     <!-- Modal -->
  	<!-- Modal -->
-	<div class="modal product-modal fade" id="alertModal" data-keyboard="false" data-backdrop="static">
+	{{-- <div class="modal product-modal fade" id="alertModal" data-keyboard="false" data-backdrop="static">
 		<div class="modal-dialog animate__animated animate__backInDown " role="document">
 			<div class="modal-content">
 				<div class="modal-body">
@@ -86,7 +93,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 
 
 	
@@ -141,7 +148,6 @@
             if (reg_fullname.test(fullname.value) === false) {
                 fullname.classList.add('errinput');
                 errfullname.innerHTML = 'Fullname must be 3-15 characters';
-
                 return false;
             } else {
                 fullname.classList.remove('errinput');
@@ -176,7 +182,6 @@
 
 
         function validateform() {
-
             var c = false;
             if (checkFullname()) {
                 if (checkZipcode()) {
@@ -209,37 +214,5 @@
     <script src="{{asset('/css/customer/plugins/ekko-lightbox/dist/ekko-lightbox.min.js')}}"></script>
     <!-- Count Down Js -->
     <script src="{{asset('/css/customer/plugins/SyoTimer/build/jquery.syotimer.min.js')}}"></script>
-    <script>
-		let coutTime = 5;
-		function timeCount(){
-			coutTime--;
-			$('.timeCount').html('Return to shop ( ' + coutTime +' )');
-			if(coutTime===0){
-				window.location.href='all-products.html';
-			}
-		}
-		$(window).on('load',function(){
-			if(sessionStorage.getItem('shoppingCart')){
-				let cart = JSON.parse(sessionStorage.getItem('shoppingCart'));
-				if(cart.length===0){
-					$('#alertModal').modal('show');
-					setInterval(timeCount,1000);
-				}
-			}
-			else{
-				$('#alertModal').modal('show');
-				setInterval(timeCount,1000);
-			}
-		});
-        $(document).ready(function () {
-           $('.checkOut-list').on("click", ".delete-item", function(event) {
-                let cart = JSON.parse(sessionStorage.getItem('shoppingCart'));
-                if(cart.length===0){
-                    $('#alertModal').modal('show');
-                    setInterval(timeCount,1000);
-                }
-            });
-        });
-    </script>
 </body>
 @endsection
