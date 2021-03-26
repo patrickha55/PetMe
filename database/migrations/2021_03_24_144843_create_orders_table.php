@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->longText('products');
             $table->float('total_price');
-            $table->integer('status');
+            $table->enum('status', ['pending','processing','completed','decline'])->default('pending');
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
