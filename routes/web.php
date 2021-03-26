@@ -57,3 +57,13 @@ Route::get('/viewcart',function () {
 Route::get('/checkout',function () {
     return view('user.checkout');
 });
+Route::get('/cat',function () {
+    return view('user.cat');
+});
+Route::get('/dog',function () {
+    return view('user.dog');
+});
+Route::get('/wishlist',function () {
+    return view('user.wishlist');
+});
+
