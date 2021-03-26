@@ -40,7 +40,7 @@
 				</div>
 				<ul class="text-center cart-buttons">
 					<li>
-						<a href="view-cart.html" class="btn btn-small">View Cart</a>
+						<a href="{{url('/viewcart')}}" class="btn btn-small">View Cart</a>
 					</li>
 					<li>
 						<a href="checkout.html" class="btn btn-small btn-solid-border">Checkout</a>

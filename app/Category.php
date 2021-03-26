@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    //
+    protected $fillable = ['animal_cat_id','pro_cat_id'];
 }

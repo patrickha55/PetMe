@@ -41,12 +41,7 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
 });
 
 // check view by thach
-// Route::get('admin/',function () {
-//     return view('admin.index');
-// });
-// Route::get('showcate/',function () {
-//     return view('admin.showCategories');
-// });
+
 
 
 // check view by ngan
@@ -59,4 +54,9 @@ Route::get('/editprofile',function () {
 Route::get('/changepassword',function () {
     return view('user.changepassword');
 });
-
+Route::get('/viewcart',function () {
+    return view('user.viewcart');
+});
+Route::get('/checkout',function () {
+    return view('user.checkout');
+});

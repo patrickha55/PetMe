@@ -45,6 +45,10 @@
                     </p>
                     <li role="separator" class="divider"></li>
                     <p>
+                      <a href="{{url('')}}" class="menu-lv1">My Orders</a>
+                    </p>
+                    <li role="separator" class="divider"></li>
+                    <p>
                       <a href="cat-primary.html" class="menu-lv1">Log Out</a>
                     </p>
                     <li role="separator" class="divider"></li>
