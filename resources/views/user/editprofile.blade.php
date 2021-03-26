@@ -113,7 +113,7 @@
 <body class="d-flex flex-column">
     <!--Content update profile-->
     <div class="wrapper bg-white mt-sm-5">
-        <h4 class="pb-4 border-bottom">Account settings</h4>
+        <h4 class="pb-4 border-bottom">Account Information</h4>
         <div class="d-flex align-items-start py-3 border-bottom"> <img src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img" alt="">
             <div class="pl-sm-4 pl-2" id="img-section"> <b>Profile Photo</b>
                 <p>Accepted file type .png. Less than 1MB</p> <button class="btn button border"><b>Upload</b></button>

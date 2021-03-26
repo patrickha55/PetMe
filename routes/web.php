@@ -22,9 +22,6 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['namespace' => 'Auth'], function(){
-   Route::get('dashboard',function (){
-       return view('admin.index');
-   });
     Route::get('/login', 'LoginController@create')->name('login');
     Route::post('/login','LoginController@login');
     Route::get('/register', 'RegisterController@create');
@@ -33,10 +30,16 @@ Route::group(['namespace' => 'Auth'], function(){
 });
 
 Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
+
     Route::get('/', 'DashboardController@index');
+
     Route::prefix('user-management')->group(function (){
         Route::resource('/users','UserController');
         Route::resource('/admins', 'AdminController');
+    });
+
+    Route::group(['namespace'=>'Product', 'prefix' => 'product'], function () {
+        Route::resource('/', 'ProductsController');
     });
 });
 
@@ -60,3 +63,13 @@ Route::get('/viewcart',function () {
 Route::get('/checkout',function () {
     return view('user.checkout');
 });
+Route::get('/cat',function () {
+    return view('user.cat');
+});
+Route::get('/dog',function () {
+    return view('user.dog');
+});
+Route::get('/wishlist',function () {
+    return view('user.wishlist');
+});
+

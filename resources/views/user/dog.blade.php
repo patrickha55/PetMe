@@ -105,7 +105,8 @@
                         <h1 class="page-name">Product</h1>
                         <ol class="breadcrumb">
                             <li><a href="index.html">Home</a></li>
-                            <li class="active">product</li>
+                            <li><a href="{{url('/index')}}">Product</a></li>
+                            <li class="active">dog</li>
                         </ol>
                     </div>
                 </div>
@@ -157,38 +158,7 @@
                                       </ul>
                                   </div>
                               </div>
-                            </div>
-                            <!--Category for Cat -->
-                            <div class="panel panel-default">
-                              <div class="panel-heading" role="tab" id="headingTwo">
-                                  <h4 class="panel-title">
-                                      <a role="button" data-toggle="collapse" data-parent="#accordion"
-                                          href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                          Cat
-                                      </a>
-                                  </h4>
-                              </div>
-                              <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel"
-                              aria-labelledby="headingTwo">
-                              <div class="panel-body">
-                                <div class="pannel-flex">
-                                  <ul>
-                                      <li>
-                                          <input type="checkbox" class="form-check-input" id="cat-food"
-                                              rel="cat-food">
-                                          <label class="form-check-label" for="cat-food">Food</label>
-                                      </li>
-                                      <li>
-                                          <input type="checkbox" class="form-check-input" id="cat-toy"
-                                              rel="cat-toy">
-                                          <label class="form-check-label" for="cat-toy">Toys</label>
-                                      </li>
-                                  </ul>
-                                </div>
-                              </div>
-                          </div>
-                        </div>
-                            
+                            </div>                       
                         </div>
                     </div>               
                 </div>
