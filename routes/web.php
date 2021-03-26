@@ -30,10 +30,16 @@ Route::group(['namespace' => 'Auth'], function(){
 });
 
 Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
+
     Route::get('/', 'DashboardController@index');
+
     Route::prefix('user-management')->group(function (){
         Route::resource('/users','UserController');
         Route::resource('/admins', 'AdminController');
+    });
+
+    Route::group(['namespace'=>'Product', 'prefix' => 'product'], function () {
+        Route::resource('/', 'ProductsController');
     });
 });
 

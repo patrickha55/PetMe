@@ -14,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return view('/admin/product')->with('products', $products);
     }
 
     /**
@@ -24,7 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $this->validate();
     }
 
     /**
