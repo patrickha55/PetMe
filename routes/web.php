@@ -38,12 +38,7 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
 });
 
 // check view by thach
-// Route::get('admin/',function () {
-//     return view('admin.index');
-// });
-// Route::get('showcate/',function () {
-//     return view('admin.showCategories');
-// });
+
 
 
 // check view by ngan
