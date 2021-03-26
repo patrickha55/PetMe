@@ -22,6 +22,9 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['namespace' => 'Auth'], function(){
+   Route::get('dashboard',function (){
+       return view('admin.index');
+   });
     Route::get('/login', 'LoginController@create')->name('login');
     Route::post('/login','LoginController@login');
     Route::get('/register', 'RegisterController@create');
