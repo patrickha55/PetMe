@@ -1,8 +1,5 @@
 @extends('layouts.client.app')
 @section('content')
-
-
-
 <div id="body">
 	<!-- Cart shopping -->
 	<section class="shopping-cart">
@@ -40,10 +37,10 @@
 				</div>
 				<ul class="text-center cart-buttons">
 					<li>
-						<a href="view-cart.html" class="btn btn-small">View Cart</a>
+						<a href="{{url('/viewcart')}}" class="btn btn-small">View Cart</a>
 					</li>
 					<li>
-						<a href="checkout.html" class="btn btn-small btn-solid-border">Checkout</a>
+						<a href="{{url('/checkout')}}" class="btn btn-small btn-solid-border">Checkout</a>
 					</li>
 				</ul>
 			</div>
@@ -131,38 +128,71 @@
                 <div class="col-md-3">
                     <div class="widget product-category">
                         <h4 class="widget-title">Categories</h4>
+                        <!--Category for Dog -->
                         <div class="panel-group commonAccordion" id="accordion" role="tablist"
                             aria-multiselectable="true">
+                              <div class="panel panel-default">
+                                  <div class="panel-heading" role="tab" id="headingOne">
+                                      <h4 class="panel-title">
+                                          <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                              href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                              Dog
+                                          </a>
+                                      </h4>
+                                  </div>
+                                  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                                  aria-labelledby="headingOne">
+                                  <div class="panel-body">
+                                      <ul>
+                                          <li>
+                                              <input type="checkbox" class="form-check-input" id="dog-food"
+                                                  rel="dog-food">
+                                              <label class="form-check-label" for="dog-food">Food</label>
+                                          </li>
+                                          <li>
+                                              <input type="checkbox" class="form-check-input" id="dog-toy"
+                                                  rel="dog-toy">
+                                              <label class="form-check-label" for="dog-toy">Toys</label>
+                                          </li>
+                                      </ul>
+                                  </div>
+                              </div>
+                            </div>
+                            <!--Category for Cat -->
                             <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingOne">
-                                    <h4 class="panel-title">
-                                        <a role="button" data-toggle="collapse" data-parent="#accordion"
-                                            href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Dog
-                                        </a>
-                                    </h4>
+                              <div class="panel-heading" role="tab" id="headingTwo">
+                                  <h4 class="panel-title">
+                                      <a role="button" data-toggle="collapse" data-parent="#accordion"
+                                          href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                          Cat
+                                      </a>
+                                  </h4>
+                              </div>
+                              <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel"
+                              aria-labelledby="headingTwo">
+                              <div class="panel-body">
+                                <div class="pannel-flex">
+                                  <ul>
+                                      <li>
+                                          <input type="checkbox" class="form-check-input" id="cat-food"
+                                              rel="cat-food">
+                                          <label class="form-check-label" for="cat-food">Food</label>
+                                      </li>
+                                      <li>
+                                          <input type="checkbox" class="form-check-input" id="cat-toy"
+                                              rel="cat-toy">
+                                          <label class="form-check-label" for="cat-toy">Toys</label>
+                                      </li>
+                                  </ul>
                                 </div>
-                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
-                                aria-labelledby="headingOne">
-                                <div class="panel-body">
-                                    <ul>
-                                        <li>
-                                            <input type="checkbox" class="form-check-input" id="dog-food"
-                                                rel="dog-food">
-                                            <label class="form-check-label" for="dog-food">Food</label>
-                                        </li>
-                                        <li>
-                                            <input type="checkbox" class="form-check-input" id="dog-toy"
-                                                rel="dog-toy">
-                                            <label class="form-check-label" for="dog-toy">Toys</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            </div>
+                              </div>
+                          </div>
                         </div>
-                    </div>
+                            
+                        </div>
+                    </div>               
                 </div>
+                
                 <div class="col-md-9">
                     <div class="row" style="display: flex; flex-wrap: wrap;">
                         <!--Product-->

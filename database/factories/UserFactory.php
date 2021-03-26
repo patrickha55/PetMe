@@ -19,6 +19,7 @@ use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
     $gender = $faker->randomElement(['Male', 'Female']);
+    $active = $faker->randomElement([1,2]);
     return [
         'firstName' => $faker->firstName($gender),
         'lastName' => $faker->lastName,
@@ -29,6 +30,7 @@ $factory->define(User::class, function (Faker $faker) {
         'email_verified_at' => now(),
         'password' => 'password', // password
         'phoneNumber' => $faker->numberBetween($min = 10000000000, $max = 99999999999),
+       'active' =>$active ,
         'remember_token' => Str::random(10),
     ];
 });
