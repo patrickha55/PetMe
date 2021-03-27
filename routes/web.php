@@ -79,3 +79,9 @@ Route::get('/main',function () {
 Route::get('home',function(){
     return view('user.home');
 });
+Route::get('front',function(){
+    return view('layouts.client.front');
+});
+Route::get('checkout', function () {
+    return view('user.checkout');
+});

@@ -7,39 +7,111 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name') }}</title>
-{{-- tailwind --}}
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!--Product-->
-    	<!-- Mobile Specific Meta-->
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
-  <!-- Themefisher Icon font -->
-	<link rel="stylesheet" href="{{asset('/css/customer/plugins/themefisher-font/style.css')}}" />
-	<!-- bootstrap.min css -->
-	<link rel="stylesheet" href="{{asset('/css/customer/plugins/bootstrap/css/bootstrap.min.css')}}" />
-	<!-- font awesome -->
-	<link rel="stylesheet" href="{{asset('/css/customer/plugins/fontawesome/css/all.min.css')}}" />
-	<!-- navbar mobile -->
-	<link rel="stylesheet" href="{{asset('/css/customer/plugins/multi-level-dropdown-vegas-nav/dist/css/vgnav.css')}}" />
-	<link rel="stylesheet" href="{{asset('/css/customer/plugins/multi-level-dropdown-vegas-nav/dist/css/vgnav-theme.css')}}" />
-	<!-- Main Stylesheet -->
-    <link rel="stylesheet" href="{{asset('/css/customer/animate.min.css')}}">
-    <link rel="stylesheet" href="{{asset('/css/customer/product.css')}}">
-    
-   
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        @include('layouts.client.includes.client.navbar')
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <main class="py-4" style=" min-height: 60vh">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mr-auto">
+
+                        @can('seller')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('shops.create') }}">Open Your Shop</a>
+                            </li>
+                        @endcan
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                         <li class="nav-item mr-2">
+                            <a class="nav-link p-0 m-0" href="">
+                                <i class="fas fa-cart-arrow-down text-success fa-2x"></i>
+                                    <div class="badge badge-danger">
+                                        @auth
+                                        {{Cart::session(auth()->id())->getContent()->count()}}
+                                        @else
+                                        0
+                                        @endauth
+                                    </div>
+                            </a>
+                        </li>
+
+
+                        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        {{-- display success message --}}
+        @if(session()->has('message'))
+            <div class="alert alert-success text-center" role="alert">
+               {{session('message')}}
+            </div>
+        @endif
+
+        {{-- display error message --}}
+
+        @if(session()->has('error'))
+        <div class="alert alert-danger text-center" role="alert">
+            {{session('error')}}
+        </div>
+        @endif
+
+        <main class="py-4 container">
             @yield('content')
         </main>
-
-        @include('layouts.client.includes.client.footer')
     </div>
 </body>
 </html>

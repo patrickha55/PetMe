@@ -16,11 +16,11 @@ class HomeController extends Controller
      */
 
     public function index(){
-        $products = Product::take(30)->get();
+        // $products = Product::take(30)->get();
 
         // $categories = Category::whereNull('parent_id')->get();
 
 
-        return view('user.home', ['allProducts' => $products]);
+        return view('user.home');
     }
 }
