@@ -8,6 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name') }}</title>
+{{-- tailwind --}}
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
     <!--Product-->
     	<!-- Mobile Specific Meta-->
@@ -33,7 +35,7 @@
     <div id="app">
         @include('layouts.client.includes.client.navbar')
 
-        <main class="py-4">
+        <main class="py-4" style=" min-height: 60vh">
             @yield('content')
         </main>
 

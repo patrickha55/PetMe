@@ -1,5 +1,6 @@
 @extends('layouts.client.app')
 @section('content')
+
 <div id="body">
 	<!-- Cart shopping -->
 	<section class="shopping-cart">
@@ -113,14 +114,14 @@
         </div>
     </section>
     <div class="container">
-      <form class="align-item-center">
+      {{-- <form class="align-item-center">
         <div class="col-md-11">
           <input class="form-control me-2" type="search" placeholder="Search product..." aria-label="Search">
         </div>
         <div>
           <button class="btn btn-outline-success" type="submit">Search</button>
         </div>
-      </form>
+      </form> --}}
     </div>
     <section class="products section">
         <div class="container">

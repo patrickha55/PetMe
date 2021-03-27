@@ -72,4 +72,6 @@ Route::get('/dog',function () {
 Route::get('/wishlist',function () {
     return view('user.wishlist');
 });
-
+Route::get('/main',function () {
+    return view('user.main');
+});
