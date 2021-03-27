@@ -38,8 +38,16 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
         Route::resource('/admins', 'AdminController');
     });
 
-    Route::group(['namespace'=>'Product', 'prefix' => 'product'], function () {
-        Route::resource('/', 'ProductsController');
+    Route::group(['namespace'=>'Product'], function () {
+        Route::prefix('supplier')->group(function (){
+            Route::resource('/', 'ProductsController');
+        });
+        Route::prefix('category')->group(function (){
+            Route::resource('/', 'ProductsController');
+        });
+        Route::prefix('product')->group(function (){
+            Route::resource('/', 'ProductsController');
+        });
     });
 });
 
