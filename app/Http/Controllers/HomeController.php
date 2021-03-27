@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,6 +16,11 @@ class HomeController extends Controller
      */
 
     public function index(){
-        return view('user.index');
+        $products = Product::take(30)->get();
+
+        // $categories = Category::whereNull('parent_id')->get();
+
+
+        return view('user.home', ['allProducts' => $products]);
     }
 }
