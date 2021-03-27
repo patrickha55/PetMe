@@ -37,17 +37,17 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
         Route::resource('/users','UserController');
         Route::resource('/admins', 'AdminController');
     });
+});
+Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
+    Route::group(['prefix' => 'product-management'], function () {
 
-    Route::group(['namespace'=>'Product'], function () {
-        Route::prefix('supplier')->group(function (){
-            Route::resource('/', 'ProductsController');
-        });
-        Route::prefix('category')->group(function (){
-            Route::resource('/', 'ProductsController');
-        });
-        Route::prefix('product')->group(function (){
-            Route::resource('/', 'ProductsController');
-        });
+        Route::resource('/supplier', 'SupplierController');
+
+        Route::resource('/category', 'AnimalCategoryController');
+
+
+        Route::resource('/product', 'ProductController');
+
     });
 });
 

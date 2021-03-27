@@ -7,14 +7,15 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('role:administrator');
+    }
+
     public function index()
     {
-        //
+        $suppliers = Supplier::paginate(10);
+        return view('admin.product-management.supplier.index')->with('suppliers', $suppliers);
     }
 
     /**
@@ -24,7 +25,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.product-management.supplier.create');
     }
 
     /**

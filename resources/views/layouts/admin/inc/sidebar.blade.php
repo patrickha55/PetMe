@@ -109,16 +109,16 @@
             <i class="material-icons">content_paste</i>
             <p>Products Management</p>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="/admin/product-management/supplier">
                     <i class="material-icons">content_paste</i>
                     <p>Suppliers</p>
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="/admin/product-management/category">
                     <i class="material-icons">content_paste</i>
                     <p>Categories</p>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="/admin/product-management/product">
                     <i class="material-icons">content_paste</i>
                     <p>Products</p>
                 </a>

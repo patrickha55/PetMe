@@ -3,19 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Supplier;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('role:administrator');
+    }
+    
     public function index()
     {
-        $products = Product::all();
-        return view('/admin/product')->with('products', $products);
+        $brands = Supplier::join('product_suppliers', 'product_suppliers.supplier_id', '=', 'suppliers.id')
+        ->join('products','products.id', '=', 'product_suppliers.product_id')
+        ->select('suppliers.name')
+        ->get();
+        $products = Product::paginate(10);
+        return view('admin.product-management.product.index')->with(['products', $products],['brands', $brands]);
     }
 
     /**
@@ -25,7 +30,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $this->validate();
+        return view('admin.product-management.product.create');
     }
 
     /**
