@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
      protected $fillable = [
-          'name', 'description', 'price','stock', 'total_price' ,'status','imglink'
+      'pro_cat_id',    'name', 'description', 'price','stock' ,'img'
           ];
 }
