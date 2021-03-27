@@ -10,9 +10,10 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   $this->call(ProductSeeder::class);
         $this->call(LaratrustSeeder::class);
         $this->call(ProductCategorySeeder::class);
+     
         $this->call(AnimalCategorySeeder::class);
         
     }
