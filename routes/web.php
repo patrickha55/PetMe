@@ -75,3 +75,7 @@ Route::get('/wishlist',function () {
 Route::get('/main',function () {
     return view('user.main');
 });
+
+Route::get('home',function(){
+    return view('user.home');
+});
