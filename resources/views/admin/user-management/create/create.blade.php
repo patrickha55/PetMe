@@ -1,7 +1,7 @@
 @extends('layouts.admin.admin')
 
 @section('content')
-<div class="content bg-yellow-50">
+<div class="content">
         <div class="container-fluid">
             <div class="w-full bg-white rounded shadow-lg p-8 m-4l">
                 <h2 class="text-center">New Customer</h2>

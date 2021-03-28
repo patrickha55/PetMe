@@ -22,7 +22,7 @@ class UserController extends Controller
     public function index()
     {
         $customers = User::whereRoleIs('user')->paginate(10);
-        return view('admin.user-management.showCustomers')->with('customers',$customers);
+        return view('admin.user-management.show.showCustomers')->with('customers',$customers);
     }
 
     /**
