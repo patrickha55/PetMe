@@ -14,7 +14,7 @@ class CreateNutritionFactsTable extends Migration
     public function up()
     {
         Schema::create('nutrition_facts', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('serving_size');
             $table->string('calories');
             $table->string('protein');
