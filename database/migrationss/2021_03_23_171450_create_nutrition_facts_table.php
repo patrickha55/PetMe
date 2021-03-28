@@ -14,7 +14,12 @@ class CreateNutritionFactsTable extends Migration
     public function up()
     {
         Schema::create('nutrition_facts', function (Blueprint $table) {
+<<<<<<< HEAD:database/migrationss/2021_03_23_171450_create_nutrition_facts_table.php
             $table->bigIncrements('id');
+=======
+            $table->id();
+            $table->unsignedBigInteger('product_details_id');
+>>>>>>> main:database/migrations/2021_03_23_171450_create_nutrition_facts_table.php
             $table->string('serving_size');
             $table->string('calories');
             $table->string('protein');
@@ -27,6 +32,8 @@ class CreateNutritionFactsTable extends Migration
             $table->string('vitamin_A');
             $table->string('moisture');
             $table->timestamps();
+
+            $table->foreign('product_details_id')->references('id')->on('product_details')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
