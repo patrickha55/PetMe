@@ -10,8 +10,8 @@
 
                         <div class="card-header card-header-dark d-flex justify-content-between">
                             <div>
-                                <h4 class="card-title mt-0 text-dark ">product</h4>
-                                <p class="card-category text-dark ">product Management</p>
+                                <h4 class="card-title mt-0 text-dark ">Product</h4>
+                                <p class="card-category text-dark ">Product Management</p>
                             </div>
                             <a type="button" class="btn btn-warning"
                                 href="{{ url('/admin/product-management/product/create') }}">Add a product</a>
@@ -48,7 +48,6 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    <>
                                         @foreach ($products as $product)
                                             <tr>
                                                 <th>{{ $product->id }}</th>
@@ -60,7 +59,7 @@
                                                 <th>{{ $product->price }}</th>
                                                 <th>{{ $product->stock }}</th>
                                                 <th>
-                                                    <img src="/Image/product/cat/dry/{{ $product->img }}" alt="Whiskas Chicken & Turkey" width="50" height="auto">
+                                                    <img src="/storage/Image/product/{{ $product->img }}" alt="Whiskas Chicken & Turkey" width="50" height="auto">
                                                 </th>
                                                 <th>
                                                     <a class="btn-sm btn-warning "

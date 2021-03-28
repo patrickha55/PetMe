@@ -15,9 +15,12 @@ class CreateProductCategoriesTable extends Migration
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('animal_category_id');
             $table->string('name')->unique();
             $table->integer('status');
             $table->timestamps();
+
+            $table->foreign('animal_category_id')->references('id')->on('animal_categories')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

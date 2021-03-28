@@ -43,7 +43,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
 
         Route::resource('/supplier', 'SupplierController');
 
-        Route::resource('/category', 'AnimalCategoryController');
+        Route::resource('/category', 'CategoryController');
 
 
         Route::resource('/product', 'ProductController');

@@ -12,13 +12,10 @@ class ProductController extends Controller
     {
         $this->middleware('role:administrator');
     }
-    
+
     public function index()
     {
         $products = Product::paginate(10);
-        foreach ($products as $product ){
-            dd($product->supplierr);
-        }
         return view('admin.product-management.product.index')->with('products', $products);
     }
 

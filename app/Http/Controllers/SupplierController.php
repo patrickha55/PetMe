@@ -15,6 +15,9 @@ class SupplierController extends Controller
     public function index()
     {
         $suppliers = Supplier::paginate(10);
+        foreach ($suppliers as $supplier){
+            dd($supplier->product);
+        }
         return view('admin.product-management.supplier.index')->with('suppliers', $suppliers);
     }
 

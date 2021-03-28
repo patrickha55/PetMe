@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Product\Category;
+use App\AnimalCategory;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $categories = AnimalCategory::all();
+        return view('admin.product-management.category.index')->with('categories', $categories);
     }
 
     /**

@@ -10,7 +10,8 @@ class Supplier extends Model
         'name', 'email', 'phone1','phone2', 'website' ,'address','ward','district','city'
         ];
 
-    public function product(){
+    public function product(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
         return $this->hasMany('App\Product');
     }
 }

@@ -29,28 +29,10 @@
                                                 Name
                                             </th>
                                             <th>
-                                                Email
+                                                Sub Categories
                                             </th>
                                             <th>
-                                                Phone 1
-                                            </th>
-                                            <th>
-                                                Phone 2
-                                            </th>
-                                            <th>
-                                                Website
-                                            </th>
-                                            <th>
-                                                Address
-                                            </th>
-                                            <th>
-                                                Ward
-                                            </th>
-                                            <th>
-                                                District
-                                            </th>
-                                            <th>
-                                                City
+                                                Status
                                             </th>
                                             <th>
                                                 Function
@@ -62,17 +44,12 @@
                                             <tr>
                                                 <th>{{ $category->id }}</th>
                                                 <th>
-                                                    <a class="text-yellow-700" href="{{ route('category.show', ['category' => $category]) }}">{{ $Category->firstName }}</a>
+                                                    <a class="text-yellow-700" href="{{ route('category.show', ['category' => $category]) }}">{{ $category->name }}</a>
                                                 </th>
-                                                <th>{{ $category->name }}</th>
-                                                <th>{{ $category->email }}</th>
-                                                <th>{{ $Category->phone_1 }}</th>
-                                                <th>{{ $Category->phone_2 }}</th>
-                                                <th>{{ $Category->website }}</th>
-                                                <th>{{ $Category->address }}</th>
-                                                <th>{{ $Category->ward }}</th>
-                                                <th>{{ $Category->district }}</th>
-                                                <th>{{ $Category->city }}</th>
+                                                <th>
+{{--                                                    {{ $category->productCategories[($category->id) - 1]->name }}--}}
+                                                </th>
+                                                <th>{{ $category->status }}</th>
                                                 <th>
                                                     <a class="btn-sm btn-warning "
                                                         href="{{ url('/admins/product-management/product/{$Category}/edit') }}">Edit</a>
@@ -82,9 +59,6 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <div>
-                                    <span>{{ $Categorys->links() }}</span>
-                                </div>
                             </div>
                         </div>
                     </div>
