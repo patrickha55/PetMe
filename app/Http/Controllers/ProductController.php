@@ -15,12 +15,11 @@ class ProductController extends Controller
     
     public function index()
     {
-        $brands = Supplier::join('product_suppliers', 'product_suppliers.supplier_id', '=', 'suppliers.id')
-        ->join('products','products.id', '=', 'product_suppliers.product_id')
-        ->select('suppliers.name')
-        ->get();
         $products = Product::paginate(10);
-        return view('admin.product-management.product.index')->with(['products', $products],['brands', $brands]);
+        foreach ($products as $product ){
+            dd($product->supplierr);
+        }
+        return view('admin.product-management.product.index')->with('products', $products);
     }
 
     /**

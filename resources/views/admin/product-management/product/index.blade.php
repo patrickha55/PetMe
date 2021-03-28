@@ -50,13 +50,12 @@
                                     </thead>
                                     <>
                                         @foreach ($products as $product)
-                                            @foreach($brands as $brand)
                                             <tr>
                                                 <th>{{ $product->id }}</th>
                                                 <th>
                                                     <a class="text-yellow-700" href="{{ route('product.show', ['product' => $product]) }}">{{ $product->name }}</a>
                                                 </th>
-                                                <th>{{ $brand->name }}</th>
+                                                <th>{{ $product->supplier->name}}</th>
                                                 <th>{{ $product->description }}</th>
                                                 <th>{{ $product->price }}</th>
                                                 <th>{{ $product->stock }}</th>
@@ -69,7 +68,6 @@
 
                                                 </th>
                                             </tr>
-                                            @endforeach
                                         @endforeach
                                     </tbody>
                                 </table>

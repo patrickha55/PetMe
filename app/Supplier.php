@@ -10,7 +10,7 @@ class Supplier extends Model
         'name', 'email', 'phone1','phone2', 'website' ,'address','ward','district','city'
         ];
 
-    public function productSupplier(){
-        $this->hasMany();
+    public function product(){
+        return $this->hasMany('App\Product');
     }
 }
