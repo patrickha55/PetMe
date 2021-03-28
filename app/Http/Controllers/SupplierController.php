@@ -15,17 +15,10 @@ class SupplierController extends Controller
     public function index()
     {
         $suppliers = Supplier::paginate(10);
-        foreach ($suppliers as $supplier){
-            dd($supplier->product);
-        }
         return view('admin.product-management.supplier.index')->with('suppliers', $suppliers);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('admin.product-management.supplier.create');

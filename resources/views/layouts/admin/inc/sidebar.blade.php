@@ -1,83 +1,5 @@
-<!--
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-    <div class="position-sticky pt-3">
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
-                    <i data-feather="home"></i>
-                    Dashboard
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="file"></span>
-                    Orders
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i data-feather="shopping-cart"></i>
-                    Products
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="users"></span>
-                    Customers
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="bar-chart-2"></span>
-                    Reports
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="layers"></span>
-                    Integrations
-                </a>
-            </li>
-        </ul>
-
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-            <span>Saved reports</span>
-            <a class="link-secondary" href="#" aria-label="Add a new report">
-                <span data-feather="plus-circle"></span>
-            </a>
-        </h6>
-        <ul class="nav flex-column mb-2">
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-                    Current month
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-                    Last quarter
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-                    Social engagement
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-                    Year-end sale
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
--->
-
 <ul class="nav">
-    <li class="nav-item active  ">
+    <li class="nav-item {{ Request::is('/admin') ? 'active' : '' }}">
         <a class="nav-link" href="/admin">
             <i class="material-icons">dashboard</i>
             <p class="">Dashboard</p>
@@ -85,7 +7,7 @@
     </li>
 
   {{-- usermanagement  --}}
-  <li class="nav-item dropdown">
+  <li class="nav-item dropdown ">
     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="material-icons">content_paste</i>
         <p>User Management </p>
@@ -104,7 +26,7 @@
 </li>
 
 
-    <li class="nav-item dropdown">
+    <li class="nav-item dropdown {{ Request::is('/admin/product-management/supplier') ? 'active' : '' }}">
         <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons">content_paste</i>
             <p>Products Management</p>
