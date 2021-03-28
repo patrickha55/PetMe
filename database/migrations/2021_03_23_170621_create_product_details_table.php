@@ -26,8 +26,6 @@ class CreateProductDetailsTable extends Migration
 
             $table->foreign('product_id')->references('id')->on('products')
                 ->onUpdate('cascade')->onDelete('cascade');
-
-            $table->primary('id','product_id');
         });
     }
 
