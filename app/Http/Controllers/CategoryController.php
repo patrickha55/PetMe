@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AnimalCategory;
+use App\ProductCategory;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -11,17 +12,19 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = AnimalCategory::all();
-        return view('admin.product-management.category.index')->with('categories', $categories);
+        $subCategories = ProductCategory::all();
+
+        return view('admin.product-management.category.index')->with('categories', $categories)->with('subCategories', $subCategories);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        return view('admin.product-management.category.create');
+    }
+
+    public function createSubCategory(){
+        return view('admin.product-management.category.createSubCategory');
     }
 
     /**

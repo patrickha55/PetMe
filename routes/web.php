@@ -43,8 +43,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
 
         Route::resource('/supplier', 'SupplierController');
 
+        Route::get('/category/createSubCategory', 'CategoryController@createSubCategory');
         Route::resource('/category', 'CategoryController');
-
 
         Route::resource('/product', 'ProductController');
 
