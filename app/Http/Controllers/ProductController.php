@@ -8,7 +8,9 @@ use App\Product;
 use App\ProductCategory;
 use App\ProductDetail;
 use App\Supplier;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class ProductController extends Controller
 {
@@ -67,21 +69,10 @@ class ProductController extends Controller
         ]);
         /* Xu ly up anh */
         if ($request->hasFile('img')) {
-            //Lay ten file voi kieu du lieu
-            $fileNameWithExt = $request->file('img')->getClientOriginalName();
-            // Lay ten file
-            $fileName = pathInfo($fileNameWithExt, PATHINFO_FILENAME);
-            // Lay kieu du lieu
-            $extension = $request->file('img')->getClientOriginalExtension();
-            // File de luu
-            // Lay chu dau tien trong cau
-            $category = explode(' ', trim(strtolower($request->category)));
-
-            $fileNameToStore = strtolower($request->animal) . '/' . $category[0] . '/' . $fileName . '_' . time() . '.' . $extension;
-            // Upload image
+            $fileNameToStore = Product::uploadImg($request);
             $path = $request->file('img')->storeAs('public/Image/product/', $fileNameToStore);
         } else {
-            $fileNameToStore = '/storage/Image/noimage.jpg';
+            $fileNameToStore = 'noimage.jpg';
         }
 
 
@@ -122,55 +113,141 @@ class ProductController extends Controller
                 'crude_fiber' => $request->crudeFiber,
                 'calcium' => $request->calcium,
                 'moisture' => $request->moisture,
-                'product_details_id' => ProductDetail::firstWhere('product_id', $productID)->id,
+                'product_detail_id' => ProductDetail::firstWhere('product_id', $productID)->id,
             ]);
         }
 
         return redirect('/admin/product-management/product')->with('status', 'Product added successfully!');
     }
 
-    /**
+    /*
      * Display the specified resource.
      *
      * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     *
      */
     public function show(Product $product)
     {
         return view('admin.product-management.product.show', ['product' => $product]);
     }
 
-    /**
+    /*
      * Show the form for editing the specified resource.
      *
      * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     *
      */
     public function edit(Product $product)
     {
-        //
+        return view('admin.product-management.product.edit')->with('product', $product);
     }
 
-    /**
+    /*
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Product $product
+     *
+     * @throws ValidationException
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $product): RedirectResponse
     {
-        //
+        $this->validate($request,[
+            'animal' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'supplier' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|min:0',
+            'stock' => 'required|min:1',
+            'origin' => 'required|string|max:255',
+            'color' => 'required|string|nullable|max:255',
+            'size' => 'required|string|max:255',
+            'ingredient' => 'string|nullable',
+            'material' => 'string|nullable',
+            'instruction' => 'string|nullable',
+            'servingSize' => 'string|nullable|max:255',
+            'calories' => 'string|nullable|max:255',
+            'protein' => 'string|nullable|max:255',
+            'fatContent' => 'string|nullable|max:255',
+            'carbohydrate' => 'string|nullable|max:255',
+            'sugar' => 'string|nullable|max:255',
+            'crudeAsh' => 'string|nullable|max:255',
+            'crudeFiber' => 'string|nullable|max:255',
+            'calcium' => 'string|nullable|max:255',
+            'vitaminA' => 'string|nullable|max:255',
+            'moisture' => 'string|nullable|max:255',
+            'img' => 'image|nullable|max:1999',
+        ]);
+
+        $categoryID = ProductCategory::getProductCategoryID($request->category);
+        $supplierID = Supplier::getSupplierID($request->supplier);
+
+        if ($request->hasFile('img')) {
+            $fileNameToStore = Product::uploadImg($request);
+            $path = $request->file('img')->storeAs('public/Image/product/', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'noimage.jpg';
+        }
+
+        Product::updateOrCreate(['id' => $product->id],[
+            'product_category_id' => $categoryID,
+            'supplier_id' => $supplierID,
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'stock' => $request->stock,
+            'img' => $fileNameToStore,
+        ]);
+
+       /* Product::where('id', $product->id)->update([
+            'product_category_id' => $categoryID,
+            'supplier_id' => $supplierID,
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'stock' => $request->stock,
+            'img' => $fileNameToStore,
+        ]);*/
+
+        ProductDetail::where('id', $product->detail->id)->update([
+            'product_id' => $product->id,
+            'origin' => $request->origin,
+            'ingredients' => $request->ingredient,
+            'materials' => $request->material,
+            'color' => $request->color,
+            'size' => $request->size,
+            'instruction' => $request->instruction,
+        ]);
+
+        if (isset($request->servingSize)){
+            NutritionFact::where('id', $product->detail->nutritionFact->id)->update([
+                'serving_size' => $request->servingSize,
+                'calories' => $request->calories,
+                'protein' => $request->protein,
+                'fat_content' => $request->fatContent,
+                'total_carbohydrate' => $request->carbohydrate,
+                'sugar' => $request->sugar,
+                'crude_ash' => $request->crudeAsh,
+                'crude_fiber' => $request->crudeFiber,
+                'calcium' => $request->calcium,
+                'moisture' => $request->moisture,
+                'product_detail_id' => $product->detail->id,
+            ]);
+        }
+
+        return redirect()->route('product.index')->with('status', 'Product updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param \App\Product $product
+     * @throws \Exception
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->back()->with('status', 'Product deleted successfully!');
     }
 }

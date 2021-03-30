@@ -66,10 +66,19 @@
                                                 <th>
                                                     <img src="/storage/Image/product/{{ $product->img }}" alt="Whiskas Chicken & Turkey" width="50" height="auto">
                                                 </th>
-                                                <th>
-                                                    <a class="btn-sm btn-warning "
-                                                        href="{{ url('/admins/product-management/product/{$product}/edit') }}">Edit</a>
-
+                                                <th class="mx-auto w-7" >
+                                                    <div class="row">
+                                                        <div class="">
+                                                            <a class="btn-sm btn-warning " href="{{ route('product.edit', $product) }}" style="font-size: 10px;">Edit</a>
+                                                        </div>
+                                                        <div class="">
+                                                            <form action="{{ route('product.destroy', $product) }}" method="post">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn-sm btn-danger" style=" font-size: 10px;">Delete</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
                                                 </th>
                                             </tr>
                                         @endforeach
