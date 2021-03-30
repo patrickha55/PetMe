@@ -39,10 +39,10 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     * @return Response
+     *
      */
     public function store(Request $request)
-    {   
+    {
         $this->validate($request,[
             'firstName' => ['required', 'string', 'max:255'],
             'lastName' => ['required', 'string', 'max:255'],
@@ -53,7 +53,7 @@ class UserController extends Controller
             'gender' => ['required', 'max:1'],
             'phoneNumber' => ['required','regex:/^[0-9]{10,11}$/i']
         ]);
-            
+
         $gender = $request -> gender;
         
         $user = User::create([
@@ -69,7 +69,7 @@ class UserController extends Controller
 
         $user->attachRole('user');
 
-        return redirect('/admin/user-management/users');
+        return redirect('/admin/user-management/users')->with('status', 'Account created successfully!');
     }
 
     /**

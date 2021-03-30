@@ -16,7 +16,7 @@ class CreateAnimalCategoriesTable extends Migration
         Schema::create('animal_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->integer('status');
+            $table->integer('status')->default('1');
             $table->timestamps();
         });
     }

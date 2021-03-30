@@ -8,7 +8,7 @@ use \Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Product extends Model
 {
      protected $fillable = [
-      'pro_cat_id', 'supplier_id', 'name', 'description', 'price','stock' ,'img'
+      'product_category_id', 'supplier_id', 'name', 'description', 'price','stock' ,'img'
     ];
 
     public function supplier(): BelongsTo
