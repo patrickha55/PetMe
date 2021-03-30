@@ -17,4 +17,18 @@ class ProductCategory extends Model
     {
         return $this->hasMany('App\Product');
     }
+
+    public static function getProductCategoryID($category)
+    {
+        $categoryID = '';
+        switch (strtolower($category)){
+            case 'dry cat food':
+                $categoryID = 1;
+                break;
+            case 'wet cat food':
+                $categoryID = 2;
+                break;
+        }
+        return $categoryID;
+    }
 }
