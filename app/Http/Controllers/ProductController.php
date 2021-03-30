@@ -137,7 +137,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('admin.product-management.product.show', ['product' => $product]);
     }
 
     /**

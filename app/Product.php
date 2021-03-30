@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Product extends Model
 {
@@ -16,8 +17,13 @@ class Product extends Model
         return $this->belongsTo('App\Supplier');
     }
 
-    public function animalCategory(): BelongsTo
+    public function productCategory(): BelongsTo
     {
         return $this->belongsTo('App\ProductCategory');
+    }
+
+    public function detail(): HasOne
+    {
+        return $this->hasOne('App\ProductDetail');
     }
 }
