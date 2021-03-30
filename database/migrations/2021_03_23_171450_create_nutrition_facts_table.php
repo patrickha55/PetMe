@@ -15,7 +15,7 @@ class CreateNutritionFactsTable extends Migration
     {
         Schema::create('nutrition_facts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_details_id');
+            $table->unsignedBigInteger('product_detail_id');
             $table->string('serving_size')->nullable();
             $table->string('calories')->nullable();
             $table->string('protein')->nullable();
@@ -29,7 +29,7 @@ class CreateNutritionFactsTable extends Migration
             $table->string('moisture')->nullable();
             $table->timestamps();
 
-            $table->foreign('product_details_id')->references('id')->on('product_details')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('product_detail_id')->references('id')->on('product_details')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

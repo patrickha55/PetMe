@@ -3,13 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ProductCategory extends Model
 {
     protected $fillable = ['name','status','animal_category_id'];
 
-    public function animalCategory(){
+    public function animalCategory(): BelongsTo
+    {
         return $this->belongsTo('App\AnimalCategory');
     }
 

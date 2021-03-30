@@ -59,6 +59,15 @@
     <script src="{{ asset('/js/core/bootstrap-material-design.min.js') }}"></script>
     <script src="{{ asset('/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
     <script src="{{ asset('/js/plugins/bootstrap-selectpicker.js') }}"></script>
+    <script>
+        <!--Active class on click-->
+        $(document).ready(function(){
+            $('.nav li').click(function(){
+                $('.nav li').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+    </script>
     <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
     <script src="{{ asset('/js/plugins/bootstrap-datetimepicker.min.js') }}"></script>
     <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
