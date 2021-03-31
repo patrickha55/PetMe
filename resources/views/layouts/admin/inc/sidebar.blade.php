@@ -1,5 +1,5 @@
 <ul class="nav">
-    <li class="nav-item {{ Request::is('/admin') ? 'active' : '' }}">
+    <li class="nav-item active">
         <a class="nav-link" href="/admin">
             <i class="material-icons">dashboard</i>
             <p class="">Dashboard</p>
@@ -26,7 +26,7 @@
 </li>
 
 
-    <li class="nav-item dropdown {{ Request::is('/admin/product-management/supplier') ? 'active' : '' }}">
+    <li class="nav-item dropdown">
         <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons">content_paste</i>
             <p>Products Management</p>

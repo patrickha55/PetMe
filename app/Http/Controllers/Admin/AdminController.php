@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use \Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -33,8 +34,9 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     *
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
@@ -48,7 +50,7 @@ class AdminController extends Controller
             'gender' => ['required', 'max:1'],
             'phoneNumber' => ['required','regex:/^[0-9]{10,11}$/i']
         ]);
-        
+
         $user = User::create([
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
@@ -62,7 +64,7 @@ class AdminController extends Controller
 
         $user->attachRole('administrator');
 
-        return redirect('/admin/user-management/admins');
+        return redirect('/admin/user-management/admins')->with('status', 'Account created successfully!');
     }
 
     /**

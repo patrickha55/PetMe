@@ -15,21 +15,21 @@ class CreateNutritionFactsTable extends Migration
     {
         Schema::create('nutrition_facts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_details_id');
-            $table->string('serving_size');
-            $table->string('calories');
-            $table->string('protein');
-            $table->string('fat_content');
-            $table->string('total_carbohydrate');
-            $table->string('sugar');
-            $table->string('crude_ash');
-            $table->string('crude_fiber');
-            $table->string('calcium');
-            $table->string('vitamin_A');
-            $table->string('moisture');
+            $table->unsignedBigInteger('product_detail_id');
+            $table->string('serving_size')->nullable();
+            $table->string('calories')->nullable();
+            $table->string('protein')->nullable();
+            $table->string('fat_content')->nullable();
+            $table->string('total_carbohydrate')->nullable();
+            $table->string('sugar')->nullable();
+            $table->string('crude_ash')->nullable();
+            $table->string('crude_fiber')->nullable();
+            $table->string('calcium')->nullable();
+            $table->string('vitamin_A')->nullable();
+            $table->string('moisture')->nullable();
             $table->timestamps();
 
-            $table->foreign('product_details_id')->references('id')->on('product_details')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('product_detail_id')->references('id')->on('product_details')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

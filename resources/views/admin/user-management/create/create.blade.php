@@ -46,26 +46,25 @@
                             </div>
                         @enderror
                     </div>
-                    <fieldset class="form-group col-md-12">
+                    <div class="form-group col-md-12">
                         <div class="row">
-                            <legend class="col-form-label col-sm-2 pt-0 text-gray-500">Gender</legend>
+                            <p class="col-form-label col-sm-2 pt-0 text-black ">Gender</p>
                             <div class="col-sm-10">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" id="gridGender1" value="M"
-                                        checked>
-                                    <label class="form-check-label text-gray-500" for="gridGender1">
+                                    <input class="form-check-input" type="radio" name="gender" id="gridGender1" value="M" checked>
+                                    <label class="form-check-label text-black" for="gridGender1">
                                         Male
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="gender" id="gridGender2" value="F">
-                                    <label class="form-check-label text-gray-500" for="gridGender2">
+                                    <label class="form-check-label text-black" for="gridGender2">
                                         Female
                                     </label>
                                 </div>
                             </div>
                         </div>
-                    </fieldset>
+                    </div>
                     <div class="col-md-6">
                         <label name="password" for="password"
                             class="form-label font-semibold text-gray-500">Password</label>

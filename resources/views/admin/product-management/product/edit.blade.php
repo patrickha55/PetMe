@@ -1,91 +1,93 @@
 @extends('layouts.admin.admin')
 
 @section('content')
-<div class="content">
+    <div class="content">
         <div class="container-fluid">
             <div class="w-full bg-white rounded shadow-lg p-8 m-4l">
-                <h2 class="text-center">New Product</h2>
+                <h2 class="text-center">
+                    Update Product {{ $product->name }} of Category {{ $product->productCategory->animalCategory->name }}
+                </h2>
                 <form class="row g-3" action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-3">
                         <label for="animal" class="form-label font-semibold text-gray-500">Animal Type</label>
                         <input type="text" class="form-control @error('animal') border-red-500 @enderror" id="animal" name="animal">
                         @error('animal')
-                            <div class="text-sm text-danger mt-2">
-                                {{ $message }}
-                            </div>
+                        <div class="text-sm text-danger mt-2">
+                            {{ $message }}
+                        </div>
                         @enderror
                     </div>
                     <div class="col-md-3">
                         <label for="category" class="form-label font-semibold text-gray-500">Category</label>
                         <input type="text" class="form-control @error('category') border-red-500 @enderror" id="category" name="category">
                         @error('category')
-                            <div class="text-sm text-danger mt-2">
-                                {{ $message }}
-                            </div>
+                        <div class="text-sm text-danger mt-2">
+                            {{ $message }}
+                        </div>
                         @enderror
                     </div>
                     <div class="col-md-3">
                         <label for="supplier" class="form-label font-semibold text-gray-500">Supplier</label>
                         <input type="text" class="form-control @error('supplier') border-red-500 @enderror" id="supplier" name="supplier">
                         @error('supplier')
-                            <div class="text-sm text-danger mt-2">
-                                {{ $message }}
-                            </div>
+                        <div class="text-sm text-danger mt-2">
+                            {{ $message }}
+                        </div>
                         @enderror
                     </div>
                     <div class="col-md-3">
                         <label for="name" class="form-label font-semibold text-gray-500">Product Name</label>
                         <input type="text" class="form-control @error('name') border-red-500 @enderror" id="name" name="name">
                         @error('name')
-                            <div class="text-sm text-danger mt-2">
-                                {{ $message }}
-                            </div>
+                        <div class="text-sm text-danger mt-2">
+                            {{ $message }}
+                        </div>
                         @enderror
                     </div>
                     <div class="col-md-12">
                         <label for="description" class="form-label font-semibold text-gray-500">Description</label>
                         <textarea class="form-control @error('name') border-red-500 @enderror" name="description" id="description" rows="3"></textarea>
                         @error('description')
-                            <div class="text-sm text-danger mt-2">
-                                {{ $message }}
-                            </div>
+                        <div class="text-sm text-danger mt-2">
+                            {{ $message }}
+                        </div>
                         @enderror
                     </div>
                     <div class="col-md-2">
                         <label for="price" class="form-label font-semibold text-gray-500">Price</label>
                         <input type="number" class="form-control @error('price') border-red-500 @enderror" id="price" name="price">
                         @error('price')
-                            <div class="text-sm text-danger mt-2">
-                                {{ $message }}
-                            </div>
+                        <div class="text-sm text-danger mt-2">
+                            {{ $message }}
+                        </div>
                         @enderror
                     </div>
                     <div class="col-md-1">
                         <label for="stock" class="form-label font-semibold text-gray-500">Quantity</label>
                         <input type="number" class="form-control @error('stock') border-red-500 @enderror" id="stock" name="stock">
                         @error('stock')
-                            <div class="text-sm text-danger mt-2">
-                                {{ $message }}
-                            </div>
+                        <div class="text-sm text-danger mt-2">
+                            {{ $message }}
+                        </div>
                         @enderror
                     </div>
                     <div class="col-md-1">
                         <label for="origin" class="form-label font-semibold text-gray-500">Origin</label>
                         <input type="text" class="form-control @error('origin') border-red-500 @enderror" id="origin" name="origin">
                         @error('origin')
-                            <div class="text-sm text-danger mt-2">
-                                {{ $message }}
-                            </div>
+                        <div class="text-sm text-danger mt-2">
+                            {{ $message }}
+                        </div>
                         @enderror
                     </div>
                     <div class="col-md-1">
                         <label for="color" class="form-label font-semibold text-gray-500">Color</label>
                         <input type="text" class="form-control @error('color') border-red-500 @enderror" id="color" name="color">
                         @error('color')
-                            <div class="text-sm text-danger mt-2">
-                                {{ $message }}
-                            </div>
+                        <div class="text-sm text-danger mt-2">
+                            {{ $message }}
+                        </div>
                         @enderror
                     </div>
                     <div class="col-md-1">

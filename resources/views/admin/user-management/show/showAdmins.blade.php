@@ -10,8 +10,13 @@
 
                         <div class="card-header card-header-dark d-flex justify-content-between">
                             <div>
-                                <h4 class="card-title mt-0 text-dark "> Table Name</h4>
-                                <p class="card-category text-dark "> Here is a subtitle for this table</p>
+                                <h4 class="card-title mt-0 text-dark "> Admin</h4>
+                                <p class="card-category text-dark "> Admins Management</p>
+                                @if (session('status'))
+                                    <div class="alert alert-success">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
                             </div>
                             <a type="button" class="btn btn-warning" href="{{ url('admin/user-management/admins/create') }}">Add an Admin</a>
                         </div>

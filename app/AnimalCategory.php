@@ -18,4 +18,19 @@ class AnimalCategory extends Model
     {
         return $this->hasMany('App\ProductCategory');
     }
+
+    /* Get animal id */
+    public static function getAnimalID($animal){
+        $animalID = '';
+        switch (strtolower($animal)){
+
+            case 'Dog':
+                $animalID = 1;
+                break;
+            case 'Cat':
+                $animalID = 2;
+                break;
+        }
+        return $animalID;
+    }
 }

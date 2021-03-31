@@ -15,40 +15,10 @@
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
         <!-- CSS Files -->
-        <link rel="stylesheet" href="{{ asset('/css/app.css') }}"/>
-        <link href="{{ asset('/css/admin.css') }}" rel="stylesheet"/>
-
-<!--        &lt;!&ndash; Scripts &ndash;&gt;
-        <script src="{{ asset('js/app.js') }}" defer></script>
-
-        &lt;!&ndash; Fonts &ndash;&gt;
-        <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-        &lt;!&ndash; Styles &ndash;&gt;
-
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
-        &lt;!&ndash; Favicons &ndash;&gt;
-
-
-
-        <style>
-            .bd-placeholder-img {
-                font-size: 1.125rem;
-                text-anchor: middle;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                user-select: none;
-            }
-
-            @media (min-width: 768px) {
-                .bd-placeholder-img-lg {
-                    font-size: 3.5rem;
-                }
-            }
-        </style>
-        <link href="{{ asset('css/admin.css') }}" rel="stylesheet">-->
+            <!--Tailwind-->
+            <link rel="stylesheet" href="{{ asset('/css/app.css') }}"/>
+            {{--Bootstrap 4--}}
+            <link href="{{ asset('/css/admin.css') }}" rel="stylesheet"/>
     </head>
     <body>
     <div id="app">
@@ -89,6 +59,15 @@
     <script src="{{ asset('/js/core/bootstrap-material-design.min.js') }}"></script>
     <script src="{{ asset('/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
     <script src="{{ asset('/js/plugins/bootstrap-selectpicker.js') }}"></script>
+    <script>
+        <!--Active class on click-->
+        $(document).ready(function(){
+            $('.nav li').click(function(){
+                $('.nav li').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+    </script>
     <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
     <script src="{{ asset('/js/plugins/bootstrap-datetimepicker.min.js') }}"></script>
     <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
