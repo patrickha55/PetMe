@@ -30,7 +30,7 @@ Route::get('cart/add', 'CartController@create')->name('cart.add');
 /*
  * Test Product review - phat
 */
-Route::get('/product/{product}/show', 'HomeController@show')->name('home.show');
+//Route::get('/product/{product}/show', 'HomeController@show')->name('home.show');
 
 Route::resource('/product/review', 'ProductReviewController');
 
