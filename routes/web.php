@@ -21,10 +21,6 @@ Auth::routes();
  * Client
  */
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('home/{id}/show','HomeController@show')->name('home.show');
-// Route::get('home/show', 'HomeController@show')->name('home.show');
-Route::get('cart', 'CartController@index')->name('cart.index');
 //Route::get('cart/add/', 'CartController@create')->name('cart.add');
 
 /*
@@ -32,7 +28,7 @@ Route::get('cart', 'CartController@index')->name('cart.index');
 */
 //Route::get('/product/{product}/show', 'HomeController@show')->name('home.show');
 
-Route::resource('/product/review', 'ProductReviewController');
+
 
 
 Route::group(['namespace' => 'Auth'], function(){
@@ -73,34 +69,39 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
 
 
 // check view by thach
-Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
-Route::group([ 'middleware'=>'role:user'], function () {
 
-      //  Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
+// Route::group([ 'middleware'=>'role:user'], function () {
 
-    });
+//       //  Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
 
-
-// check view by ngan
-Route::get('/index',function () {
-    return view('user.index');
-});
-Route::get('/editprofile',function () {
-    return view('user.editprofile');
-});
+//     });
 
 
 
-Route::get('/wishlist',function () {
-    return view('user.wishlist');
-});
 
 
 Route::get('home',function(){
     return view('user.home');
 });
-Route::get('/cart/destroy/{itemId}', 'CartController@destroy')->name('cart.destroy');
-Route::get('/cart/update/{itemId}', 'CartController@update')->name('cart.update')->middleware('auth');
-Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout')->middleware('auth');
+
 //Route::get('/cart/apply-coupon', 'CartController@applyCoupon')->name('cart.coupon')->middleware('auth');
-Route::resource('/orders',  'OrderController');
+Route::resource('/order',  'OrderController');
+
+//@Guest  ------ 
+
+
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('home/{id}/show','HomeController@show')->name('home.show');
+//@endGuest ------
+//@User ------
+Route::middleware(['auth'])->group(function () {
+    
+    Route::get('/cart/destroy/{itemId}', 'CartController@destroy')->name('cart.destroy');
+    Route::get('/cart/update/{itemId}', 'CartController@update')->name('cart.update');
+    Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
+    Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
+    Route::resource('/product/review', 'ProductReviewController');
+
+Route::get('cart', 'CartController@index')->name('cart.index');
+}); 
+//@endUser  ------ 
