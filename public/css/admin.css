@@ -2330,7 +2330,7 @@ pre code {
   color: #495057;
   background-color: rgba(0, 0, 0, 0);
   background-clip: padding-box;
-  border: 1px solid #d2d2d2;
+  border: 1px solid black;
   border-radius: 0;
   box-shadow: none;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -2495,13 +2495,13 @@ select.form-control-lg:not([size]):not([multiple]),
   padding-left: 1.25rem;
 }
 
-.form-check-input {
+. {
   position: absolute;
   margin-top: 0.3rem;
   margin-left: -1.25rem;
 }
 
-.form-check-input:disabled~.form-check-label {
+.:disabled~.form-check-label {
   color: #6c757d;
 }
 
@@ -2516,7 +2516,7 @@ select.form-control-lg:not([size]):not([multiple]),
   margin-right: 0.75rem;
 }
 
-.form-check-inline .form-check-input {
+.form-check-inline . {
   position: static;
   margin-top: 0;
   margin-right: 0.3125rem;
@@ -2791,7 +2791,7 @@ select.form-control-lg:not([size]):not([multiple]),
     padding-left: 0;
   }
 
-  .form-inline .form-check-input {
+  .form-inline . {
     position: relative;
     margin-top: 0;
     margin-right: 0.25rem;
@@ -11496,7 +11496,7 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
   color: rgba(0, 0, 0, 0.26);
 }
 
-.form-check .form-check-input {
+.form-check . {
   opacity: 0;
   position: absolute;
   margin: 0;
@@ -11562,33 +11562,33 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
   animation: checkboxOff 0.3s forwards;
 }
 
-.form-check .form-check-input:focus+.form-check-sign .check:after {
+.form-check .:focus+.form-check-sign .check:after {
   opacity: 0.2;
 }
 
-.form-check .form-check-input:checked~.form-check-sign .check {
+.form-check .:checked~.form-check-sign .check {
   background: #9c27b0;
 }
 
-.form-check .form-check-input:checked~.form-check-sign .check:before {
+.form-check .:checked~.form-check-sign .check:before {
   color: #FFFFFF;
   box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
   animation: checkboxOn 0.3s forwards;
 }
 
-.form-check .form-check-input:checked~.form-check-sign:before {
+.form-check .:checked~.form-check-sign:before {
   animation: rippleOn 500ms;
 }
 
-.form-check .form-check-input:checked~.form-check-sign .check:after {
+.form-check .:checked~.form-check-sign .check:after {
   animation: rippleOn 500ms forwards;
 }
 
-.form-check .form-check-input:not(:checked)+.form-check-sign:before {
+.form-check .:not(:checked)+.form-check-sign:before {
   animation: rippleOff 500ms;
 }
 
-.form-check .form-check-input:not(:checked)+.form-check-sign .check:after {
+.form-check .:not(:checked)+.form-check-sign .check:after {
   animation: rippleOff 500ms;
 }
 
@@ -11597,23 +11597,23 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
 }
 
 fieldset[disabled] .form-check,
-fieldset[disabled] .form-check .form-check-input,
-.form-check .form-check-input[disabled]~.form-check-sign .check,
-.form-check .form-check-input[disabled]+.circle {
+fieldset[disabled] .form-check .,
+.form-check .[disabled]~.form-check-sign .check,
+.form-check .[disabled]+.circle {
   opacity: 0.5;
 }
 
-.form-check .form-check-input[disabled]~.form-check-sign .check {
+.form-check .[disabled]~.form-check-sign .check {
   border-color: #000000;
   opacity: .26;
 }
 
-.form-check .form-check-input[disabled]+.form-check-sign .check:after {
+.form-check .[disabled]+.form-check-sign .check:after {
   background-color: rgba(0, 0, 0, 0.87);
   transform: rotate(-45deg);
 }
 
-.form-check .form-check-input[disabled][checked]+.form-check-sign .check {
+.form-check .[disabled][checked]+.form-check-sign .check {
   background-color: #000000;
 }
 
@@ -11706,31 +11706,31 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
   transform: scale3d(0, 0, 0);
 }
 
-.form-check .form-check-input {
+.form-check . {
   opacity: 0;
   height: 0;
   width: 0;
   overflow: hidden;
 }
 
-.form-check .form-check-input:checked~.check,
-.form-check .form-check-input:checked~.circle {
+.form-check .:checked~.check,
+.form-check .:checked~.circle {
   opacity: 1;
 }
 
-.form-check .form-check-input:checked~.check {
+.form-check .:checked~.check {
   background-color: #9c27b0;
 }
 
-.form-check .form-check-input:checked~.circle {
+.form-check .:checked~.circle {
   border-color: #9c27b0;
 }
 
-.form-check .form-check-input:checked .check:before {
+.form-check .:checked .check:before {
   animation: checkboxOn .5s forwards;
 }
 
-.form-check .form-check-input:checked~.circle .check {
+.form-check .:checked~.circle .check {
   -webkit-transform: scale3d(0.65, 0.65, 1);
   -moz-transform: scale3d(0.65, 0.65, 1);
   -o-transform: scale3d(0.65, 0.65, 1);
@@ -11738,20 +11738,20 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
   transform: scale3d(0.65, 0.65, 1);
 }
 
-.form-check .form-check-input[disabled]~.check,
-.form-check .form-check-input[disabled]~.circle {
+.form-check .[disabled]~.check,
+.form-check .[disabled]~.circle {
   opacity: 0.26;
 }
 
-.form-check .form-check-input[disabled]~.check {
+.form-check .[disabled]~.check {
   background-color: #000000;
 }
 
-.form-check .form-check-input[disabled]~.circle {
+.form-check .[disabled]~.circle {
   border-color: #000000;
 }
 
-.form-check .form-check-input[disabled]+.circle .check {
+.form-check .[disabled]+.circle .check {
   background-color: #000000;
 }
 
@@ -11784,11 +11784,11 @@ fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
   transform: scale3d(2.3, 2.3, 1);
 }
 
-.form-check .form-check-label .form-check-input:checked+.circle:before {
+.form-check .form-check-label .:checked+.circle:before {
   animation: rippleOn .5s;
 }
 
-.form-check .form-check-label .form-check-input:checked+.circle .check:before {
+.form-check .form-check-label .:checked+.circle .check:before {
   color: #FFFFFF;
   box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
   animation: checkboxOn 0.3s forwards;
@@ -12127,13 +12127,13 @@ fieldset[disabled][disabled] .form-control,
   display: block;
 }
 
-.was-validated .is-focused .form-check-input:valid~.form-check-label,
+.was-validated .is-focused .:valid~.form-check-label,
 .is-focused .form-check-input.is-valid~.form-check-label {
   color: #999999;
 }
 
-.was-validated .is-focused .form-check-input:valid~.valid-feedback,
-.was-validated .is-focused .form-check-input:valid~.valid-tooltip,
+.was-validated .is-focused .:valid~.valid-feedback,
+.was-validated .is-focused .:valid~.valid-tooltip,
 .is-focused .form-check-input.is-valid~.valid-feedback,
 .is-focused .form-check-input.is-valid~.valid-tooltip {
   display: block;
@@ -12635,7 +12635,7 @@ fieldset[disabled][disabled] .has-white .form-control,
 }
 
 .was-validated .has-white .is-focused .form-check-input:valid~.form-check-label,
-.has-white .is-focused .form-check-input.is-valid~.form-check-label {
+.has-white .is-focused .form-check-input.is-valid~ .form-check-label {
   color: #fff;
 }
 

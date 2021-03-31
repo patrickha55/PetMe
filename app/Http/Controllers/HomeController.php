@@ -31,4 +31,8 @@ class HomeController extends Controller
         $product = Product::find($id);
         return view('product.show',compact('product'));
     }
+
+    public function show(Product $product){
+        return view('user.product.show')->with('product', $product);
+    }
 }

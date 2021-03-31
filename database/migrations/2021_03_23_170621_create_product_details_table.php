@@ -21,7 +21,7 @@ class CreateProductDetailsTable extends Migration
             $table->longText('materials')->nullable();
             $table->string('color');
             $table->string('size');
-            $table->longText('instruction');
+            $table->longText('instruction')->nullable();
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');

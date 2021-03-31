@@ -12,6 +12,11 @@
                             <div>
                                 <h4 class="card-title mt-0 text-dark "> Customers</h4>
                                 <p class="card-category text-dark "> Customer Management</p>
+                                @if (session('status'))
+                                    <div class="alert alert-success">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
                             </div>
                             <a type="button" class="btn btn-warning"
                                 href="{{ url('/admin/user-management/users/create') }}">Add a Customer</a>
