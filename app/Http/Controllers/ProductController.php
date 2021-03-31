@@ -21,6 +21,9 @@ class ProductController extends Controller
 
     public function index()
     {
+        /*Product::withTrashed()
+            ->where('id', 1)
+            ->restore();*/
         $products = Product::paginate(10);
         return view('admin.product-management.product.index')->with('products', $products);
     }
@@ -248,6 +251,8 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
+        $product->detail->delete();
+        $product->detail->nutritionFact->delete();
         return redirect()->back()->with('status', 'Product deleted successfully!');
     }
 }

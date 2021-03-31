@@ -13,9 +13,9 @@
                                 <h4 class="card-title mt-0 text-dark ">Product</h4>
                                 <p class="card-category text-dark ">Product Management</p>
                                 @if (session('status'))
-                                    <div class="alert alert-success">
+                                    <p class="text-green-500 font-black">
                                         {{ session('status') }}
-                                    </div>
+                                    </p>
                                 @endif
                             </div>
                             <a type="button" class="btn btn-warning"
@@ -27,30 +27,7 @@
                                 <table class="table table-hover text-center">
                                     <thead class="">
                                         <tr>
-                                            <th>
-                                                ID
-                                            </th>
-                                            <th>
-                                                Name
-                                            </th>
-                                            <th>
-                                                Brand
-                                            </th>
-                                            <th>
-                                                Description
-                                            </th>
-                                            <th>
-                                                Price
-                                            </th>
-                                            <th>
-                                                Stock
-                                            </th>
-                                            <th>
-                                                Image
-                                            </th>
-                                            <th>
-                                                Function
-                                            </th>
+                                            <th>ID</th> <th>Name</th> <th>Brand</th> <th>Description</th> <th>Price</th> <th>Stock</th> <th>Image</th> <th>Function</th>
                                         </tr>
                                     </thead>
                                         @foreach ($products as $product)

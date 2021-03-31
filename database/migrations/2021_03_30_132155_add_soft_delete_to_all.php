@@ -17,6 +17,14 @@ class AddSoftDeleteToAll extends Migration
             $table->softDeletes();
         });
 
+        Schema::table('product_details', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+
+        Schema::table('nutrition_facts', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+
         Schema::table('addresses', function (Blueprint $table) {
             $table->softDeletes();
         });

@@ -23,4 +23,8 @@ class HomeController extends Controller
 
         return view('user.home', ['allProducts' => $products]);
     }
+
+    public function show(Product $product){
+        return view('user.product.show')->with('product', $product);
+    }
 }

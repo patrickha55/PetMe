@@ -31,6 +31,10 @@ class Product extends Model
         return $this->hasOne('App\ProductDetail');
     }
 
+    /*
+     * Upload img cho form tao product
+    */
+
     public static function uploadImg(Request $request){
         //Lay ten file voi kieu du lieu
         $fileNameWithExt = $request->file('img')->getClientOriginalName();

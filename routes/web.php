@@ -17,9 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-
+/*
+ * Client
+ */
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/product/{product}/show', 'HomeController@show')->name('home.show');
+
+Route::resource('/product/review', 'ProductReviewController');
 
 Route::group(['namespace' => 'Auth'], function(){
     Route::get('/login', 'LoginController@create')->name('login');
@@ -28,6 +33,10 @@ Route::group(['namespace' => 'Auth'], function(){
     Route::post('/register', 'RegisterController@register');
     Route::post('/logout', 'LoginController@logout');
 });
+
+/*
+ *  Admin
+ */
 
 Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
 
@@ -38,6 +47,7 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
         Route::resource('/admins', 'AdminController');
     });
 });
+
 Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
     Route::group(['prefix' => 'product-management'], function () {
 
@@ -50,6 +60,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
 
     });
 });
+
 
 // check view by thach
 
