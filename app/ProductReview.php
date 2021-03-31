@@ -7,5 +7,5 @@ use \Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class ProductReview extends Model
 {
-    protected $fillable = ['reviewable_id','reviewable_type','title','rating','published','content'];
+    protected $fillable = ['user_id','product_id','title','rating','published','content'];
 }

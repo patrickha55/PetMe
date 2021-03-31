@@ -8,7 +8,7 @@
 
 <h3>Shipping Information</h3>
 
-<form action="{{route('orders.store')}}" method="post">
+<form action="{{ route('order.store') }}" method="post">
     @csrf
 
 

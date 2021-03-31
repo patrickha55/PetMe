@@ -13,7 +13,10 @@ class Product extends Model
     use SoftDeletes;
 
      protected $fillable = [
+
+
       'product_category_id', 'supplier_id', 'name', 'description', 'price','stock' ,'img'
+
     ];
 
     public function supplier(): BelongsTo
@@ -49,5 +52,9 @@ class Product extends Model
         $fileNameToStore = strtolower($request->animal) . '/' . $category[0] . '/' . $fileName . '_' . time() . '.' . $extension;
         // Upload image
         return $fileNameToStore;
+    }
+
+    public function userReviews(){
+        return $this->belongsToMany('App\User', 'users');
     }
 }

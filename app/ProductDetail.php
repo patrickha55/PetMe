@@ -12,7 +12,11 @@ class ProductDetail extends Model
     use SoftDeletes;
 
     protected $fillable = [
+
+
+
         'origin', 'ingredients', 'materials','color', 'size' ,'instruction', 'product_id',
+
         ];
 
     public function product(): BelongsTo
