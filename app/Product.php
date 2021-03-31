@@ -13,7 +13,10 @@ class Product extends Model
     use SoftDeletes;
 
      protected $fillable = [
+
+
       'product_category_id', 'supplier_id', 'name', 'description', 'price','stock' ,'img'
+
     ];
 
     public function supplier(): BelongsTo
