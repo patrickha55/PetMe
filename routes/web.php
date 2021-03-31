@@ -74,11 +74,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
 
 
 
-Route::get('home',function(){
-    return view('user.home');
-});
 
-//Route::get('/cart/apply-coupon', 'CartController@applyCoupon')->name('cart.coupon')->middleware('auth');
+
 
 
 //@Guest  ------ 
@@ -89,8 +86,14 @@ Route::get('home/{id}/show','HomeController@show')->name('home.show');
 //@endGuest ------
 //@User ------
 Route::middleware(['auth'])->group(function () {
+
     
     Route::get('cart', 'CartController@index')->name('cart.index');
+
+
+
+    Route::get('cart', 'CartController@index')->name('cart.index');
+
     Route::get('/cart/destroy/{itemId}', 'CartController@destroy')->name('cart.destroy');
     Route::get('/cart/update/{itemId}', 'CartController@update')->name('cart.update');
     Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
@@ -99,6 +102,8 @@ Route::middleware(['auth'])->group(function () {
     
     Route::resource('/product/review', 'ProductReviewController');
 
-Route::get('cart', 'CartController@index')->name('cart.index');
 }); 
 //@endUser  ------ 
+
+
+

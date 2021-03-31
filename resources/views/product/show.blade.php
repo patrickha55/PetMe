@@ -3,6 +3,10 @@
 
 @section('content')
 
+
+
+           
+
 <h1>{{ $product->id }}</h1>
 <img src="" alt="">
 <div class="product-details ptb-100 pb-90">
@@ -10,7 +14,11 @@
         <div class="row">
             <div class="col-md-12 col-lg-7 col-12">
                 <div class="product-details-5 pr-70">
-                    <img  src="assets/img/product/{{ $product->img }}" >
+                    @if(!empty($product->img))
+                    <img src="/assets/img/product/{{ $product->img }}" alt="">
+                    @else
+                        <img src="/assets/img/product/electro/1.jpg" alt="">
+                    @endif
                 </div>
             </div>
             <div class="col-md-12 col-lg-5 col-12">
