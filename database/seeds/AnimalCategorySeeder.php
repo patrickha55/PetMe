@@ -13,8 +13,10 @@ class AnimalCategorySeeder extends Seeder
     public function run()
     {
         $products = [
-            [1,'Dog', 1],
-            [2,'Cat', 1],
+            //Animal
+        // id   name   status 
+            [1, 'Dog',  1],
+            [2, 'Cat',  1],
         
          
         ];

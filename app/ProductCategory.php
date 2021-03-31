@@ -13,7 +13,7 @@ class ProductCategory extends Model
         return $this->belongsTo('App\AnimalCategory');
     }
 
-    public function products(): HasMany
+    public function products(): HasManyw
     {
         return $this->hasMany('App\Product');
     }

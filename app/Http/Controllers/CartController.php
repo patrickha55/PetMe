@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use Illuminate\Http\Request;
+use App\Product;
 
 class CartController extends Controller
 {
@@ -12,9 +13,31 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+   
+    public function add(Product $product)
     {
-        //
+    
+        // add the product to cart
+        \Cart::session(auth()->id())->add(array(
+            'id' => $product->id,
+            'name' => $product->name,
+            'description'=> $product->description,
+            'price' => $product->price,
+            'quantity' => 1,
+            'attributes' => array(),
+            'associatedModel' => $product
+        ));
+
+
+
+         return redirect()->route('cart.index');
+    }
+     public function index()
+    {
+        $cartItems = \Cart::session(auth()->id())->getContent();
+
+
+        return view('cart.index', compact('cartItems'));
     }
 
     /**
@@ -81,5 +104,9 @@ class CartController extends Controller
     public function destroy(Cart $cart)
     {
         //
+    }
+    public function checkout()
+    {
+        return view('cart.checkout');
     }
 }

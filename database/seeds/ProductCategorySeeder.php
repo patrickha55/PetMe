@@ -14,15 +14,18 @@ class ProductCategorySeeder extends Seeder
     {
         //1 :dog 2:Cat
         $products = [
-            // , Animal , Name , status 
-            [1,1,'DryFood',1],
-            [2,1,'WetFood',1],
+            //id , Animal , Name , status 
+        // Product Category  
+       
+        //Dog
+            [1,1,'Dog Food',1], 
+            [2,1,'Clothes and Accessories ',1], 
             [3,1,'Toy',1],
-            [4,1,'Cleansing',1],
-            [5,2,'Food',1],
-            [6,1,'DryFood',1],
-          
-        
+           
+         //Cat
+            [4,2,' Cat Food',1],
+            [5,2,'Cat Litter',1],
+            [6,2,'Cat Furniture And Scratchers',1],
            
          
         ];

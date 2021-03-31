@@ -19,4 +19,3 @@ class AnimalCategory extends Model
         return $this->hasMany('App\ProductCategory');
     }
 }
-
