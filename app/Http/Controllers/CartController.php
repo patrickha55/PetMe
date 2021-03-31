@@ -102,9 +102,12 @@ class CartController extends Controller
      * @param  \App\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy($itemId)
     {
-        //
+
+       \Cart::session(auth()->id())->remove($itemId);
+
+        return redirect()->route('cart.index');
     }
     public function checkout()
     {
