@@ -22,15 +22,18 @@ Auth::routes();
  */
 
 Route::get('/', 'HomeController@index')->name('home');
-<<<<<<< HEAD
+
 Route::get('home/show/{id}', 'HomeController@show')->name('home.show');
 Route::get('cart', 'CartController@index')->name('cart.index');
 Route::get('cart/add', 'CartController@create')->name('cart.add');
-=======
+
+/*
+ * Test Product review - phat
+*/
 Route::get('/product/{product}/show', 'HomeController@show')->name('home.show');
 
 Route::resource('/product/review', 'ProductReviewController');
->>>>>>> main
+
 
 Route::group(['namespace' => 'Auth'], function(){
     Route::get('/login', 'LoginController@create')->name('login');
@@ -72,7 +75,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
 // check view by thach
 
 Route::group([ 'middleware'=>'role:user'], function () {
-    
+
         Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
 
     });
