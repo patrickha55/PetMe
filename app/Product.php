@@ -53,4 +53,8 @@ class Product extends Model
         // Upload image
         return $fileNameToStore;
     }
+
+    public function userReviews(){
+        return $this->belongsToMany('App\User', 'users');
+    }
 }
