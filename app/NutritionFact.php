@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class NutritionFact extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'serving_size',
         'calories',
