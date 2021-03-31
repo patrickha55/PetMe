@@ -83,6 +83,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('home/{id}/show','HomeController@show')->name('home.show');
+Route::get('','HomeController@show')->name('home.show');
+Route::get('info','ClientInfoController@index')->name('info');
 //@endGuest ------
 //@User ------
 Route::middleware(['auth'])->group(function () {
@@ -103,6 +105,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/product/review', 'ProductReviewController');
 
 }); 
+
 //@endUser  ------ 
 
 
