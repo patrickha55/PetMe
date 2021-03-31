@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="/assets/css/responsive.css">
 
 
-    @livewireStyles
+      @livewireStyles
 
     <script src="/assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -33,6 +33,12 @@
 <body>
 
     <header>
+      
+      @if(auth()->check())
+        <h1>{{   auth()->user()->userName }}</h1>
+      @else
+    <h2>vui long dang nhap</h2>
+    @endif
         <div class="header-top-wrapper-2 border-bottom-2">
             <div class="header-info-wrapper pl-200 pr-200">
                 <div class="header-contact-info">
@@ -43,12 +49,45 @@
                 </div>
                 <div class="electronics-login-register">
                     <ul>
-                        <li><a href="#"><i class="pe-7s-users"></i>My Account</a></li>
+                      
                         <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i
                                     class="pe-7s-repeat"></i>Compare</a></li>
                         <li><a href="wishlist.html"><i class="pe-7s-like"></i>Wishlist</a></li>
-                        <li><a href="#"><i class="pe-7s-flag"></i>US</a></li>
-                        <li><a class="border-none" href="#"><span>$</span>USD</a></li>
+                        {{-- <li><a href="#"><i class="pe-7s-flag"></i>US</a></li> --}}
+                        {{-- <li><a class="border-none" href="#"><span>$</span>USD</a></li> --}}
+                      
+                        <li>                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('/logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                        </li>
+                     
+                      
+                     
                     </ul>
                 </div>
             </div>

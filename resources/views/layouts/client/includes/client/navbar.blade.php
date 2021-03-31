@@ -87,7 +87,7 @@
         <ul class="left">
           <li><a href="all-products.html">Dog</a></li>
           <li><a href="all-products.html">Cat</a></li>
-          
+
         </ul>
       </li>
       <li><a href="contact.html">Contact</a></li>
@@ -96,7 +96,7 @@
         <ul class="left">
           <li><a href="{{url('/editprofile')}}">Profile</a></li>
           <li><a href="{{url('/viewcart')}}">My orders</a></li>
-          <li><a href="all-products.html">Log Out</a></li>        
+          <li><a href="all-products.html">Log Out</a></li>
         </ul>
       </li>
       <li><a href="{{('/login')}}">Login</a></li>
@@ -104,14 +104,14 @@
   </nav>
 </div>
 
-Carousel>
+<!--<Carousel>
   <Carousel.Item>
     <img
       className="d-block w-100"
       src="holder.js/800x400?text=First slide&bg=373940"
       alt="First slide"
     />
-    <Carousel.Caption>
+    <Carousel.Caption  >
       <h3>First slide label</h3>
       <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
     </Carousel.Caption>
@@ -140,4 +140,4 @@ Carousel>
       <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
     </Carousel.Caption>
   </Carousel.Item>
-</Carousel>
+</Carousel>-->

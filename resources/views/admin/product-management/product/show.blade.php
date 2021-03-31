@@ -107,6 +107,18 @@
                             {{ $product->detail->instruction }}
                         </dd>
                     </div>
+                    <div class="bg-gray-50 mx-auto text-center row">
+                        <div class="">
+                            <a class="btn-sm btn-warning " href="{{ route('product.edit', $product) }}" style="font-size: 10px;">Edit</a>
+                        </div>
+                        <div class="">
+                            <form action="{{ route('product.destroy', $product) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-sm btn-danger" style=" font-size: 10px;">Delete</button>
+                            </form>
+                        </div>
+                    </div>
 <!--                    <div class="bg-white px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">
                             Attachments

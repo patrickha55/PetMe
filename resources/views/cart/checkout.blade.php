@@ -8,7 +8,11 @@
 
 <h3>Shipping Information</h3>
 
+<<<<<<< HEAD
 <form action="{{route('ordewrs.store')}}" method="post">
+=======
+<form action="{{route('orders.store')}}" method="post">
+>>>>>>> 457d118b9bb35fb7c137770f0996851e980f7f91
     @csrf
 
 

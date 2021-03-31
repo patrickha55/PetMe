@@ -20,7 +20,7 @@ class CreateOrderDetailsTable extends Migration
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
 
-            $table->float('price');
+            $table->double('price');
             $table->integer('quantity');
 
             $table->timestamps();

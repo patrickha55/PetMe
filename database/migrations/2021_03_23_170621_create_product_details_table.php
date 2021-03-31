@@ -24,8 +24,7 @@ class CreateProductDetailsTable extends Migration
             $table->longText('instruction')->nullable();
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products')
-                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

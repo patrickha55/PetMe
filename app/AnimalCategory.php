@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AnimalCategory extends Model
 {
-    protected $fillable = ['name','status'];
+    protected $fillable = ['id','name','status'];
 
 
     /**
@@ -34,4 +34,3 @@ class AnimalCategory extends Model
         return $animalID;
     }
 }
-
