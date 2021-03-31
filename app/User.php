@@ -42,6 +42,6 @@ class User extends Authenticatable
 
     public function reviews(): BelongsToMany
     {
-        return $this->belongsToMany('App\Product', 'products');
+        return $this->belongsToMany('App\Product', 'product_reviews');
     }
 }

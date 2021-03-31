@@ -55,6 +55,8 @@ class Product extends Model
     }
 
     public function userReviews(){
-        return $this->belongsToMany('App\User', 'users');
+        return $this->belongsToMany('App\User',
+            'product_reviews'
+        )->withTimestamps()->as('pivot')->withPivot('title', 'rating', 'content');
     }
 }
