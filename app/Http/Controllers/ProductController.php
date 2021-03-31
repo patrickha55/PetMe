@@ -129,13 +129,58 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      *
      */
-<<<<<<< HEAD
-=======
-
->>>>>>> main
-    public function show(Product $product)
+   public function show(Product $product)
     {
-        return view('admin.product-management.product.show', ['product' => $product]);
+         $countFive = $countFour = $countThree = $countTwo = $count= 0;
+         $one = $two = $three = $four = $five = 0;
+        foreach ($product->userReviews as $review){
+            switch($review->pivot->rating){
+                case 5:
+                    $countFive++;
+                    break;
+                case 4:
+                    $countFour++;
+                    break;
+                case 3:
+                    $countThree++;
+                    break;
+                case 2:
+                    $countTwo++;
+                    break;
+                default:
+                    $count++;
+                    break;
+            }
+        }
+
+        if ($countFive != 0){
+            $five = 100 / $countFive ;
+        }
+
+        if ($countFour != 0){
+            $four = 100 / $countFour;
+        }
+
+        if ($countThree != 0){
+            $three = 100 / $countThree;
+        }
+
+        if ($countTwo != 0){
+            $two = 100 / $countTwo;
+        }
+
+        if ($count != 0){
+            $one = 100 / $count;
+        }
+
+        return view('admin.product-management.product.show', [
+            'product' => $product,
+            'five' => $five,
+            'four' => $four,
+            'three' => $three,
+            'two' => $two,
+            'one' => $one
+            ]);
     }
 
     /*
@@ -246,13 +291,13 @@ class ProductController extends Controller
         return redirect()->route('product.index')->with('status', 'Product updated successfully!');
     }
 
-    /**
+    /*
      * Remove the specified resource from storage.
      *
      * @param \App\Product $product
      * @throws \Exception
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product): RedirectResponse
     {
         $product->delete();
         $product->detail->delete();
