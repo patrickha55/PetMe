@@ -30,7 +30,6 @@ Auth::routes();
 
 
 
-
 Route::group(['namespace' => 'Auth'], function(){
     Route::get('/login', 'LoginController@create')->name('login');
     Route::post('/login','LoginController@login');
@@ -87,7 +86,7 @@ Route::get('home',function(){
 //Route::get('/cart/apply-coupon', 'CartController@applyCoupon')->name('cart.coupon')->middleware('auth');
 
 
-//@Guest  ------ 
+//@Guest  ------
 
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -104,5 +103,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/order',  'OrderController');
     
     Route::resource('/product/review', 'ProductReviewController');
+
+Route::get('cart', 'CartController@index')->name('cart.index');
 }); 
 //@endUser  ------ 
