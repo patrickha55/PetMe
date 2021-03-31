@@ -1,5 +1,6 @@
 <?php
 
+use App\ProductCategory;
 use Illuminate\Database\Seeder;
 
 class ProductCategorySeeder extends Seeder
@@ -11,39 +12,33 @@ class ProductCategorySeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('product_categories')->insert(array (
-            0 => 
-            array (
-                'id' => 1,
-               
-                
-                'name' => 'Food',
-                'status' => '1',
-                'created_at' => '2020-03-07 15:10:58',
-                'updated_at' => '2020-03-07 15:10:58',
-            ),
-            1 => 
-            array (
-                'id' => 2,
+        //1 :dog 2:Cat
+        $products = [
+            //id , Animal , Name , status 
+        // Product Category  
+       
+        //Dog
+            [1,1,'Dog Food',1], 
+            [2,1,'Clothes and Accessories ',1], 
+            [3,1,'Toy',1],
+           
+         //Cat
+            [4,2,' Cat Food',1],
+            [5,2,'Cat Litter',1],
+            [6,2,'Cat Furniture And Scratchers',1],
+           
          
-             
-                'name' => 'Toy',
-                'status' => 1,
-                'created_at' => '2020-03-07 15:11:36',
-                'updated_at' => '2020-03-07 15:11:36',
-            ),
-            2 => 
-            array (
-                'id' => 3,
-             
-              
-                'name' => 'Other',
-                'status' => 1,
-                'created_at' => '2020-03-07 15:11:36',
-                'updated_at' => '2020-03-07 15:11:36',
-               
-            ),
-        ));
+        ];
+        foreach ($products as $pr) {
+            ProductCategory::create([
+                'id'=>$pr[0],
+                'animal_category_id' => $pr[1],
+                'name' => $pr[2],
+                'status' => $pr[3],
+
+            ]);
+        }
+
 
     }
 }

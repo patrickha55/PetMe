@@ -24,10 +24,8 @@ class CreateProductsTable extends Migration
             $table->string('img');
             $table->timestamps();
 
-            $table->foreign('product_category_id')->references('id')->on('product_categories')
-                ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('supplier_id')->references('id')->on('suppliers')
-                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('product_category_id')->references('id')->on('product_categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

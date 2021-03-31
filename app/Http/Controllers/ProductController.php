@@ -129,6 +129,7 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      *
      */
+
     public function show(Product $product)
     {
         return view('admin.product-management.product.show', ['product' => $product]);
