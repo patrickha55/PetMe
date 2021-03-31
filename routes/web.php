@@ -30,6 +30,7 @@ Auth::routes();
 
 
 
+
 Route::group(['namespace' => 'Auth'], function(){
     Route::get('/login', 'LoginController@create')->name('login');
     Route::post('/login','LoginController@login');
@@ -69,12 +70,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
 
 // check view by thach
 
-// Route::group([ 'middleware'=>'role:user'], function () {
-
-//       //  Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
-
-//     });
-
 
 
 
@@ -83,10 +78,10 @@ Route::get('home',function(){
     return view('user.home');
 });
 
-//Route::get('/cart/apply-coupon', 'CartController@applyCoupon')->name('cart.coupon')->middleware('auth');
 
 
-//@Guest  ------
+
+//@Guest  ------ 
 
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -94,12 +89,14 @@ Route::get('home/{id}/show','HomeController@show')->name('home.show');
 //@endGuest ------
 //@User ------
 Route::middleware(['auth'])->group(function () {
-<<<<<<< HEAD
+
     
     Route::get('cart', 'CartController@index')->name('cart.index');
-=======
 
->>>>>>> main
+
+
+    Route::get('cart', 'CartController@index')->name('cart.index');
+
     Route::get('/cart/destroy/{itemId}', 'CartController@destroy')->name('cart.destroy');
     Route::get('/cart/update/{itemId}', 'CartController@update')->name('cart.update');
     Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
@@ -107,12 +104,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/order',  'OrderController');
     
     Route::resource('/product/review', 'ProductReviewController');
-<<<<<<< HEAD
+
 }); 
 //@endUser  ------ 
-=======
 
-Route::get('cart', 'CartController@index')->name('cart.index');
-});
-//@endUser  ------
->>>>>>> main
+
+
