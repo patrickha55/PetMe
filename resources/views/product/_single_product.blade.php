@@ -2,7 +2,7 @@
 <div class="custom-col-style-2 custom-col-5">
     <div class="product-wrapper product-border mb-24">
         <div class="product-img-3">
-            <a href="{{route('home.show', $product->id)}}">
+            <a href="{{route('home.show', $product)}}">
                 @if(!empty($product->img))
            
                 <img src="/assets/img/product/{{ $product->img }}" alt="">
@@ -11,10 +11,10 @@
                 @endif
             </a>
             <div class="product-action-right">
-                <a class="animate-right" href="{{route('home.show', $product->id)}}" title="View">
+                <a class="animate-right" href="{{route('home.show', $product)}}" title="View">
                     <i class="pe-7s-look"></i>
                 </a>
-                <a class="animate-top" title="Add To Cart" href="{{route('cart.add', $product->id)}}">
+                <a class="animate-top" title="Add To Cart" href="{{route('cart.add', $product)}}">
                     <i class="pe-7s-cart"></i>
                 </a>
                 <a class="animate-left" title="Wishlist" href="#">

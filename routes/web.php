@@ -22,15 +22,15 @@ Auth::routes();
  */
 
 Route::get('/', 'HomeController@index')->name('home');
-
-Route::get('home/show/{id}', 'HomeController@show')->name('home.show');
+Route::get('home/{id}/show','HomeController@show')->name('home.show');
+// Route::get('home/show', 'HomeController@show')->name('home.show');
 Route::get('cart', 'CartController@index')->name('cart.index');
-Route::get('cart/add', 'CartController@create')->name('cart.add');
+//Route::get('cart/add/', 'CartController@create')->name('cart.add');
 
 /*
  * Test Product review - phat
 */
-Route::get('/product/{product}/show', 'HomeController@show')->name('home.show');
+//Route::get('/product/{product}/show', 'HomeController@show')->name('home.show');
 
 Route::resource('/product/review', 'ProductReviewController');
 
@@ -73,10 +73,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
 
 
 // check view by thach
-
+Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
 Route::group([ 'middleware'=>'role:user'], function () {
 
-        Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
+      //  Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
 
     });
 
@@ -90,21 +90,11 @@ Route::get('/editprofile',function () {
 });
 
 
-Route::get('/checkout',function () {
-    return view('user.checkout');
-});
-Route::get('/cat',function () {
-    return view('user.cat');
-});
-Route::get('/dog',function () {
-    return view('user.dog');
-});
+
 Route::get('/wishlist',function () {
     return view('user.wishlist');
 });
-Route::get('/main',function () {
-    return view('user.main');
-});
+
 
 Route::get('home',function(){
     return view('user.home');
@@ -112,5 +102,5 @@ Route::get('home',function(){
 Route::get('/cart/destroy/{itemId}', 'CartController@destroy')->name('cart.destroy');
 Route::get('/cart/update/{itemId}', 'CartController@update')->name('cart.update')->middleware('auth');
 Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout')->middleware('auth');
-Route::get('/cart/apply-coupon', 'CartController@applyCoupon')->name('cart.coupon')->middleware('auth');
+//Route::get('/cart/apply-coupon', 'CartController@applyCoupon')->name('cart.coupon')->middleware('auth');
 Route::resource('/orders',  'OrderController');
