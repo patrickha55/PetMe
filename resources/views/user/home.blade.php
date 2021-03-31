@@ -102,7 +102,7 @@
          @foreach ($trend as $product)
             <div class="custom-col-style-2 electronic-banner-col-3 mb-30 ">
                 <div class="electronic-banner-wrapper" >
-                    <img  src="assets/img/product/{{ $product->img }}" >
+                    <img src="/storage/Image/product/{{ $product->img }}" alt="">
                     <div class="  electro-banner-style electro-banner-position bg-light " style="opacity:0.8">
                    
                         <h1 class=" text-info opacity-5">{{ $product->name }}</h1>

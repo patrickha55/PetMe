@@ -15,7 +15,7 @@
             <div class="col-md-12 col-lg-7 col-12">
                 <div class="product-details-5 pr-70">
                     @if(!empty($product->img))
-                    <img src="/assets/img/product/{{ $product->img }}" alt="">
+                    <img src="/storage/Image/product/{{ $product->img }}" alt="">
                     @else
                         <img src="/assets/img/product/electro/1.jpg" alt="">
                     @endif

@@ -5,7 +5,7 @@
             <a href="{{route('home.show', $product)}}">
                 @if(!empty($product->img))
            
-                <img src="/assets/img/product/{{ $product->img }}" alt="">
+                <img src="/storage/Image/product/{{ $product->img }}" alt="">
                 @else
                     <img src="/assets/img/product/electro/1.jpg" alt="">
                 @endif
