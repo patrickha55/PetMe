@@ -27,10 +27,10 @@ class HomeController extends Controller
 
         return view('user.home')->with(['allProducts'=>$products,'categories'=>$categories,'subCat'=>$subCat,'trend'=>$trend]);
     }
-    public function show($id){
-        $product = Product::find($id);
-        return view('product.show',compact('product'));
-    }
+    // public function show($id){
+    //     $product = Product::find($id);
+    //     return view('product.show',compact('product'));
+    // }
 
     public function show(Product $product){
         return view('user.product.show')->with('product', $product);
