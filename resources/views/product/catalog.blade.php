@@ -197,7 +197,7 @@
                             <div id="grid-sidebar1" class="tab-pane fade active show">
                                 <div class="row">
                                     @foreach($products as $product)
-                                            @include('product._single_product')
+                                            @include('product.show')
                                     @endforeach
 
                                 </div>

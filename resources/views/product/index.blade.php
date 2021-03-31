@@ -9,8 +9,7 @@
 
     <div class="custom-row-2">
     @foreach ($products as $product)
-
-        @include('product._single_product')
+        @include('product.show')
     @endforeach
 
     </div>

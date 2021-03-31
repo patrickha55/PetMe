@@ -1,109 +1,41 @@
-@extends('layouts.client.front')
+<div class="custom-col-style-2 custom-col-5">
+    <div class="product-wrapper product-border mb-24">
+        <div class="product-img-3">
+            <a href="{{route('home.show', $product)}}">
+                @if(!empty($product->img))
 
-
-@section('content')
-
-
-
-           
-
-<h1>{{ $product->id }}</h1>
-<img src="" alt="">
-<div class="product-details ptb-100 pb-90">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-7 col-12">
-                <div class="product-details-5 pr-70">
-                    @if(!empty($product->img))
-                    <img src="/assets/img/product/{{ $product->img }}" alt="">
-                    @else
-                        <img src="/assets/img/product/electro/1.jpg" alt="">
-                    @endif
-                </div>
+                <img src="/storage/Image/product/{{ $product->img }}" alt="">
+                @else
+                    <img src="/storage/Image/product/noimage.jpg" alt="">
+                @endif
+            </a>
+            <div class="product-action-right">
+                <a class="animate-right" href="{{route('home.show', $product)}}" title="View">
+                    <i class="pe-7s-look"></i>
+                </a>
+                <a class="animate-top" title="Add To Cart" href="{{route('cart.add', $product)}}">
+                    <i class="pe-7s-cart"></i>
+                </a>
+                <a class="animate-left" title="Wishlist" href="#">
+                    <i class="pe-7s-like"></i>
+                </a>
             </div>
-            <div class="col-md-12 col-lg-5 col-12">
-                <div class="product-details-content">
-                    <h3>{{$product->name}}</h3>
-                    <div class="rating-number">
-                        <div class="quick-view-rating">
-                            <i class="pe-7s-star red-star"></i>
-                            <i class="pe-7s-star red-star"></i>
-                            <i class="pe-7s-star"></i>
-                            <i class="pe-7s-star"></i>
-                            <i class="pe-7s-star"></i>
-                        </div>
-                        <div class="quick-view-number">
-                            <span>2 Ratting (S)</span>
-                        </div>
-                    </div>
-                    <div class="details-price">
-                        <span>${{$product->price}}</span>
-                    </div>
-                    <p>{!! $product->description !!}</p>
-
-                    <div class="quickview-plus-minus">
-
-                        <div class="quickview-btn-cart">
-                            <a class="btn-hover-black" href="{{route('cart.add', $product)}}">add to cart</a>
-                        </div>
-
-                    </div>
-                    <div class="product-details-cati-tag mt-35">
-                        <ul>
-                            <li class="categories-title">Categories :</li>
-                            <li><a href="#">fashion</a></li>
-                            <li><a href="#">electronics</a></li>
-                            <li><a href="#">toys</a></li>
-                            <li><a href="#">food</a></li>
-                            <li><a href="#">jewellery</a></li>
-                        </ul>
-                    </div>
-                    <div class="product-details-cati-tag mtb-10">
-                        <ul>
-                            <li class="categories-title">Tags :</li>
-                            <li><a href="#">fashion</a></li>
-                            <li><a href="#">electronics</a></li>
-                            <li><a href="#">toys</a></li>
-                            <li><a href="#">food</a></li>
-                            <li><a href="#">jewellery</a></li>
-                        </ul>
-                    </div>
-                    <div class="product-share">
-                        <ul>
-                            <li class="categories-title">Share :</li>
-                            <li>
-                                <a href="#">
-                                    <i class="icofont icofont-social-facebook"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icofont icofont-social-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icofont icofont-social-pinterest"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icofont icofont-social-flikr"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        </div>
+        <div class="product-content-4 text-center">
+            <div class="product-rating-4">
+                <i class="icofont icofont-star yellow"></i>
+                <i class="icofont icofont-star yellow"></i>
+                <i class="icofont icofont-star yellow"></i>
+                <i class="icofont icofont-star yellow"></i>
+                <i class="icofont icofont-star"></i>
             </div>
+            <h4><a href="{{route('home.show', $product)}}">{{$product->name}}</a></h4>
+            <span>{{$product->description}}</span>
+            <h5>{{$product->price}} VNĐ</h5>
+        <p>{{$product->supplier->name ?? 'n/a'}}</p>
         </div>
     </div>
 </div>
+<script>
 
-{{-- reviews section --}}
-
-@include('product._reviews')
-
-<!-- related product area start -->
-@include('product._related-product')
-
-@endsection
+</script>

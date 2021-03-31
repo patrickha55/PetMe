@@ -26,7 +26,7 @@ Auth::routes();
 /*
  * Test Product review - phat
 */
-//Route::get('/product/{product}/show', 'HomeController@show')->name('home.show');
+Route::get('/product/{product}/show', 'HomeController@show')->name('home.show');
 
 
 
@@ -78,16 +78,16 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
 
 
 
-//@Guest  ------ 
+//@Guest  ------
 
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('home/{id}/show','HomeController@show')->name('home.show');
+Route::get('home/{product}/show','HomeController@show')->name('home.show');
 //@endGuest ------
 //@User ------
 Route::middleware(['auth'])->group(function () {
 
-    
+
     Route::get('cart', 'CartController@index')->name('cart.index');
 
 
@@ -99,11 +99,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
     Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
     Route::resource('/order',  'OrderController');
-    
+
     Route::resource('/product/review', 'ProductReviewController');
 
-}); 
-//@endUser  ------ 
+});
+//@endUser  ------
 
 
 
