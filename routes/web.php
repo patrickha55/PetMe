@@ -74,9 +74,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
 
 
 
-Route::get('home',function(){
-    return view('user.home');
-});
 
 
 
