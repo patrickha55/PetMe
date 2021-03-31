@@ -48,7 +48,7 @@ class OrderController extends Controller
             // 'shipping_zipcode' => 'required',
             // 'payment_method' => 'required',
         ]);
-       $orderDetail = new Order_Details();
+       //$orderDetail = new Order_Details();
         $order = new Order();
 
         // $order->order_number = uniqid('OrderNumber-');
@@ -84,15 +84,15 @@ class OrderController extends Controller
 
         $order->total_price = \Cart::session(auth()->id())->getTotal();
        
-       $str = "";
+    //    $str = "";
    
-          $cartItems = \Cart::session(auth()->id())->getContent();
-        foreach($cartItems as $item) {
-           // $orderDetail->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
-            $str +=  [$item->name] ;    
-        }
+    //       $cartItems = \Cart::session(auth()->id())->getContent();
+    //     foreach($cartItems as $item) {
+    //        // $orderDetail->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
+    //         $str +=  [$item->name] ;    
+    //     }
    
-    $order->products = \Cart::session(auth()->id())->getContent();
+       $order->products = \Cart::session(auth()->id())->getContent()->id;
 
         $order->user_id = auth()->id();
 
