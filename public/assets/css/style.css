@@ -2698,7 +2698,7 @@ a.banner-book-style-btn:hover {
     margin: 0;
 }
 .slider-content-style-3 h4 {
-    color: #1a1a1a;
+    color: #ffffff;
     font-size: 16px;
     letter-spacing: 2px;
     margin: 27px 0 25px;
@@ -2738,7 +2738,7 @@ a.banner-book-style-btn:hover {
     max-width: 33.333%;
 }
 .electronic-banner-wrapper > img {
-    width: 100%;
+    width: 60%;
 }
 .electronic-banner-area {
     padding: 0 200px;
@@ -7521,7 +7521,9 @@ h5.panel-title {
     width: 100%;
 }
 .product-details-5.pr-70 > img {
-    width: 100%;
+    width: 50%;
+    margin: auto;
+    height: auto;
 }
 .product-details-content > p {
     color: #545454;

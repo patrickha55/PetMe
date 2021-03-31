@@ -73,7 +73,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ '/logout' }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
@@ -84,12 +84,12 @@
                 </div>
             </div>
         </div>
-        <div class="header-bottom pt-40 pb-30 clearfix">
+        <div class="header-bottom pt-10 pb-30 clearfix">
             <div class="header-bottom-wrapper pr-200 pl-200">
                 <div class="logo-3">
                     <a href="{{route('home')}}">
 {{--                        <img src="/assets/img/logo/logo-3.png" alt="pet me logo">--}}
-                        <p class="font-weight-bold">PetMe</p>
+                        <p class="font-weight-bold font-italic h1">PetMe</p>
                     </a>
                 </div>
                 <div class="categories-search-wrapper">

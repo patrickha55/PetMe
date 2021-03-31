@@ -27,7 +27,7 @@
         width: 350px;
         margin-top: auto;
         margin-bottom: auto;
-        background: #f39c12;
+        background: #2d2d2d;
         position: relative;
         display: flex;
         justify-content: center;
@@ -129,7 +129,7 @@
                                     </div>
                                     @enderror
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <div class="maxl">
                                         <label class="radio inline">

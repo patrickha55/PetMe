@@ -1,41 +1,88 @@
-<div class="custom-col-style-2 custom-col-5">
-    <div class="product-wrapper product-border mb-24">
-        <div class="product-img-3">
-            <a href="{{route('home.show', $product)}}">
-                @if(!empty($product->img))
+@extends('layouts.client.front')
 
-                <img src="/storage/Image/product/{{ $product->img }}" alt="">
-                @else
-                    <img src="/storage/Image/product/noimage.jpg" alt="">
-                @endif
-            </a>
-            <div class="product-action-right">
-                <a class="animate-right" href="{{route('home.show', $product)}}" title="View">
-                    <i class="pe-7s-look"></i>
-                </a>
-                <a class="animate-top" title="Add To Cart" href="{{route('cart.add', $product)}}">
-                    <i class="pe-7s-cart"></i>
-                </a>
-                <a class="animate-left" title="Wishlist" href="#">
-                    <i class="pe-7s-like"></i>
-                </a>
+
+
+@section('content')
+    @include('layouts.client.nav')
+    <div class="product-details ptb-100 pb-90">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-7 col-12">
+                    <div class="product-details-5 pr-70">
+                        @if(!empty($product->img))
+                            <img src="/storage/Image/product/{{ $product->img }}" alt="{{ $product->name }}">
+                        @else
+                            <img src="/storage/Image/product//noimage.jpg" alt="{{ $product->name }}">
+                        @endif
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-5 col-12">
+                    <div class="product-details-content">
+                        <h3>{{$product->name}}</h3>
+                        <h2>Brand: {{ $product->supplier->name }}</h2>
+                        <div class="rating-number b4-">
+                            <div class="quick-view-rating">
+                                <i class="pe-7s-star red-star"></i>
+                                <i class="pe-7s-star red-star"></i>
+                                <i class="pe-7s-star"></i>
+                                <i class="pe-7s-star"></i>
+                                <i class="pe-7s-star"></i>
+                            </div>
+                            <div class="quick-view-number">
+                                <span>{{ $product->userReviews->count() }} Ratting (S)</span>
+                            </div>
+                        </div>
+                        <div class="details-price">
+                            <span>{{$product->price}}VNĐ</span>
+                        </div>
+                        <p>{!! $product->description !!}</p>
+
+                        <div class="quickview-plus-minus">
+
+                            <div class="quickview-btn-cart">
+                                <a class="btn-hover-black" href="{{route('cart.add', $product)}}">add to cart</a>
+                            </div>
+
+                        </div>
+                        <div class="product-details-cati-tag mt-35">
+                            <ul>
+                                <li class="categories-title">Categories :</li>
+                                @foreach($categories as $category)
+                                    <li><a href="">{{$category->name}}</a></li>
+                                    @foreach($category->productCategories as $proCat)
+                                    <li><a href="">{{ $proCat->name }}</a></li>
+                                    @endforeach
+                                    /
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="product-share">
+                            <ul>
+                                <li class="categories-title">Share :</li>
+                                <li>
+                                    <a href="facebook.com">
+                                        <i class="icofont icofont-social-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icofont icofont-social-twitter"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="product-content-4 text-center">
-            <div class="product-rating-4">
-                <i class="icofont icofont-star yellow"></i>
-                <i class="icofont icofont-star yellow"></i>
-                <i class="icofont icofont-star yellow"></i>
-                <i class="icofont icofont-star yellow"></i>
-                <i class="icofont icofont-star"></i>
-            </div>
-            <h4><a href="{{route('home.show', $product)}}">{{$product->name}}</a></h4>
-            <span>{{$product->description}}</span>
-            <h5>{{$product->price}} VNĐ</h5>
-        <p>{{$product->supplier->name ?? 'n/a'}}</p>
         </div>
     </div>
-</div>
-<script>
 
-</script>
+    {{-- reviews section --}}
+
+    @include('product._reviews')
+
+    <!-- related product area start -->
+    @include('product._related-product')
+
+@endsection
+
