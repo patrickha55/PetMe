@@ -1,4 +1,4 @@
-@extends('layouts.client.front')
-@section('content')
-User info
-@endsection
+
+
+<img src="/storage/Image/product/catfood1.jpg" alt="">
+
