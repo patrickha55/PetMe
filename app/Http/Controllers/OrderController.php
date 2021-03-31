@@ -92,7 +92,7 @@ class OrderController extends Controller
     //         $str +=  [$item->name] ;    
     //     }
    
-       $order->products = \Cart::session(auth()->id())->getContent()->id;
+       $order->products = \Cart::session(auth()->id())->getContent();
 
         $order->user_id = auth()->id();
 

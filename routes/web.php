@@ -85,7 +85,7 @@ Route::get('home',function(){
 });
 
 //Route::get('/cart/apply-coupon', 'CartController@applyCoupon')->name('cart.coupon')->middleware('auth');
-Route::resource('/order',  'OrderController');
+
 
 //@Guest  ------ 
 
@@ -96,12 +96,13 @@ Route::get('home/{id}/show','HomeController@show')->name('home.show');
 //@User ------
 Route::middleware(['auth'])->group(function () {
     
+    Route::get('cart', 'CartController@index')->name('cart.index');
     Route::get('/cart/destroy/{itemId}', 'CartController@destroy')->name('cart.destroy');
     Route::get('/cart/update/{itemId}', 'CartController@update')->name('cart.update');
     Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
     Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
+    Route::resource('/order',  'OrderController');
+    
     Route::resource('/product/review', 'ProductReviewController');
-
-Route::get('cart', 'CartController@index')->name('cart.index');
 }); 
 //@endUser  ------ 
