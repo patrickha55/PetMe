@@ -8,22 +8,20 @@
                 <ul>
                     @foreach($categories as $category)
                         <li>
-                            <a href="/">{{$category->name}}<i class="pe-7s-angle-right"></i></a>
+                            <a href="{{ route('home.showFilterAnimalProducts', $category) }}">{{$category->name}}<i class="pe-7s-angle-right"></i></a>
 
                             @php
-                                $sub = App\ProductCategory::where('animal_category_id', $category->id)->get();
+                                $product_categories = App\ProductCategory::where('animal_category_id', $category->id)->get();
                             @endphp
 
-                            @if($sub->isNotEmpty())
+                            @if($product_categories->isNotEmpty())
                                 <div class="category-menu-dropdown">
-
-                                    @foreach ($sub as $child)
-                                        <div class="category-dropdown-style category-common3">
+                                    @foreach ($product_categories as $product_category)
+                                        <div class="category-dropdown-style">
                                             <h4 class="categories-subtitle">
-                                                <a href="/">
-                                                    {{$child->name}}
+                                                <a href=" {{ route('home.showFilterProducts', $product_category) }}">
+                                                    {{$product_category->name}}
                                                 </a>
-
                                             </h4>
                                             {{-- @php
                                                 $grandChild = TCG\Voyager\Models\Category::where('parent_id', $child->id)->get();

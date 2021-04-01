@@ -1,9 +1,6 @@
-@extends('layouts.client.front')
+@extends('layouts.client.app')
 
 @section('content')
-
-@include('layouts.client.nav')
-
 <div class="section-title-4 text-center mb-40">
     <h2>Trend Products</h2>
 </div>

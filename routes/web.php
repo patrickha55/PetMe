@@ -83,6 +83,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('home/{product}/show','HomeController@show')->name('home.show');
+Route::get('home/{animal_category}/showFilterAnimal','HomeController@showFilterAnimalProducts')->name('home.showFilterAnimalProducts');
+Route::get('home/{product_category}/showFilter','HomeController@showFilterProducts')->name('home.showFilterProducts');
 //@endGuest ------
 //@User ------
 Route::middleware(['auth'])->group(function () {
@@ -92,7 +94,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-    Route::get('cart', 'CartController@index')->name('cart.index');
+    Route::get('/cart', 'CartController@index')->name('cart.index');
 
     Route::get('/cart/destroy/{itemId}', 'CartController@destroy')->name('cart.destroy');
     Route::get('/cart/update/{itemId}', 'CartController@update')->name('cart.update');

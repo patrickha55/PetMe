@@ -13,10 +13,10 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   
+
     public function add(Product $product)
     {
-    
+
        // add the product to cart
         \Cart::session(auth()->id())->add(array(
             'id' => $product->id,
@@ -31,7 +31,7 @@ class CartController extends Controller
 
 
          return redirect()->route('cart.index');
-   
+
     }
      public function index()
     {
