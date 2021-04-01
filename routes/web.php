@@ -86,13 +86,9 @@ Route::get('layout', function () {
 
 
 Route::get('/', 'HomeController@index')->name('home');
-<<<<<<< HEAD
 Route::get('home/{id}/show','HomeController@show')->name('home.show');
 
 
-=======
-Route::get('home/{product}/show','HomeController@show')->name('home.show');
->>>>>>> main
 //@endGuest ------
 //@User ------
 Route::middleware(['auth'])->group(function () {
