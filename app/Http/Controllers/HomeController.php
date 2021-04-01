@@ -18,7 +18,7 @@ class HomeController extends Controller
 
     public function index(): Renderable
     {
-        $products = Product::take(30)->get();
+        $products = Product::take(10)->get();
 
          $trend = $products->shuffle()->take(3);
          $categories = AnimalCategory::all();
