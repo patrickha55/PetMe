@@ -21,6 +21,7 @@
                 </div>
             </div>
             @endforeach
+            
              {{--
              <div class="custom-col-style-2 electronic-banner-col-3 mb-30">
                  <div class="electronic-banner-wrapper">
@@ -63,6 +64,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div>
+                <span>{{ $topProducts->links() }}</span>
             </div>
         </div>
     </div>

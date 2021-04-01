@@ -18,13 +18,13 @@ class HomeController extends Controller
 
     public function index(): Renderable
     {
-        $products = Product::all();
+        $products = Product::paginate(5);
 
-        $topProducts = collect([]);
+        /*$topProducts = collect([]);
         $rating = $count = 0;
         $totalRate = 0;
 
-        
+
 
         foreach ($products as $product) {
             foreach ($product->userReviews as $review) {
@@ -36,7 +36,7 @@ class HomeController extends Controller
             if ($totalRate > 4){
                 $topProducts->put('product' , $product);
             }
-        }
+        }*/
 
          $trend = $products->sortByDesc('created_at')->take(3);
 
@@ -48,7 +48,7 @@ class HomeController extends Controller
             'categories'=>$categories,
             'subCat'=>$subCat,
             'trend'=>$trend,
-            'topProducts' => $topProducts,
+            'topProducts' => $products,
         ]);
     }
 
