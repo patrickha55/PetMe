@@ -20,11 +20,36 @@ class HomeController extends Controller
     {
         $products = Product::all();
 
-         $trend = $products->shuffle()->take(3);
+        $topProducts = collect([]);
+        $rating = $count = 0;
+        $totalRate = 0;
+
+        
+
+        foreach ($products as $product) {
+            foreach ($product->userReviews as $review) {
+                $rating = $rating + $review->pivot->rating;
+                $count++;
+            }
+
+//            $totalRate = $rating / $count;
+            if ($totalRate > 4){
+                $topProducts->put('product' , $product);
+            }
+        }
+
+         $trend = $products->sortByDesc('created_at')->take(3);
+
          $categories = AnimalCategory::all();
          $subCat = ProductCategory::all();
 
-        return view('user.home')->with(['products'=>$products,'categories'=>$categories,'subCat'=>$subCat,'trend'=>$trend]);
+        return view('user.home')->with([
+            'products'=>$products,
+            'categories'=>$categories,
+            'subCat'=>$subCat,
+            'trend'=>$trend,
+            'topProducts' => $topProducts,
+        ]);
     }
 
     public function show(Product $product){
