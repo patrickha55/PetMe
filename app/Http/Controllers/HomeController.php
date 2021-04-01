@@ -89,6 +89,7 @@ class HomeController extends Controller
             'one' => $one,
             'userReviews' => $userReviews
         ]);
+       
     }
 
 

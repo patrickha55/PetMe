@@ -86,7 +86,9 @@ Route::get('layout', function () {
 
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('home/{id}/show','HomeController@show')->name('home.show');
+//Route::get('home/{id}/show','HomeController@show')->name('home.show');
+Route::get('home/{product}/show','HomeController@show')->name('home.show');
+
 
 
 //@endGuest ------

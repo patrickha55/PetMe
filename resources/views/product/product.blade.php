@@ -1,7 +1,7 @@
 <div class="custom-col-style-2 custom-col-5">
     <div class="product-wrapper product-border mb-24">
         <div class="product-img-3">
-            <a href="{{route('home.show', $product->id)}}">
+            <a href="{{route('home.show', $product)}}">
                 @if(!empty($product->img))
            
                 <img src="/storage/Image/product/{{ $product->img }}" alt="">
@@ -10,7 +10,7 @@
                 @endif
             </a>
             <div class="product-action-right">
-                <a class="animate-right" href="{{route('home.show', $product->id)}}" title="View">
+                <a class="animate-right" href="{{route('home.show', $product)}}" title="View">
                     <i class="pe-7s-look"></i>
                 </a>
                 <a class="animate-top" title="Add To Cart" href="{{route('cart.add', $product)}}">
@@ -29,7 +29,7 @@
                 <i class="icofont icofont-star yellow"></i>
                 <i class="icofont icofont-star"></i>
             </div>
-            <h4><a href="{{route('home.show', $product->id)}}">{{$product->name}}</a></h4>
+            <h4><a href="{{route('home.show', $product)}}">{{$product->name}}</a></h4>
             <span>{{$product->description}}</span>
             <h5>{{$product->price}} VNĐ</h5>
         <p>{{$product->supplier->name ?? 'n/a'}}</p>
