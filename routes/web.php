@@ -108,14 +108,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('/product/review', 'ProductReviewController');
 
-<<<<<<< HEAD
 }); 
 
 //@endUser  ------ 
-=======
-});
-//@endUser  ------
->>>>>>> main
 
 
 
