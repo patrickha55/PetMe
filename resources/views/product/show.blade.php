@@ -2,24 +2,8 @@
 
 
 
-<<<<<<< HEAD
-           
-
-<h1>{{ $product->id }}</h1>
-<img src="" alt="">
-<div class="product-details ptb-100 pb-90">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-7 col-12">
-                <div class="product-details-5 pr-70">
-                    @if(!empty($product->img))
-                    <img src="/storage/Image/product/{{ $product->img }}" alt="">
-                    @else
-                        <img src="/assets/img/product/electro/1.jpg" alt="">
-                    @endif
-=======
 @section('content')
-    @include('layouts.client.nav')
+   {{-- // @include('layouts.client.nav') --}}
     <div class="product-details ptb-100 pb-90">
         <div class="container">
             <div class="row">
@@ -31,7 +15,6 @@
                             <img src="/storage/Image/product//noimage.jpg" alt="{{ $product->name }}">
                         @endif
                     </div>
->>>>>>> main
                 </div>
                 <div class="col-md-12 col-lg-5 col-12">
                     <div class="product-details-content">
