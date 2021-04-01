@@ -24,7 +24,7 @@ class HomeController extends Controller
         $rating = $count = 0;
         $totalRate = 0;
 
-        
+
 
         foreach ($products as $product) {
             foreach ($product->userReviews as $review) {

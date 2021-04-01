@@ -57,7 +57,7 @@
                 <div>
                     <div id="electro1">
                         <div class="custom-row-2">
-                            @foreach($topProducts as $product)
+                            @foreach($products as $product)
                                 @include('product.product')
                             @endforeach
                         </div>
