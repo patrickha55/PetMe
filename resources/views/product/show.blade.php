@@ -1,10 +1,8 @@
 @extends('layouts.client.front')
 
 
-@section('content')
 
-
-
+<<<<<<< HEAD
            
 
 <h1>{{ $product->id }}</h1>
@@ -19,91 +17,89 @@
                     @else
                         <img src="/assets/img/product/electro/1.jpg" alt="">
                     @endif
+=======
+@section('content')
+    @include('layouts.client.nav')
+    <div class="product-details ptb-100 pb-90">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-7 col-12">
+                    <div class="product-details-5 pr-70">
+                        @if(!empty($product->img))
+                            <img src="/storage/Image/product/{{ $product->img }}" alt="{{ $product->name }}">
+                        @else
+                            <img src="/storage/Image/product//noimage.jpg" alt="{{ $product->name }}">
+                        @endif
+                    </div>
+>>>>>>> main
                 </div>
-            </div>
-            <div class="col-md-12 col-lg-5 col-12">
-                <div class="product-details-content">
-                    <h3>{{$product->name}}</h3>
-                    <div class="rating-number">
-                        <div class="quick-view-rating">
-                            <i class="pe-7s-star red-star"></i>
-                            <i class="pe-7s-star red-star"></i>
-                            <i class="pe-7s-star"></i>
-                            <i class="pe-7s-star"></i>
-                            <i class="pe-7s-star"></i>
+                <div class="col-md-12 col-lg-5 col-12">
+                    <div class="product-details-content">
+                        <h3>{{$product->name}}</h3>
+                        <h2>Brand: {{ $product->supplier->name }}</h2>
+                        <div class="rating-number b4-">
+                            <div class="quick-view-rating">
+                                <i class="pe-7s-star red-star"></i>
+                                <i class="pe-7s-star red-star"></i>
+                                <i class="pe-7s-star"></i>
+                                <i class="pe-7s-star"></i>
+                                <i class="pe-7s-star"></i>
+                            </div>
+                            <div class="quick-view-number">
+                                <span>{{ $product->userReviews->count() }} Ratting (S)</span>
+                            </div>
                         </div>
-                        <div class="quick-view-number">
-                            <span>2 Ratting (S)</span>
+                        <div class="details-price">
+                            <span>{{$product->price}}VNĐ</span>
                         </div>
-                    </div>
-                    <div class="details-price">
-                        <span>${{$product->price}}</span>
-                    </div>
-                    <p>{!! $product->description !!}</p>
+                        <p>{!! $product->description !!}</p>
 
-                    <div class="quickview-plus-minus">
+                        <div class="quickview-plus-minus">
 
-                        <div class="quickview-btn-cart">
-                            <a class="btn-hover-black" href="{{route('cart.add', $product)}}">add to cart</a>
+                            <div class="quickview-btn-cart">
+                                <a class="btn-hover-black" href="{{route('cart.add', $product)}}">add to cart</a>
+                            </div>
+
                         </div>
-
-                    </div>
-                    <div class="product-details-cati-tag mt-35">
-                        <ul>
-                            <li class="categories-title">Categories :</li>
-                            <li><a href="#">fashion</a></li>
-                            <li><a href="#">electronics</a></li>
-                            <li><a href="#">toys</a></li>
-                            <li><a href="#">food</a></li>
-                            <li><a href="#">jewellery</a></li>
-                        </ul>
-                    </div>
-                    <div class="product-details-cati-tag mtb-10">
-                        <ul>
-                            <li class="categories-title">Tags :</li>
-                            <li><a href="#">fashion</a></li>
-                            <li><a href="#">electronics</a></li>
-                            <li><a href="#">toys</a></li>
-                            <li><a href="#">food</a></li>
-                            <li><a href="#">jewellery</a></li>
-                        </ul>
-                    </div>
-                    <div class="product-share">
-                        <ul>
-                            <li class="categories-title">Share :</li>
-                            <li>
-                                <a href="#">
-                                    <i class="icofont icofont-social-facebook"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icofont icofont-social-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icofont icofont-social-pinterest"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="icofont icofont-social-flikr"></i>
-                                </a>
-                            </li>
-                        </ul>
+                        <div class="product-details-cati-tag mt-35">
+                            <ul>
+                                <li class="categories-title">Categories :</li>
+                                @foreach($categories as $category)
+                                    <li><a href="">{{$category->name}}</a></li>
+                                    @foreach($category->productCategories as $proCat)
+                                    <li><a href="">{{ $proCat->name }}</a></li>
+                                    @endforeach
+                                    /
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="product-share">
+                            <ul>
+                                <li class="categories-title">Share :</li>
+                                <li>
+                                    <a href="facebook.com">
+                                        <i class="icofont icofont-social-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icofont icofont-social-twitter"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-{{-- reviews section --}}
+    {{-- reviews section --}}
 
-@include('product._reviews')
+    @include('product._reviews')
 
-<!-- related product area start -->
-@include('product._related-product')
+    <!-- related product area start -->
+    @include('product._related-product')
 
 @endsection
+

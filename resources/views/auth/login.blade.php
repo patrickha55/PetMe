@@ -23,11 +23,12 @@
         background: url('https://wallpapercave.com/wp/wp2446975.jpg');
     }
     .user_card {
+        color: white;
         height: 400px;
         width: 350px;
         margin-top: auto;
         margin-bottom: auto;
-        background: #f39c12;
+        background: #282828;
         position: relative;
         display: flex;
         justify-content: center;
@@ -45,7 +46,7 @@
         width: 170px;
         top: -75px;
         border-radius: 50%;
-        background: #60a3bc;
+        background: #ffffff;
         padding: 10px;
         text-align: center;
     }
@@ -93,6 +94,7 @@
             <div class="d-flex justify-content-center">
                 <div class="brand_logo_container">
                     <a href="{{ url('/') }}"><img src="https://cdn.freebiesupply.com/logos/large/2x/pinterest-circle-logo-png-transparent.png" class="brand_logo" alt="Logo"></a>
+                    <h2 class="pt-2">Login</h2>
                 </div>
             </div>
             <div class="d-flex justify-content-center form_container">
@@ -104,12 +106,12 @@
                         </div>
 {{--                        <label for="email" class="input-group-append text-md-right">{{ __('E-Mail Address') }}</label>--}}
 {{--                        <input type="text" name="" class="form-control input_user" value="" placeholder="email">--}}
-                        <input id="email" type="email" class="form-control input_user @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <input id="email" type="email" class="form-control input_user @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email" autofocus>
 
                         @error('email')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
                     <div class="input-group mb-2">
@@ -120,9 +122,9 @@
                         <input id="password" type="password" class="form-control input_pass @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                         @error('password')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
                     <div class="d-flex justify-content-center mt-3 login_container">
@@ -133,7 +135,7 @@
 
             <div class="mt-4">
                 <div class="d-flex justify-content-center links">
-                    Don't have an account? <a href="{{url('/register')}}" class="ml-2">Sign Up</a>
+                    Don't have an account? <a href="{{url('/register')}}" class="ml-2 text-white">Sign Up</a>
                 </div>
             </div>
         </div>

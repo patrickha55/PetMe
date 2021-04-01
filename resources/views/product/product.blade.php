@@ -1,13 +1,16 @@
-
 <div class="custom-col-style-2 custom-col-5">
     <div class="product-wrapper product-border mb-24">
         <div class="product-img-3">
             <a href="{{route('home.show', $product->id)}}">
                 @if(!empty($product->img))
+<<<<<<< HEAD:resources/views/product/_single_product.blade.php
            
+=======
+
+>>>>>>> main:resources/views/product/product.blade.php
                 <img src="/storage/Image/product/{{ $product->img }}" alt="">
                 @else
-                    <img src="/assets/img/product/electro/1.jpg" alt="">
+                    <img src="/storage/Image/product/noimage.jpg" alt="">
                 @endif
             </a>
             <div class="product-action-right">
@@ -32,8 +35,11 @@
             </div>
             <h4><a href="{{route('home.show', $product->id)}}">{{$product->name}}</a></h4>
             <span>{{$product->description}}</span>
-            {{-- <h5>$ {{$product->price}}</h5>
-        <p>{{$product->shop->owner->name ?? 'n/a'}}</p> --}}
+            <h5>{{$product->price}} VNĐ</h5>
+        <p>{{$product->supplier->name ?? 'n/a'}}</p>
         </div>
     </div>
 </div>
+<script>
+
+</script>
