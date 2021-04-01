@@ -15,7 +15,7 @@
                 <div>
                     <div id="electro1">
                         <div class="custom-row-2">
-                            @foreach($products as $product)
+                            @foreach($filteredProducts as $product)
                                 @include('product.product')
                             @endforeach
                         </div>
