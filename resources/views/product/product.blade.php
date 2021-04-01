@@ -3,11 +3,7 @@
         <div class="product-img-3">
             <a href="{{route('home.show', $product->id)}}">
                 @if(!empty($product->img))
-<<<<<<< HEAD:resources/views/product/_single_product.blade.php
            
-=======
-
->>>>>>> main:resources/views/product/product.blade.php
                 <img src="/storage/Image/product/{{ $product->img }}" alt="">
                 @else
                     <img src="/storage/Image/product/noimage.jpg" alt="">
