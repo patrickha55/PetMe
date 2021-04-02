@@ -2968,14 +2968,15 @@ a.banner-book-style-btn:hover {
 .categories-subtitle::before {
     background-color: #c6c6c6;
     bottom: 0;
-    content: "";
-    height: 1px;
+    /* content: ""; */
+    /* height: 1px; */
     left: 0;
     position: absolute;
     width: 40px;
 }
 
-.category-dropdown-style ul li {
+
+/* .category-dropdown-style ul li {
     padding-bottom: 9px;
 }
 
@@ -2988,10 +2989,11 @@ a.banner-book-style-btn:hover {
     color: #383838;
     font-size: 14px;
     text-transform: capitalize;
-}
+} */
 
 .category-dropdown-style ul li a:hover {
     color: #050035;
+    padding-left: 10px;
 }
 
 .category-dropdown-style ul {
@@ -3234,11 +3236,12 @@ a.banner-book-style-btn:hover {
     border: 1px solid #BCBCBC;
     padding: 15px;
     align-items: center;
+    height: 300px;
 }
 
 .electro-banner-position {
     left: 0;
-    padding: 64px 50px;
+    /* padding: 64px 50px; */
     position: absolute;
     top: 0;
 }
@@ -10253,6 +10256,7 @@ a.bundle-btn {
 
 .slider-area {
     position: relative;
+    background-color: #fff;
 }
 
 .slider-social {
