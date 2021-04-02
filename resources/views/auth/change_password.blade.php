@@ -90,7 +90,7 @@ select {
     width: 100%;
     border: 1px solid #ddd;
     border-radius: 10px;
-    height: 47px;
+    height: 40px;
     padding: 5px 10px
 }
 
@@ -121,6 +121,10 @@ select:focus {
 .danger:hover {
     background-color: #e20404;
     color: #fff
+}
+
+.span-star {
+    color: red;
 }
 
 @media(max-width:576px) {
@@ -215,7 +219,7 @@ select:focus {
 </div>
 <!--Content-->
 <div class="wrapper bg-white mt-sm-5">
-    <h4 class="pb-4 border-bottom font-weight-bold">ACCOUNT SETTING</h4>
+    <h4 class="pb-4 border-bottom font-weight-bold">CHANGE PASSWORD</h4>
     {{-- <div class="d-flex align-items-start py-3 border-bottom"> <img src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img" alt="">
         <div class="pl-sm-4 pl-2" id="img-section"> <b>Profile Photo</b>
             <p>Accepted file type .png. Less than 1MB</p> <button class="btn button border"><b>Upload</b></button>
@@ -223,39 +227,20 @@ select:focus {
     </div> --}}
     <div class="py-2">
         <div class="row py-2">
-            <div class="col-md-6"> <label for="firstname">First Name</label> <input type="text" class="bg-light form-control" placeholder=""> </div>
-            <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Last Name</label> <input type="text" class="bg-light form-control" placeholder=""> </div>
+            <div class="col-md-12"> <label for="currpassword">Current Password<span class="span-star">*<span></label> <input type="password" class="bg-light form-control" placeholder="" required> </div>
+           
         </div>
         <div class="row py-2">
-            <div class="col-md-6"> <label for="username">Username</label> <input type="text" class="bg-light form-control" placeholder=""> </div>
-            <div class="col-md-6 pt-md-0 pt-3"> <label for="email">Email</label> <input type="email" class="bg-light form-control" placeholder=""> </div>
+            <div class="col-md-12"> <label for="newpassword">New Password<span class="span-star">*<span></label> <input type="password" class="bg-light form-control" placeholder="" required> </div>
+            
         </div>
-        <div class="row py-2">        
-            <div class="col-md-6 pt-md-0 pt-3"> <label for="phone">Phone</label> <input type="text" class="bg-light form-control" placeholder=""> </div>
-            <div class="col-md-6 pt-md-0 pt-3"> <label for="address">Address</label> <input type="text" class="bg-light form-control" placeholder=""> </div>
-        </div>
-        <div class="row py-2">        
-            <div class="col-md-6 pt-md-0 pt-3"> <label for="ward">Ward</label> <input type="text" class="bg-light form-control" placeholder=""> </div>
-            <div class="col-md-6 pt-md-0 pt-3"> <label for="district">District</label> <input type="text" class="bg-light form-control" placeholder=""> </div>
-        </div>
-       
         <div class="row py-2">
-            <div class="col-md-12"> <label for="city">City</label>
-                <select name="city" id="city" class="bg-light">
-                    <option value="hochiminh" selected>Ho Chi Minh</option>
-                    <option value="vungtau">Vung Tau</option>
-                    <option value="cantho">Can tho</option>
-                    <option value="hanoi">Ha Noi</option>
-                </select> 
-            </div> 
+            <div class="col-md-12"> <label for="cfpassword">Confirm Password<span class="span-star">*<span></label> <input type="password" class="bg-light form-control" placeholder="" required> </div>
+            
         </div>
-        <div class="py-3 pb-4 border-bottom"> <button type="submit" class="btn-secondary border button">Save Changes</button> <button class="border button">Cancel</button> </div>
-        <div class="d-sm-flex align-items-center pt-3" id="deactivate">
-            <div style="color: #000000"> 
-                <b>Change your password</b>
-                <p style="color: #000000">Want to chang your password?</p>
-            </div>
-            <div class="ml-auto"><a href="/3"><button class="button border danger">Change</button></a> </div>
+        <div class="py-3 pb-4 border-bottom"> 
+            <button type="submit" class="btn-secondary border button">Save Changes</button> 
+            <button class="border button">Cancel</button> 
         </div>
     </div>
 </div>
