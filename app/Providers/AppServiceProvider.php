@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Blade::directive('currency', function ($value) {
+            return "<?php echo number_format($value, 0, ',', '.'); ?>";
+        });
     }
 }

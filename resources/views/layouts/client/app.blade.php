@@ -174,7 +174,7 @@
                                         <th></th>
                                         <th>
                                             <a href="#">Remove <span>x</span></a>
-                                            <img src="/assets/img/cart/4.jpg" alt="">
+                                            <img src="/storage/Image/product" alt="">
                                             <p>Blush Sequin Top </p>
                                             <span>$75.99</span>
                                             <a class="compare-btn" href="#">Add to cart</a>
@@ -262,7 +262,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-hidden="true">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span class="pe-7s-close" aria-hidden="true"></span>
         </button>
@@ -273,7 +273,7 @@
                         <div class="quick-view-learg-img">
                             <div class="quick-view-tab-content tab-content">
                                 <div class="tab-pane active show fade" id="modal1" role="tabpanel">
-                                    <img src="/assets/img/quick-view/l1.jpg" alt="">
+                                    <img src="/storage/Image/product/" alt="" id="object">
                                 </div>
                                 <div class="tab-pane fade" id="modal2" role="tabpanel">
                                     <img src="/assets/img/quick-view/l2.jpg" alt="">
@@ -358,6 +358,15 @@
 
 
     <!-- all js here -->
+    <script>
+        $('#productModal').on('show', function(e) {
+            var link     = e.relatedTarget(),
+                modal    = $(this),
+                object = link.data("object");
+
+            modal.find("#object").val(object);
+        });
+    </script>
     <script src="/assets/js/vendor/jquery-1.12.0.min.js"></script>
     <script src="/assets/js/popper.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
@@ -370,6 +379,7 @@
     <script src="/assets/js/owl.carousel.min.js"></script>
     <script src="/assets/js/plugins.js"></script>
     <script src="/assets/js/main.js"></script>
+
 </body>
 
 </html>

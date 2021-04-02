@@ -38,7 +38,7 @@
                                                 </th>
                                                 <th>{{ $product->supplier->name}}</th>
                                                 <th>{{ $product->description }}</th>
-                                                <th>{{ $product->price }}</th>
+                                                <th>@currency($product->price) VNĐ</th>
                                                 <th>{{ $product->stock }}</th>
                                                 <th>
                                                     <img src="/storage/Image/product/{{ $product->img }}" alt="Whiskas Chicken & Turkey" width="50" height="auto">

@@ -31,7 +31,7 @@
             </div>
             <h4><a href="{{route('home.show', $product)}}">{{$product->name}}</a></h4>
 {{--            <span>{{ $product->description }}</span>--}}
-            <h5>{{$product->price}} VNĐ</h5>
+            <h5> @currency( $product->price ) VNĐ </h5>
         <p>{{$product->supplier->name ?? 'n/a'}}</p>
         </div>
     </div>

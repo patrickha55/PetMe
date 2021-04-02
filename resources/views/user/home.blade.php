@@ -14,8 +14,8 @@
                         <div class="  electro-banner-style electro-banner-position bg-light " style="opacity:0.8">
 
                             <h1 class=" text-info opacity-5">{{ $product->name }}</h1>
-                            <h2>{{ $product->price }} VNĐ</h2>
-                            <h4>Available </h4>
+                            <h2>@currency($product->price) VNĐ</h2>
+                            <h4>Available</h4>
                             <a href="{{ route('home.show',$product) }}">Buy Now→</a>
                         </div>
                     </div>
@@ -59,12 +59,15 @@
                 <div>
                     <div id="electro1">
                         <div class="custom-row-2">
-                            @foreach($products as $product)
+                            @foreach($topProducts as $product)
                                 @include('product.product')
                             @endforeach
                         </div>
                     </div>
                 </div>
+            </div>
+            <div>
+
             </div>
         </div>
     </div>
