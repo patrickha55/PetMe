@@ -71,7 +71,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
 // check view by thach
 
 
-
+//check view by ngan
 
 
 
@@ -107,5 +107,7 @@ Route::middleware(['auth'])->group(function () {
 });
 //@endUser  ------
 
-
+Route::get('1', function () {
+    return view('user.about');
+});
 
