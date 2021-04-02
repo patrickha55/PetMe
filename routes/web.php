@@ -37,7 +37,6 @@ Route::group(['namespace' => 'Auth'], function(){
     Route::get('/register', 'RegisterController@create');
     Route::post('/register', 'RegisterController@register');
     Route::post('/logout', 'LoginController@logout');
-
 });
 
 /*
@@ -89,13 +88,7 @@ Route::get('home/{product_category}/showFilter','HomeController@showFilterProduc
 //@User ------
 Route::middleware(['auth'])->group(function () {
 
-
-    Route::get('cart', 'CartController@index')->name('cart.index');
-
-
-
     Route::get('/cart', 'CartController@index')->name('cart.index');
-
     Route::get('/cart/destroy/{itemId}', 'CartController@destroy')->name('cart.destroy');
     Route::get('/cart/update/{itemId}', 'CartController@update')->name('cart.update');
     Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
@@ -104,6 +97,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('/product/review', 'ProductReviewController');
 
+    Route::resource('/wishlist', 'FavoriteController');
 });
 //@endUser  ------
 

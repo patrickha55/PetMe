@@ -41,7 +41,7 @@ class HomeController extends Controller
 
         $topProducts = Product::whereHas('userReviews', function(Builder $query){
             $query->where('rating', '>', '3');
-        })->get();
+        })->paginate(5);
 
         $trend = $products->sortByDesc('created_at')->take(3);
 
@@ -53,7 +53,7 @@ class HomeController extends Controller
             'categories'=>$categories,
             'subCat'=>$subCat,
             'trend'=>$trend,
-            'topProducts' => $products,
+            'topProducts' => $topProducts,
         ]);
     }
 

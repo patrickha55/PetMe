@@ -54,7 +54,8 @@ class Product extends Model
         return $fileNameToStore;
     }
 
-    public function userReviews(){
+    public function userReviews(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
         return $this->belongsToMany('App\User',
             'product_reviews'
         )->withTimestamps()->as('pivot')->withPivot('title', 'rating', 'content');
