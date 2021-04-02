@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="section-title-4 text-center mb-40">
-    <h2>New Products</h2>
+        <h2>New Products</h2>
     </div>
     <div class="electronic-banner-area">
         <div class="custom-row-2">
@@ -65,9 +65,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
-
             </div>
         </div>
     </div>
