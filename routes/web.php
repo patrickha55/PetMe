@@ -101,7 +101,17 @@ Route::middleware(['auth'])->group(function () {
 });
 //@endUser  ------
 
+
+//Ngan check route
 Route::get('1', function () {
     return view('user.about');
+});
+
+Route::get('2', function() {
+    return view('auth.edit');
+});
+
+Route::get('3', function() {
+    return view('auth.change_password');
 });
 

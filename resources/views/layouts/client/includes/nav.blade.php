@@ -53,25 +53,28 @@
                             <a href="#">contact</a>
                         </li>
                         <li>
+                            <a href="#">product</a>
+                        </li>
+                        <li>
                             <a href="{{url('/about')}}">about us</a>
                         </li>
                     </ul>
                 </nav>
             </div>
             <div class="slider-area">
-                <div class="slider-active owl-carousel" style="background-color: #000000; height: 550px;">
+                <div class="slider-active owl-carousel" style="background-color: #fff; height: 550px; border: 1px solid black;">
                     @foreach($products as $product)
-                        <div class="single-slider single-slider-hm3 p-5">
-                            <div class="row" style="">
-                                <div class="col-md-8">
+                        <div class="single-slider single-slider-hm3 p-5"  style="background-color: #fff;">
+                            <div class="row">
+                                <div class="col-md-8"  style=" color: black;">
                                     <div class="slider-animation slider-content-style-3 fadeinup-animated">
-                                        <h2 class="animated">{{ $product->name }}<br>{{$product->supplier->name}}</h2>
-                                        <h4 class="animated">{{$product->description}}</h4>
+                                        <h2 class="animated" style="font-size: 40px; color: black;">{{ $product->name }}<br>{{$product->supplier->name}}</h2>
+                                        <h4 class="animated" style="color: black;">{{$product->description}}</h4>
                                         <a class="electro-slider-btn btn-hover" href="{{ route('home.show', $product) }}">Buy Now</a>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <img src="/storage/Image/product/{{ $product->img }}" alt="{{ $product->name }}">
+                                    <img src="/storage/Image/product/{{ $product->img }}" alt="{{ $product->name }}" style="margin-left: 30px; height:auto; width: 200px;">
                                 </div>
                             </div>
                         </div>
