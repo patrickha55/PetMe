@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="details-price">
-                            <span>{{$product->price}}VNĐ</span>
+                            <span>@currency($product->price) VNĐ</span>
                         </div>
                         <p>{!! $product->description !!}</p>
 

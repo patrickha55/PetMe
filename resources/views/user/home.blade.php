@@ -3,25 +3,26 @@
 @section('content')
 
     <div class="section-title-4 text-center mb-40">
-    <h2>New Products</h2>
-</div>
+        <h2>New Products</h2>
+    </div>
     <div class="electronic-banner-area">
         <div class="custom-row-2">
-         @foreach ($trend as $product)
-            <div class="custom-col-style-2 electronic-banner-col-3 mb-30 ">
-                <div class="electronic-banner-wrapper" >
-                    <img  src="/storage/Image/product/{{ $product->img }}" >
-                    <div class="  electro-banner-style electro-banner-position bg-light " style="opacity:0.8">
+             @foreach ($trend as $product)
+                <div class="custom-col-style-2 electronic-banner-col-3 mb-30 ">
+                    <div class="electronic-banner-wrapper" >
+                        <img  src="/storage/Image/product/{{ $product->img }}" >
+                        <div class="  electro-banner-style electro-banner-position bg-light " style="opacity:0.8">
 
-                        <h1 class=" text-info opacity-5">{{ $product->name }}</h1>
-                        <h2>{{ $product->price }} VNĐ</h2>
-                        <h4>Available </h4>
-                        <a href="{{ route('home.show',$product) }}">Buy Now→</a>
+                            <h1 class=" text-info opacity-5">{{ $product->name }}</h1>
+                            <h2>@currency($product->price) VNĐ</h2>
+                            <h4>Available</h4>
+                            <a href="{{ route('home.show',$product) }}">Buy Now→</a>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endforeach
-            
+        </div>
+    </div>
              {{--
              <div class="custom-col-style-2 electronic-banner-col-3 mb-30">
                  <div class="electronic-banner-wrapper">

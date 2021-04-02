@@ -52,6 +52,9 @@
                         <li>
                             <a href="#">contact</a>
                         </li>
+                        <li>
+                            <a href="{{url('/about')}}">about us</a>
+                        </li>
                     </ul>
                 </nav>
             </div>

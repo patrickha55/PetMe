@@ -27,7 +27,7 @@
         width: 350px;
         margin-top: auto;
         margin-bottom: auto;
-        background: #2d2d2d;
+        background: #282828;
         position: relative;
         display: flex;
         justify-content: center;

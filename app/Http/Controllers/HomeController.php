@@ -7,6 +7,8 @@ use App\Category;
 use App\AnimalCategory;
 use App\ProductCategory;
 use \Illuminate\Contracts\Support\Renderable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -18,30 +20,33 @@ class HomeController extends Controller
 
     public function index(): Renderable
     {
+
+        $totalRate = $productWithHighRating = collect([
+            ['id' => '', 'avg' => '']
+        ]);
+
         $products = Product::paginate(5);
-
-        /*$topProducts = collect([]);
-        $rating = $count = 0;
-        $totalRate = 0;
-
-
-
-        foreach ($products as $product) {
-            foreach ($product->userReviews as $review) {
-                $rating = $rating + $review->pivot->rating;
+        $productsForRating = Product::has('userReviews')->get();
+        foreach ($productsForRating as $product){
+            $rating = $count = 0;
+            foreach ($product->userReviews as $review ){
+                $rating += ($review->pivot->rating);
                 $count++;
             }
-
-//            $totalRate = $rating / $count;
-            if ($totalRate > 4){
-                $topProducts->put('product' , $product);
+            $totalRate->put($product->id, $rating/$count);
+            if ($rating/$count > 4){
+                $productWithHighRating->put($product->id, $rating/$count);
             }
-        }*/
+        }
 
-         $trend = $products->sortByDesc('created_at')->take(3);
+        $topProducts = Product::whereHas('userReviews', function(Builder $query){
+            $query->where('rating', '>', '3');
+        })->get();
 
-         $categories = AnimalCategory::all();
-         $subCat = ProductCategory::all();
+        $trend = $products->sortByDesc('created_at')->take(3);
+
+        $categories = AnimalCategory::all();
+        $subCat = ProductCategory::all();
 
         return view('user.home')->with([
             'products'=>$products,

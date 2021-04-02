@@ -21,8 +21,8 @@
                                 <a class="animate-top" title="Add To Cart" href="#">
                                     <i class="pe-7s-cart"></i>
                                 </a>
-                                <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal"
-                                   href="#">
+                                <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#productModal"
+                                   href="#" data-object = {{ $relatedProduct->img }}>
                                     <i class="pe-7s-look"></i>
                                 </a>
                             </div>
