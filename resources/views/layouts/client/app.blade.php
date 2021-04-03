@@ -46,7 +46,7 @@
                     <ul>
                         <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i
                                     class="pe-7s-repeat"></i>Compare</a></li>
-                        <li><a href="wishlist.html"><i class="pe-7s-like"></i>Wishlist</a></li>
+                        <li><a href="/wishlist"><i class="pe-7s-like"></i>Wishlist</a></li>
                         {{-- <li><a href="#"><i class="pe-7s-flag"></i>US</a></li> --}}
                         {{-- <li><a class="border-none" href="#"><span>$</span>USD</a></li> --}}
 
@@ -63,19 +63,30 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ \Illuminate\Support\Facades\Auth::user()->userName }} <span class="caret"></span>
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('/logout') }}"
-                                       onclick="event.preventDefault();
+                                <div class="dropdown-menu">
+                                    <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('user.show', auth()->user()) }}">
+                                            Profile
+                                        </a>
+                                    </div>
+                                    <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#">
+                                            Orders
+                                        </a>
+                                    </div>
+                                    <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ url('/logout') }}"
+                                           onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                            {{ __('Logout') }}
+                                        </a>
 
-                                    <form id="logout-form" action="{{ '/logout' }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+                                        <form id="logout-form" action="{{ '/logout' }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
                                 </div>
                             </li>
                         @endguest

@@ -55,7 +55,7 @@ class UserController extends Controller
         ]);
 
         $gender = $request -> gender;
-        
+
         $user = User::create([
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
@@ -75,7 +75,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     *
      * @return Response
      */
     public function show(User $user)

@@ -1,60 +1,53 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Address;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+           'address' => 'required',
+           'ward' => 'required|numeric|min:1|max:30',
+           'district' => 'required',
+           'city' => 'required'
+        ]);
+
+        Address::create([
+            'user_id' => auth()->user()->id,
+            'address' => $request->address,
+            'ward' => $request->ward,
+            'district' => $request->district,
+            'city' => $request->city,
+        ]);
+
+        return redirect()->route('user.edit', auth()->user());
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Address  $address
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Address $address)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Address  $address
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Address $address)
     {
         //

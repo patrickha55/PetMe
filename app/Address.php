@@ -3,13 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Address extends Model
 {
     protected $fillable = [
-        'address', 'ward', 'district','city'
+        'user_id','address', 'ward', 'district','city'
         ];
-        public function user(){
+
+        public function users(): BelongsToMany
+        {
             return $this->belongsToMany('App\User');
         }
 }

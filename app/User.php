@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
+use \Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -43,5 +44,10 @@ class User extends Authenticatable
     public function reviews(): BelongsToMany
     {
         return $this->belongsToMany('App\Product', 'product_reviews');
+    }
+
+    public function address(): HasOne
+    {
+        return $this->hasOne('App\Address');
     }
 }

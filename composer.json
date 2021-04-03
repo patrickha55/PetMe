@@ -17,7 +17,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.0",
         "livewire/livewire": "^2.4",
-        "santigarcor/laratrust": "^6.3"
+        "santigarcor/laratrust": "^6.3",
+      "ext-http": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

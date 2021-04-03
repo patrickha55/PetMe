@@ -43,9 +43,9 @@
                             <ul>
                                 @guest
                                     <li><a href="/login">Login Here</a></li >
-                                    <li><a href="register.html">Register</a></li>
+                                    <li><a href="/register">Register</a></li>
                                 @endguest
-                                <li><a href="cart.html">Profile</a></li>
+                                <li><a href="{{ route('user.show', auth()->user()) }}">Profile</a></li>
                                 <li><a href="checkout.html"> Cart</a></li>
                                 <li><a href="shop.html">Orders</a></li>
                             </ul>
@@ -57,7 +57,7 @@
                         <h3 class="footer-widget-title-3">Information</h3>
                         <div class="footer-widget-content-3">
                             <ul>
-                                <li><a href="about-us.html">About Us</a></li>
+                                <li><a href="/about">About Us</a></li>
                                 <li><a href="#">Our Service</a></li>
                             </ul>
                         </div>

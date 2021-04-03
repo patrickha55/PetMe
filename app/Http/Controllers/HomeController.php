@@ -48,7 +48,7 @@ class HomeController extends Controller
         $categories = AnimalCategory::all();
         $subCat = ProductCategory::all();
 
-        return view('user.home')->with([
+        return view('product.home')->with([
             'products'=>$products,
             'categories'=>$categories,
             'subCat'=>$subCat,

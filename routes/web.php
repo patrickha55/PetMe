@@ -26,18 +26,6 @@ Auth::routes();
 /*
  * Test Product review - phat
 */
-Route::get('/product/{product}/show', 'HomeController@show')->name('home.show');
-
-
-
-
-Route::group(['namespace' => 'Auth'], function(){
-    Route::get('/login', 'LoginController@create')->name('login');
-    Route::post('/login','LoginController@login');
-    Route::get('/register', 'RegisterController@create');
-    Route::post('/register', 'RegisterController@register');
-    Route::post('/logout', 'LoginController@logout');
-});
 
 /*
  *  Admin
@@ -86,6 +74,20 @@ Route::get('home/{animal_category}/showFilterAnimal','HomeController@showFilterA
 Route::get('home/{product_category}/showFilter','HomeController@showFilterProducts')->name('home.showFilterProducts');
 //@endGuest ------
 //@User ------
+Route::group(['middleware'=>'auth', 'namespace'=>'User'], function () {
+    Route::get('/user/edit_password', 'UserController@editPassword')->name('user.editPassword');
+    Route::resource('/user', 'UserController');
+    Route::resource('/user/address', 'AddressController');
+});
+
+Route::group(['namespace' => 'Auth'], function(){
+    Route::get('/login', 'LoginController@create')->name('login');
+    Route::post('/login','LoginController@login');
+    Route::get('/register', 'RegisterController@create');
+    Route::post('/register', 'RegisterController@register');
+    Route::post('/logout', 'LoginController@logout');
+});
+
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/cart', 'CartController@index')->name('cart.index');
@@ -103,15 +105,6 @@ Route::middleware(['auth'])->group(function () {
 
 
 //Ngan check route
-Route::get('1', function () {
+Route::get('/about', function () {
     return view('user.about');
 });
-
-Route::get('2', function() {
-    return view('auth.edit');
-});
-
-Route::get('3', function() {
-    return view('auth.change_password');
-});
-
