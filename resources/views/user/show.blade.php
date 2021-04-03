@@ -177,6 +177,11 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    @if ($user->img != null)
+                                        <img src="{{ $user->img }}" alt="{{ $user->name }} image" class="rounded-circle" height="30px">
+                                    @else
+                                        <img src="/storage/Image/product/noimage.jpg" alt="" class="rounded-circle" height="30px">
+                                    @endif
                                     {{ \Illuminate\Support\Facades\Auth::user()->userName }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu">
@@ -278,9 +283,13 @@
     <div class="container mt-100 mb-100">
         <div class="row">
             <div class="col-4">
-                <div class="row">
+                <div class="row" style="margin-top: 10%;">
                     <div class="col-12 text-center">
-                        <img src="/storage/Image/product/noimage.jpg" alt="" class="rounded-circle" height="200px" >
+                        @if ($user->img != null)
+                            <img src="{{ $user->img }}" alt="{{ $user->name }} image" class="rounded-circle" height="200px">
+                        @else
+                            <img src="/storage/Image/product/noimage.jpg" alt="" class="rounded-circle" height="200px">
+                        @endif
                     </div>
                     <div class="col-12 m-3">
                         <div class="py-3 pb-4 border-bottom">
@@ -298,7 +307,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="col-8 bg-white mt-sm-5">
                 <h4 class="pb-4  font-weight-bold border-bottom-1">Personal Information</h4>
@@ -383,6 +391,13 @@
                         <div class="col-md-4 border-bottom-1 mt-3 mb-3">
                             {{ $user->address->city }}
                         </div>
+                    </div>
+                    <div>
+                        <form action="{{ route('address.destroy', $user->address) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-outline-dark rounded">Delete Address</button>
+                        </form>
                     </div>
                 @else
                     <div class="row font-weight-bold h6">

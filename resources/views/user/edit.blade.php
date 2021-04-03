@@ -309,23 +309,23 @@
                 <div class="row py-2 form-group">
                     <div class="col-md-6">
                         <p>Gender</p>
-                        <div class="row">
+                        <div class="row mx-auto">
                             @if ($user->gender == 'M')
                                 <label class="col-6">
-                                    <input class="w-75" type="radio" name="gender" value="M" checked>
-                                    <span> Male </span>
+                                    <input class="w-25" type="radio" name="gender" value="M" checked>
+                                    <span>Male</span>
                                 </label>
                                 <label class="col-6">
-                                    <input class="w-50" type="radio" name="gender" value="F">
+                                    <input class="w-25" type="radio" name="gender" value="F">
                                     <span>Female </span>
                                 </label>
                             @else
                                 <label class="col-6">
-                                    <input class="w-75" type="radio" name="gender" value="M" >
-                                    <span> Male </span>
+                                    <input class="w-25" type="radio" name="gender" value="M" >
+                                    <span>Male</span>
                                 </label>
                                 <label class="col-6">
-                                    <input class="w-50" type="radio" name="gender" value="F" checked>
+                                    <input class="w-25" type="radio" name="gender" value="F" checked>
                                     <span>Female </span>
                                 </label>
                             @endif

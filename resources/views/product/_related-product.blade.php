@@ -12,7 +12,7 @@
                     <div class="product-wrapper">
                         <div class="product-img">
                             <a href="#">
-                                <img src="/storage/Image/product/{{ $relatedProduct->img }}" alt="">
+                                <img src="/storage/Image/product/{{ $relatedProduct->img }}" alt="{{ $relatedProduct->name }}" class="mx-auto">
                             </a>
                             <div class="product-action">
                                 <a class="animate-left" title="Wishlist" href="#">
@@ -27,7 +27,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="product-content">
+                        <div class="product-content text-center">
                             <h4><a href="{{ route('home.show', $relatedProduct) }}">{{ $relatedProduct->name }}</a></h4>
                             <span>{{ $relatedProduct->price }} VNĐ</span>
                         </div>

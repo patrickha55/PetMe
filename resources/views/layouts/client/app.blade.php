@@ -63,7 +63,12 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ \Illuminate\Support\Facades\Auth::user()->userName }} <span class="caret"></span>
+                                    @if (auth()->user()->img != null)
+                                        <img src="{{ auth()->user()->img }}" alt="{{ auth()->user()->name }} image" class="rounded-circle" height="30px">
+                                    @else
+                                        <img src="/storage/Image/product/noimage.jpg" alt="" class="rounded-circle" height="30px">
+                                    @endif
+                                    {{ auth()->user()->userName }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu">
                                     <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">

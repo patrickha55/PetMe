@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Address;
 use App\Http\Controllers\Controller;
+use http\Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
@@ -38,7 +40,7 @@ class AddressController extends Controller
             'city' => $request->city,
         ]);
 
-        return redirect()->route('user.edit', auth()->user());
+        return redirect()->route('user.show', auth()->user())->with('status', 'Address created successfully!');
     }
 
 
@@ -68,11 +70,13 @@ class AddressController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Address  $address
-     * @return \Illuminate\Http\Response
+     * @param Address $address
+     * @return RedirectResponse
+     * @throws \Exception
      */
-    public function destroy(Address $address)
+    public function destroy(Address $address): RedirectResponse
     {
-        //
+        $address->delete();
+        return redirect()->back()->with('status', 'Address deleted successfully!');
     }
 }
