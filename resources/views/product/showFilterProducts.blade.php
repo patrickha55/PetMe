@@ -5,8 +5,8 @@
         <div class="container-fluid">
             <div class="h4 section-title-4 border-bottom-1 pb-15 font-weight-light">
                 <a href="">Products</a>
-                <a href=""> > {{ $productCategory->animalCategory->name }}</a>
-                <a href=""> > {{ $productCategory->name }}</a>
+                <a href="{{ route('home.showFilterAnimalProducts', $productCategory->animalCategory) }}"> > {{ $productCategory->animalCategory->name }}</a>
+                <a href="#"> > {{ $productCategory->name }}</a>
             </div>
             <div class="section-title-4 text-center mb-40">
                 <h2>{{ $productCategory->name}}</h2>

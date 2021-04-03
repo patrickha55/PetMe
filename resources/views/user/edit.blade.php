@@ -282,18 +282,28 @@
                 <p>Accepted file type .png. Less than 1MB</p> <button class="btn button border"><b>Upload</b></button>
             </div>
         </div> --}}
-        <form action="{{ route('user.update', $user) }}" method="POST">
-            @csrf
-            @method('PATCH')
-            <div class="py-2">
+        <div class="py-2">
+            <form action="{{ route('user.update', $user) }}" method="POST">
+                @csrf
+                @method('PATCH')
                 <div class="row py-2">
-                    <div class="col-md-6 pt-md-0 pt-3">
+                    <div class="col-md-6 pt-md-0 pt-3 form-group">
                         <label for="firstName">First Name</label>
-                        <input type="text" name="firstName" id="firstName" class="bg-light form-control" value="{{ $user->firstName }}">
+                        <input type="text" name="firstName" id="firstName" class="bg-light form-control @error('userName') border-red-500 @enderror" value="{{ $user->firstName }}">
+                        @error('userName')
+                            <div class="text-sm text-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
-                    <div class="col-md-6 pt-md-0 pt-3">
+                    <div class="col-md-6 form-group">
                         <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" name="lastName" class="bg-light form-control" value="{{ $user->lastName }}">
+                        <input type="text" id="lastName" name="lastName" class="bg-light form-control @error('lastName') border-red-500 @enderror" value="{{ $user->lastName }}">
+                        @error('lastName')
+                            <div class="text-sm text-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="row py-2 form-group">
@@ -321,50 +331,136 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-md-6 pt-md-0 pt-3">
+                    <div class="col-md-6 form-group">
                         <label for="dob">Day of Birth</label>
-                        <input type="date" id="dob" name="dob" class="bg-light form-control" value="{{ $user->dob }}">
+                        <input type="date" id="dob" name="dob" class="bg-light form-control @error('dob') border-red-500 @enderror" value="{{ $user->dob }}">
+                        @error('dob')
+                            <div class="text-sm text-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="row py-2">
                     <div class="col-md-6">
                         <label for="userName">Username</label>
-                        <input type="text" id="userName" name="userName" class="bg-light form-control" value="{{ $user->userName }}">
+                        <input type="text" id="userName" name="userName" class="bg-light form-control @error('userName') border-red-500 @enderror" value="{{ $user->userName }}">
+                        @error('userName')
+                            <div class="text-sm text-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
-                    <div class="col-md-6 pt-md-0 pt-3">
+                    <div class="col-md-6 form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" class="bg-light form-control" value="{{ $user->email }}">
+                        <input type="email" id="email" name="email" class="bg-light form-control @error('email') border-red-500 @enderror" value="{{ $user->email }}">
+                        @error('email')
+                            <div class="text-sm text-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="row py-2">
-                    <div class="col-md-6 pt-md-0 pt-3">
+                    <div class="col-md-6 form-group">
                         <label for="phoneNumber">Phone</label>
-                        <input type="text" id="phoneNumber" name="phoneNumber" class="bg-light form-control" value="{{ $user->phoneNumber }}">
+                        <input type="text" id="phoneNumber" name="phoneNumber" class="bg-light form-control @error('phoneNumber') border-red-500 @enderror" value="{{ $user->phoneNumber }}">
+                        @error('phoneNumber')
+                            <div class="text-sm text-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                 </div>
-                <div class="row py-2">
-                    <div class="col-md-12">
-                        <h4 class="pb-4 border-bottom-1 font-weight-bold">My Address</h4>
+                @if($user->address != null)
+                    <div class="row py-2">
+                        <div class="col-md-12">
+                            <h4 class="pb-4 border-bottom-1 font-weight-bold">My Address</h4>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" class="bg-light form-control @error('address') border-red-500 @enderror" value="{{ $user->address->address }}">
+                            @error('address')
+                                <div class="text-sm text-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="ward">Ward</label>
+                            <input type="text" id="ward" name="ward" class="bg-light form-control @error('ward') border-red-500 @enderror" value="{{ $user->address->ward }}">
+                            @error('ward')
+                                <div class="text-sm text-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="col-md-6 pt-md-0 pt-3">
-                        <label for="address">Address</label>
-                        <input type="text" id="address" name="address" class="bg-light form-control" value="{{ $user->address->address }}">
+                    <div class="row py-2 mb-10">
+                        <div class="col-md-6 form-group">
+                            <label for="district">District</label>
+                            <input type="text" id="district" name="district" class="bg-light form-control @error('district') border-red-500 @enderror" value="{{ $user->address->district }}">
+                            @error('district')
+                                <div class="text-sm text-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="city">City</label>
+                            <input type="text" name="city" id="city" class="bg-light form-control @error('city') border-red-500 @enderror" value="{{ $user->address->city }}">
+                            @error('city')
+                                <div class="text-sm text-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="col-md-6 pt-md-0 pt-3">
-                        <label for="ward">Ward</label>
-                        <input type="text" id="ward" name="ward" class="bg-light form-control" value="{{ $user->address->ward }}">
+                @else
+                    <div class="row py-2">
+                        <div class="col-md-12">
+                            <h4 class="pb-4 border-bottom-1 font-weight-bold">My Address</h4>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" class="bg-light form-control @error('address') border-red-500 @enderror" placeholder="Your address">
+                            @error('address')
+                                <div class="text-sm text-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="ward">Ward</label>
+                            <input type="text" id="ward" name="ward" class="bg-light form-control @error('ward') border-red-500 @enderror" placeholder="Ward">
+                            @error('ward')
+                                <div class="text-sm text-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                     </div>
-                </div>
-                <div class="row py-2 mb-10">
-                    <div class="col-md-6 pt-md-0 pt-3">
-                        <label for="district">District</label>
-                        <input type="text" id="district" name="district" class="bg-light form-control" value="{{ $user->address->district }}">
+                    <div class="row py-2 mb-10">
+                        <div class="col-md-6 form-group">
+                            <label for="district">District</label>
+                            <input type="text" id="district" name="district" class="bg-light form-control @error('district') border-red-500 @enderror" placeholder="District">
+                            @error('district')
+                                <div class="text-sm text-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="city">City</label>
+                            <input type="text" name="city" id="city" class="bg-light form-control @error('city') border-red-500 @enderror" placeholder="City">
+                            @error('city')
+                                <div class="text-sm text-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="col-md-6 pt-md-0 pt-3">
-                        <label for="city">City</label>
-                        <input type="text" name="city" id="city" value="{{ $user->address->city }}">
-                    </div>
-                </div>
+                @endif
                 <div class="py-3 pb-4 border-top-1 row">
                     <div class="col-5">
                         <button type="submit" class="btn-secondary border button">Save Changes</button>
@@ -373,8 +469,8 @@
                         <a class=" border button" href="{{ route('user.show', $user) }}">Cancel</a>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
     <!--End Content-->
     @include('layouts.client.includes.footer')
