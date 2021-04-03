@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="h4 section-title-4 border-bottom-1 pb-15 font-weight-light">
                 <a href="">Products</a>
-                <a href=""> > {{ $animalCategory->name }}</a>
+                <a href="#"> > {{ $animalCategory->name }}</a>
             </div>
             <div class="section-title-4 text-center mb-40">
                 <h2>{{ $animalCategory->name }}</h2>

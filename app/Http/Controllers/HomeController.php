@@ -121,14 +121,19 @@ class HomeController extends Controller
         ]);
     }
 
-    public function showFilterAnimalProducts(AnimalCategory $animalCategory){
+    public function showFilterAnimalProducts(AnimalCategory $animal_category){
         $products = Product::all();
-        $filteredProducts = $animalCategory->products()->get();
+        $filteredProducts = $animal_category->products()->get();
 
         $categories = AnimalCategory::all();
         $subCat = ProductCategory::all();
 
-        return view('product.showFilterAnimalProducts')->with(['products'=>$products,'categories'=>$categories,'subCat'=>$subCat, 'animalCategory'=>$animalCategory, 'filteredProducts' => $filteredProducts]);
+        return view('product.showFilterAnimalProducts')->with([
+            'products'=>$products,
+            'categories'=>$categories,
+            'subCat'=>$subCat,
+            'animalCategory'=>$animal_category,
+            'filteredProducts' => $filteredProducts]);
     }
 
     public function showFilterProducts(ProductCategory $product_category){
