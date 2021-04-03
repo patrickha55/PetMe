@@ -283,7 +283,7 @@
     <div class="container mt-100 mb-100">
         <div class="row">
             <div class="col-4">
-                <div class="row" style="margin-top: 10%;">
+                <div class="row" style="margin-top: 10  %;">
                     <div class="col-12 text-center">
                         @if ($user->img != null)
                             <img src="{{ $user->img }}" alt="{{ $user->name }} image" class="rounded-circle" height="200px">
