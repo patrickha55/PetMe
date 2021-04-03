@@ -11,7 +11,7 @@
                 <div class="custom-col-style-2 electronic-banner-col-3 mb-30 ">
                     <div class="electronic-banner-wrapper">
                         <img style="margin-top: 20px;" src="/storage/Image/product/{{ $product->img }}" >
-                        <div class="electro-banner-style electro-banner-position bg-light " style="opacity:0.5; padding-left: 200px;">
+                        <div class="electro-banner-style electro-banner-position bg-light" style="padding-left: 200; opacity: 0.7;">
                             <h4 class=" text-info opacity-5">{{ $product->name }}</h4>
                             <h5>@currency($product->price) VNĐ</h5>
                             <p style="color: green;">Available</p>

@@ -45,9 +45,11 @@
                                     <li><a href="/login">Login Here</a></li >
                                     <li><a href="/register">Register</a></li>
                                 @endguest
+                                @auth
                                 <li><a href="{{ route('user.show', auth()->user()) }}">Profile</a></li>
                                 <li><a href="checkout.html"> Cart</a></li>
                                 <li><a href="shop.html">Orders</a></li>
+                                @endauth
                             </ul>
                         </div>
                     </div>
