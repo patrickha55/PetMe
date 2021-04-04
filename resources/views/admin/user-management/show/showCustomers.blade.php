@@ -76,7 +76,11 @@
                                                 <th>
                                                     <a class="btn-sm btn-dark " href="{{ route('users.edit', $customer) }}">Edit</a>
                                                     <a class="btn-sm btn-warning " href="{{ route('users.ban', $customer) }}">Ban</a>
-                                                    <a class="btn-sm btn-danger " href="{{ route('users.destroy', $customer) }}">Delete</a>
+                                                    <form action="{{ route('users.destroy', $customer) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn-sm btn-danger">Delete</button>
+                                                    </form>
                                                 </th>
                                             </tr>
                                         @endforeach
