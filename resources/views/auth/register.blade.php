@@ -122,7 +122,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control @error('userName') border-red-500 @enderror" name="userName" placeholder="Enter Your Username *" value="{{ old('userName') }}" />
+                                    <input type="text" class="form-control @error('userName') border-red-500 @enderror" name="userName" placeholder="Username *" value="{{ old('userName') }}" />
                                     @error('userName')
                                     <div class="text-sm text-danger mt-2">
                                         {{ $message }}
@@ -161,7 +161,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="password_confirmation" class="form-control @error('password_confirmation') border-red-500 @enderror" name="password_confirmation"  placeholder="Confirm Password *" />
+                                    <input type="password" class="form-control @error('password_confirmation') border-red-500 @enderror" name="password_confirmation" placeholder="Confirm Password *" />
                                     @error('password_confirmation')
                                         <div class="text-sm text-danger mt-2">
                                             {{ $message }}
