@@ -78,6 +78,7 @@ Route::group(['middleware'=>'auth', 'namespace'=>'User'], function () {
     Route::get('/user/edit_password', 'UserController@editPassword')->name('user.editPassword');
     Route::resource('/user', 'UserController');
     Route::resource('/user/address', 'AddressController');
+    Route::resource('/wishlist', 'FavoriteController');
 });
 
 Route::group(['namespace' => 'Auth'], function(){
@@ -105,6 +106,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 //Ngan check route
+<<<<<<< HEAD
 Route::get('/1', function () {
     return view('user.edit');
 });
@@ -114,5 +116,7 @@ Route::get('/2', function () {
 Route::get('/3', function () {
     return view('user.wishlist.index');
 }); 
+=======
+>>>>>>> main
 
 

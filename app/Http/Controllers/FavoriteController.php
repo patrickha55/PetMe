@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\AnimalCategory;
 use App\Favorite;
+use App\Product;
+use App\ProductCategory;
 use Illuminate\Http\Request;
 
 class FavoriteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $user = auth()->user();
+        $products = Product::all();
+        $categories = AnimalCategory::all();
+        $subCat = ProductCategory::all();
+        return view('user.wishlist.index')
+            ->with([
+                'user' => $user,
+                'products' => $products,
+                'categories' => $categories,
+                'subCat' => $subCat,
+            ]);
     }
 
     /**
