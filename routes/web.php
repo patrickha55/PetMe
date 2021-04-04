@@ -36,7 +36,6 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
     Route::get('/', 'DashboardController@index');
 
     Route::prefix('user-management')->group(function (){
-        Route::get('/users/{user}/ban', 'UserController@ban')->name('users.ban');
         Route::resource('/users','UserController');
         Route::resource('/admins', 'AdminController');
     });
@@ -68,15 +67,13 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
 
 //@Guest  ------
 
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('home/{product}/show','HomeController@show')->name('home.show');
 Route::get('home/{animal_category}/showFilterAnimal','HomeController@showFilterAnimalProducts')->name('home.showFilterAnimalProducts');
 Route::get('home/{product_category}/showFilter','HomeController@showFilterProducts')->name('home.showFilterProducts');
-
 //@endGuest ------
-
 //@User ------
-
 Route::group(['middleware'=>'auth', 'namespace'=>'User'], function () {
     Route::get('/user/edit_password', 'UserController@editPassword')->name('user.editPassword');
     Route::resource('/user', 'UserController');
@@ -104,8 +101,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('/wishlist', 'FavoriteController');
 });
-
 //@endUser  ------
+
 
 //Ngan check route
 Route::get('/1', function () {
@@ -114,4 +111,8 @@ Route::get('/1', function () {
 Route::get('/2', function () {
     return view('product.showFilterAnimalProducts');
 }); 
+Route::get('/3', function () {
+    return view('user.wishlist.index');
+}); 
+
 

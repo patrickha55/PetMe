@@ -42,7 +42,7 @@
             border-radius: 15px;
             margin: 10px auto;
             max-width: 600px;
-            background: url('https://wallpapercave.com/wp/wp2446975.jpg');
+            background: url('');
         }
 
         h4 {
@@ -308,26 +308,22 @@
                 </div>
                 <div class="row py-2 form-group">
                     <div class="col-md-6">
-                        <p>Gender</p>
-                        <div class="row mx-auto">
+                        <label>Gender</label>
+                        <div class="row mx-auto" style="margin-top: 20px;">
                             @if ($user->gender == 'M')
-                                <label class="col-6">
-                                    <input class="w-25" type="radio" name="gender" value="M" checked>
-                                    <span>Male</span>
-                                </label>
-                                <label class="col-6">
-                                    <input class="w-25" type="radio" name="gender" value="F">
-                                    <span>Female </span>
-                                </label>
+                                <div class="col-6">
+                                    <input class="w-25" type="radio" name="gender" value="M" checked>Male
+                                </div>
+                                <div class="col-6">
+                                    <input class="w-25" type="radio" name="gender" value="F">Female 
+                                </div>
                             @else
-                                <label class="col-6">
-                                    <input class="w-25" type="radio" name="gender" value="M" >
-                                    <span>Male</span>
-                                </label>
-                                <label class="col-6">
-                                    <input class="w-25" type="radio" name="gender" value="F" checked>
-                                    <span>Female </span>
-                                </label>
+                                <div class="col-6">
+                                    <input style="height: unset;" class="w-25" type="radio" name="gender" value="M" >Male
+                                </div>
+                                <div class="col-6">
+                                    <input style="height: unset;" class="w-25" type="radio" name="gender" value="F" checked>Female
+                                </div>
                             @endif
                         </div>
                     </div>
