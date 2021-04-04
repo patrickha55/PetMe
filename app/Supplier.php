@@ -15,7 +15,7 @@ class Supplier extends Model
         $supplierID = '';
         switch (strtolower($supplier)){
 
-            case 'whiskas®':
+            case 'whiskas®' || 'whiskas':
                 $supplierID = 1;
                 break;
             case 'hill’s science diet':

@@ -82,7 +82,13 @@ class UserController extends Controller
         return view('admin.user-management.show.show', ['user' => $user]);
     }
 
-    public function edit(Request $request, User $user)
+    public function edit(User $user)
+    {
+        return view('admin.user-management.edit.edit_user')->with('user', $user);
+    }
+
+
+    public function update(Request $request, User $user)
     {
         if ($request->email == $user->email){
             $this->validate($request,[
@@ -95,15 +101,15 @@ class UserController extends Controller
                 'phoneNumber' => ['required','regex:/^[0-9]{10,11}$/i']
             ]);
         } else {
-                $this->validate($request, [
-                    'firstName' => ['required', 'string', 'max:255'],
-                    'lastName' => ['required', 'string', 'max:255'],
-                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                    'password' => ['required', 'string', 'min:8', 'confirmed'],
-                    'dob' => ['required'],
-                    'gender' => ['required', 'max:1'],
-                    'phoneNumber' => ['required','regex:/^[0-9]{10,11}$/i']
-                ]);
+            $this->validate($request, [
+                'firstName' => ['required', 'string', 'max:255'],
+                'lastName' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'dob' => ['required'],
+                'gender' => ['required', 'max:1'],
+                'phoneNumber' => ['required','regex:/^[0-9]{10,11}$/i']
+            ]);
         }
 
         if ($request->userName == $user->userName){
@@ -116,31 +122,32 @@ class UserController extends Controller
             ]);
         }
 
-        User::where('id',$user->id)->update([
-            
+        User::find($user->id)->update([
+            'firstName' => $request->firstName,
+            'lastName' => $request->lastName,
+            'userName' => $request->userName,
+            'gender' => $request->gender,
+            'dob' => $request->dob,
+            'email' => $request->email,
+            'phoneNumber' => $request->phoneNumber,
         ]);
+
+        return redirect()->route('users.show', $user)->with('status', 'Account updated successfully!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function ban(User $user){
+        User::find($user->id)->update(['active' => 0 ]);
+
+        return redirect()->back()->with('status', 'Account banned successfully!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        dd($user);
+        $user->delete();
+        $user->address->delete();
+        $user->reviews->delete();
+
+        return redirect()->back()->with('status', 'Account deleted successfully!');
     }
 }
