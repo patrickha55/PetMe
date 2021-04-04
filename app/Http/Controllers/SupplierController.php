@@ -65,7 +65,6 @@ class SupplierController extends Controller
         //
     }
 
-
     public function edit(Supplier $supplier)
     {
         return view('admin.product-management.supplier.edit')->with('supplier', $supplier);
@@ -120,7 +119,10 @@ class SupplierController extends Controller
     public function destroy(Supplier $supplier)
     {
         $supplier->delete();
-        $supplier->products->delete();
+
+        // if ($supplier->has('product')){
+        //     $supplier->product->delete();
+        // }
 
         return redirect()->back()->with('status', 'Supplier deleted successfully!');
     }
