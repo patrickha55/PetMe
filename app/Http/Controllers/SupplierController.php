@@ -120,9 +120,11 @@ class SupplierController extends Controller
     {
         $supplier->delete();
 
-        // if ($supplier->has('product')){
-        //     $supplier->product->delete();
-        // }
+        if ($supplier->has('products')){
+            foreach ($supplier->products as $product){
+                $product->delete();
+            }
+        }
 
         return redirect()->back()->with('status', 'Supplier deleted successfully!');
     }
