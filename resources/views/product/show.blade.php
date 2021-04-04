@@ -7,11 +7,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-lg-7 col-12">
-                    <div class="product-details-5 pr-70">
+                    <div class="product-details-5 pr-70 ">
                         @if(!empty($product->img))
-                            <img src="/storage/Image/product/{{ $product->img }}" alt="{{ $product->name }}">
+                            <img class="mx-auto" src="/storage/Image/product/{{ $product->img }}" alt="{{ $product->name }}">
                         @else
-                            <img src="/storage/Image/product//noimage.jpg" alt="{{ $product->name }}">
+                            <img class="mx-auto" src="/storage/Image/product/noimage.jpg" alt="{{ $product->name }}">
                         @endif
                     </div>
                 </div>
