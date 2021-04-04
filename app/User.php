@@ -53,6 +53,7 @@ class User extends Authenticatable
 
     public function favorites(): BelongsToMany
     {
-        return $this->belongsToMany('App\Product', 'favorites');
+        return $this->belongsToMany('App\Product', 'favorites')
+            ->withTimestamps();
     }
 }

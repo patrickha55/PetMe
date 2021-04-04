@@ -41,7 +41,7 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
         Route::resource('/admins', 'AdminController');
     });
 
-    Route::resource('/wishlist-management', 'AdminFavoriteController');
+    Route::resource('/wishlists', 'AdminFavoriteController');
 });
 
 Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
@@ -53,7 +53,9 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
         Route::resource('/category', 'CategoryController');
 
         Route::resource('/product', 'ProductController');
-
+        Route::get('/store-locations', function(){
+            return view('admin.location.index');
+        })->name('admin.store-location');
     });
 });
 

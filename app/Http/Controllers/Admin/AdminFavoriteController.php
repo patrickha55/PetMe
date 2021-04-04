@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Favorite;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
 class AdminFavoriteController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::has('favorites')->paginate(10);
         return view('admin.wishlist.index')->with('users', $users);
     }
 
@@ -23,48 +25,28 @@ class AdminFavoriteController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function show(Favorite $wishlists)
+    {
+
+    }
+
+
+    public function edit(Favorite $wishlists)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    public function update(Request $request, Favorite $wishlists)
     {
-        //
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function destroy(Favorite $wishlists)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+//        dd($wishlists);
+        $wishlists->delete();
+        return redirect()->back()->with('status','User\'s wishlist deleted successfully');
     }
 }

@@ -48,7 +48,7 @@
         </a>
     </li>
     <li class="nav-item ">
-        <a class="nav-link" href="{{ route('wishlist-management.index') }}">
+        <a class="nav-link" href="{{ route('wishlists.index') }}">
             <i class="material-icons">bookmarks</i>
             <p>User's Wishlist</p>
         </a>
@@ -60,7 +60,7 @@
         </a>
     </li>-->
     <li class="nav-item ">
-        <a class="nav-link" href="./map.html">
+        <a class="nav-link" href="{{ route('admin.store-location') }}">
             <i class="material-icons">location_ons</i>
             <p>Stores</p>
         </a>
