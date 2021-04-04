@@ -106,17 +106,8 @@ Route::middleware(['auth'])->group(function () {
 
 
 //Ngan check route
-<<<<<<< HEAD
-Route::get('/1', function () {
-    return view('user.edit');
+Route::get('/1', function() {
+    return view('user.contact');
 });
-Route::get('/2', function () {
-    return view('product.showFilterAnimalProducts');
-}); 
-Route::get('/3', function () {
-    return view('user.wishlist.index');
-}); 
-=======
->>>>>>> main
 
 

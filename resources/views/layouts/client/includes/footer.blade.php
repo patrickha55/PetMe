@@ -11,7 +11,7 @@
                                     <span>Address: </span>
                                 </div>
                                 <div class="footer-info-content2">
-                                    <p>1 Cách Mạng Tháng 8, D.3
+                                    <p> 1 Cách Mạng Tháng 8, D.3
                                         <br>Ho Chi Minh - Vietnam</p>
                                 </div>
                             </div>
