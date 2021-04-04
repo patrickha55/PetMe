@@ -50,13 +50,13 @@
                             <a href="{{url('/')}}">home </a>
                         </li>
                         <li>
-                            <a href="#">contact</a>
+                            <a href="{{url('/about')}}">about us</a>
                         </li>
                         <li>
                             <a href="#">product</a>
                         </li>
                         <li>
-                            <a href="{{url('/about')}}">about us</a>
+                            <a href="{{url('/contact')}}">contact</a>
                         </li>
                     </ul>
                 </nav>

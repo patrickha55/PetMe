@@ -276,7 +276,7 @@
     </div>
     <!--Content-->
     <div class="wrapper bg-white mt-sm-5">
-        <h4 class="pb-4 border-bottom font-weight-bold">MY PROFILE</h4>
+        <h4 class="pb-4 border-bottom-1 font-weight-bold">MY PROFILE</h4>
         {{-- <div class="d-flex align-items-start py-3 border-bottom"> <img src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img" alt="">
             <div class="pl-sm-4 pl-2" id="img-section"> <b>Profile Photo</b>
                 <p>Accepted file type .png. Less than 1MB</p> <button class="btn button border"><b>Upload</b></button>
@@ -288,36 +288,38 @@
             <div class="py-2">
                 <div class="row py-2">
                     <div class="col-md-6 pt-md-0 pt-3">
-                        <label for="firstname">First Name</label>
-                        <input type="text" class="bg-light form-control" placeholder="">
+                        <label for="firstName">First Name</label>
+                        <input type="text" name="firstName" id="firstName" class="bg-light form-control" value="{{ $user->firstName }}">
                     </div>
                     <div class="col-md-6 pt-md-0 pt-3">
-                        <label for="lastname">Last Name</label>
-                        <input type="text" id="lastname" name="lastname" class="bg-light form-control" placeholder="">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" class="bg-light form-control" value="{{ $user->lastName }}">
                     </div>
                 </div>
                 <div class="row py-2 form-group">
                     <div class="col-md-6">
                         <p>Gender</p>
-                        @if ($user->gender == 'M')
-                            <label class="">
-                                <input type="radio" name="gender" value="M" checked>
-                                <span> Male </span>
-                            </label>
-                            <label class="">
-                                <input type="radio" name="gender" value="F">
-                                <span>Female </span>
-                            </label>
-                        @else
-                            <label class="">
-                                <input type="radio" name="gender" value="M" >
-                                <span> Male </span>
-                            </label>
-                            <label class="">
-                                <input type="radio" name="gender" value="F" checked>
-                                <span>Female </span>
-                            </label>
-                        @endif
+                        <div class="row">
+                            @if ($user->gender == 'M')
+                                <label class="col-6">
+                                    <input class="w-75" type="radio" name="gender" value="M" checked>
+                                    <span> Male </span>
+                                </label>
+                                <label class="col-6">
+                                    <input class="w-50" type="radio" name="gender" value="F">
+                                    <span>Female </span>
+                                </label>
+                            @else
+                                <label class="col-6">
+                                    <input class="w-75" type="radio" name="gender" value="M" >
+                                    <span> Male </span>
+                                </label>
+                                <label class="col-6">
+                                    <input class="w-50" type="radio" name="gender" value="F" checked>
+                                    <span>Female </span>
+                                </label>
+                            @endif
+                        </div>
                     </div>
                     <div class="col-md-6 pt-md-0 pt-3">
                         <label for="dob">Day of Birth</label>
@@ -326,43 +328,50 @@
                 </div>
                 <div class="row py-2">
                     <div class="col-md-6">
-                        <label for="username">Username</label>
-                        <input type="text" class="bg-light form-control" placeholder="">
+                        <label for="userName">Username</label>
+                        <input type="text" id="userName" name="userName" class="bg-light form-control" value="{{ $user->userName }}">
                     </div>
                     <div class="col-md-6 pt-md-0 pt-3">
                         <label for="email">Email</label>
-                        <input type="email" class="bg-light form-control" placeholder="">
+                        <input type="email" id="email" name="email" class="bg-light form-control" value="{{ $user->email }}">
                     </div>
                 </div>
                 <div class="row py-2">
                     <div class="col-md-6 pt-md-0 pt-3">
-                        <label for="phone">Phone</label>
-                        <input type="text" class="bg-light form-control" placeholder="">
-                    </div>
-                    <div class="col-md-6 pt-md-0 pt-3">
-                        <label for="address">Address</label>
-                        <input type="text" class="bg-light form-control" placeholder="">
-                    </div>
-                </div>
-                <div class="row py-2">
-                    <div class="col-md-6 pt-md-0 pt-3">
-                        <label for="ward">Ward</label>
-                        <input type="text" class="bg-light form-control" placeholder="">
-                    </div>
-                    <div class="col-md-6 pt-md-0 pt-3">
-                        <label for="district">District</label>
-                        <input type="text" class="bg-light form-control" placeholder="">
+                        <label for="phoneNumber">Phone</label>
+                        <input type="text" id="phoneNumber" name="phoneNumber" class="bg-light form-control" value="{{ $user->phoneNumber }}">
                     </div>
                 </div>
                 <div class="row py-2">
                     <div class="col-md-12">
+                        <h4 class="pb-4 border-bottom-1 font-weight-bold">My Address</h4>
+                    </div>
+                    <div class="col-md-6 pt-md-0 pt-3">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" class="bg-light form-control" value="{{ $user->address->address }}">
+                    </div>
+                    <div class="col-md-6 pt-md-0 pt-3">
+                        <label for="ward">Ward</label>
+                        <input type="text" id="ward" name="ward" class="bg-light form-control" value="{{ $user->address->ward }}">
+                    </div>
+                </div>
+                <div class="row py-2 mb-10">
+                    <div class="col-md-6 pt-md-0 pt-3">
+                        <label for="district">District</label>
+                        <input type="text" id="district" name="district" class="bg-light form-control" value="{{ $user->address->district }}">
+                    </div>
+                    <div class="col-md-6 pt-md-0 pt-3">
                         <label for="city">City</label>
                         <input type="text" name="city" id="city" value="{{ $user->address->city }}">
                     </div>
                 </div>
-                <div class="py-3 pb-4 border-bottom">
-                    <button type="submit" class="btn-secondary border button">Save Changes</button>
-                    <button class="border button">Cancel</button>
+                <div class="py-3 pb-4 border-top-1 row">
+                    <div class="col-5">
+                        <button type="submit" class="btn-secondary border button">Save Changes</button>
+                    </div>
+                    <div class="col-3">
+                        <a class=" border button" href="{{ route('user.show', $user) }}">Cancel</a>
+                    </div>
                 </div>
             </div>
         </form>

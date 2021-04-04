@@ -145,7 +145,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="email" class="form-control @error('email') border-red-500 @enderror" name="email" placeholder="Last Name *" value="{{ old('email') }}" />
+                                    <input type="email" class="form-control @error('email') border-red-500 @enderror" name="email" placeholder="Email *" value="{{ old('email') }}" />
                                     @error('email')
                                     <div class="text-sm text-danger mt-2">
                                         {{ $message }}
