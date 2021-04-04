@@ -74,8 +74,14 @@
                                                 <th>{{ $supplier->city }}</th>
                                                 <th>
                                                     <a class="btn-sm btn-warning "
-                                                        href="{{ url('/admins/product-management/product/{$supplier}/edit') }}">Edit</a>
-
+                                                        href="{{ route('supplier.edit', $supplier) }}">Edit</a>
+                                                    <form action="{{ route('supplier.destroy', $supplier) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit">
+                                                            <a class="btn-sm btn-danger ">Delete</a>
+                                                        </button>
+                                                    </form>
                                                 </th>
                                             </tr>
                                         @endforeach
