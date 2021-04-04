@@ -28,7 +28,7 @@ class Supplier extends Model
         return $supplierID;
     }
 
-    public function product(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function products(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany('App\Product');
     }
