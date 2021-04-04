@@ -71,7 +71,7 @@ class UserController extends Controller
                 'gender' => ['required'],
                 'phoneNumber' => ['required','regex:/^[0-9]{10,11}$/i'],
                 'address' => 'string|nullable|max:255',
-                'ward' => 'numeric|min:1|nullable|max:30',
+                'ward' => 'string|nullable|max:255',
                 'district' => 'string|nullable|max:255',
                 'city' => 'string|nullable|max:255'
             ]);

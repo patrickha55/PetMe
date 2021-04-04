@@ -4,84 +4,13 @@
 <div class="content">
         <div class="container-fluid">
             <div class="w-full bg-white rounded shadow-lg p-8 m-4l">
-                <h2 class="text-center">New Customer</h2>
+                <h2 class="text-center font-bold">Add New Suppliers</h2>
                 <form class="row g-3" action="{{ url('/admin/user-management/users') }}" method="POST">
                     @csrf
                     <div class="col-md-6">
-                        <label name="firstName" for="firstName" class="form-label font-semibold text-gray-500">First
-                            Name</label>
-                        <input type="text" class="form-control @error('firstName') border-red-500 @enderror" id="firstName" name="firstName">
-                        @error('firstName')
-                            <div class="text-sm text-danger mt-2">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="col-md-6">
-                        <label name="lastName" for="lastName" class="form-label font-semibold text-gray-500">Last
-                            Name</label>
-                        <input type="text" class="form-control @error('lastName') border-red-500 @enderror" id="lastName" name="lastName">
-                        @error('lastName')
-                            <div class="text-sm text-danger mt-2">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="col-md-6">
-                        <label name="userName" for="userName"
-                            class="form-label font-semibold text-gray-500">Username</label>
-                        <input type="text" class="form-control @error('userName') border-red-500 @enderror" id="userName" name="userName">
-                        @error('userName')
-                            <div class="text-sm text-danger mt-2">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="col-md-6">
-                        <label name="dob" for="dob" class="form-label font-semibold text-gray-500">Day of Birth</label>
-                        <input type="date" class="form-control @error('dob') border-red-500 @enderror" id="dob" name="dob">
-                        @error('dob')
-                            <div class="text-sm text-danger mt-2">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <fieldset class="form-group col-md-12">
-                        <div class="row">
-                            <legend class="col-form-label col-sm-2 pt-0 text-gray-500">Gender</legend>
-                            <div class="col-sm-10">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" id="gridGender1" value="M"
-                                        checked>
-                                    <label class="form-check-label text-gray-500" for="gridGender1">
-                                        Male
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" id="gridGender2" value="F">
-                                    <label class="form-check-label text-gray-500" for="gridGender2">
-                                        Female
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <div class="col-md-6">
-                        <label name="password" for="password"
-                            class="form-label font-semibold text-gray-500">Password</label>
-                        <input type="password" class="form-control @error('password') border-red-500 @enderror" name="password" id="password">
-                        @error('password')
-                            <div class="text-sm text-danger mt-2">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="col-md-6">
-                        <label name="password_confirmation" for="password_confirmation" class="form-label font-semibold text-gray-500">Confirm
-                            Password</label>
-                        <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') border-red-500 @enderror"
-                            id="password_confirmation">
-                        @error('password_confirmation')
+                        <label name="name" for="name" class="form-label font-semibold text-gray-500">Name</label>
+                        <input type="text" class="form-control @error('name') border-red-500 @enderror" id="name" name="name">
+                        @error('name')
                             <div class="text-sm text-danger mt-2">
                                 {{ $message }}
                             </div>
@@ -89,7 +18,7 @@
                     </div>
                     <div class="col-md-6">
                         <label name="email" for="email" class="form-label font-semibold text-gray-500">Email</label>
-                        <input type="email" class="form-control @error('email') border-red-500 @enderror" id="email" name="email">
+                        <input type="text" class="form-control @error('email') border-red-500 @enderror" id="email" name="email">
                         @error('email')
                             <div class="text-sm text-danger mt-2">
                                 {{ $message }}
@@ -97,17 +26,73 @@
                         @enderror
                     </div>
                     <div class="col-md-6">
-                        <label name="phoneNumber" for="phoneNumber" class="form-label font-semibold text-gray-500">Phone
-                            Number</label>
-                        <input type="number" class="form-control @error('phoneNumber') border-red-500 @enderror" name="phoneNumber" id="phoneNumber">
-                        @error('phoneNumber')
+                        <label name="phone" for="phone"
+                            class="form-label font-semibold text-gray-500">Phone 1</label>
+                        <input type="text" class="form-control @error('phone') border-red-500 @enderror" id="phone_1" name="phone_1">
+                        @error('phone')
+                            <div class="text-sm text-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label name="phone" for="phone" class="form-label font-semibold text-gray-500">Phone 2</label>
+                        <input type="text" class="form-control @error('phone') border-red-500 @enderror" id="phone_2" name="phone_2">
+                        @error('phone')
+                            <div class="text-sm text-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-md-12">
+                        <label name="website" for="website"
+                            class="form-label font-semibold text-gray-500">Website</label>
+                        <input type="text" class="form-control @error('website') border-red-500 @enderror" name="website" id="website">
+                        @error('website')
+                            <div class="text-sm text-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label name="address" for="address" class="form-label font-semibold text-gray-500">Address</label>
+                        <input type="text" name="address" class="form-control @error('address') border-red-500 @enderror"
+                            id="address">
+                        @error('address')
+                            <div class="text-sm text-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label name="ward" for="ward" class="form-label font-semibold text-gray-500">Ward</label>
+                        <input type="text" class="form-control @error('ward') border-red-500 @enderror" id="ward" name="ward">
+                        @error('ward')
+                            <div class="text-sm text-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label name="district" for="district" class="form-label font-semibold text-gray-500">District</label>
+                        <input type="text" class="form-control @error('district') border-red-500 @enderror" name="district" id="district">
+                        @error('district')
+                            <div class="text-sm text-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label name="city" for="city" class="form-label font-semibold text-gray-500">City</label>
+                        <input type="text" class="form-control @error('city') border-red-500 @enderror" name="city" id="city">
+                        @error('city')
                             <div class="text-sm text-danger mt-2">
                                 {{ $message }}
                             </div>
                         @enderror
                     </div>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
                     </div>
                 </form>
             </div>

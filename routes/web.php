@@ -108,6 +108,10 @@ Route::middleware(['auth'])->group(function () {
 //@endUser  ------
 
 //Ngan check route
-Route::get('/about', function () {
-    return view('user.about');
+Route::get('/1', function () {
+    return view('user.edit');
 });
+Route::get('/2', function () {
+    return view('product.showFilterAnimalProducts');
+}); 
+

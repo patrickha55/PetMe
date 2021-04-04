@@ -119,7 +119,8 @@
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
 {{--                        <input type="password" name="" class="form-control input_pass" value="" placeholder="password">--}}
-                        <input id="password" type="password" class="form-control input_pass @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="current-password">
+
+                        <input id="password" type="password" class="form-control input_pass @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
 
                         @error('password')
                             <span class="invalid-feedback" role="alert">

@@ -24,15 +24,33 @@ class SupplierController extends Controller
         return view('admin.product-management.supplier.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:225',
+            'email' => 'required|email|string|unique|max:225',
+            'phone_1' => 'required|numeric|regex:/^[0-9]{10,11}$/i',
+            'phone_2' => 'numeric|nullable|regex:/^[0-9]{10,11}$/i',
+            'website' => 'required|string|regex:/^[-\w\d@:%._\+~#=]{1,200}\.[\w\d()]{1,50}\b([\w\d()@:%_\+.~#?&//=]*)$/i',
+            'address' => 'string|nullable|max:255',
+            'ward' => 'string|nullable|max:255',
+            'district' => 'string|nullable|max:255',
+            'city' => 'string|nullable|max:255',
+        ]);
+
+        Supplier::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_1' => $request->phone_1,
+            'phone_2' => $request->phone_2,
+            'website' => $request->website,
+            'address' => $request->address,
+            'ward' => $request->ward,
+            'district' => $request->district,
+            'city' => $request->city,
+        ]);
+
+        return redirect()->route('users.index')->with('status', 'Supplier added successfully!');
     }
 
     /**
@@ -54,7 +72,7 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+      
     }
 
     /**
