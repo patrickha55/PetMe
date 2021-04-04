@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="/assets/css/bundle.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
 
     <script src="/assets/js/vendor/modernizr-2.8.3.min.js"></script>
     <style>
@@ -295,6 +297,44 @@
             </div>
         @endforeach
     </div>
+    <!--Content-->
+    <main class="page-content">      
+        <div class="wishlist-main-content section-ptb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <form action="#" class="cart-table">
+                            <div class=" table-content table-responsive">
+                                <table class="table table-hover">
+                                    <thead style="background-color: #D0D0D0; font-weight:600;">
+                                        <tr>
+                                            <th class="plantmore-product-thumbnail">Images</th>
+                                            <th class="cart-product-name">Product</th>
+                                            <th class="plantmore-product-price">Unit Price</th>
+                                            <th class="plantmore-product-stock-status">Stock Status</th>
+                                            <th class="plantmore-product-add-cart">Add to cart</th>
+                                            <th class="plantmore-product-remove">Remove</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="plantmore-product-thumbnail"><a href="#"><img src="assets/images/other/cart-03.jpg" alt=""></a></td>
+                                            <td class="plantmore-product-name"><a href="#">Nullam maximus</a></td>
+                                            <td class="plantmore-product-price"><span class="amount">$23.39</span></td>
+                                            <td class="plantmore-product-stock-status"><span class="in-stock">in stock</span></td>
+                                            <td class="plantmore-product-add-cart"><a href="#">add to cart</a></td>
+                                            <td class="plantmore-product-remove"><a href="#"><i class="fas fa-window-close"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--End Content-->
 
     @include('layouts.client.includes.footer')
 
