@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Address');
     }
+
+    public function favorites(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Product', 'favorites');
+    }
 }

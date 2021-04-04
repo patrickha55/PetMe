@@ -266,7 +266,7 @@
             </div>
         </div>
     </header>
-    <div>
+    <nav>
         <div class="menu-style-3 menu-hover text-center">
             <nav>
                 <ul>
@@ -278,7 +278,7 @@
             </nav>
         </div>
 
-    </div>
+    </nav>
     <!--Content-->
     <div class="container mt-100 mb-100">
         <div class="row">
