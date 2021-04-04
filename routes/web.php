@@ -40,6 +40,8 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
         Route::resource('/users','UserController');
         Route::resource('/admins', 'AdminController');
     });
+
+    Route::resource('/wishlist-management', 'AdminFavoriteController');
 });
 
 Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
@@ -81,7 +83,6 @@ Route::group(['middleware'=>'auth', 'namespace'=>'User'], function () {
     Route::get('/user/edit_password', 'UserController@editPassword')->name('user.editPassword');
     Route::resource('/user', 'UserController');
     Route::resource('/user/address', 'AddressController');
-    Route::resource('/wishlist', 'FavoriteController');
 });
 
 Route::group(['namespace' => 'Auth'], function(){
@@ -92,17 +93,13 @@ Route::group(['namespace' => 'Auth'], function(){
     Route::post('/logout', 'LoginController@logout');
 });
 
+//Cart and Order
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/cart', 'CartController@index')->name('cart.index');
-    Route::get('/cart/destroy/{itemId}', 'CartController@destroy')->name('cart.destroy');
-    Route::get('/cart/update/{itemId}', 'CartController@update')->name('cart.update');
     Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
     Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
+    Route::resource('/cart', 'CartController');
     Route::resource('/order',  'OrderController');
-
-    Route::resource('/product/review', 'ProductReviewController');
-
     Route::resource('/wishlist', 'FavoriteController');
 });
 

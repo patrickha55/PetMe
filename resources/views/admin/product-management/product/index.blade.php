@@ -30,6 +30,7 @@
                                             <th>ID</th> <th>Name</th> <th>Brand</th> <th>Description</th> <th>Price</th> <th>Stock</th> <th>Image</th> <th>Function</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
                                         @foreach ($products as $product)
                                             <tr>
                                                 <th>{{ $product->id }}</th>
@@ -69,4 +70,6 @@
                     </div>
                 </div>
             </div>
-        @endsection
+        </div>
+    </div>
+@endsection
