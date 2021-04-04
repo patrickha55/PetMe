@@ -68,7 +68,7 @@ class SupplierController extends Controller
 
     public function edit(Supplier $supplier)
     {
-        return view('admin.product-management.edit', $supplier);
+        return view('admin.product-management.supplier.edit')->with('supplier', $supplier);
     }
 
     public function update(Request $request, Supplier $supplier)
@@ -92,7 +92,7 @@ class SupplierController extends Controller
             ]);
         }
 
-        if ($request->emmail != $supplier->email){
+        if ($request->email != $supplier->email){
             $this->validate($request, [
                 'email' => 'required|email|string|unique:suppliers|max:225',
             ]);
@@ -120,7 +120,10 @@ class SupplierController extends Controller
     public function destroy(Supplier $supplier)
     {
         $supplier->delete();
-        $supplier->products->delete();
+
+        if ($supplier->has('product')){
+            $supplier->product->delete();
+        }
 
         return redirect()->back()->with('status', 'Supplier deleted successfully!');
     }
