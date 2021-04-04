@@ -58,17 +58,6 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
     });
 });
 
-
-// check view by thach
-
-
-//check view by ngan
-
-
-
-
-
-
 //@Guest  ------
 
 
@@ -76,8 +65,19 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('home/{product}/show','HomeController@show')->name('home.show');
 Route::get('home/{animal_category}/showFilterAnimal','HomeController@showFilterAnimalProducts')->name('home.showFilterAnimalProducts');
 Route::get('home/{product_category}/showFilter','HomeController@showFilterProducts')->name('home.showFilterProducts');
+
+Route::get('/contact', function() {
+    return view('user.contact');
+});
+
+Route::get('/about', function(){
+    return view('user.about');
+});
+
 //@endGuest ------
+
 //@User ------
+
 Route::group(['middleware'=>'auth', 'namespace'=>'User'], function () {
     Route::get('/user/edit_password', 'UserController@editPassword')->name('user.editPassword');
     Route::resource('/user', 'UserController');
@@ -105,8 +105,6 @@ Route::middleware(['auth'])->group(function () {
 
 
 //Ngan check route
-Route::get('/1', function() {
-    return view('user.contact');
-});
+
 
 

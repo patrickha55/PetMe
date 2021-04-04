@@ -56,7 +56,7 @@
                             <a href="#">product</a>
                         </li>
                         <li>
-                            <a href="{{url('/contact')}}">contact</a>
+                            <a href="{{ url('/contact')}}">contact</a>
                         </li>
                     </ul>
                 </nav>
