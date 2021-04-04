@@ -74,9 +74,8 @@
                                                 <th>{{ $customer->phoneNumber }}</th>
                                                 <th>{{ $customer->active }}</th>
                                                 <th>
-                                                    <a class="btn-sm btn-warning "
-                                                        href="{{ url('/admins/user-management/users/{$admin}/edit') }}">Edit</a>
-
+                                                    <a class="btn-sm btn-warning " href="{{ route('users.edit', $customer) }}">Edit</a>
+                                                    <a class="btn-sm btn-warning " href="{{ route('users.ban', $customer) }}">Edit</a>
                                                 </th>
                                             </tr>
                                         @endforeach

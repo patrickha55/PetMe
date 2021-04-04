@@ -54,14 +54,12 @@ class UserController extends Controller
             'phoneNumber' => ['required','regex:/^[0-9]{10,11}$/i']
         ]);
 
-        $gender = $request -> gender;
-
         $user = User::create([
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
             'userName' => $request->userName,
             'dob' => $request->dob,
-            'gender' => $gender,
+            'gender' => $request->gender,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phoneNumber' => $request->phoneNumber,
@@ -84,15 +82,43 @@ class UserController extends Controller
         return view('admin.user-management.show.show', ['user' => $user]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
+    public function edit(Request $request, User $user)
     {
-        //
+        if ($request->email == $user->email){
+            $this->validate($request,[
+                'firstName' => ['required', 'string', 'max:255'],
+                'lastName' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'dob' => ['required'],
+                'gender' => ['required', 'max:1'],
+                'phoneNumber' => ['required','regex:/^[0-9]{10,11}$/i']
+            ]);
+        } else {
+                $this->validate($request, [
+                    'firstName' => ['required', 'string', 'max:255'],
+                    'lastName' => ['required', 'string', 'max:255'],
+                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                    'password' => ['required', 'string', 'min:8', 'confirmed'],
+                    'dob' => ['required'],
+                    'gender' => ['required', 'max:1'],
+                    'phoneNumber' => ['required','regex:/^[0-9]{10,11}$/i']
+                ]);
+        }
+
+        if ($request->userName == $user->userName){
+            $this->validate($request, [
+                'userName' => ['required', 'max:255'],
+            ]);
+        } else {
+            $this->validate($request, [
+                'userName' => ['required', 'max:255', 'unique'],
+            ]);
+        }
+
+        User::where('id',$user->id)->update([
+            
+        ]);
     }
 
     /**
