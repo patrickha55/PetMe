@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\AnimalCategory;
 use App\Http\Controllers\Controller;
+use App\Order;
 use App\Product;
 use App\Supplier;
 use App\User;
@@ -26,8 +27,9 @@ class DashboardController extends Controller
         $users = User::whereRoleIs('user')->get();
         $suppliers = Supplier::all();
         $animal_cats = AnimalCategory::all();
+        $orders = Order::all();
 
 
-        return view('admin.index')->with(['products' => $products, 'users' => $users, 'suppliers' => $suppliers, 'animals' => $animal_cats]);
+        return view('admin.index')->with(['products' => $products, 'users' => $users, 'suppliers' => $suppliers, 'animals' => $animal_cats, 'orders' => $orders]);
     }
 }

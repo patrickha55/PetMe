@@ -44,7 +44,7 @@
                 </div> --}}
                 <div class="row font-weight-bold h6">
                     <div class="col-md-2 border-bottom-1 mt-3 mb-3"  >
-                        First Name :
+                        First Name:
                     </div>
                     <div class="col-md-4 border-bottom-1 mt-3 mb-3" >
                         {{ $user->firstName }}
