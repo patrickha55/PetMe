@@ -60,27 +60,11 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
 
 //@Guest  ------
 
-<<<<<<< HEAD
-// check view by thach
-
-
-
-
-//@test 
-Route::get('/info','ClientInfoController@index')->name('info');
-Route::get('layout', function () {
-    return view('layouts.client.front');
-});
-
-
-
-=======
 Route::get('/', 'HomeController@home')->name('home');
 Route::get('/products', 'HomeController@index')->name('products');
 Route::get('home/{product}/show','HomeController@show')->name('home.show');
 Route::get('home/{animal_category}/showFilterAnimal','HomeController@showFilterAnimalProducts')->name('home.showFilterAnimalProducts');
 Route::get('home/{product_category}/showFilter','HomeController@showFilterProducts')->name('home.showFilterProducts');
->>>>>>> main
 
 Route::get('/contact', function() {
     return view('user.contact');
@@ -90,15 +74,6 @@ Route::get('/about', function(){
     return view('user.about');
 });
 
-<<<<<<< HEAD
-Route::get('/', 'HomeController@index')->name('home');
-//Route::get('home/{id}/show','HomeController@show')->name('home.show');
-Route::get('home/{product}/show','HomeController@show')->name('home.show');
-
-
-
-=======
->>>>>>> main
 //@endGuest ------
 
 //@User ------
@@ -124,19 +99,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
     Route::resource('/cart', 'CartController');
     Route::resource('/order',  'OrderController');
-<<<<<<< HEAD
-
-    Route::resource('/product/review', 'ProductReviewController');
-
-}); 
-
-//@endUser  ------ 
-=======
     Route::get('/add-to-wishlist/{product}','FavoriteController@store')->name('wishlist.store');
     Route::resource('/wishlist', 'FavoriteController')->except('store');
 });
 //@endUser  ------
->>>>>>> main
 
 
 //Ngan check route
