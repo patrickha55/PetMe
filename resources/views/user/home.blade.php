@@ -7,19 +7,6 @@
     </div>
     <div class="electronic-banner-area">
         <div class="custom-row-2">
-<<<<<<< HEAD
-         @foreach ($trend as $product)
-            <div class="custom-col-style-2 electronic-banner-col-3 mb-30 ">
-                <div class="electronic-banner-wrapper " >
-                    <img src="/storage/Image/product/{{ $product->img }}" alt="">
-                  
-                    <div class="  electro-banner-style electro-banner-position  bg-light " style="opacity:0.7;">
-
-                        <h1 class=" text-info opacity-5">{{ $product->name }}</h1>
-                        <h2>{{ $product->price }} VNĐ</h2>
-                        <h4>Available </h4>
-                        <a href="{{ route('home.show',$product) }}">Buy Now→</a>
-=======
              @foreach ($trend as $product)
                 <div class="custom-col-style-2 electronic-banner-col-3 mb-30 ">
                     <div class="electronic-banner-wrapper">
@@ -30,7 +17,6 @@
                             <p style="color: green;">Available</p>
                             <a style="margin-bottom: 50px;" href="{{ route('home.show',$product) }}">Buy Now→</a>
                         </div>
->>>>>>> main
                     </div>
                 </div>
             @endforeach
