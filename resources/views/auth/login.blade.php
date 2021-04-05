@@ -119,7 +119,8 @@
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
 {{--                        <input type="password" name="" class="form-control input_pass" value="" placeholder="password">--}}
-                        <input id="password" type="password" class="form-control input_pass @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                        <input id="password" type="password" class="form-control input_pass @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
 
                         @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -130,6 +131,11 @@
                     <div class="d-flex justify-content-center mt-3 login_container">
                         <button type="submit" name="button" class="btn login_btn">Login</button>
                     </div>
+                    @if (session('status'))
+                        <p class="font-weight-bolder text-danger mx-10 h5">
+                            {{ session('status') }}
+                        </p>
+                    @endif
                 </form>
             </div>
 

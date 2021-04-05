@@ -73,7 +73,7 @@
                                                 <th>{{ $admin->phoneNumber }}</th>
                                                 <th>{{ $admin->active }}</th>
                                                 <th>
-                                                  <a class="btn-sm btn-warning " href="{{ url('/admins/user-management/users/{$admin}/edit') }}">Update</a>
+                                                  <a class="btn-sm btn-warning " href="{{ route('admins.edit', $admin) }}">Update</a>
                                                 </th>
                                             </tr>
                                         @endforeach

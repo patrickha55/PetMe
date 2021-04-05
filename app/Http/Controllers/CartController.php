@@ -8,15 +8,9 @@ use App\Product;
 
 class CartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-   
-    public function add(Product $product)
+        public function add(Product $product)
     {
-    
+
        // add the product to cart
         \Cart::session(auth()->id())->add(array(
             'id' => $product->id,
@@ -28,10 +22,7 @@ class CartController extends Controller
             'associatedModel' => $product
         ));
 
-
-
-         return redirect()->route('cart.index');
-   
+         return redirect()->back();
     }
      public function index()
     {

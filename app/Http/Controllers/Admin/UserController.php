@@ -54,14 +54,12 @@ class UserController extends Controller
             'phoneNumber' => ['required','regex:/^[0-9]{10,11}$/i']
         ]);
 
-        $gender = $request -> gender;
-        
         $user = User::create([
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
             'userName' => $request->userName,
             'dob' => $request->dob,
-            'gender' => $gender,
+            'gender' => $request->gender,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phoneNumber' => $request->phoneNumber,
@@ -75,7 +73,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     *
      * @return Response
      */
     public function show(User $user)
@@ -84,37 +82,71 @@ class UserController extends Controller
         return view('admin.user-management.show.show', ['user' => $user]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('admin.user-management.edit.edit_user')->with('user', $user);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, User $user)
     {
-        //
+        if ($request->email == $user->email){
+            $this->validate($request,[
+                'firstName' => ['required', 'string', 'max:255'],
+                'lastName' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'dob' => ['required'],
+                'gender' => ['required', 'max:1'],
+                'phoneNumber' => ['required','regex:/^[0-9]{10,11}$/i']
+            ]);
+        } else {
+            $this->validate($request, [
+                'firstName' => ['required', 'string', 'max:255'],
+                'lastName' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'dob' => ['required'],
+                'gender' => ['required', 'max:1'],
+                'phoneNumber' => ['required','regex:/^[0-9]{10,11}$/i']
+            ]);
+        }
+
+        if ($request->userName == $user->userName){
+            $this->validate($request, [
+                'userName' => ['required', 'max:255'],
+            ]);
+        } else {
+            $this->validate($request, [
+                'userName' => ['required', 'max:255', 'unique'],
+            ]);
+        }
+
+        User::find($user->id)->update([
+            'firstName' => $request->firstName,
+            'lastName' => $request->lastName,
+            'userName' => $request->userName,
+            'gender' => $request->gender,
+            'dob' => $request->dob,
+            'email' => $request->email,
+            'phoneNumber' => $request->phoneNumber,
+        ]);
+
+        return redirect()->route('users.show', $user)->with('status', 'Account updated successfully!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
+    public function ban(User $user){
+        User::find($user->id)->update(['active' => 0 ]);
+
+        return redirect()->back()->with('status', 'Account banned successfully!');
+    }
+
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        $user->address->delete();
+        $user->reviews->delete();
+
+        return redirect()->back()->with('status', 'Account deleted successfully!');
     }
 }

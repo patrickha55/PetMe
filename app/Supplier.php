@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Supplier extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'name', 'email', 'phone_1','phone_2', 'website' ,'address','ward','district','city','id'
         ];
@@ -15,7 +18,7 @@ class Supplier extends Model
         $supplierID = '';
         switch (strtolower($supplier)){
 
-            case 'whiskas®':
+            case 'whiskas®' || 'whiskas':
                 $supplierID = 1;
                 break;
             case 'hill’s science diet':
@@ -25,7 +28,7 @@ class Supplier extends Model
         return $supplierID;
     }
 
-    public function product(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function products(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany('App\Product');
     }

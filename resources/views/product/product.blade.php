@@ -16,7 +16,7 @@
                 <a class="animate-top" title="Add To Cart" href="{{route('cart.add', $product)}}">
                     <i class="pe-7s-cart"></i>
                 </a>
-                <a class="animate-left" title="Wishlist" href="#">
+                <a class="animate-left" title="Wishlist" href="{{ route('wishlist.store', $product) }}">
                     <i class="pe-7s-like"></i>
                 </a>
             </div>
@@ -30,8 +30,8 @@
                 <i class="icofont icofont-star"></i>
             </div>
             <h4><a href="{{route('home.show', $product)}}">{{$product->name}}</a></h4>
-            <span>{{$product->description}}</span>
-            <h5>{{$product->price}} VNĐ</h5>
+{{--            <span>{{ $product->description }}</span>--}}
+            <h5> @currency( $product->price ) VNĐ </h5>
         <p>{{$product->supplier->name ?? 'n/a'}}</p>
         </div>
     </div>

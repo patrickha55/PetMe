@@ -30,6 +30,7 @@
                                             <th>ID</th> <th>Name</th> <th>Brand</th> <th>Description</th> <th>Price</th> <th>Stock</th> <th>Image</th> <th>Function</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
                                         @foreach ($products as $product)
                                             <tr>
                                                 <th>{{ $product->id }}</th>
@@ -38,7 +39,7 @@
                                                 </th>
                                                 <th>{{ $product->supplier->name}}</th>
                                                 <th>{{ $product->description }}</th>
-                                                <th>{{ $product->price }}</th>
+                                                <th>@currency($product->price) VNĐ</th>
                                                 <th>{{ $product->stock }}</th>
                                                 <th>
                                                     <img src="/storage/Image/product/{{ $product->img }}" alt="Whiskas Chicken & Turkey" width="50" height="auto">
@@ -58,7 +59,8 @@
                                                     </div>
                                                 </th>
                                             </tr>
-                                        @endforeach
+                                        @endforeach 
+                                    
                                     </tbody>
                                 </table>
                                 <div>
@@ -69,4 +71,6 @@
                     </div>
                 </div>
             </div>
-        @endsection
+        </div>
+    </div>
+@endsection

@@ -12,22 +12,22 @@
                     <div class="product-wrapper">
                         <div class="product-img">
                             <a href="#">
-                                <img src="/storage/Image/product/{{ $relatedProduct->img }}" alt="">
+                                <img src="/storage/Image/product/{{ $relatedProduct->img }}" alt="{{ $relatedProduct->name }}" class="mx-auto">
                             </a>
                             <div class="product-action">
-                                <a class="animate-left" title="Wishlist" href="#">
+                                <a class="animate-left" title="Wishlist" href="{{ route('wishlist.store', $relatedProduct) }}">
                                     <i class="pe-7s-like"></i>
                                 </a>
                                 <a class="animate-top" title="Add To Cart" href="#">
                                     <i class="pe-7s-cart"></i>
                                 </a>
-                                <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal"
-                                   href="#">
+                                <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#productModal"
+                                   href="#" data-object = {{ $relatedProduct->img }}>
                                     <i class="pe-7s-look"></i>
                                 </a>
                             </div>
                         </div>
-                        <div class="product-content">
+                        <div class="product-content text-center">
                             <h4><a href="{{ route('home.show', $relatedProduct) }}">{{ $relatedProduct->name }}</a></h4>
                             <span>{{ $relatedProduct->price }} VNĐ</span>
                         </div>

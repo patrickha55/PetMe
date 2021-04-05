@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class AnimalCategory extends Model
 {
@@ -17,6 +18,11 @@ class AnimalCategory extends Model
     public function productCategories(): HasMany
     {
         return $this->hasMany('App\ProductCategory');
+    }
+
+    public function products(): HasManyThrough
+    {
+        return $this->hasManyThrough('App\Product', 'App\ProductCategory');
     }
 
     /* Get animal id */

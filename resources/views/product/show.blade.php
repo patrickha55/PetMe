@@ -1,18 +1,21 @@
-@extends('layouts.client.front')
+@extends('layouts.client.app')
 
 
 
 @section('content')
+<<<<<<< HEAD
    {{-- // @include('layouts.client.nav') --}}
+=======
+>>>>>>> main
     <div class="product-details ptb-100 pb-90">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-lg-7 col-12">
-                    <div class="product-details-5 pr-70">
+                    <div class="product-details-5 pr-70 ">
                         @if(!empty($product->img))
-                            <img src="/storage/Image/product/{{ $product->img }}" alt="{{ $product->name }}">
+                            <img class="mx-auto" src="/storage/Image/product/{{ $product->img }}" alt="{{ $product->name }}">
                         @else
-                            <img src="/storage/Image/product//noimage.jpg" alt="{{ $product->name }}">
+                            <img class="mx-auto" src="/storage/Image/product/noimage.jpg" alt="{{ $product->name }}">
                         @endif
                     </div>
                 </div>
@@ -29,11 +32,11 @@
                                 <i class="pe-7s-star"></i>
                             </div>
                             <div class="quick-view-number">
-                                <span>{{ $product->userReviews->count() }} Ratting (S)</span>
+                                <span>{{ $product->userReviews->count() }} Rating (S)</span>
                             </div>
                         </div>
                         <div class="details-price">
-                            <span>{{$product->price}}VNĐ</span>
+                            <span>@currency($product->price) VNĐ</span>
                         </div>
                         <p>{!! $product->description !!}</p>
 
@@ -41,6 +44,9 @@
 
                             <div class="quickview-btn-cart">
                                 <a class="btn-hover-black" href="{{route('cart.add', $product)}}">add to cart</a>
+                            </div>
+                            <div class="quickview-btn-cart">
+                                <a class="btn-hover-black" href="">Buy Now</a>
                             </div>
 
                         </div>

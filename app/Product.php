@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
@@ -13,10 +14,7 @@ class Product extends Model
     use SoftDeletes;
 
      protected $fillable = [
-
-
       'product_category_id', 'supplier_id', 'name', 'description', 'price','stock' ,'img'
-
     ];
 
     public function supplier(): BelongsTo
@@ -32,6 +30,19 @@ class Product extends Model
     public function detail(): HasOne
     {
         return $this->hasOne('App\ProductDetail');
+    }
+
+    public function user(): BelongsToMany
+    {
+        return $this->belongsToMany('App\User', 'favorites')
+            ->withTimestamps();
+    }
+
+    public function cartDetails(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Cart', 'cart_details')
+            ->withTimestamps()
+            ->withPivot('quantity');
     }
 
     /*
@@ -54,9 +65,16 @@ class Product extends Model
         return $fileNameToStore;
     }
 
-    public function userReviews(){
+    public function userReviews(): BelongsToMany
+    {
         return $this->belongsToMany('App\User',
             'product_reviews'
         )->withTimestamps()->as('pivot')->withPivot('title', 'rating', 'content');
+    }
+
+    public function userFavorites(): BelongsToMany
+    {
+        return $this->belongsToMany('App\User', 'favorites')
+            ->withTimestamps();
     }
 }

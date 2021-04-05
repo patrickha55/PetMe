@@ -74,9 +74,13 @@
                                                 <th>{{ $customer->phoneNumber }}</th>
                                                 <th>{{ $customer->active }}</th>
                                                 <th>
-                                                    <a class="btn-sm btn-warning "
-                                                        href="{{ url('/admins/user-management/users/{$admin}/edit') }}">Edit</a>
-
+                                                    <a class="btn-sm btn-dark " href="{{ route('users.edit', $customer) }}">Edit</a>
+                                                    <a class="btn-sm btn-warning " href="{{ route('users.ban', $customer) }}">Ban</a>
+                                                    <form action="{{ route('users.destroy', $customer) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn-sm btn-danger">Delete</button>
+                                                    </form>
                                                 </th>
                                             </tr>
                                         @endforeach

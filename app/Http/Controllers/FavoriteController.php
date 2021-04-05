@@ -2,40 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\AnimalCategory;
 use App\Favorite;
+use App\Product;
+use App\ProductCategory;
+use App\User;
 use Illuminate\Http\Request;
 
 class FavoriteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+//        dd ($product->has('userFavorites')->get());
+        $user = auth()->user();
+        $categories = AnimalCategory::all();
+        $subCat = ProductCategory::all();
+        return view('user.wishlist.index')
+            ->with([
+                'user' => $user,
+                'categories' => $categories,
+                'subCat' => $subCat,
+            ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Product $product)
     {
-        //
+        Favorite::create([
+           'product_id' => $product->id,
+            'user_id' => auth()->user()->id
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -72,14 +75,11 @@ class FavoriteController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Favorite  $favorite
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Favorite $favorite)
     {
-        //
+        $favorite->delete();
+
+        return redirect()->back()->with('status', 'Product removed from your wishlist!');
     }
 }

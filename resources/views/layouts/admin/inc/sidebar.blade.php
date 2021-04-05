@@ -48,33 +48,33 @@
         </a>
     </li>
     <li class="nav-item ">
-        <a class="nav-link" href="./typography.html">
-            <i class="material-icons">library_books</i>
-            <p>Typography</p>
+        <a class="nav-link" href="{{ route('wishlists.index') }}">
+            <i class="material-icons">bookmarks</i>
+            <p>User's Wishlist</p>
         </a>
     </li>
-    <li class="nav-item ">
+<!--    <li class="nav-item ">
         <a class="nav-link" href="./icons.html">
             <i class="material-icons">bubble_chart</i>
             <p>Icons</p>
         </a>
-    </li>
+    </li>-->
     <li class="nav-item ">
-        <a class="nav-link" href="./map.html">
+        <a class="nav-link" href="{{ route('admin.store-location') }}">
             <i class="material-icons">location_ons</i>
-            <p>Maps</p>
+            <p>Stores</p>
         </a>
     </li>
     <li class="nav-item ">
         <a class="nav-link" href="./notifications.html">
-            <i class="material-icons">notifications</i>
-            <p>Notifications</p>
+            <i class="material-icons">analytics</i>
+            <p>Statistics</p>
         </a>
     </li>
-    <li class="nav-item ">
+<!--    <li class="nav-item ">
         <a class="nav-link" href="./rtl.html">
             <i class="material-icons">language</i>
             <p>RTL Support</p>
         </a>
-    </li>
+    </li>-->
 </ul>

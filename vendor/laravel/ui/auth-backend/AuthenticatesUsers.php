@@ -31,6 +31,13 @@ trait AuthenticatesUsers
      */
     public function login(Request $request)
     {
+        $user = \App\User::where('email',$request->email)->get();
+        foreach ($user as $u){
+            if ($u->active == 0){
+                return redirect()->back()->with('status','Your account has been banned!');
+            }
+        }
+
         $this->validateLogin($request);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle

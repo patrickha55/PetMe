@@ -26,19 +26,6 @@ Auth::routes();
 /*
  * Test Product review - phat
 */
-Route::get('/product/{product}/show', 'HomeController@show')->name('home.show');
-
-
-
-
-Route::group(['namespace' => 'Auth'], function(){
-    Route::get('/login', 'LoginController@create')->name('login');
-    Route::post('/login','LoginController@login');
-    Route::get('/register', 'RegisterController@create');
-    Route::post('/register', 'RegisterController@register');
-    Route::post('/logout', 'LoginController@logout');
-
-});
 
 /*
  *  Admin
@@ -52,6 +39,8 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
         Route::resource('/users','UserController');
         Route::resource('/admins', 'AdminController');
     });
+
+    Route::resource('/wishlists', 'AdminFavoriteController');
 });
 
 Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
@@ -63,11 +52,15 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
         Route::resource('/category', 'CategoryController');
 
         Route::resource('/product', 'ProductController');
-
+        Route::get('/store-locations', function(){
+            return view('admin.location.index');
+        })->name('admin.store-location');
     });
 });
 
+//@Guest  ------
 
+<<<<<<< HEAD
 // check view by thach
 
 
@@ -81,38 +74,72 @@ Route::get('layout', function () {
 
 
 
+=======
+Route::get('/', 'HomeController@home')->name('home');
+Route::get('/products', 'HomeController@index')->name('products');
+Route::get('home/{product}/show','HomeController@show')->name('home.show');
+Route::get('home/{animal_category}/showFilterAnimal','HomeController@showFilterAnimalProducts')->name('home.showFilterAnimalProducts');
+Route::get('home/{product_category}/showFilter','HomeController@showFilterProducts')->name('home.showFilterProducts');
+>>>>>>> main
 
-//@Guest  ------
+Route::get('/contact', function() {
+    return view('user.contact');
+});
 
+Route::get('/about', function(){
+    return view('user.about');
+});
 
+<<<<<<< HEAD
 Route::get('/', 'HomeController@index')->name('home');
 //Route::get('home/{id}/show','HomeController@show')->name('home.show');
 Route::get('home/{product}/show','HomeController@show')->name('home.show');
 
 
 
+=======
+>>>>>>> main
 //@endGuest ------
+
 //@User ------
+
+Route::group(['middleware'=>'auth', 'namespace'=>'User'], function () {
+    Route::get('/user/edit_password', 'UserController@editPassword')->name('user.editPassword');
+    Route::resource('/user', 'UserController');
+    Route::resource('/user/address', 'AddressController');
+});
+
+Route::group(['namespace' => 'Auth'], function(){
+    Route::get('/login', 'LoginController@create')->name('login');
+    Route::post('/login','LoginController@login');
+    Route::get('/register', 'RegisterController@create');
+    Route::post('/register', 'RegisterController@register');
+    Route::post('/logout', 'LoginController@logout');
+});
+
+//Cart and Order
 Route::middleware(['auth'])->group(function () {
 
-
-    Route::get('cart', 'CartController@index')->name('cart.index');
-
-
-
-    Route::get('cart', 'CartController@index')->name('cart.index');
-
-    Route::get('/cart/destroy/{itemId}', 'CartController@destroy')->name('cart.destroy');
-    Route::get('/cart/update/{itemId}', 'CartController@update')->name('cart.update');
     Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
     Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
+    Route::resource('/cart', 'CartController');
     Route::resource('/order',  'OrderController');
+<<<<<<< HEAD
 
     Route::resource('/product/review', 'ProductReviewController');
 
 }); 
 
 //@endUser  ------ 
+=======
+    Route::get('/add-to-wishlist/{product}','FavoriteController@store')->name('wishlist.store');
+    Route::resource('/wishlist', 'FavoriteController')->except('store');
+});
+//@endUser  ------
+>>>>>>> main
+
+
+//Ngan check route
 
 
 
