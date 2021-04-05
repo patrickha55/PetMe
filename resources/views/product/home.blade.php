@@ -8,7 +8,7 @@
     <div class="electronic-banner-area">
         <div class="custom-row-2">
              @foreach ($trend as $product)
-                <div class="custom-col-style-2 electronic-banner-col-3 mb-30 ">
+                <div class="custom-col-style-2 electronic-banner-col-3 mb-30" id="myProduct">
                     <div class="electronic-banner-wrapper">
                         <img style="margin-top: 20px;" src="/storage/Image/product/{{ $product->img }}" >
                         <div class="electro-banner-style electro-banner-position bg-light " style="opacity:0.7; padding-left: 200px;">

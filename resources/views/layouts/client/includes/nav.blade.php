@@ -63,7 +63,7 @@
             </div>
             <div class="slider-area">
                 <div class="slider-active owl-carousel" style="background-color: #fff; height: 550px; border: 1px solid black;">
-                     @foreach($products as $product)
+                     {{-- @foreach($products as $product)
                         <div class="single-slider single-slider-hm3 p-5"  style="background-color: #fff;">
                             <div class="row">
                                 <div class="col-md-8"  style=" color: black;">
@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @endforeach --}}
                 </div>
             </div>
         </div>
