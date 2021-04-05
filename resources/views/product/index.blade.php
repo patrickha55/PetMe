@@ -13,7 +13,7 @@
             </div>
             <div class="row">
                 <div class="dropdown col-sm-3">
-                    <div class="card">
+                    <div class="card shadow p-3 mb-5 bg-white rounded">
                         <article class="card-group-item">
                             <header class="card-header">
                                 <h6 class="title">Range input </h6>
@@ -70,7 +70,7 @@
                 <div class="top-product-style col-sm-9">
                     <div>
                         <div id="electro1">
-                            <div class="custom-row-2">
+                            <div class="custom-row-2 shadow p-3 mb-5 bg-white rounded">
                                 @foreach($products as $product)
                                     @include('product.product')
                                 @endforeach
