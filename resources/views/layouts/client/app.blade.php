@@ -108,7 +108,7 @@
 
                     <div class="categories-wrapper">
                         <form action="/" method="GET">
-                            <input name="query" placeholder="Enter Your key word" type="text">
+                            <input name="query" placeholder="Enter Your key word" type="text" id="myInput">
                             <button type="submit"> Search </button>
                         </form>
                     </div>
@@ -379,6 +379,19 @@
             modal.find("#object").val(object);
         });
     </script>
+
+    <!--Search-->
+    <script>
+        $(document).ready(function(){
+          $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myProduct tr").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+    </script>
+    
     <script src="/assets/js/vendor/jquery-1.12.0.min.js"></script>
     <script src="/assets/js/popper.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
