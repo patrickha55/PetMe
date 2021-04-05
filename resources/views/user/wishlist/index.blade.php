@@ -131,7 +131,7 @@
                         {{ session('status') }}
                     @endif
                 </h4>
-                <div class="row">
+                <div class="row shadow-lg p-3 mb-5 bg-white rounded">
                     <div class="col-12">
                         @if (count($user->favorites))
                             <div class=" table-content table-responsive">

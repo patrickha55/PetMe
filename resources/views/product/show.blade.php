@@ -1,7 +1,5 @@
 @extends('layouts.client.app')
 
-
-
 @section('content')
 <<<<<<< HEAD
    {{-- // @include('layouts.client.nav') --}}
