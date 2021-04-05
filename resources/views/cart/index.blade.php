@@ -1,7 +1,7 @@
 @extends('layouts.client.appWithoutCategory')
 
 @section('content')
-    <div class="container row m-auto">
+    <div class="container-fluid row m-auto">
         <div style="margin-top: 50px; margin-bottom: 200px;">
             <h1 class="text-center font-weight-bold col-12 mt-2 mb-5">
                 {{ auth()->user()->userName }}'s Cart
@@ -19,14 +19,14 @@
                             </a>
                             <p>In stock</p>
                         </div>
-                        <div class="col-2 m-auto">
-                            <div class="row">
-                                <div class="col-3">
+                        <div class="col-3 m-auto">
+                            <div class="row ">
+                                <div class="col-3 m-auto">
                                     <a href="#">
-                                        <i class="fas fa-minus-circle"></i>
+                                        <i class="fas fa-minus-circle fa-lg"></i>
                                     </a>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-6 m-auto">
                                     <form action="#" method="Post">
                                         @csrf
                                         <div class="form-group">
@@ -35,16 +35,16 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-3 m-auto">
                                     <a href="#">
-                                        <i class="fas fa-plus-circle"></i>
+                                        <i class="fas fa-plus-circle fa-lg"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-2 m-auto">
+                        <div class="col-1 m-auto">
                             <a href="#">
-                                <i class="fas fa-times"></i>
+                                <i class="fas fa-times fa-2x"></i>
                             </a>
                         </div>
                     </div>
