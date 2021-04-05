@@ -1,7 +1,5 @@
 @extends('layouts.client.app')
 
-
-
 @section('content')
     <div class="product-details ptb-100 pb-90">
         <div class="container">
