@@ -41,6 +41,8 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
     });
 
     Route::resource('/wishlists', 'AdminFavoriteController');
+
+    Route::resource('/orders', 'AdminOrderController');
 });
 
 Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
