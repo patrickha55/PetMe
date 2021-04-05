@@ -55,12 +55,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
+                        @endguest
+                        @auth
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (auth()->user()->img != null)
@@ -94,7 +90,7 @@
                                     </div>
                                 </div>
                             </li>
-                        @endguest
+                        @endauth
                         </li>
                     </ul>
                 </div>
@@ -120,7 +116,7 @@
                 <div class="trace-cart-wrapper">
                     <div class="categories-cart same-style">
                         <div class="same-style-icon">
-                            <a href=""><i class="pe-7s-cart"></i></a>
+                            <a href="{{ route('cart.index') }}"><i class="pe-7s-cart"></i></a>
                         </div>
                         <div class="same-style-text">
                             <a href="{{ route('cart.index') }}">My Cart <br>
@@ -395,7 +391,6 @@
     <script src="/assets/js/owl.carousel.min.js"></script>
     <script src="/assets/js/plugins.js"></script>
     <script src="/assets/js/main.js"></script>
-
 </body>
 
 </html>

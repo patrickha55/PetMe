@@ -15,7 +15,7 @@
                                 <img src="/storage/Image/product/{{ $relatedProduct->img }}" alt="{{ $relatedProduct->name }}" class="mx-auto">
                             </a>
                             <div class="product-action">
-                                <a class="animate-left" title="Wishlist" href="#">
+                                <a class="animate-left" title="Wishlist" href="{{ route('wishlist.store', $relatedProduct) }}">
                                     <i class="pe-7s-like"></i>
                                 </a>
                                 <a class="animate-top" title="Add To Cart" href="#">

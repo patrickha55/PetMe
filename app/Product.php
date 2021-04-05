@@ -38,6 +38,13 @@ class Product extends Model
             ->withTimestamps();
     }
 
+    public function cartDetails(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Cart', 'cart_details')
+            ->withTimestamps()
+            ->withPivot('quantity');
+    }
+
     /*
      * Upload img cho form tao product
     */

@@ -172,12 +172,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
+                        @endguest
+                        @auth
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (auth()->user()->img != null)
@@ -201,7 +197,7 @@
                                     <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="{{ url('/logout') }}"
                                            onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
+                                                     document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
 
@@ -211,8 +207,8 @@
                                     </div>
                                 </div>
                             </li>
-                            @endguest
-                            </li>
+                            @endauth
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -259,6 +255,8 @@
                                 <li>
                                     <a href="/">HOME</a>
                                 </li>
+                                <li><a href="{{ route('products') }}">Products</a></li>
+                                <li><a href="/about">About</a></li>
                                 <li>
                                     <a href="/contatct"> Contact </a>
                                 </li>

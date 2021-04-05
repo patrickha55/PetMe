@@ -1010,7 +1010,16 @@
     transition: all 0.4s ease 0s;
 }
 
+.product-action>button.animate-left {
+    transform: translateX(-20px);
+    transition: all 0.4s ease 0s;
+}
+
 .product-wrapper:hover .product-action>a.animate-left {
+    transform: translateX(0px);
+}
+
+.product-wrapper:hover .product-action>button.animate-left {
     transform: translateX(0px);
 }
 
@@ -3271,7 +3280,7 @@ a.banner-book-style-btn:hover {
 }
 
 
-/* 
+/*
 .electro-banner-style>h2 {
     color: #515151;
     font-size: 24px;
@@ -3723,6 +3732,25 @@ a.banner-book-style-btn:hover {
     color: #fff;
 }
 
+.product-action-right>button {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    display: block;
+    font-size: 25px;
+    height: 46px;
+    line-height: 50px;
+    text-align: center;
+    transition: all 0.3s ease 0s;
+    width: 50px;
+}
+
+.product-action-right>button:hover {
+    background-color: #333;
+    border-bottom: 1px solid #333;
+    color: #fff;
+}
+
 .product-wrapper {
     overflow: hidden;
 }
@@ -3733,6 +3761,10 @@ a.banner-book-style-btn:hover {
 }
 
 .product-action-right>a:last-child {
+    border-bottom: medium none;
+}
+
+product-action-right>button {
     border-bottom: medium none;
 }
 
@@ -10483,6 +10515,10 @@ a.bundle-btn {
 }
 
 .product-furit-action a.furit-animate-left {
+    border-radius: 0 50px 50px 0;
+}
+
+.product-furit-action button.furit-animate-left {
     border-radius: 0 50px 50px 0;
 }
 

@@ -60,8 +60,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
 
 //@Guest  ------
 
-
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@home')->name('home');
+Route::get('/products', 'HomeController@index')->name('products');
 Route::get('home/{product}/show','HomeController@show')->name('home.show');
 Route::get('home/{animal_category}/showFilterAnimal','HomeController@showFilterAnimalProducts')->name('home.showFilterAnimalProducts');
 Route::get('home/{product_category}/showFilter','HomeController@showFilterProducts')->name('home.showFilterProducts');
@@ -99,7 +99,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
     Route::resource('/cart', 'CartController');
     Route::resource('/order',  'OrderController');
-    Route::resource('/wishlist', 'FavoriteController');
+    Route::get('/add-to-wishlist/{product}','FavoriteController@store')->name('wishlist.store');
+    Route::resource('/wishlist', 'FavoriteController')->except('store');
 });
 //@endUser  ------
 
