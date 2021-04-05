@@ -18,7 +18,7 @@
                                 <a class="animate-left" title="Wishlist" href="{{ route('wishlist.store', $relatedProduct) }}">
                                     <i class="pe-7s-like"></i>
                                 </a>
-                                <a class="animate-top" title="Add To Cart" href="#">
+                                <a class="animate-top" title="Add To Cart" href="{{ route('cart.add', $relatedProduct) }}">
                                     <i class="pe-7s-cart"></i>
                                 </a>
                                 <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#productModal"

@@ -18,6 +18,7 @@
                 <a class="animate-top" title="Add To Cart" href="{{route('cart.add', $product)}}">
                     <i class="pe-7s-cart"></i>
                 </a>
+<<<<<<< HEAD
                 <a class="animate-left" title="Wishlist" href="{{ route('wishlist.store', $product) }}">
                     <i class="pe-7s-like"></i>
                 </a>
@@ -25,6 +26,26 @@
                 <a class="animate-left addButtonCircular addToCompare" title="Compare" href="">
                     <i class="fas fa-compress-alt"></i>
                 </a>
+=======
+                {{--@php
+                    $favorite = \App\Favorite::where('product_id', $product->id)->where('user_id', auth()->id())->get()
+                @endphp
+                @foreach($favorite as $fav)
+                    @if($fav != null)
+                        <form action="{{ route('wishlist.delete', [$fav->user_id, $fav->product_id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="animate-left" title="Remove From Wishlist" style="border: none;">
+                                <i class="fa-fas-heart"></i>
+                            </button>
+                        </form>
+                    @else--}}
+                        <a class="animate-left" title="Wishlist" href="{{ route('wishlist.store', $product) }}">
+                            <i class="pe-7s-like"></i>
+                        </a>
+                    {{--@endif
+                @endforeach--}}
+>>>>>>> main
             </div>
         </div>
         <div class="product-content-4 text-center">

@@ -515,6 +515,7 @@ class ComposerStaticInitbd50a116dbe1984e1729a4d5735171af
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Favorite' => __DIR__ . '/../..' . '/app/Favorite.php',
         'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
+        'App\\Http\\Controllers\\Admin\\AdminFavoriteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminFavoriteController.php',
         'App\\Http\\Controllers\\Admin\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/DashboardController.php',
         'App\\Http\\Controllers\\Admin\\ProductReviewController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProductReviewController.php',
         'App\\Http\\Controllers\\Admin\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UserController.php',

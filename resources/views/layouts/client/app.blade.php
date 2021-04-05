@@ -11,7 +11,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.png">
 
     <!-- all css here -->
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/magnific-popup.css">
     <link rel="stylesheet" href="/assets/css/animate.css">
     <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
@@ -62,7 +62,7 @@
                                     @if (auth()->user()->img != null)
                                         <img src="{{ auth()->user()->img }}" alt="{{ auth()->user()->name }} image" class="rounded-circle" height="30px">
                                     @else
-                                        <img src="/storage/Image/product/noimage.jpg" alt="" class="rounded-circle" height="30px">
+                                        <img src="/storage/Image/product/noimage.jpg" alt="{{auth()->user()->name}}" class="rounded-circle" height="30px" width="30px">
                                     @endif
                                     {{ auth()->user()->userName }} <span class="caret"></span>
                                 </a>
@@ -379,6 +379,7 @@
             modal.find("#object").val(object);
         });
     </script>
+<<<<<<< HEAD
 
     <!--Search-->
     <script>
@@ -395,6 +396,11 @@
     <script src="/assets/js/vendor/jquery-1.12.0.min.js"></script>
     <script src="/assets/js/popper.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
+=======
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+>>>>>>> main
     <script src="/assets/js/jquery.magnific-popup.min.js"></script>
     <script src="/assets/js/isotope.pkgd.min.js"></script>
     <script src="/assets/js/imagesloaded.pkgd.min.js"></script>

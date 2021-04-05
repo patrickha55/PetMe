@@ -7,6 +7,7 @@ use App\Favorite;
 use App\Product;
 use App\ProductCategory;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class FavoriteController extends Controller
@@ -14,7 +15,6 @@ class FavoriteController extends Controller
 
     public function index()
     {
-//        dd ($product->has('userFavorites')->get());
         $user = auth()->user();
         $categories = AnimalCategory::all();
         $subCat = ProductCategory::all();
@@ -75,6 +75,13 @@ class FavoriteController extends Controller
         //
     }
 
+
+    public function delete($product_id, $user_id): \Illuminate\Http\RedirectResponse
+    {
+        Favorite::delete()->where('product_id', $product_id)->where('user_id', $user_id);
+
+        return redirect()->back()->with('status', 'Product removed from your wishlist!');
+    }
 
     public function destroy(Favorite $favorite)
     {

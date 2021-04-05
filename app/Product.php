@@ -32,12 +32,6 @@ class Product extends Model
         return $this->hasOne('App\ProductDetail');
     }
 
-    public function user(): BelongsToMany
-    {
-        return $this->belongsToMany('App\User', 'favorites')
-            ->withTimestamps();
-    }
-
     public function cartDetails(): BelongsToMany
     {
         return $this->belongsToMany('App\Cart', 'cart_details')
@@ -76,5 +70,9 @@ class Product extends Model
     {
         return $this->belongsToMany('App\User', 'favorites')
             ->withTimestamps();
+    }
+
+    public function isProductInUserWishlist(){
+        return $this->userFavorites()->where('user_id', auth()->id())->exists();
     }
 }
