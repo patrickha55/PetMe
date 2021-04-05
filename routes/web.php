@@ -94,6 +94,9 @@ Route::group(['namespace' => 'Auth'], function(){
     Route::post('/logout', 'LoginController@logout');
 });
 
+// Review
+Route::resource('/product/{product}/review', 'ProductReviewController');
+
 //Cart and Order
 Route::middleware(['auth'])->group(function () {
 
