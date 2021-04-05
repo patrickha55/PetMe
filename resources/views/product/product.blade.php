@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
 <div class="custom-col-style-2 custom-col-5">
     <div class="product-wrapper product-border mb-24">
         <div class="product-img-3">
@@ -18,6 +20,10 @@
                 </a>
                 <a class="animate-left" title="Wishlist" href="{{ route('wishlist.store', $product) }}">
                     <i class="pe-7s-like"></i>
+                </a>
+                
+                <a class="animate-left addButtonCircular addToCompare" title="Compare" href="">
+                    <i class="fas fa-compress-alt"></i>
                 </a>
             </div>
         </div>

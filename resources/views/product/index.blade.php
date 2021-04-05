@@ -1,4 +1,4 @@
-@extends('layouts.client.app')
+@extends('layouts.client.app') 
 
 @section('content')
     <div class="electro-product-wrapper wrapper-padding pt-95 pb-45">
