@@ -33,7 +33,8 @@ Auth::routes();
 
 Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
 
-    Route::get('/', 'DashboardController@index');
+    Route::get('/', 'DashboardController@index')->name('admin.dashboard');
+    Route::get('/statistic', 'DashboardController@statistic')->name('admin.statistic');
 
     Route::prefix('user-management')->group(function (){
         Route::resource('/users','UserController');

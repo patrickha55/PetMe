@@ -4,7 +4,6 @@
     <div class="content">
         <div class="container-fluid">
             <div class="col-md-12">
-
                 <div class="card card-plain">
                     <div class="shadow-lg p-3  bg-white rounded">
 
