@@ -142,6 +142,7 @@ class HomeController extends Controller
             'one' => $one,
             'userReviews' => $userReviews
         ]);
+       
     }
 
     public function showFilterAnimalProducts(AnimalCategory $animal_category){
