@@ -23,7 +23,8 @@
     <link rel="stylesheet" href="/assets/css/bundle.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
-
+    
+    @yield('style')
     <script src="/assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
@@ -60,7 +61,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (auth()->user()->img != null)
-                                        <img src="{{ auth()->user()->img }}" alt="{{ auth()->user()->name }} image" class="rounded-circle" height="30px">
+                                        <img src="{{ auth()->user()->img }}" alt="{{ auth()->user()->name }} image" class="rounded-circle" height="30px" width="30px">
                                     @else
                                         <img src="/storage/Image/product/noimage.jpg" alt="{{auth()->user()->name}}" class="rounded-circle" height="30px" width="30px">
                                     @endif
@@ -108,7 +109,7 @@
 
                     <div class="categories-wrapper">
                         <form action="/" method="GET">
-                            <input name="query" placeholder="Enter Your key word" type="text">
+                            <input name="query" placeholder="Enter Your key word" type="text" id="myInput">
                             <button type="submit"> Search </button>
                         </form>
                     </div>
@@ -379,6 +380,19 @@
             modal.find("#object").val(object);
         });
     </script>
+
+    <!--Search-->
+    <script>
+        $(document).ready(function(){
+          $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myProduct tr").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+    </script>
+    @yield('script')
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

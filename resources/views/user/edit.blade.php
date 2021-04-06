@@ -1,7 +1,7 @@
 @extends('layouts.client.appWithoutCategory')
 
 @section('content')
-    <div class="wrapper bg-white mt-sm-5">
+    <div class="wrapper shadow p-3 mb-5 bg-white mt-sm-5">
         <h4 class="pb-4 border-bottom-1 font-weight-bold">MY PROFILE</h4>
         {{-- <div class="d-flex align-items-start py-3 border-bottom"> <img src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img" alt="">
             <div class="pl-sm-4 pl-2" id="img-section"> <b>Profile Photo</b>

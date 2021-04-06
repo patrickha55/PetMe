@@ -235,7 +235,7 @@
                             <a href="{{ route('cart.index') }}"><i class="pe-7s-cart"></i></a>
                         </div>
                         <div class="same-style-text">
-                            <a href="/">My Cart <br>
+                            <a href="{{ route('cart.index') }}">My Cart <br>
 
                                 @auth
                                     {{Cart::session(auth()->id())->getContent()->count()}}

@@ -15,25 +15,10 @@
             background-color: #fff;
         }
 
-        .wrapper {
-            padding: 30px 50px;
-            border: 1px solid #ddd;
-            border-radius: 15px;
-            margin: 10px auto;
-            max-width: 600px;
-            background: url('https://wallpapercave.com/wp/wp2446975.jpg');
-        }
 
         h4 {
             letter-spacing: -1px;
             font-weight: 400
-        }
-
-        .img {
-            width: 70px;
-            height: 70px;
-            border-radius: 6px;
-            object-fit: cover
         }
 
         #img-section p,
@@ -58,17 +43,8 @@
             padding-left: 3px
         }
 
-        .form-control {
-            border-radius: 10px
-        }
-
         input[placeholder] {
             font-weight: 500
-        }
-
-        .form-control:focus {
-            box-shadow: none;
-            border: 1.5px solid #0779e4
         }
 
         select {
@@ -82,31 +58,6 @@
 
         select:focus {
             outline: none
-        }
-
-        .button {
-            background-color: #fff;
-            color: #0779e4
-        }
-
-        .button:hover {
-            background-color: #0779e4;
-            color: #fff
-        }
-
-        .btn-primary {
-            background-color: #0779e4
-        }
-
-        .danger {
-            background-color: #fff;
-            color: #e20404;
-            border: 1px solid #ddd
-        }
-
-        .danger:hover {
-            background-color: #e20404;
-            color: #fff
         }
 
         @media(max-width:576px) {
@@ -137,14 +88,14 @@
                             <div class=" table-content table-responsive">
                                 <table class="table table-hover">
                                     <thead style="background-color: #D0D0D0; font-weight:600;">
-                                    <tr>
-                                        <th class="plantmore-product-thumbnail">Images</th>
-                                        <th class="cart-product-name">Product</th>
-                                        <th class="plantmore-product-price">Unit Price</th>
-                                        <th class="plantmore-product-stock-status">Stock Status</th>
-                                        <th class="plantmore-product-add-cart">Add to cart</th>
-                                        <th class="plantmore-product-remove">Remove</th>
-                                    </tr>
+                                        <tr>
+                                            <th class="plantmore-product-thumbnail">Images</th>
+                                            <th class="cart-product-name">Product</th>
+                                            <th class="plantmore-product-price">Unit Price</th>
+                                            <th class="plantmore-product-stock-status">Stock Status</th>
+                                            <th class="plantmore-product-add-cart">Add to cart</th>
+                                            <th class="plantmore-product-remove">Remove</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($user->favorites as $favorite)

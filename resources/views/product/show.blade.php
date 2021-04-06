@@ -6,8 +6,16 @@
 =======
 >>>>>>> main
     <div class="product-details ptb-100 pb-90">
-        <div class="container">
-            <div class="row">
+        <div class="h4 container section-title-4 border-bottom-1 pb-15 font-weight-light">
+            <a href="">Products</a>
+            <a href="{{ route('home.showFilterAnimalProducts', $product->productCategory->animalCategory) }}"> > {{ $product->productCategory->animalCategory->name }}</a>
+            <a href="{{ route('home.showFilterProducts', $product->productCategory) }}"> > {{ $product->productCategory->name }}</a>
+        </div>
+        <div class="container shadow p-3 mb-5 bg-white rounded">
+            <div class="section-title-4 text-center mb-40">
+                <h2>Product Detail</h2>
+            </div>
+            <div class="row mb-20">
                 <div class="col-md-12 col-lg-7 col-12">
                     <div class="product-details-5 pr-70 ">
                         @if(!empty($product->img))
@@ -78,15 +86,15 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        
+    
 
     {{-- reviews section --}}
 
-    @include('product._reviews')
-
+        @include('product._reviews')
+        </div>
     <!-- related product area start -->
     @include('product._related-product')
-
+    </div>
 @endsection
 
