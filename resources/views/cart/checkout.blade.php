@@ -164,10 +164,11 @@
         </div>
       </div>
       <div class="col-12">
-        <div class="well well-lg clearfix">
-          <ul class="pager">
-            <li class="next "><a class="btn btn-primary btn-default float-right" href="checkout-step-2.html">Continue <i class="fa fa-angle-right"></i></a></li>
-          </ul>
+        <div class="well well-lg clearfix ">
+         <form action="{{ route('order.store') }}" method="post">
+            @csrf
+             <button type="submit" class="btn btn-success  rounded">Order</button>
+         </form>
         </div>
       </div>
 
