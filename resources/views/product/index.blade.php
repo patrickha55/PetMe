@@ -3,6 +3,7 @@
 
 </style>
 @section('content')
+
     <div class="electro-product-wrapper wrapper-padding pt-95 pb-45">
         <div class="container-fluid">
             <div class="h4 section-title-4 border-bottom-1 pb-15 font-weight-light">
