@@ -4,7 +4,6 @@
     <div class="content">
         <div class="container-fluid">
             <div class="col-md-12">
-
                 <div class="card card-plain">
                     <div class="shadow-lg p-3  bg-white rounded">
 
@@ -47,7 +46,7 @@
                                                 <th class="mx-auto w-7" >
                                                     <div class="row">
                                                         <div class="">
-                                                            <a class="btn-sm btn-warning " href="{{ route('product.edit', $product) }}" style="font-size: 10px;">Edit</a>
+                                                            <a class="" href="{{ route('product.edit', $product) }}" style="font-size: 10px;">Edit</a>
                                                         </div>
                                                         <div class="">
                                                             <form action="{{ route('product.destroy', $product) }}" method="post">

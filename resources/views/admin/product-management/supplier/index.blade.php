@@ -10,7 +10,7 @@
 
                         <div class="card-header card-header-dark d-flex justify-content-between">
                             <div>
-                                <h4 class="card-title mt-0 text-dark ">Supplier</h4>
+                                <h4 class="card-title mt-0 text-dark font-weight-bold">Supplier</h4>
                                 <p class="card-category text-dark ">Supplier Management</p>
                             </div>
                             <a type="button" class="btn btn-warning"
@@ -52,7 +52,7 @@
                                             <th>
                                                 City
                                             </th>
-                                            <th>
+                                            <th colspan="2">
                                                 Function
                                             </th>
                                         </tr>
@@ -73,13 +73,14 @@
                                                 <th>{{ $supplier->district }}</th>
                                                 <th>{{ $supplier->city }}</th>
                                                 <th>
-                                                    <a class="btn-sm btn-warning "
-                                                        href="{{ route('supplier.edit', $supplier) }}">Edit</a>
+                                                    <a class="" href="{{ route('supplier.edit', $supplier) }}"><i class="fas fa-edit"></i></a>
+                                                </th>
+                                                <th>
                                                     <form action="{{ route('supplier.destroy', $supplier) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit">
-                                                            <a class="btn-sm btn-danger ">Delete</a>
+                                                            <a class=""><i class="fas fa-trash"></i></a>
                                                         </button>
                                                     </form>
                                                 </th>

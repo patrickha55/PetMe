@@ -14,11 +14,19 @@
         <!--     Fonts and icons     -->
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
         <!-- CSS Files -->
             <!--Tailwind-->
             <link rel="stylesheet" href="{{ asset('/css/app.css') }}"/>
             {{--Bootstrap 4--}}
             <link href="{{ asset('/css/admin.css') }}" rel="stylesheet"/>
+        @yield('style')  
+        <style>
+            .fas {
+                color: black;
+            }
+        </style>  
     </head>
     <body>
     <div id="app">
@@ -89,7 +97,7 @@
     <!--  Google Maps Plugin    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_gdNpReCRY9fzGtlc0QEJ7FWQVbtgta4"></script>
     <!-- Chartist JS -->
-    <script src="{{ asset('/js/plugins/chartist.min.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     <!--  Notifications Plugin    -->
     <script src="{{ asset('/js/plugins/bootstrap-notify.js') }}"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
@@ -282,5 +290,6 @@
       </script>
 <!--    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>-->
+    @yield('script')
     </body>
 </html>

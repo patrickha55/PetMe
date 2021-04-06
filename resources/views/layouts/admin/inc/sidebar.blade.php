@@ -66,7 +66,7 @@
         </a>
     </li>
     <li class="nav-item ">
-        <a class="nav-link" href="./notifications.html">
+        <a class="nav-link" href="{{ route('admin.statistic') }}">
             <i class="material-icons">analytics</i>
             <p>Statistics</p>
         </a>
