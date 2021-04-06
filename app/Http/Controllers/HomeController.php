@@ -14,10 +14,6 @@ class HomeController extends Controller
 {
     public function index(): Renderable
     {
-<<<<<<< HEAD
-        $products = Product::take(10)->get();
-=======
->>>>>>> main
 
         $totalRate = $productWithHighRating = collect([
             ['id' => '', 'avg' => '']
