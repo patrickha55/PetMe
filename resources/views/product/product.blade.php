@@ -18,7 +18,7 @@
                 <a class="animate-top" title="Add To Cart" href="{{route('cart.add', $product)}}">
                     <i class="pe-7s-cart"></i>
                 </a>
-                {{--@php
+                @php
                     $favorite = \App\Favorite::where('product_id', $product->id)->where('user_id', auth()->id())->get()
                 @endphp
                 @foreach($favorite as $fav)
@@ -30,7 +30,7 @@
                                 <i class="fa-fas-heart"></i>
                             </button>
                         </form>
-                    @else--}}
+                    @else
                     <a class="animate-left" title="Wishlist" href="{{ route('wishlist.store', $product) }}">
                         <i class="pe-7s-like"></i>
                     </a>
