@@ -23,8 +23,7 @@
     <link rel="stylesheet" href="/assets/css/bundle.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
-    
-    @yield('style')
+
     <script src="/assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
@@ -61,7 +60,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (auth()->user()->img != null)
-                                        <img src="{{ auth()->user()->img }}" alt="{{ auth()->user()->name }} image" class="rounded-circle" height="30px" width="30px">
+                                        <img src="{{ auth()->user()->img }}" alt="{{ auth()->user()->name }} image" class="rounded-circle" height="30px">
                                     @else
                                         <img src="/storage/Image/product/noimage.jpg" alt="{{auth()->user()->name}}" class="rounded-circle" height="30px" width="30px">
                                     @endif
@@ -172,109 +171,112 @@
 
     @include('layouts.client.includes.footer')
     <!-- modal -->
-    <div class="modal fade" id="exampleCompare" tabindex="-1" role="dialog" aria-hidden="true">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span class="pe-7s-close" aria-hidden="true"></span>
-        </button>
-        <div class="modal-dialog modal-compare-width" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <form action="#">
-                        <div class="table-content compare-style table-responsive">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>
-                                            <a href="#">Remove <span>x</span></a>
-                                            <img src="/storage/Image/product" alt="">
-                                            <p>Blush Sequin Top </p>
-                                            <span>$75.99</span>
-                                            <a class="compare-btn" href="#">Add to cart</a>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="compare-title">
-                                            <h4>Description </h4>
-                                        </td>
-                                        <td class="compare-dec compare-common">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry. Lorem Ipsum has beenin the stand ard dummy text ever since the
-                                                1500s, when an unknown printer took a galley</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="compare-title">
-                                            <h4>Sku </h4>
-                                        </td>
-                                        <td class="product-none compare-common">
-                                            <p>-</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="compare-title">
-                                            <h4>Availability </h4>
-                                        </td>
-                                        <td class="compare-stock compare-common">
-                                            <p>In stock</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="compare-title">
-                                            <h4>Weight </h4>
-                                        </td>
-                                        <td class="compare-none compare-common">
-                                            <p>-</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="compare-title">
-                                            <h4>Dimensions </h4>
-                                        </td>
-                                        <td class="compare-stock compare-common">
-                                            <p>N/A</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="compare-title">
-                                            <h4>brand </h4>
-                                        </td>
-                                        <td class="compare-brand compare-common">
-                                            <p>HasTech</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="compare-title">
-                                            <h4>color </h4>
-                                        </td>
-                                        <td class="compare-color compare-common">
-                                            <p>Grey, Light Yellow, Green, Blue, Purple, Black </p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="compare-title">
-                                            <h4>size </h4>
-                                        </td>
-                                        <td class="compare-size compare-common">
-                                            <p>XS, S, M, L, XL, XXL </p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="compare-title"></td>
-                                        <td class="compare-price compare-common">
-                                            <p>$75.99 </p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
+  
+        <div class="modal fade" id="exampleCompare" tabindex="-1" role="dialog" aria-hidden="true">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span class="pe-7s-close" aria-hidden="true"></span>
+            </button>
+            <div class="modal-dialog modal-compare-width" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form action="#">
+                            <div class="table-content compare-style table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>
+                                                <a href="#">Remove <span>x</span></a>
+                                                <img src="/storage/Image/product" alt="">
+                                                <p>Blush Sequin Top </p>
+                                                <span>$75.99</span>
+                                                <a class="compare-btn" href="#">Add to cart</a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="compare-title">
+                                                <h4>Description </h4>
+                                            </td>
+                                            <td class="compare-dec compare-common">
+                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                    industry. Lorem Ipsum has beenin the stand ard dummy text ever since the
+                                                    1500s, when an unknown printer took a galley</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="compare-title">
+                                                <h4>Sku </h4>
+                                            </td>
+                                            <td class="product-none compare-common">
+                                                <p>-</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="compare-title">
+                                                <h4>Availability </h4>
+                                            </td>
+                                            <td class="compare-stock compare-common">
+                                                <p>In stock</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="compare-title">
+                                                <h4>Weight </h4>
+                                            </td>
+                                            <td class="compare-none compare-common">
+                                                <p>-</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="compare-title">
+                                                <h4>Dimensions </h4>
+                                            </td>
+                                            <td class="compare-stock compare-common">
+                                                <p>N/A</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="compare-title">
+                                                <h4>brand </h4>
+                                            </td>
+                                            <td class="compare-brand compare-common">
+                                                <p>HasTech</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="compare-title">
+                                                <h4>color </h4>
+                                            </td>
+                                            <td class="compare-color compare-common">
+                                                <p>Grey, Light Yellow, Green, Blue, Purple, Black </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="compare-title">
+                                                <h4>size </h4>
+                                            </td>
+                                            <td class="compare-size compare-common">
+                                                <p>XS, S, M, L, XL, XXL </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="compare-title"></td>
+                                            <td class="compare-price compare-common">
+                                                <p>$75.99 </p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-hidden="true">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span class="pe-7s-close" aria-hidden="true"></span>
@@ -380,19 +382,6 @@
             modal.find("#object").val(object);
         });
     </script>
-
-    <!--Search-->
-    <script>
-        $(document).ready(function(){
-          $("#myInput").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myProduct tr").filter(function() {
-              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-          });
-        });
-    </script>
-    @yield('script')
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

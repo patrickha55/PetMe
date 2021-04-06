@@ -113,6 +113,8 @@ Route::middleware(['auth'])->group(function () {
 
 
 //Ngan check route
-
+Route::get('/compare', function() {
+    return view('product.compare');
+});
 
 
