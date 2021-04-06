@@ -9,7 +9,7 @@
                     $relatedProducts = App\Product::where('product_category_id', $product->product_category_id)->get();
                 @endphp
                 @foreach($relatedProducts as $relatedProduct)
-                    <div class="product-wrapper">
+                    <div class="product-wrapper shadow p-3 mb-5 bg-white rounded">
                         <div class="product-img">
                             <a href="#">
                                 <img src="/storage/Image/product/{{ $relatedProduct->img }}" alt="{{ $relatedProduct->name }}" class="mx-auto">

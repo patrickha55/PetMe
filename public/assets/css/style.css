@@ -1187,10 +1187,10 @@
     padding-right: 20px;
 }
 
-.custom-col-5 {
-    flex: 0 0 20%;
-    max-width: 20%;
-}
+    /* .custom-col-5 {
+        flex: 0 0 20%;
+        max-width: 20%;
+    } */
 
 .product-tab-list {
     display: flex;
@@ -3378,9 +3378,6 @@ a.banner-book-style-btn:hover {
     max-width: 25%;
 }
 
-.product-border {
-    border: 1px solid #eeeeee;
-}
 
 .product-img-3 img {
     width: 100%;

@@ -71,11 +71,11 @@
                             </div>
                         </div>
 
-                        <div class="mt-10">
+                        <div class="border-top-1>
                             <div class="card-header card-header-dark d-flex justify-content-between">
                                 <div>
-                                    <h4 class="card-title mt-0 text-dark ">Orders</h4>
-                                    <p class="card-category text-dark ">Order Management</p>
+                                    <h4 class="card-title mt-0 text-dark ">Order Details</h4>
+                                    <p class="card-category text-dark ">Order Details Management</p>
                                     @if (session('status'))
                                         <p class="text-green-500 font-black">
                                             {{ session('status') }}
