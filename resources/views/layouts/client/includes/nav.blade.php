@@ -61,9 +61,9 @@
                     </ul>
                 </nav>
             </div>
-            <div class="slider-area">
-                <div class="slider-active owl-carousel" style="background-color: #fff; height: 550px; border: 1px solid black;">
-                     {{-- @foreach($products as $product)
+            <div class="slider-area shadow p-3 mb-5 bg-white rounded">
+                <div class="slider-active owl-carousel" style="background-color: #fff; height: 550px;">
+                    {{-- @foreach($products as $product)
                         <div class="single-slider single-slider-hm3 p-5"  style="background-color: #fff;">
                             <div class="row">
                                 <div class="col-md-8"  style=" color: black;">
