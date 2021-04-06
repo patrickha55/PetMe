@@ -60,9 +60,9 @@
         </a>
     </li>-->
     <li class="nav-item ">
-        <a class="nav-link" href="{{ route('admin.store-location') }}">
-            <i class="material-icons">location_ons</i>
-            <p>Stores</p>
+        <a class="nav-link" href="{{ route('orders.index') }}">
+            <i class="material-icons">fact_check</i>
+            <p>Orders</p>
         </a>
     </li>
     <li class="nav-item ">
