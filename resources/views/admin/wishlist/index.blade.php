@@ -1,11 +1,11 @@
-@extends('layouts.admin.admin')
+    @extends('layouts.admin.admin')
 
 @section('content')
     <div class="content">
         <div class="container-fluid">
             <div class="col-md-12">
                 <div class="card card-plain">
-                    <div class="shadow-lg p-3  bg-white rounded">
+                   <div class="shadow-lg p-3  bg-white rounded">
 
                         <div class="card-header card-header-dark d-flex justify-content-between">
                             <div>

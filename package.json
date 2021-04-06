@@ -26,6 +26,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "chartist-plugin-axistitle": "^0.0.7",
         "tailwindcss": "^2.0.4"
     }
 }
