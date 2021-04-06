@@ -20,9 +20,9 @@
             <div class="row">
                 <div class="col-12 text-center">
                     @if ($user->img != null)
-                        <img src="{{ $user->img }}" alt="{{ $user->name }} image" class="rounded-circle" height="200px">
+                        <img src="storage/Image/avatar/ava1.png" alt="{{ $user->name }} image" class="rounded-circle" height="200px">
                     @else
-                        <img src="/storage/Image/product/noimage.jpg" alt="" class="rounded-circle" height="200px">
+                        <img src="storage/Image/avatar/ava1.png" alt="" class="rounded-circle" height="200px">
                     @endif
                 </div>
                 <div class="col-12 text-center">
