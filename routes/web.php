@@ -82,8 +82,9 @@ Route::get('/about', function(){
 
 Route::group(['middleware'=>'auth', 'namespace'=>'User'], function () {
     Route::get('/user/edit_password', 'UserController@editPassword')->name('user.editPassword');
-    Route::resource('/user', 'UserController');
+   
     Route::resource('/user/address', 'AddressController');
+    Route::resource('/user', 'UserController');
 });
 
 Route::group(['namespace' => 'Auth'], function(){
@@ -100,7 +101,7 @@ Route::resource('/product/{product}/review', 'ProductReviewController');
 //Cart and Order
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
+    Route::get('checkout', 'CartController@checkout')->name('cart.checkout');
     Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
     Route::resource('/cart', 'CartController');
     Route::resource('/order',  'OrderController');

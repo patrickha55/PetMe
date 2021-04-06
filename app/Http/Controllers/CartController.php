@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
-use Illuminate\Http\Request;
 use App\Product;
+use App\AnimalCategory;
+use App\ProductCategory;
+use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
@@ -101,7 +103,15 @@ class CartController extends Controller
         return redirect()->route('cart.index');
     }
     public function checkout()
-    {
-        return view('cart.checkout');
+    {   
+
+         $categories = AnimalCategory::all();
+          $subCat = ProductCategory::all();
+            
+        return view('cart.checkout')->with([
+         
+              'categories'=>$categories,
+              'subCat'=>$subCat,
+        ]);
     }
 }
