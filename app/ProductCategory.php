@@ -30,6 +30,12 @@ class ProductCategory extends Model
             case 'wet cat food':
                 $categoryID = 2;
                 break;
+            case 'dry food':
+                $categoryID = 3;
+                break;
+            case 'wet food':
+                $categoryID = 4;
+                break;        
         }
         return $categoryID;
     }

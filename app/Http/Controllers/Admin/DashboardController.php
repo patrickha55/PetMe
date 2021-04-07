@@ -31,12 +31,13 @@ class DashboardController extends Controller
 
 
         return view('admin.index')->with(['products' => $products, 'users' => $users, 'suppliers' => $suppliers, 'animals' => $animal_cats, 'orders' => $orders]);
-<<<<<<< HEAD
-=======
+
+
     }
 
     public function statistic(){
         return view('admin.statistic.index');
->>>>>>> 48503ce4298c9220c24543df33e05a4a3b84ac38
+
+
     }
 }

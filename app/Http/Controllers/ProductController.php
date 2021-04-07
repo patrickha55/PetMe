@@ -300,8 +300,15 @@ class ProductController extends Controller
     public function destroy(Product $product): RedirectResponse
     {
         $product->delete();
-        $product->detail->delete();
+        
+        if(count($product->detail)){
+            $product->detail->delete();
+        }
+
+        if(count($product->detail->nutritionFact)){
         $product->detail->nutritionFact->delete();
+        }
+
         return redirect()->back()->with('status', 'Product deleted successfully!');
     }
 }

@@ -4,7 +4,7 @@
 <div class="content">
         <div class="container-fluid">
             <div class="w-full bg-white rounded shadow-lg p-8 m-4l">
-                <h2 class="text-center">New Category</h2>
+                <h2 class="text-center">Edit Category</h2>
                 <form class="row g-3" action="{{ url('/admin/user-management/users') }}" method="POST">
                     @csrf
                     <div class="col-8 col-md-8">
@@ -18,7 +18,7 @@
                         @enderror
                     </div>
                     <div class="col-4 mx-auto text-center">
-                        <button type="submit" class="btn btn-primary">Create</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>
