@@ -16,8 +16,8 @@
                 <div class="dropdown col-sm-3">
                     <div class="card shadow p-3 mb-5 bg-white rounded">
                         <article class="card-group-item">
-                            <header class="card-header">
-                                <h6 class="title">Range input </h6>
+                            <header class="card-header" style="background: #2B2B2B";>
+                                <h6 class="title font-weight-bold" style="color: #fff;">Range input </h6>
                             </header>
                             <div class="filter-content">
                                 <div class="card-body">
@@ -35,8 +35,8 @@
                             </div>
                         </article> <!-- card-group-item.// -->
                         <article class="card-group-item">
-                            <header class="card-header">
-                                <h6 class="title">Selection </h6>
+                            <header class="card-header" style="background: #2B2B2B">
+                                <h6 class="title font-weight-bold" style="color: #fff;">Selection </h6>
                             </header>
                             <div class="filter-content">
                                 <div class="card-body">

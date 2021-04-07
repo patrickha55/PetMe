@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Order_Details;
+use App\OrderDetail;
 use Illuminate\Http\Request;
 
-class OrderDetailsController extends Controller
+class OrderDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class OrderDetailsController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -41,10 +41,10 @@ class OrderDetailsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Order_Details  $order_Details
+     * @param  \App\OrderDetail  $orderDetail
      * @return \Illuminate\Http\Response
      */
-    public function show(Order_Details $order_Details)
+    public function show(OrderDetail $orderDetail)
     {
         //
     }
@@ -52,10 +52,10 @@ class OrderDetailsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Order_Details  $order_Details
+     * @param  \App\OrderDetail  $orderDetail
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order_Details $order_Details)
+    public function edit(OrderDetail $orderDetail)
     {
         //
     }
@@ -64,10 +64,10 @@ class OrderDetailsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Order_Details  $order_Details
+     * @param  \App\OrderDetail  $orderDetail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order_Details $order_Details)
+    public function update(Request $request, OrderDetail $orderDetail)
     {
         //
     }
@@ -75,10 +75,10 @@ class OrderDetailsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Order_Details  $order_Details
+     * @param  \App\OrderDetail  $orderDetail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order_Details $order_Details)
+    public function destroy(OrderDetail $orderDetail)
     {
         //
     }

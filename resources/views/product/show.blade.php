@@ -1,10 +1,6 @@
 @extends('layouts.client.app')
 
 @section('content')
-<<<<<<< HEAD
-   {{-- // @include('layouts.client.nav') --}}
-=======
->>>>>>> main
     <div class="product-details ptb-100 pb-90">
         <div class="h4 container section-title-4 border-bottom-1 pb-15 font-weight-light">
             <a href="">Products</a>

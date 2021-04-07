@@ -54,7 +54,7 @@
                                         <th>{{ $category->status }}</th>
                                         <th>
                                             <a class="btn-sm btn-warning "
-                                                href="{{ url('/admins/product-management/product/{$Category}/edit') }}">Edit</a>
+                                                href="{{ route('category.edit', $category) }}">Edit</a>
 
                                         </th>
                                     </tr>
@@ -107,7 +107,7 @@
                                         <th>{{ $subCategory->status }}</th>
                                         <th>
                                             <a class="btn-sm btn-warning "
-                                               href="{{ url('/admins/product-management/product/{$Category}/edit') }}">Edit</a>
+                                               href="{{ route('productCategory.edit', $subCategory) }}">Edit</a>
 
                                         </th>
                                     </tr>

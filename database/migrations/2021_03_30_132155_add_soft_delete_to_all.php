@@ -13,31 +13,19 @@ class AddSoftDeleteToAll extends Migration
      */
     public function up()
     {
-        /*Schema::table('products', function (Blueprint $table) {
+        Schema::table('addresses', function (Blueprint $table) {
             $table->softDeletes();
         });
 
-        Schema::table('nutrition_facts', function (Blueprint $table) {
+        Schema::table('suppliers', function (Blueprint $table) {
             $table->softDeletes();
-        });*/
+        });
 
-        /*Schema::table('addresses', function (Blueprint $table) {
+        Schema::table('animal_categories', function (Blueprint $table) {
             $table->softDeletes();
-        });*/
-
-        /*Schema::table('animal_categories', function (Blueprint $table) {
-            $table->softDeletes();
-        });*/
+        });
 
         Schema::table('product_categories', function (Blueprint $table) {
-            $table->softDeletes();
-        });
-
-        /*Schema::table('suppliers', function (Blueprint $table) {
-            $table->softDeletes();
-        });*/
-
-        /*Schema::table('carts', function (Blueprint $table) {
             $table->softDeletes();
         });
 
@@ -45,7 +33,23 @@ class AddSoftDeleteToAll extends Migration
             $table->softDeletes();
         });
 
-        Schema::table('order__details', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+
+        Schema::table('product_details', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+
+        Schema::table('nutrition_facts', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+
+        Schema::table('product_reviews', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+
+        Schema::table('carts', function (Blueprint $table) {
             $table->softDeletes();
         });
 
@@ -59,7 +63,15 @@ class AddSoftDeleteToAll extends Migration
 
         Schema::table('favorites', function (Blueprint $table) {
             $table->softDeletes();
-        });*/
+        });
+
+        Schema::table('order_details', function (Blueprint $table) {
+            $table->softDeletes();
+        });
+
+        Schema::table('favorites', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**
@@ -69,11 +81,7 @@ class AddSoftDeleteToAll extends Migration
      */
     public function down()
     {
-        /*Schema::table('animal_categories', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });*/
-
-        /*Schema::table('product_categories', function (Blueprint $table) {
+        Schema::table('addresses', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
 
@@ -81,7 +89,11 @@ class AddSoftDeleteToAll extends Migration
             $table->dropSoftDeletes();
         });
 
-        Schema::table('carts', function (Blueprint $table) {
+        Schema::table('animal_categories', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
+
+        Schema::table('product_categories', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
 
@@ -89,7 +101,23 @@ class AddSoftDeleteToAll extends Migration
             $table->dropSoftDeletes();
         });
 
-        Schema::table('order__details', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
+
+        Schema::table('product_details', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
+
+        Schema::table('nutrition_facts', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
+
+        Schema::table('product_reviews', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
+
+        Schema::table('carts', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
 
@@ -103,6 +131,14 @@ class AddSoftDeleteToAll extends Migration
 
         Schema::table('favorites', function (Blueprint $table) {
             $table->dropSoftDeletes();
-        });*/
+        });
+
+        Schema::table('order_details', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
+
+        Schema::table('favorites', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 }
