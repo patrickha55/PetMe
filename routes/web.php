@@ -110,6 +110,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/wishlist/{product_id}/{user_id}', 'FavoriteController@delete')->name('wishlist.delete');
     Route::resource('/wishlist', 'FavoriteController')->except('store');
 });
+
+
 //@endUser  ------
 
 
