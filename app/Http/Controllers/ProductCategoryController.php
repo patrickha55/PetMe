@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Product\ProductCategory;
+use App\ProductCategory;
 use Illuminate\Http\Request;
 
 class ProductCategoryController extends Controller
@@ -35,7 +35,7 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -49,15 +49,9 @@ class ProductCategoryController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\Product\ProductCategory  $productCategory
-     * @return \Illuminate\Http\Response
-     */
     public function edit(ProductCategory $productCategory)
     {
-        //
+        return view('admin.product-management.category.editSubCategory')->with('productCategory', $productCategory);
     }
 
     /**

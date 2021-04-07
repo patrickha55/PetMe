@@ -45,7 +45,7 @@
                 </div>
                 <div class="electronics-login-register">
                     <ul>
-                        <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i
+                        <li><a {{--data-toggle="modal" data-target="#exampleCompare"--}} href="/compare"><i
                                     class="pe-7s-repeat"></i>Compare</a></li>
                         <li><a href="/wishlist"><i class="pe-7s-like"></i>Wishlist</a></li>
                         {{-- <li><a href="#"><i class="pe-7s-flag"></i>US</a></li> --}}

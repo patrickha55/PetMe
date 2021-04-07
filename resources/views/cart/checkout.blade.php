@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-md-4 p-2 m-auto">
             <div class="row">
-                <div class="col-12 text-center">
+                {{--<div class="col-12 text-center">
                     @if ($user->img != null)
                         <img src="{{ $user->img }}" alt="{{ $user->name }} image" class="rounded-circle" height="200px">
                     @else
@@ -39,10 +39,10 @@
                             <a href="{{ route('user.editPassword') }}"><button class="button border danger">Change Password</button></a>
                         </div>
                     </div>
-                </div>
+                </div>--}}
             </div>
         </div>
-        <div class="col-8 bg-white mt-sm-5 p-5">
+        <div class="col-12 bg-white mt-sm-5 p-5">
             <h4 class="pb-4  font-weight-bold border-bottom-1">Personal Information</h4>
             @if (session('status'))
                 <p class="text-success font-weight-bolder">

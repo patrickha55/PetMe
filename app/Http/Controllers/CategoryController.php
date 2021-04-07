@@ -49,16 +49,11 @@ class CategoryController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\Product\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
+    public function edit(AnimalCategory $animalCategory)
     {
-        //
+        return view('admin.product-management.category.edit')->with('animalCategory', $animalCategory);
     }
+
 
     /**
      * Update the specified resource in storage.
