@@ -5,7 +5,7 @@
         <div class="product-img-3">
             <a href="{{route('home.show', $product)}}">
                 @if(!empty($product->img))
-           
+
                 <img src="/storage/Image/product/{{ $product->img }}" alt="">
                 @else
                     <img src="/storage/Image/product/noimage.jpg" alt="">
@@ -52,6 +52,11 @@
                 {{--<span>{{ $product->description }}</span>--}}
             <h5> @currency( $product->price ) VNĐ </h5>
             <p>{{$product->supplier->name ?? 'N/A'}}</p>
+            @if (session('addToCart'))
+                <p class="text-success">
+                    {{ session('addToCart') }}
+                </p>
+            @endif
         </div>
     </div>
 </div>
