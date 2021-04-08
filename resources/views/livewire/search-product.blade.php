@@ -1,24 +1,8 @@
-{{-- <div class="categories-search-wrapper" style=" z-index: 1;">
-<p>liveware</p> --}}
-    {{-- <div class="categories-wrapper">
-       
-            <input  placeholder="Enter Your key word" type="text"  wire:model="search"">
-        
-       
- 
-    <ul>
-             @if($search != "")
-        @foreach($product as $item)
-            <li>{{ $item->name }} </li>
-        @endforeach
-   @endif 
-    </ul>
-</div> --}}
-{{-- </div> --}}
+
 <div>
 <div class="categories-search-wrapper">
     <div class="categories-wrapper">
-    <input wire:model="search" type="search" placeholder="Search Poduct by name...">
+    <input wire:model="search" type="text" placeholder="Search Poduct by name...">
 </div>
 </div>
 <div >
@@ -29,6 +13,7 @@
         @endforeach
         @endif
     </ul>
+
 </div>
 </div>
 
