@@ -37,6 +37,7 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
     Route::get('/statistic', 'DashboardController@statistic')->name('admin.statistic');
 
     Route::prefix('user-management')->group(function (){
+        Route::get('users/{user}/ban', 'UserController@ban')->name('users.ban');
         Route::resource('/users','UserController');
         Route::resource('/admins', 'AdminController');
     });
