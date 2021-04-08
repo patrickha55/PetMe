@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="/assets/css/bundle.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
-    
+    @livewireStyles
     @yield('style')
     <script src="/assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -35,7 +35,8 @@
       @else
     <h2>vui long dang nhap</h2>--}}{{--
     @endif--}}
-        <div class="header-top-wrapper-2 border-bottom-2">
+   
+    <div class="header-top-wrapper-2 border-bottom-2">
             <div class="header-info-wrapper pl-200 pr-200">
                 <div class="header-contact-info">
                     <ul>
@@ -105,15 +106,9 @@
                         <p class="font-weight-bold font-italic h1" style="color: #ff2c2c;">PetMe</p>
                     </a>
                 </div>
-                <div class="categories-search-wrapper">
-
-                    <div class="categories-wrapper">
-                        <form action="/" method="GET">
-                            <input name="query" placeholder="Enter Your key word" type="text" id="myInput">
-                            <button type="submit"> Search </button>
-                        </form>
-                    </div>
-                </div>
+           {{-- //search --}}
+             @livewire('search-product')
+                {{-- endsearch  --}}
                 <div class="trace-cart-wrapper">
                     <div class="categories-cart same-style">
                         <div class="same-style-icon">
@@ -408,6 +403,7 @@
     <script src="/assets/js/owl.carousel.min.js"></script>
     <script src="/assets/js/plugins.js"></script>
     <script src="/assets/js/main.js"></script>
+    @livewireScripts
 </body>
 
 </html>
