@@ -6,13 +6,13 @@ use App\Cart;
 use App\Product;
 use App\AnimalCategory;
 use App\ProductCategory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-        public function add(Product $product)
+    public function add(Product $product): RedirectResponse
     {
-
        // add the product to cart
         \Cart::session(auth()->id())->add(array(
             'id' => $product->id,
@@ -24,14 +24,78 @@ class CartController extends Controller
             'associatedModel' => $product
         ));
 
-         return redirect()->back();
+         return redirect()->back()->with('addToCart', 'Item added to cart');
     }
+
+    public function updateCart(Request $request, Product $product)
+    {
+        if ($request->quantity > $product->stock){
+            return redirect()->back()->with('status', 'There are not enough items in our inventory. Sorry!');
+        } else {
+            \Cart::session(auth()->id())->update($product->id, array(
+                'quantity' => array(
+                    'relative' => false,
+                    'value' => $request->quantity,
+                ),
+            ));
+
+            return redirect()->back()->with('success', 'Item updated successfully!');
+        }
+    }
+
+    public function updatePlusCart(Product $product)
+    {
+        \Cart::session(auth()->id())->update($product->id, array(
+            'quantity' => 1,
+        ));
+
+        return redirect()->back();
+
+    }
+
+    public function updateMinusCart(Product $product)
+    {
+//        dd(\Cart::session(auth()->id())->getContent($product->id));
+        \Cart::session(auth()->id())->update($product->id, array(
+            'quantity' => -1,
+        ));
+
+        return redirect()->back();
+    }
+
+    public function checkout()
+    {
+
+        $categories = AnimalCategory::all();
+        $subCat = ProductCategory::all();
+
+        return view('cart.checkout')->with([
+
+            'categories'=>$categories,
+            'subCat'=>$subCat,
+        ]);
+    }
+
+    public function destroyCartItem(Product $product)
+    {
+        \Cart::session(auth()->id())->remove($product->id);
+
+        return redirect()->back();
+    }
+
      public function index()
     {
         $cartItems = \Cart::session(auth()->id())->getContent();
-
-        return view('cart.index', compact('cartItems'));
-
+        $subTotal = $total = 0;
+        foreach ($cartItems as $cartItem){
+            $subTotal += $cartItem->getPriceSum();
+        }
+        $total = $subTotal;
+        return view('cart.index')->with([
+            'cartItems' => $cartItems,
+            'subTotal' => $subTotal,
+            'total' => $total
+        ]);
     }
 
     /**
@@ -89,29 +153,9 @@ class CartController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($itemId)
+
+    public function destroy(Cart $cart)
     {
-
-       \Cart::session(auth()->id())->remove($itemId);
-
-        return redirect()->route('cart.index');
-    }
-    public function checkout()
-    {   
-
-         $categories = AnimalCategory::all();
-          $subCat = ProductCategory::all();
-            
-        return view('cart.checkout')->with([
-         
-              'categories'=>$categories,
-              'subCat'=>$subCat,
-        ]);
+//
     }
 }

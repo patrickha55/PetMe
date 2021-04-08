@@ -14,7 +14,6 @@ class HomeController extends Controller
 {
     public function index(): Renderable
     {
-
         $totalRate = $productWithHighRating = collect([
             ['id' => '', 'avg' => '']
         ]);
@@ -142,7 +141,7 @@ class HomeController extends Controller
             'one' => $one,
             'userReviews' => $userReviews
         ]);
-       
+
     }
 
     public function showFilterAnimalProducts(AnimalCategory $animal_category){

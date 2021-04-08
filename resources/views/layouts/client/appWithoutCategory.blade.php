@@ -239,7 +239,7 @@
                             <a href="{{ route('cart.index') }}">My Cart <br>
 
                                 @auth
-                                    {{Cart::session(auth()->id())->getContent()->count()}}
+                                    {{\Cart::session(auth()->id())->getTotalQuantity()}}
                                 @else
                                     0
                                 @endauth

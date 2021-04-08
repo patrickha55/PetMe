@@ -23,7 +23,11 @@
     <link rel="stylesheet" href="/assets/css/bundle.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
+<<<<<<< HEAD
     @livewireStyles
+=======
+
+>>>>>>> main
     @yield('style')
     <script src="/assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -118,7 +122,7 @@
                             <a href="{{ route('cart.index') }}">My Cart <br>
 
                                 @auth
-                                {{Cart::session(auth()->id())->getContent()->count()}}
+                                {{\Cart::session(auth()->id())->getTotalQuantity()}}
                                 @else
                                 0
                                 @endauth
@@ -167,7 +171,7 @@
 
     @include('layouts.client.includes.footer')
     <!-- modal -->
-  
+
         <div class="modal fade" id="exampleCompare" tabindex="-1" role="dialog" aria-hidden="true">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span class="pe-7s-close" aria-hidden="true"></span>
