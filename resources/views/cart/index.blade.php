@@ -97,7 +97,7 @@
                         </div>
                         <h3 class="col-12 mt-20 mb-20">There is no item in your cart.</h3>
                         <div class="m-auto">
-                            <a href="{{ route('products') }}" class="col-12 btn rounded btn-danger">Continue Shopping</a>
+                            <a href="{{ route('products') }}" class="col-12 btn-lg rounded btn-danger">Continue Shopping</a>
                         </div>
                     </div>
                 </div>

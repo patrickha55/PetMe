@@ -169,22 +169,22 @@ trait AuthenticatesUsers
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function logout(Request $request)
-    {
-        $this->guard()->logout();
+    // public function logout(Request $request)
+    // {
+    //     $this->guard()->logout();
 
-        $request->session()->invalidate();
+    //     $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+    //     $request->session()->regenerateToken();
 
-        if ($response = $this->loggedOut($request)) {
-            return $response;
-        }
+    //     if ($response = $this->loggedOut($request)) {
+    //         return $response;
+    //     }
 
-        return $request->wantsJson()
-            ? new Response('', 204)
-            : redirect('/');
-    }
+    //     return $request->wantsJson()
+    //         ? new Response('', 204)
+    //         : redirect('/');
+    // }
 
     /**
      * The user has logged out of the application.

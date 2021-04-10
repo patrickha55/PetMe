@@ -8,15 +8,11 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
-        //sdhjkd
-
+        $orders = Order::all();
+        return view('user.order.index')->with('orders', $orders);
     }
 
     /**
@@ -125,12 +121,10 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
      */
     public function show(Order $order)
     {
-        //
+        return view('user.order.show')->with('order', $order);
     }
    
 

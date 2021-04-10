@@ -75,7 +75,7 @@
                                         </a>
                                     </div>
                                     <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="{{ route('order.index') }}">
                                             Orders
                                         </a>
                                     </div>
