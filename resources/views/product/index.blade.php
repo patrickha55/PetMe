@@ -1,8 +1,7 @@
-@extends('layouts.client.app') 
-<style>
+@extends('layouts.client.app')
 
-</style>
 @section('content')
+
     <div class="electro-product-wrapper wrapper-padding pt-95 pb-45">
         <div class="container-fluid">
             <div class="h4 section-title-4 border-bottom-1 pb-15 font-weight-light">
@@ -44,19 +43,19 @@
                                           <input type="checkbox" class="custom-control-input" id="Check1">
                                           <label class="custom-control-label" for="Check1">Top Star</label>
                                     </div> <!-- form-check.// -->
-                    
+
                                     <div class="custom-control custom-checkbox">
                                         <span class="float-right badge badge-light round">132</span>
                                           <input type="checkbox" class="custom-control-input" id="Check2">
                                          <label class="custom-control-label" for="Check2">Popular</label>
                                     </div> <!-- form-check.// -->
-                    
+
                                     <div class="custom-control custom-checkbox">
                                         <span class="float-right badge badge-light round">17</span>
                                           <input type="checkbox" class="custom-control-input" id="Check3">
                                           <label class="custom-control-label" for="Check3">Dog Toys</label>
                                     </div> <!-- form-check.// -->
-                    
+
                                     <div class="custom-control custom-checkbox">
                                         <span class="float-right badge badge-light round">7</span>
                                           <input type="checkbox" class="custom-control-input" id="Check4">
@@ -77,7 +76,7 @@
                                             <div class="product-img-3">
                                                 <a href="{{route('home.show', $product)}}">
                                                     @if(!empty($product->img))
-                                    
+
                                                     <img src="/storage/Image/product/{{ $product->img }}" alt="">
                                                     @else
                                                         <img src="/storage/Image/product/noimage.jpg" alt="">
@@ -112,11 +111,18 @@
                                             </div>
                                             <div class="product-content-4 text-center">
                                                 <div class="product-rating-4">
-                                                    <i class="icofont icofont-star yellow"></i>
-                                                    <i class="icofont icofont-star yellow"></i>
-                                                    <i class="icofont icofont-star yellow"></i>
-                                                    <i class="icofont icofont-star yellow"></i>
-                                                    <i class="icofont icofont-star"></i>
+                                                    @php
+                                                        $rating = \App\ProductReview::where('product_id', $product->id)->avg('rating');
+                                                    @endphp
+                                                    @for($i = 0; $i < 5; $i++)
+                                                        @if(floor($rating) - $i >= 1)
+                                                            <i class="fas fa-star fa-2x" style="color: #facf2c"></i>
+                                                        @elseif($rating -$i > 0)
+                                                            <i class="fas fa-star-half fa-2x" style="color: #facf2c"></i>
+                                                        @else
+                                                            <i class="far fa-star fa-2x"></i>
+                                                        @endif
+                                                    @endfor
                                                 </div>
                                                 <h4>
                                                     <a href="{{route('home.show', $product)}}">{{$product->name}}</a>
@@ -124,6 +130,17 @@
                                                     {{--<span>{{ $product->description }}</span>--}}
                                                 <h5> @currency( $product->price ) VNĐ </h5>
                                                 <p>{{$product->supplier->name ?? 'N/A'}}</p>
+                                                <div class="mt-2 mb-2">
+                                                    @if($product->stock > 10)
+                                                        <p class="text-success">Available</p>
+                                                    @elseif($product->stock <= 10 && $product->stock > 1)
+                                                        <p class="text-danger">Only {{ $product->stock }} lefts</p>
+                                                    @elseif($product->stock == 1)
+                                                        <p class="text-danger">Only 1 left</p>
+                                                    @else
+                                                        <p class="text-danger">Out of stock. Please come back later.</p>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

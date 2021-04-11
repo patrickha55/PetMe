@@ -16,7 +16,7 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('order_id');
-            $table->string('payment_method');
+            $table->enum('payment_method', ['cash', 'bank transfers']);
             $table->string('status');
             $table->string('content');
             $table->timestamps();

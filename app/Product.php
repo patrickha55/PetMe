@@ -72,6 +72,13 @@ class Product extends Model
             ->withTimestamps();
     }
 
+    public function usersDetail(): BelongsToMany
+    {
+        return $this->belongsToMany('App\User', 'order_details')
+        ->withTimestamps()
+        ->withPivot(['price', 'quantity']);
+    }
+
     public function isProductInUserWishlist(){
         return $this->userFavorites()->where('user_id', auth()->id())->exists();
     }

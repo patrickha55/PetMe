@@ -18,7 +18,7 @@
                         @enderror
                     </div>
                     <div class="col-4 mx-auto text-center">
-                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                        <button type="submit" class="btn btn-primary">Create</button>
                     </div>
                 </form>
             </div>

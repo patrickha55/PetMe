@@ -42,7 +42,7 @@
                                    
                                     @endphp
                                     <td class="product-thumbnail">
-                                        <img src="/assets/img/product/{{ $product->img }}" alt="">
+                                     <img height="100px"  src="/assets/img/product/{{ $product->img }}" alt="">
                                     </td>
                                     <td class="product-name"><a href="#">{{ $item['name'] }} </a></td>
                                     <td class="product-price-cart"><span

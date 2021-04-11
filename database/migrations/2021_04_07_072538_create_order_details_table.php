@@ -13,17 +13,15 @@ class CreateOrderDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('order__details', function (Blueprint $table) {
+        Schema::create('order_details', function (Blueprint $table) {
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
+            $table->double('price');
+            $table->integer('quantity');
+            $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-
-            $table->double('price');
-            $table->integer('quantity');
-
-            $table->timestamps();
 
             $table->primary([
                 'order_id',
@@ -39,6 +37,6 @@ class CreateOrderDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order__details');
+        Schema::dropIfExists('order_details');
     }
 }
