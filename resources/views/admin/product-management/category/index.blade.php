@@ -34,7 +34,7 @@
                                     <th>
                                         Status
                                     </th>
-                                    <th>
+                                    <th colspan="2">
                                         Function
                                     </th>
                                 </tr>
@@ -53,9 +53,12 @@
                                         </th>
                                         <th>{{ $category->status }}</th>
                                         <th>
-                                            <a class="btn-sm btn-warning "
-                                                href="{{ url('/admins/product-management/product/{$Category}/edit') }}">Edit</a>
-
+                                            <a class=""
+                                                href="{{ url('/admins/product-management/product/{$Category}/edit') }}"><i class="fas fa-edit"></i></a>
+                                        </th>
+                                        <th>
+                                            <a class=""
+                                                href=""><i class="fas fa-eye-slash"></i></a>
                                         </th>
                                     </tr>
                                 @endforeach
@@ -87,7 +90,7 @@
                                     <th>
                                         Status
                                     </th>
-                                    <th>
+                                    <th colspan="2">
                                         Function
                                     </th>
                                 </tr>
@@ -106,9 +109,10 @@
                                         </th>
                                         <th>{{ $subCategory->status }}</th>
                                         <th>
-                                            <a class="btn-sm btn-warning "
-                                               href="{{ url('/admins/product-management/product/{$Category}/edit') }}">Edit</a>
-
+                                            <a class="" href="{{ url('/admins/product-management/product/{$Category}/edit') }}"><i class="fas fa-edit"></i></a>
+                                        </th>
+                                        <th>
+                                            <a class="" href=""><i class="fas fa-eye-slash"></i></a>
                                         </th>
                                     </tr>
                                 @endforeach

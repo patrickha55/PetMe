@@ -1,11 +1,11 @@
-@extends('layouts.admin.admin')
+    @extends('layouts.admin.admin')
 
 @section('content')
     <div class="content">
         <div class="container-fluid">
             <div class="col-md-12">
                 <div class="card card-plain">
-                    <div class="shadow-lg p-3  bg-white rounded">
+                   <div class="shadow-lg p-3  bg-white rounded">
 
                         <div class="card-header card-header-dark d-flex justify-content-between">
                             <div>
@@ -23,7 +23,7 @@
                                 <table class="table table-hover text-center">
                                     <thead class="">
                                     <tr>
-                                        <th>ID</th><th>Username</th><th>Product</th><th>Stock</th><th>Price</th><th>Date Added</th><th>Days in Wishlist</th><th>Function</th>
+                                        <th>ID</th><th>Username</th><th>Product</th><th>Stock</th><th>Price</th><th>Date Added</th><th>Days in Wishlist</th><th colspan="2">Function</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -42,19 +42,16 @@
                                                 <th>
                                                     {{ $favorite->pivot->created_at->diffInDays() }}
                                                 </th>
-                                                <th class="mx-auto w-7" >
-                                                    <div class="row">
-                                                        <div class="">
-                                                            <a class="btn-sm btn-warning " href="{{ route('wishlists.edit', $favorite) }}" style="font-size: 10px;">Edit</a>
-                                                        </div>
-                                                        <div class="">
+                                                <th>
+                                                            <a class="" href="{{ route('wishlists.edit', $favorite) }}" style="font-size: 10px;"><i class="fas fa-edit"></i></a>
+                                                </th>
+                                                <th>
                                                             <form action="{{ route('wishlists.destroy', $favorite) }}" method="post">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn-sm btn-danger" style=" font-size: 10px;">Delete</button>
+                                                                <button type="submit" class="" style=" font-size: 10px;"><i class="fas fa-trash"></i></button>
                                                             </form>
-                                                        </div>
-                                                    </div>
+                                                      
                                                 </th>
                                             </tr>
                                         @endforeach

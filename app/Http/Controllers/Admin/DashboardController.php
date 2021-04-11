@@ -32,4 +32,8 @@ class DashboardController extends Controller
 
         return view('admin.index')->with(['products' => $products, 'users' => $users, 'suppliers' => $suppliers, 'animals' => $animal_cats, 'orders' => $orders]);
     }
+
+    public function statistic(){
+        return view('admin.statistic.index');
+    }
 }
