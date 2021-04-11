@@ -25,22 +25,35 @@
                     <div class="product-details-content">
                         <h3>{{$product->name}}</h3>
                         <h2>Brand: {{ $product->supplier->name }}</h2>
-                        <div class="rating-number b4-">
-                            <div class="quick-view-rating">
-                                <i class="pe-7s-star red-star"></i>
-                                <i class="pe-7s-star red-star"></i>
-                                <i class="pe-7s-star"></i>
-                                <i class="pe-7s-star"></i>
-                                <i class="pe-7s-star"></i>
-                            </div>
-                            <div class="quick-view-number">
-                                <span>{{ $product->userReviews->count() }} Rating (S)</span>
-                            </div>
+                        <div class="rating-number pt-4 pb-4">
+                            @php
+                                $rating = \App\ProductReview::where('product_id', $product->id)->avg('rating');
+                            @endphp
+                            @for($i = 0; $i < 5; $i++)
+                                @if(floor($rating) - $i >= 1)
+                                    <i class="fas fa-star fa-2x" style="color: #facf2c"></i>
+                                @elseif($rating -$i > 0)
+                                    <i class="fas fa-star-half fa-2x" style="color: #facf2c"></i>
+                                @else
+                                    <i class="far fa-star fa-2x"></i>
+                                @endif
+                            @endfor
                         </div>
                         <div class="details-price">
                             <span>@currency($product->price) VNĐ</span>
                         </div>
-                        <p>{!! $product->description !!}</p>
+                        <div class="mt-2 mb-2">
+                            @if($product->stock > 10)
+                                <p class="text-success">Available</p>
+                            @elseif($product->stock <= 10 && $product->stock > 1)
+                                <p class="text-danger">Only {{ $product->stock }} lefts</p>
+                            @elseif($product->stock == 1)
+                                <p class="text-danger">Only 1 left</p>
+                            @else
+                                <p class="text-danger">Out of stock. Please come back later.</p>
+                            @endif
+                        </div>
+                        <p>{{ $product->description }}</p>
 
                         <div class="quickview-plus-minus">
 
@@ -82,8 +95,8 @@
                     </div>
                 </div>
             </div>
-        
-    
+
+
 
     {{-- reviews section --}}
 

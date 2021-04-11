@@ -18,7 +18,7 @@ class CreateProductReviewsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->integer('rating');
-            $table->integer('published')->default(0);
+            $table->enum('status', ['pending', 'approved'])->default('pending');
             $table->longText('content');
             $table->timestamps();
 

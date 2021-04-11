@@ -101,7 +101,8 @@ Route::group(['namespace' => 'Auth'], function(){
 });
 
 // Review
-Route::resource('/product/{product}/review', 'ProductReviewController');
+Route::get('/my-reviews', 'ProductReviewController@index')->name('review.index');
+Route::resource('/product/{product}/review', 'ProductReviewController')->except('index');
 
 //Cart and Order
 Route::middleware(['auth'])->group(function () {

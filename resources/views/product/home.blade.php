@@ -14,7 +14,17 @@
                         <div class="electro-banner-style electro-banner-position bg-light " style="opacity:0.7; padding-left: 200px;">
                             <h4 class=" text-info opacity-5">{{ $product->name }}</h4>
                             <h5>@currency($product->price) VNĐ</h5>
-                            <p style="color: green;">Available</p>
+                            <div class="mt-2 mb-2">
+                                @if($product->stock > 10)
+                                    <p class="text-success">Available</p>
+                                @elseif($product->stock <= 10 && $product->stock > 1)
+                                    <p class="text-danger">Only {{ $product->stock }} lefts</p>
+                                @elseif($product->stock == 1)
+                                    <p class="text-danger">Only 1 left</p>
+                                @else
+                                    <p class="text-danger">Out of stock. Please come back later.</p>
+                                @endif
+                            </div>
                             <a style="margin-bottom: 50px;" href="{{ route('home.show',$product) }}">Buy Now→</a>
                         </div>
                     </div>

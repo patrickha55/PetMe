@@ -98,9 +98,7 @@
                 <div class="tab-pane fade" id="pro-review" role="tabpanel">
                     <link rel="stylesheet" href="/css/app.css">
                     @if ($product->userReviews->count() == 0)
-                        <a href="#" title="Write Review" data-toggle="modal" data-target="#reviewModal"> 
-                            Be the first to write your review!
-                        </a>
+                        <h4 class="text-center p-3">There is no review for this product.</h4>
                     @else
                         <div class="row">
                             <div class="col-4">
@@ -132,7 +130,7 @@
                         </div>
                     @endif
                 </div>
-                
+
                 {{-- Review --}}
                 <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-hidden="true" >
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -156,12 +154,12 @@
                                         </div>
                                         <div class="form-group col-12">
                                             <h3 class="h3">Rate this product</h3>
-                                            <div class="ratings pt-2 pb-2" id="ratings"> 
-                                                <i class="far fa-star fa-2x"></i> 
-                                                <i class="far fa-star fa-2x"></i> 
+                                            <div class="ratings pt-2 pb-2" id="ratings">
                                                 <i class="far fa-star fa-2x"></i>
-                                                <i class="far fa-star fa-2x"></i> 
-                                                <i class="far fa-star fa-2x"></i> 
+                                                <i class="far fa-star fa-2x"></i>
+                                                <i class="far fa-star fa-2x"></i>
+                                                <i class="far fa-star fa-2x"></i>
+                                                <i class="far fa-star fa-2x"></i>
                                             </div>
                                         </div>
                                         <div class="form-group col-12">

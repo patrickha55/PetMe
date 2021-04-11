@@ -6,6 +6,7 @@ use App\Product;
 use App\Category;
 use App\AnimalCategory;
 use App\ProductCategory;
+use App\ProductReview;
 use \Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
@@ -14,19 +15,19 @@ class HomeController extends Controller
 {
     public function index(): Renderable
     {
-        $totalRate = $productWithHighRating = collect([
-            ['id' => '', 'avg' => '']
-        ]);
+        $totalRate = $productWithHighRating = collect([]);
 
         $products = Product::paginate(20);
+
         $productsForRating = Product::has('userReviews')->get();
+
         foreach ($productsForRating as $product){
             $rating = $count = 0;
             foreach ($product->userReviews as $review ){
                 $rating += ($review->pivot->rating);
                 $count++;
             }
-            $totalRate->put($product->id, $rating/$count);
+            $totalRate->put('product' ,[$product->id, $rating/$count]);
             if ($rating/$count > 4){
                 $productWithHighRating->put($product->id, $rating/$count);
             }
@@ -36,9 +37,10 @@ class HomeController extends Controller
         $subCat = ProductCategory::all();
 
         return view('product.index')->with([
-            'products'=>$products,
-            'categories'=>$categories,
-            'subCat'=>$subCat,
+            'products' => $products,
+            'categories' => $categories,
+            'subCat' => $subCat,
+            'totalRate' => $totalRate
         ]);
     }
 

@@ -3,46 +3,48 @@
 namespace App\Http\Controllers;
 
 use App\ProductReview;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Product;
 
 class ProductReviewController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Display a listing of the resources
      */
     public function index()
     {
-        //
+        $reviews = ProductReview::where('user_id', auth()->id())->get();
+        return view('user.review.index')->with('reviews', $reviews);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     *
+     * Show the form for creating a new resources
      */
     public function create()
     {
-        //
+
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     *
+     * Store a newly created resource in storages
      */
-    public function store(Request $request, Product $product)
+    public function store(Request $request, Product $product): RedirectResponse
     {
-        // auth()->user()->reviews->create([
-        //    'title' => $request->title,
-        //    'rating' => $request->rating,
-        //    'content' => $request->content,
-        // ]);
+        $this->validate($request,[
+            'title' => 'required',
+            'body' => 'required|min:10'
+        ]);
 
-        return back();
+        ProductReview::create([
+            'product_id' => $product->id,
+            'user_id' => auth()->id(),
+            'title' => $request->title,
+            'rating' => $request->rating,
+            'content' => $request->body
+        ]);
+
+        return back()->with('status', 'Thank you for your review, we will evaluate it and publish it as soon as possible!');
     }
 
     /**

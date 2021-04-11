@@ -22,15 +22,12 @@
                         #<a href="{{ route('order.show', $order) }}">{{ $order->id }}</a>
                     </th>
                     <td>{{ $order->created_at->toDayDateTimeString() }}</td>
-                    <td>{{ $order->total_price }}</td>
+                    <td>@currency($order->total_price) VNĐ</td>
                     <td>{{ $order->status }}</td>
                 </tr>
             @endforeach
             </tbody>
-          </table>
-        <div class="col-12">
-
-        </div>
+        </table>
         @else
         <div class="col-12">
             <div class="card mb-3 shadow-lg p-3 mb-5 bg-white rounded">
