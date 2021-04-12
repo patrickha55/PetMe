@@ -30,7 +30,8 @@
                     </a>
                 @endif
                 <a href="#pro-review" data-toggle="tab" role="tab" aria-selected="false">
-                    Reviews ({{ $product->userReviews->count() }})
+                    {{-- Dem so luong review --}}
+                    Reviews ({{ $product->userReviews()->where('status', 'approved')->count() }})
                 </a>
             </div>
             <div class="description-review-text tab-content">
@@ -97,7 +98,7 @@
                 </div>
                 <div class="tab-pane fade" id="pro-review" role="tabpanel">
                     <link rel="stylesheet" href="/css/app.css">
-                    @if ($product->userReviews->count() == 0)
+                    @if ($product->userReviews()->where('status', 'approved')->count() == 0)
                         <h4 class="text-center p-3">There is no review for this product.</h4>
                     @else
                         <div class="row">
@@ -109,11 +110,11 @@
                                     <div class="border-b">
                                         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt class="text-sm">
-                                                <p class="text-sm font-black">{{ $review->userName }} - {{ $review->pivot->created_at->toDayDateTimeString() }}</p>
-                                                <p>Reviews wrote: {{ \App\User::find( $review->id)->reviews->count() }}</p>
+                                                <p class="text-sm font-medium">{{ $review->userName }} - {{ $review->pivot->created_at->toDayDateTimeString() }}</p>
+                                                <p>Reviews wrote: {{ \App\User::find($review->id)->reviews->count() }}</p>
                                             </dt>
                                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                <p class="text-lg font-black">{{ $review->pivot->title }}</p>
+                                                <p class="text-lg font-semibold">{{ $review->pivot->title }}</p>
                                                 <p>{{ $review->pivot->rating }}</p>
                                                 <p>{{ $review->pivot->content }}</p>
                                             </dd>

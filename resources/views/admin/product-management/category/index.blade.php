@@ -109,16 +109,12 @@
                                         </th>
                                         <th>{{ $subCategory->status }}</th>
                                         <th>
-<<<<<<< HEAD
                                             <a class="" href="{{ url('/admins/product-management/product/{$Category}/edit') }}"><i class="fas fa-edit"></i></a>
                                         </th>
                                         <th>
                                             <a class="" href=""><i class="fas fa-eye-slash"></i></a>
-=======
                                             <a class="btn-sm btn-warning "
                                                href="{{ route('productCategory.edit', $subCategory) }}">Edit</a>
-
->>>>>>> main
                                         </th>
                                     </tr>
                                 @endforeach

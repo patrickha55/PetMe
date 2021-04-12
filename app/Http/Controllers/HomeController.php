@@ -81,17 +81,22 @@ class HomeController extends Controller
         ]);
     }
 
+    // Hien trang product detail
+
     public function show(Product $product){
         $products = Product::all();
         $trend = $products->shuffle()->take(3);
         $categories = AnimalCategory::all();
         $subCats = ProductCategory::all();
 
-        $userReviews = $product->userReviews()->paginate(3);
+        //Lay thong tin user da review san pham o parameter phia tren
+
+        $userReviews = $product->userReviews()->where('status', 'approved')->paginate(3);
+        // dd($userReviews);
 
         $countFive = $countFour = $countThree = $countTwo = $count= 0;
         $one = $two = $three = $four = $five = 0;
-        foreach ($product->userReviews as $review){
+        foreach ($userReviews as $review){
             switch($review->pivot->rating){
                 case 5:
                     $countFive++;
@@ -130,7 +135,7 @@ class HomeController extends Controller
         if ($count != 0){
             $one = 100 / $count;
         }
-
+        
         return view('product.show',compact('product',$product))->with([
             'products'=>$products,
             'categories'=>$categories,

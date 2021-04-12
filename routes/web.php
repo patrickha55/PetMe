@@ -45,6 +45,10 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
     Route::resource('/wishlists', 'AdminFavoriteController');
 
     Route::resource('/orders', 'AdminOrderController');
+
+    Route::patch('/reviews/{user_id}/product/{product_id}', 'ProductReviewController@update')->name('reviews.update');
+    Route::delete('/reviews/{user_id}/product/{product_id}', 'ProductReviewController@destroy')->name('reviews.destroy');
+    Route::resource('/reviews', 'ProductReviewController')->except(['update', 'destroy']);
 });
 
 Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function () {

@@ -31,7 +31,15 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('admin.product-management.product.create');
+        $suppliers = Supplier::all();
+        $animalCategories = AnimalCategory::all();
+        $productCategories = ProductCategory::all();
+
+        return view('admin.product-management.product.create')->with([
+            'suppliers' => $suppliers,
+            'animalCategories' => $animalCategories,
+            'productCategories' => $productCategories
+        ]);
     }
 
     /**
