@@ -70,6 +70,7 @@ class UserController extends Controller
                 'userName' => ['required', 'max:255'],
                 'gender' => ['required'],
                 'phoneNumber' => ['required','regex:/^[0-9]{10,11}$/i'],
+                'img' => 'image|nullable|max:1999',
                 'address' => 'string|nullable|max:255',
                 'ward' => 'string|nullable|max:255',
                 'district' => 'string|nullable|max:255',
@@ -83,11 +84,21 @@ class UserController extends Controller
                 'userName' => ['required', 'max:255'],
                 'gender' => ['required'],
                 'phoneNumber' => ['required','regex:/^[0-9]{10,11}$/i'],
+                'img' => 'image|nullable|max:1999',
                 'address' => 'string|nullable|max:255',
                 'ward' => 'numeric|min:1|nullable|max:30',
                 'district' => 'string|nullable|max:255',
                 'city' => 'string|nullable|max:255'
             ]);
+        }
+
+        /* Xu ly up anh */
+
+        if ($request->hasFile('img')) {
+            $fileNameToStore = User::uploadImg($request);
+            $path = $request->file('img')->storeAs('public/Image/user/', $fileNameToStore);
+        } else {
+            $fileNameToStore = '/storage/Image/user/user_default.png';
         }
 
         User::find($user->id)->update([
@@ -98,6 +109,7 @@ class UserController extends Controller
             'dob' => $request->dob,
             'email' => $request->email,
             'phoneNumber' => $request->phoneNumber,
+            'img' => $fileNameToStore
         ]);
 
         if ($request->address = $request->ward = $request->district = $request->city != null){
@@ -107,14 +119,4 @@ class UserController extends Controller
 
         return redirect()->route('user.show', $user)->with('status', 'Profile updated successfully!');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     *
-
-    public function destroy($id)
-    {
-        //
-    }*/
 }

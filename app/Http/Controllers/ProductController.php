@@ -272,19 +272,26 @@ class ProductController extends Controller
             'img' => 'image|nullable|max:1999',
         ]);
 
-        $categoryID = ProductCategory::getProductCategoryID($request->category);
-        $supplierID = Supplier::getSupplierID($request->supplier);
-
         if ($request->hasFile('img')) {
             $fileNameToStore = Product::uploadImg($request);
             $path = $request->file('img')->storeAs('public/Image/product/', $fileNameToStore);
         } else {
-            $fileNameToStore = 'noimage.jpg';
+            $fileNameToStore = 'storage/Image/product/noimage.jpg';
         }
 
-        Product::updateOrCreate(['id' => $product->id],[
-            'product_category_id' => $categoryID,
-            'supplier_id' => $supplierID,
+        /*         
+        *   Kiem tra supplier co chua, neu chua co thi tao supplier moi
+        */
+
+        if(!Supplier::where('name', $request->supplier)->count()){
+            Supplier::create([
+                'name' => $request->supplier
+            ]);
+        };
+
+        Product::where('id', $product->id)->update([
+            'product_category_id' => $request->category_id,
+            'supplier_id' => Supplier::firstWhere('name', $request->supplier)->id,
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,

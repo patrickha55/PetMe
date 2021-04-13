@@ -9,7 +9,7 @@
             </div>
         </div> --}}
         <div class="py-2">
-            <form action="{{ route('user.update', $user) }}" method="POST">
+            <form action="{{ route('user.update', $user) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class="row py-2">
@@ -92,6 +92,22 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                <label for="img">Upload Avatar</label>
+                                <input type="file" class="form-control-file" name="img" id="img" placeholder="img">
+                                @error('img')
+                                    <div class="text-sm text-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="col-12">
+                                <img src="#" id="avatar-img-tag" class="rounded hidden" width="200px"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 @if($user->address != null)
@@ -194,4 +210,24 @@
             </form>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+        function readUrl(input){
+            if (input.files && input.files[0]){
+                let reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#avatar-img-tag').attr('src', e.target.result).removeClass('hidden');
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+
+        $('#img').change(function(){
+            readUrl(this);
+        });
+    </script>
 @endsection

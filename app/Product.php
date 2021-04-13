@@ -39,26 +39,6 @@ class Product extends Model
             ->withPivot('quantity');
     }
 
-    /*
-     * Upload img cho form tao product
-    */
-
-    public static function uploadImg(Request $request){
-        //Lay ten file voi kieu du lieu
-        $fileNameWithExt = $request->file('img')->getClientOriginalName();
-        // Lay ten file
-        $fileName = pathInfo($fileNameWithExt, PATHINFO_FILENAME);
-        // Lay kieu du lieu
-        $extension = $request->file('img')->getClientOriginalExtension();
-        // File de luu
-        // Lay chu dau tien trong cau
-        $category = explode(' ', trim(strtolower($request->category)));
-
-        $fileNameToStore = strtolower($request->animal) . '/' . $category[0] . '/' . $fileName . '_' . time() . '.' . $extension;
-        // Upload image
-        return $fileNameToStore;
-    }
-
     public function userReviews(): BelongsToMany
     {
         return $this->belongsToMany('App\User',
@@ -81,5 +61,25 @@ class Product extends Model
 
     public function isProductInUserWishlist(){
         return $this->userFavorites()->where('user_id', auth()->id())->exists();
+    }
+
+    /*
+     * Upload img cho form tao product
+    */
+
+    public static function uploadImg(Request $request){
+        //Lay ten file voi kieu du lieu
+        $fileNameWithExt = $request->file('img')->getClientOriginalName();
+        // Lay ten file
+        $fileName = pathInfo($fileNameWithExt, PATHINFO_FILENAME);
+        // Lay kieu du lieu
+        $extension = $request->file('img')->getClientOriginalExtension();
+        // File de luu
+        // Lay chu dau tien trong cau
+        $category = explode(' ', trim(strtolower(\App\ProductCategory::find($request->category_id)->name)));
+
+        $fileNameToStore = strtolower(\App\Product::find($request->animal_id)->name) . '/' . $category[0] . '/' . $fileName . '_' . time() . '.' . $extension;
+        // Upload image
+        return $fileNameToStore;
     }
 }
