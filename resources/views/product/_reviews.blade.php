@@ -182,6 +182,9 @@
 </div>
 
 @section('script')
+
+    {{-- Hien thong so luong rating ra ngoi sao --}}
+
     <script src="https://kit.fontawesome.com/c4201aab66.js" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function(){

@@ -63,6 +63,7 @@
     </div>
     <!--   Core JS Files   -->
     <script src="{{ asset('/js/core/jquery.min.js') }}"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script> --}}
     <script src="{{ asset('/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('/js/core/bootstrap-material-design.min.js') }}"></script>
     <script src="{{ asset('/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>

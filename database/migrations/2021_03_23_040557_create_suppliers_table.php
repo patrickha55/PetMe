@@ -16,14 +16,14 @@ class CreateSuppliersTable extends Migration
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('email')->unique();
-            $table->string('phone_1');
-            $table->string('phone_2');
-            $table->string('website');
-            $table->string('address');
-            $table->string('ward');
-            $table->string('district');
-            $table->string('city');
+            $table->string('email')->unique()->nullable();
+            $table->string('phone_1')->nullable();
+            $table->string('phone_2')->nullable();
+            $table->string('website')->nullable();
+            $table->string('address')->nullable();
+            $table->string('ward')->nullable();
+            $table->string('district')->nullable();
+            $table->string('city')->nullable();
             $table->timestamps();
         });
     }
