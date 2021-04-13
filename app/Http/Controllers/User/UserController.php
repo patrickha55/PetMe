@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Address;
 use Illuminate\Http\Request;
-use \Illuminate\Http\RedirectResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
@@ -37,12 +37,12 @@ class UserController extends Controller
         //
     }
 
-    public function show(\App\User $user)
+    public function show(User $user)
     {
         return view('user.show')->with('user', $user);
     }
 
-    public function edit(\App\User $user)
+    public function edit(User $user)
     {
         return view('user.edit')->with('user', $user);
     }
@@ -56,7 +56,7 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param \App\User $user
+     * @param User $user
      * @return RedirectResponse
      * @throws ValidationException
      */
@@ -100,6 +100,7 @@ class UserController extends Controller
         } else {
             $fileNameToStore = '/storage/Image/user/user_default.png';
         }
+
 
         User::find($user->id)->update([
             'firstName' => $request->firstName,

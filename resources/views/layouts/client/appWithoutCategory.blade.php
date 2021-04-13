@@ -176,15 +176,15 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (auth()->user()->img != null)
-                                        <img src="{{ auth()->user()->img }}" alt="{{ auth()->user()->name }} image" class="rounded-circle" height="30px">
+                                        <img src="/storage/Image/user/{{ auth()->user()->img }}" alt="{{ auth()->user()->userName }} image" class="rounded-circle" height="30px">
                                     @else
-                                        <img src="/storage/Image/product/noimage.jpg" alt="" class="rounded-circle" height="30px">
+                                        <img src="/storage/Image/user/user_default.png" alt="" class="rounded-circle" height="30px">
                                     @endif
                                     {{ auth()->user()->userName }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu">
                                     <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('user.show', auth()->user()) }}">
+                                        <a class="dropdown-item" href="{{ route('user.show', auth()->user() }}">
                                             Profile
                                         </a>
                                     </div>
@@ -290,7 +290,6 @@
     <script src="/assets/js/owl.carousel.min.js"></script>
     <script src="/assets/js/plugins.js"></script>
     <script src="/assets/js/main.js"></script>
-    <script src="https://kit.fontawesome.com/c4201aab66.js" crossorigin="anonymous"></script>
 
     @livewireScripts
     @yield('script')

@@ -6,11 +6,11 @@
         <div class="row">
             <div class="col-4 p-2 m-auto">
                 <div class="row">
-                    <div class="col-12 text-center">
-                        @if ($user->img != null)
-                            <img src="{{ $user->img }}" alt="{{ $user->name }} image" id="avatar-img-tag" class="rounded-circle" height="200px">
+                    <div class="col-12 text-center">      
+                        @if($user->img != null)
+                            <img src="/storage/Image/user/{{ $user->img }}" alt="{{ $user->userName }}" class="rounded-circle" height="200px">
                         @else
-                            <img src="/storage/Image/user/user_default.png" alt="" class="rounded-circle" height="200px">
+                            <img src="/storage/Image/user/user_default.png" alt="{{ $user->userName }}" class="rounded-circle" height="200px">
                         @endif
                     </div>
                     <div class="col-12 text-center">

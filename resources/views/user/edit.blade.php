@@ -97,7 +97,7 @@
                         <div class="row">
                             <div class="col-12 form-group">
                                 <label for="img">Upload Avatar</label>
-                                <input type="file" class="form-control-file" name="img" id="img" placeholder="img">
+                                <input type="file" class="form-control-file @error('img') border-red-500 @enderror"" name="img" id="img" placeholder="img">
                                 @error('img')
                                     <div class="text-sm text-danger mt-2">
                                         {{ $message }}
