@@ -15,12 +15,10 @@
                             <h4 class=" text-info opacity-5">{{ $product->name }}</h4>
                             <h5>@currency($product->price) VNĐ</h5>
                             <div class="mt-2 mb-2">
-                                @if($product->stock > 10)
+                                @if($product->stock > 5)
                                     <p class="text-success">Available</p>
-                                @elseif($product->stock <= 10 && $product->stock > 1)
+                                @elseif($product->stock <= 5 && $product->stock > 0)
                                     <p class="text-danger">Only {{ $product->stock }} lefts</p>
-                                @elseif($product->stock == 1)
-                                    <p class="text-danger">Only 1 left</p>
                                 @else
                                     <p class="text-danger">Out of stock. Please come back later.</p>
                                 @endif

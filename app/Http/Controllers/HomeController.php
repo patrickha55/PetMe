@@ -91,7 +91,16 @@ class HomeController extends Controller
 
         //Lay thong tin user da review san pham o parameter phia tren
 
-        $userReviews = $product->userReviews()->where('status', 'approved')->paginate(3);
+        $userReviews = $product->userReviews()->where('status', 'approved')->orderByDesc('created_at')->paginate(3);
+        
+        /* foreach($userReviews as $review){
+            $comments = \App\Comment::where('product_review_id', 4)->get();
+        dd($comments); 
+        } */
+               
+
+
+
         // dd($userReviews);
 
         $countFive = $countFour = $countThree = $countTwo = $count= 0;

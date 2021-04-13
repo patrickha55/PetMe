@@ -21,4 +21,16 @@ class ProductReview extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    /**
+     * The user comment that belong to the ProductReview
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function userComments(): BelongsToMany
+    {
+        return $this->belongsToMany(App\User, 'comments')
+        ->withTimeStamps()
+        ->withPivot('body');
+    }
 }

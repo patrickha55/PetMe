@@ -110,7 +110,7 @@
                                     <div class="border-b">
                                         <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt class="text-sm">
-                                                <p class="text-sm font-medium">{{ $review->userName }} - {{ $review->pivot->created_at->toDayDateTimeString() }}</p>
+                                                <div class="h4">{{ $review->userName }} <span class="text-sm text-gray-500"> - {{ $review->pivot->created_at->toDayDateTimeString() }}</span></div>
                                                 <p>Reviews wrote: {{ \App\User::find($review->id)->reviews->count() }}</p>
                                             </dt>
                                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
@@ -119,10 +119,45 @@
                                                 <p>{{ $review->pivot->content }}</p>
                                             </dd>
                                         </div>
-                                        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <form action="" method="post">
-                                                <button type="submit">Reply</button>
-                                            </form>
+                                        <div class="px-4 py-2 row">
+                                            <div class="col-2 text-right">
+                                                <button id="displayReply" class="">Reply</button>
+                                            </div>
+                                            <div class="col-10 hidden" id="reply">
+                                                <div class='block'>
+                                                    <form action="{{ route('comment.store', $review->pivot->id) }}"  method="post" class="form-inline w-100">
+                                                        @csrf
+                                                        <div class="form-group w-100 mb-2" >
+                                                          <textarea class="form-control rounded" style="width: 100%;" name="body" id="body" rows="1"></textarea>
+                                                        </div>
+                                                        <div class="mb-2 flex">
+                                                            <div id="cancelReply" class="btn-sm btn-dark cursor-pointer mr-2">Cancel</div>
+                                                            <button type="submit" class="btn-sm btn-dark">Reply</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pl-2 py-2 row">
+                                            <div class="col-4">
+                                                <button id="displayComments">Show Replies</button>
+                                            </div>
+                                            <div class="col-8 hidden" id="comments">
+                                                <div class='row'>
+                                                    @php
+                                                        $comments = \App\Comment::where('product_review_id', $review->pivot->id)->get();
+                                                    @endphp
+                                                    @foreach($comments as $comment)
+                                                        <div class="col-2 mb-2">
+                                                            <img src="/storage/Image/noimage.jpg" alt="" width="70%">
+                                                        </div>
+                                                        <div class="col-10 mb-2 text-left block">
+                                                            <div class="h5">{{ \App\User::find($comment->user_id)->userName }} <span class="text-sm text-gray-500">{{ $comment->created_at->diffForHumans() }}</span></div>
+                                                            <div class="text-left">&#64;{{ $review->userName }} &nbsp; {{ $comment->body }}</div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach
@@ -183,16 +218,41 @@
 
 @section('script')
 
-    {{-- Hien thong so luong rating ra ngoi sao --}}
+    
 
     <script src="https://kit.fontawesome.com/c4201aab66.js" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function(){
+            {{-- Hien thong so luong rating ra ngoi sao --}}
+
             $('.ratings i').click(function() {
-            $('.ratings > i').removeClass('far');
-            $(this).addClass('fas');
-            $('.form').css('display', 'block');
-            })
+                $('.ratings > i').removeClass('far');
+                $(this).addClass('fas');
+                $('.form').css('display', 'block');
+            });
+
+            {{-- Hien tat hoac an commet form va comment --}}
+
+            $('#displayReply').click(function(){
+                $('#reply').removeClass('hidden');
+            });
+
+            $('#cancelReply').click(function(){
+                $('#reply').addClass('hidden');
+            });
+
+            let click = 0;
+
+            $('#displayComments').click(function(){
+                if(click == 0){
+                    $('#comments').removeClass('hidden');
+                    click++;
+                } else {
+                    $('#comments').addClass('hidden');
+                    click = 0;
+                }
+                
+            });
         });
     </script>
 @endsection

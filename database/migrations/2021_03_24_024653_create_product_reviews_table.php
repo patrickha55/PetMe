@@ -16,6 +16,7 @@ class CreateProductReviewsTable extends Migration
         Schema::create('product_reviews', function (Blueprint $table) {
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('id')->unique()->auto_increment();
             $table->string('title');
             $table->integer('rating');
             $table->enum('status', ['pending', 'approved'])->default('pending');

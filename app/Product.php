@@ -63,7 +63,7 @@ class Product extends Model
     {
         return $this->belongsToMany('App\User',
             'product_reviews'
-        )->withTimestamps()->as('pivot')->withPivot('title', 'rating', 'content');
+        )->withTimestamps()->as('pivot')->withPivot('title', 'rating', 'content', 'id');
     }
 
     public function userFavorites(): BelongsToMany

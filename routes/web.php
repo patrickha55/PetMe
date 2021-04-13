@@ -109,12 +109,17 @@ Route::group(['namespace' => 'Auth'], function(){
     Route::post('/logout', 'LoginController@logout');
 });
 
-// Review
-Route::get('/my-reviews', 'ProductReviewController@index')->name('review.index');
-Route::resource('/product/{product}/review', 'ProductReviewController')->except('index');
-
-//Cart and Order
 Route::middleware(['auth'])->group(function () {
+    // Review
+    Route::get('/my-reviews', 'ProductReviewController@index')->name('review.index');
+    Route::resource('/product/{product}/review', 'ProductReviewController')->except('index');
+
+    //Comment
+    Route::prefix('comment')->group(function(){
+        Route::post('/{product_review_id}', 'CommentController@store')->name('comment.store');
+        Route::resource('/', 'CommentController')->only('index');
+    });
+
     /*
      * Cart
     */
