@@ -90,6 +90,11 @@ Route::get('/about', function(){
     return view('user.about');
 });
 
+//Compare product
+Route::get('/compare/{product}', 'User\CompareController@store')->name('compare.store');
+Route::get('/compare/{product}/delete', 'User\CompareController@destroy')->name('compare.destroy');
+Route::resource('/compare', 'User\CompareController')->only('index');
+
 //@endGuest ------
 
 //@User ------
@@ -143,12 +148,6 @@ Route::middleware(['auth'])->group(function () {
 
 
 //@endUser  ------
-
-
-//Ngan check route
-Route::get('/compare', function() {
-    return view('product.compare');
-});
 
 
 

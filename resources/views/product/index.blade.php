@@ -1,5 +1,16 @@
 @extends('layouts.client.app')
 
+@section('style')
+    <style>
+        #statusSession{
+            position:absolute;
+            bottom:20px;
+            right:20px;
+            z-index:10;
+        }
+    </style>
+@endsection
+
 @section('content')
 
     <div class="electro-product-wrapper wrapper-padding pt-95 pb-45">
@@ -7,6 +18,11 @@
             <div class="h4 section-title-4 border-bottom-1 pb-15 font-weight-light">
                 <a href="">Products</a>
             </div>
+            @if (session('status'))
+                <div class="alert alert-success" id="statusSession">
+                    {{ session('status') }}
+                </div>
+            @endif
             <div class="section-title-4 text-center mb-40">
                 <h2>Products</h2>
             </div>
@@ -85,6 +101,17 @@
                                                     <a class="animate-right" href="{{route('home.show', $product)}}" title="View">
                                                         <i class="pe-7s-look"></i>
                                                     </a>
+                                                    @if(session()->has('product'.$product->id))
+                                                        @if(session()->get('product'.$product->id) != null)
+                                                            <a class="animate-right" href="{{route('compare.destroy', $product)}}" title="Remove From Compare">
+                                                                <i class="fas fa-exchange-alt text-danger"></i>
+                                                            </a>
+                                                        @endif    
+                                                    @else
+                                                        <a class="animate-right" href="{{route('compare.store', $product)}}" title="Compare">
+                                                            <i class="fas fa-exchange-alt"></i>
+                                                        </a>
+                                                    @endif
                                                     <a class="animate-top" title="Add To Cart" href="{{route('cart.add', $product)}}">
                                                         <i class="pe-7s-cart"></i>
                                                     </a>
@@ -151,10 +178,10 @@
     </div>
 @endsection
 
-{{-- Test hidden form
+{{-- Test hidden form --}}
     
-    @section('script')
-    <script type='text/javascript'>
+@section('script')
+    {{-- <script type='text/javascript'>
         let products = {!! json_encode($products, JSON_HEX_TAG) !!};
 
         let a = 'ab';
@@ -166,5 +193,8 @@
                 });
             });
         }
+    </script> --}}
+    <script>
+          $( "#statusSession" ).fadeIn( 500 ).delay( 2000 ).fadeOut( 500 );
     </script>
-@endsection --}}
+@endsection

@@ -44,7 +44,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function logout(Request $request)
+    /* public function logout(Request $request)
     {
         $data = \Cart::session(auth()->id())->getContent();
 
@@ -59,5 +59,5 @@ class LoginController extends Controller
         session([$sessionName => $data]);
 
         return $this->loggedOut($request) ?: redirect('/');
-    }
+    } */
 }

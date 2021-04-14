@@ -14,6 +14,17 @@
                 <a class="animate-right" href="{{route('home.show', $product)}}" title="View">
                     <i class="pe-7s-look"></i>
                 </a>
+                @if(session()->has('product'.$product->id))
+                    @if(session()->get('product'.$product->id) != null)
+                        <a class="animate-right" href="{{route('compare.destroy', $product)}}" title="Remove From Compare">
+                            <i class="fas fa-exchange-alt text-danger"></i>
+                        </a>
+                    @endif    
+                @else
+                    <a class="animate-right" href="{{route('compare.store', $product)}}" title="Compare">
+                        <i class="fas fa-exchange-alt"></i>
+                    </a>
+                @endif
                 <a class="animate-top" title="Add To Cart" href="{{route('cart.add', $product)}}">
                     <i class="pe-7s-cart"></i>
                 </a>

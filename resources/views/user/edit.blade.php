@@ -3,9 +3,12 @@
 @section('content')
     <div class="wrapper shadow p-3 mb-5 bg-white mt-sm-5">
         <h4 class="pb-4 border-bottom-1 font-weight-bold">MY PROFILE</h4>
+        <form action="{{ route('user.update', $user) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
         <div class="d-flex align-items-start py-3 border-bottom">
             <img src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" id="avatar-img-tag" class="img" alt="Image">
-            <input type="file" class="form-control-file  @error('img') border-red-500 @enderror" name="img" id="img" placeholder="img">
+            <input type="file" class="form-control-file button border  @error('img') border-red-500 @enderror" name="img" id="img">
             @error('img')
                 <div class="text-sm text-danger mt-2">
                     {{ $message }}
@@ -13,14 +16,10 @@
             @enderror
             <div class="pl-sm-4 pl-2" id="img-section">
                 <b>Profile Photo</b>
-                <p>Accepted file type .png. Less than 1MB</p>
-                 <button class="btn button border"><b>Upload</b></button>
+                <p>Accepted file type .png. Less than 2MB</p>
             </div>
         </div>
         <div class="py-2">
-            <form action="{{ route('user.update', $user) }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PATCH')
                 <div class="row py-2">
                     <div class="col-md-6 pt-md-0 pt-3 form-group">
                         <label for="firstName">First Name</label>
@@ -147,7 +146,7 @@
                             @enderror
                         </div>
                     </div>
-                @else
+                {{-- @else
                     <div class="row py-2">
                         <div class="col-md-12">
                             <h4 class="pb-4 border-bottom-1 font-weight-bold">My Address</h4>
@@ -190,7 +189,7 @@
                                 </div>
                             @enderror
                         </div>
-                    </div>
+                    </div> --}}
                 @endif
                 <div class="py-3 pb-4 border-top-1 row">
                     <div class="col-5">

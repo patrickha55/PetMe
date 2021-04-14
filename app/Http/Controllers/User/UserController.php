@@ -86,7 +86,7 @@ class UserController extends Controller
                 'phoneNumber' => ['required','regex:/^[0-9]{10,11}$/i'],
                 'img' => 'image|nullable|max:1999',
                 'address' => 'string|nullable|max:255',
-                'ward' => 'numeric|min:1|nullable|max:30',
+                'ward' => 'string|nullable|max:255',
                 'district' => 'string|nullable|max:255',
                 'city' => 'string|nullable|max:255'
             ]);
@@ -98,7 +98,7 @@ class UserController extends Controller
             $fileNameToStore = User::uploadImg($request);
             $path = $request->file('img')->storeAs('public/Image/user/', $fileNameToStore);
         } else {
-            $fileNameToStore = '/storage/Image/user/user_default.png';
+            $fileNameToStore = 'user_default.png';
         }
 
 
@@ -113,8 +113,12 @@ class UserController extends Controller
             'img' => $fileNameToStore
         ]);
 
-        if ($request->address = $request->ward = $request->district = $request->city != null){
-            Address::updateOrCreate(['user_id' => $user->id], ['address' => $request->address, 'ward' => $request->ward, 'district' => $request->district, 'city' => $request->city]
+        if ($request->address && $request->ward && $request->district && $request->city != null){
+            Address::updateOrCreate(['user_id' => $user->id], [
+                'address' => $request->address, 
+                'ward' => $request->ward, 
+                'district' => $request->district, 
+                'city' => $request->city]
             );
         }
 

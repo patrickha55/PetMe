@@ -1,10 +1,26 @@
 @extends('layouts.client.app')
 
+@section('style')
+    <style>
+        #statusSession{
+            position:absolute;
+            bottom:20px;
+            right:20px;
+            z-index:10;
+        }
+    </style>
+@endsection
+
 @section('content')
 
     <div class="section-title-4 text-center mb-40">
         <h2>New Products</h2>
     </div>
+    @if (session('status'))
+        <div class="alert alert-success" id="statusSession">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="electronic-banner-area">
         <div class="custom-row-2">
              @foreach ($trend as $product)
@@ -78,4 +94,10 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $( "#statusSession" ).fadeIn( 500 ).delay( 2000 ).fadeOut( 500 );
+    </script>
 @endsection
