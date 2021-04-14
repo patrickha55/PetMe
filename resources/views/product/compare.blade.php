@@ -1,109 +1,66 @@
 @extends('layouts.client.appWithoutCategory')
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-<style>
-    .stock-green {
-        color: green;
-    }
 
-</style>
 @section('content')
-    <div id="page-content">
-        <br>
-        <div class="page-title text-center">
-            <h2 class="font-weight-bold">Compare Product</h2>
-        </div>
-        <br>
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
-                    <div class="compare-page compare-page2">
-                        <div class="table-wrapper table-responsive">
-                            <table class="table">
-                                <thead style="background-color: #fff;">
-                                    <tr class="th-compare">
-                                        <td class="item-row" valign="middle">
-                                            <div class="grid-link__title font-weight-bold">TIN TUNA FILLET (CATS) 156g
-                                                <button type="button" class="remove-compare"><i class="fas fa-times"
-                                                        aria-hidden="true"></i></button>
-                                            </div>
-                                            <div class="item-row"><img src="assets/img/product/catfood1.jpg" alt=""
-                                                    class="featured-image"></div>
-                                        </td>
-                                        <td class="item-row">
-                                            <div class="grid-link__title font-weight-bold">TUNA WHOLE MEAT WITH SALMON IN
-                                                JELLY 85g
-                                                <button type="button" class="remove-compare"><i class="fas fa-times"
-                                                        aria-hidden="true"></i></button>
-                                            </div>
-                                            <div class="item-row"><img src="assets/img/product/catfood2.jpg" alt=""
-                                                    class="featured-image"></div>
-                                        </td>
-                                    </tr>
-                                </thead>
-                                <tbody id="table-compare">
-                                    <tr>
-                                        <th>Price</th>
-                                        <th>Price</th>
-                                    </tr>
-                                    <tr>
-                                        <td class="item-row" valign="middle">
-                                            <div class="product-price product_price"><span>70,000VND</span></div>
-                                        </td>
-                                        <td class="item-row">
-                                            <div class="product-price product_price"><span>20,000VND</span></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Product Description</th>
-                                        <th>Product Description</th>
-                                    </tr>
-                                    <tr>
-                                        <td class="item-row" valign="middle">
-                                            <p class="description-compare">Each tin contains limited ingredients, using only
-                                                the highest quality, human-grade tuna fillet with completely natural
-                                                ingredients. Tuna is caught fresh from the sea using dolphin-friendly
-                                                methods.</p>
-                                        </td>
-                                        <td class="item-row">
-                                            <p class="description-compare">Tuna whole meat with salmon in jelly recipe. It
-                                                contains taurine to support heart and eye health.</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Availability</th>
-                                        <th>Availability</th>
-                                    </tr>
-                                    <tr>
-                                        <td class="available-stock" valign="middle">
-                                            <p class="stock-green">In stock</p>
-                                        </td>
-                                        <td class="available-stock">
-                                            <p class="stock-green">In stock</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td valign="middle" align="center">
-                                            <form class="variants clearfix">
-                                                <input type="hidden">
-                                                <button title="Add to Cart" class="add-to-cart btn btn-solid">Add to
-                                                    Cart</button>
-                                            </form>
-                                        </td>
-                                        <td valign="middle" align="center">
-                                            <form class="variants clearfix">
-                                                <input type="hidden">
-                                                <button title="Add to Cart" class="add-to-cart btn btn-solid">Add to
-                                                    Cart</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+    <!--Content-->
+    <div class="text-center my-5 h2 font-weight-bold">
+        Products Comparison
+    </div>
+    <div class="mr-auto ml-auto" style="width: 90%;">
+        <div class="row m-auto">
+            @foreach($results as $result)
+            <div class="col-3 shadow bg-white rounded  mb-100 m-auto p-5">
+                <h4 class="p-4  font-weight-bold border-bottom-1">{{$result->name}}</h4>
+                @if (session('status'))
+                    <p class="text-success font-weight-bolder">
+                        {{ session('status') }}
+                    </p>
+                @endif
+                <div class="row font-weight-bold h6">
+                    <div class="col-md-2 border-bottom-1 mt-3 mb-3"  >
+                        First Name:
+                    </div>
+                    <div class="col-md-4 border-bottom-1 mt-3 mb-3" >
+
+                    </div>
+                    <div class="col-md-2 border-bottom-1 mt-3 mb-3" >
+                        Last Name :
+                    </div>
+                    <div class="col-md-4 border-bottom-1 mt-3 mb-3" >
+
+                    </div>
+                    <div class="col-md-2 border-bottom-1 mt-3 mb-3">
+                        Username :
+                    </div>
+                    <div class="col-md-4 border-bottom-1 mt-3 mb-3">
+
+                    </div>
+                    <div class="col-md-2 border-bottom-1 mt-3 mb-3">
+                        Email :
+                    </div>
+                    <div class="col-md-4 border-bottom-1 mt-3 mb-3">
+
+                    </div>
+                    <div class="col-md-2 border-bottom-1 mt-3 mb-3" >
+                        Birthday :
+                    </div>
+                    <div class="col-md-4 border-bottom-1 mt-3 mb-3">
+
+                    </div>
+                    <div class="col-md-2 border-bottom-1 mt-3 mb-3">
+                        Gender :
+                    </div>
+                    <div class="col-md-4 border-bottom-1 mt-3 mb-3">
+
+                    </div>
+                    <div class="col-md-4 border-bottom-1 mt-3 mb-3" >
+                        Phone Number :
+                    </div>
+                    <div class="col-md-8 border-bottom-1 mt-3 mb-3">
+
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 @endsection

@@ -19,14 +19,14 @@
                                    href="#" data-object = {{ $relatedProduct->img }}>
                                     <i class="pe-7s-look"></i>
                                 </a>
-                                @if(session()->has('product'.$product->id))
-                                    @if(session()->get('product'.$product->id) != null)
-                                        <a class="animate-right" href="{{route('compare.destroy', $product)}}" title="Remove From Compare">
+                                @if(session()->has('product'.$relatedProduct->id))
+                                    @if(session()->get('product'.$relatedProduct->id) != null)
+                                        <a class="animate-right" href="{{route('compare.destroy', $relatedProduct)}}" title="Remove From Compare">
                                             <i class="fas fa-exchange-alt text-danger"></i>
                                         </a>
                                     @endif    
                                 @else
-                                    <a class="animate-right" href="{{route('compare.store', $product)}}" title="Compare">
+                                    <a class="animate-right" href="{{route('compare.store', $relatedProduct)}}" title="Compare">
                                         <i class="fas fa-exchange-alt"></i>
                                     </a>
                                 @endif

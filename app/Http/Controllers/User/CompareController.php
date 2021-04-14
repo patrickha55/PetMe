@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use App\Product;
 
 class CompareController extends Controller
@@ -11,19 +12,24 @@ class CompareController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        dd(session()->all());
-        return view('product.compare');
+        $resultSession = preg_grep('/^product[\d]*/', array_keys(session()->all()));
+        $results = collect([]);
+
+        foreach ($resultSession as $result){
+            $results->push(session()->get($result));
+        }
+
+        return view('product.compare',compact('results'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     
+
     public function create()
     {
         //
@@ -35,12 +41,22 @@ class CompareController extends Controller
      */
     public function store(Product $product)
     {
-        if(count(session()->all()) >= 6){
-            return redirect()->back()->with('status', 'Maximum products for comparison are 3. Please remove a product before adding another product.');
+        if(!auth()->user()){
+            if(count(session()->all()) >= 6){
+                return redirect()->back()->with('status', 'Maximum products for comparison are 3. Please remove a product before adding another product.');
+            } else {
+                session()->put('product' . $product->id, $product);
+
+                return redirect()->back()->with('status', 'Product ' . $product->name . ' added to compare page.');
+            }
         } else {
-            session()->put('product' . $product->id, $product);
-    
-            return redirect()->back()->with('status', 'Product ' . $product->name . ' added to compare page.');
+            if(count(session()->all()) >= 8){
+                return redirect()->back()->with('status', 'Maximum products for comparison are 3. Please remove a product before adding another product.');
+            } else {
+                session()->put('product' . $product->id, $product);
+
+                return redirect()->back()->with('status', 'Product ' . $product->name . ' added to compare page.');
+            }
         }
     }
 
