@@ -1,11 +1,9 @@
 <!doctype html>
 <html class="no-js" lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.png">
@@ -30,12 +28,6 @@
 
 <body>
     <header>
-      {{--@if(auth()->check())
-        <h1>{{   auth()->user()->userName }}</h1>
-      @else
-    <h2>vui long dang nhap</h2>--}}{{--
-    @endif--}}
-
     <div class="header-top-wrapper-2 border-bottom-2">
             <div class="header-info-wrapper pl-200 pr-200">
                 <div class="header-contact-info">
@@ -62,15 +54,15 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (auth()->user()->img != null)
-                                        <img src="/storage/Image/user/{{ auth()->user()->img }}" alt="{{ auth()->user()->name }} image" class="rounded-circle" height="30px" width="30px">
+                                        <img src="/storage/Image/user/{{ auth()->user()->img }}" alt="{{ auth()->user()->userName }} image" class="rounded-circle" height="30px" width="30px">
                                     @else
-                                        <img src="/storage/Image/user/user_default.png" alt="{{auth()->user()->name}}" class="rounded-circle" height="30px" width="30px">
+                                        <img src="/storage/Image/user/user_default.png" alt="{{ auth()->user()->userName}}" class="rounded-circle" height="30px" width="30px">
                                     @endif
                                     {{ auth()->user()->userName }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu">
                                     <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('user.show', auth()->user() }}">
+                                        <a class="dropdown-item" href="{{ route('user.show', auth()->user()) }}">
                                             Profile
                                         </a>
                                     </div>
@@ -107,12 +99,12 @@
             <div class="header-bottom-wrapper pr-200 pl-200">
                 <div class="logo-3">
                     <a href="{{route('home')}}">
-{{--                        <img src="/assets/img/logo/logo-3.png" alt="pet me logo">--}}
+                        {{--<img src="/assets/img/logo/logo-3.png" alt="pet me logo">--}}
                         <p class="font-weight-bold font-italic h1" style="color: #ff2c2c;">PetMe</p>
                     </a>
                 </div>
-           {{-- //search --}}
-             @livewire('search-product')
+            {{-- //search --}}
+            @livewire('search-product')
                 {{-- endsearch  --}}
                 <div class="trace-cart-wrapper">
                     <div class="categories-cart same-style">
@@ -370,13 +362,12 @@
     </div>
     <!-- all js here -->
     <script>
-        $('#productModal').on('show', function(e) {
+        /* $('#productModal').on('show', function(e) {
             var link     = e.relatedTarget(),
                 modal    = $(this),
                 object = link.data("object");
 
-            modal.find("#object").val(object);
-        });
+            modal.find("#object").val(object);}); */
     </script>
 
     <!--Search-->
@@ -406,5 +397,4 @@
     @livewireScripts
     @yield('script')
 </body>
-
 </html>

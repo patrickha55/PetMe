@@ -3,10 +3,10 @@
 @section('content')
     <!--Content-->
     <div class="w-75 shadow bg-white rounded p-2 mt-100 mb-100 mr-auto ml-auto">
-        <div class="row">
-            <div class="col-4 p-2 m-auto">
+        <div class="row m-auto">
+            <div class="col-3 p-2 m-auto">
                 <div class="row">
-                    <div class="col-12 text-center">      
+                    <div class="col-12 text-center">
                         @if($user->img != null)
                             <img src="/storage/Image/user/{{ $user->img }}" alt="{{ $user->userName }}" class="rounded-circle" height="200px">
                         @else
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-8 bg-white mt-sm-5 p-5">
+            <div class="col-9 bg-white mt-sm-5 p-">
                 <h4 class="pb-4  font-weight-bold border-bottom-1">Personal Information</h4>
                 @if (session('status'))
                     <p class="text-success font-weight-bolder">

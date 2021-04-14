@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html class="no-js" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -176,15 +176,15 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (auth()->user()->img != null)
-                                        <img src="/storage/Image/user/{{ auth()->user()->img }}" alt="{{ auth()->user()->userName }} image" class="rounded-circle" height="30px">
+                                        <img src="/storage/Image/user/{{ auth()->user()->img }}" alt="{{ auth()->user()->userName }}" class="rounded-circle" height="30px">
                                     @else
-                                        <img src="/storage/Image/user/user_default.png" alt="" class="rounded-circle" height="30px">
+                                        <img src="/storage/Image/user/user_default.png" alt="{{ auth()->user()->userName }}" class="rounded-circle" height="30px">
                                     @endif
                                     {{ auth()->user()->userName }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu">
                                     <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('user.show', auth()->user() }}">
+                                        <a class="dropdown-item" href="{{ route('user.show', auth()->user()) }}">
                                             Profile
                                         </a>
                                     </div>

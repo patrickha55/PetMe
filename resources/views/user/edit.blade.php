@@ -3,11 +3,20 @@
 @section('content')
     <div class="wrapper shadow p-3 mb-5 bg-white mt-sm-5">
         <h4 class="pb-4 border-bottom-1 font-weight-bold">MY PROFILE</h4>
-        {{-- <div class="d-flex align-items-start py-3 border-bottom"> <img src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img" alt="">
-            <div class="pl-sm-4 pl-2" id="img-section"> <b>Profile Photo</b>
-                <p>Accepted file type .png. Less than 1MB</p> <button class="btn button border"><b>Upload</b></button>
+        <div class="d-flex align-items-start py-3 border-bottom">
+            <img src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" id="avatar-img-tag" class="img" alt="Image">
+            <input type="file" class="form-control-file  @error('img') border-red-500 @enderror" name="img" id="img" placeholder="img">
+            @error('img')
+                <div class="text-sm text-danger mt-2">
+                    {{ $message }}
+                </div>
+            @enderror
+            <div class="pl-sm-4 pl-2" id="img-section">
+                <b>Profile Photo</b>
+                <p>Accepted file type .png. Less than 1MB</p>
+                 <button class="btn button border"><b>Upload</b></button>
             </div>
-        </div> --}}
+        </div>
         <div class="py-2">
             <form action="{{ route('user.update', $user) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -92,22 +101,6 @@
                                 {{ $message }}
                             </div>
                         @enderror
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-12 form-group">
-                                <label for="img">Upload Avatar</label>
-                                <input type="file" class="form-control-file @error('img') border-red-500 @enderror"" name="img" id="img" placeholder="img">
-                                @error('img')
-                                    <div class="text-sm text-danger mt-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="col-12">
-                                <img src="#" id="avatar-img-tag" class="rounded hidden" width="200px"/>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 @if($user->address != null)

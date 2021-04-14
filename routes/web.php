@@ -62,7 +62,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
         ]);
         Route::resource('/category', 'CategoryController');
 
-        // Product    
+        // Product
 
         Route::get('product_categories/get_by_category', 'ProductController@get_by_category')->name('admin.product_categories.get_by_category');
 
