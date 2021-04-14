@@ -15,11 +15,8 @@ class HomeController extends Controller
 {
     public function index(): Renderable
     {
-        $totalRate = $productWithHighRating = collect([]);
-
-        $products = Product::paginate(20);
-
-        $productsForRating = Product::has('userReviews')->get();
+        // $totalRate = $productWithHighRating = collect([]);
+        /* $productsForRating = Product::has('userReviews')->get();
 
         foreach ($productsForRating as $product){
             $rating = $count = 0;
@@ -31,7 +28,9 @@ class HomeController extends Controller
             if ($rating/$count > 4){
                 $productWithHighRating->put($product->id, $rating/$count);
             }
-        }
+        } */
+
+        $products = Product::paginate(20);
 
         $categories = AnimalCategory::all();
         $subCat = ProductCategory::all();
@@ -39,8 +38,7 @@ class HomeController extends Controller
         return view('product.index')->with([
             'products' => $products,
             'categories' => $categories,
-            'subCat' => $subCat,
-            'totalRate' => $totalRate
+            'subCat' => $subCat
         ]);
     }
 
@@ -50,7 +48,7 @@ class HomeController extends Controller
         ]);
 
         $products = Product::paginate(5);
-        $productsForRating = Product::has('userReviews')->get();
+        /* $productsForRating = Product::has('userReviews')->get();
         foreach ($productsForRating as $product){
             $rating = $count = 0;
             foreach ($product->userReviews as $review ){
@@ -61,7 +59,7 @@ class HomeController extends Controller
             if ($rating/$count > 4){
                 $productWithHighRating->put($product->id, $rating/$count);
             }
-        }
+        } */
 
         $topProducts = Product::whereHas('userReviews', function(Builder $query){
             $query->where('rating', '>', '3');
@@ -91,7 +89,8 @@ class HomeController extends Controller
 
         //Lay thong tin user da review san pham o parameter phia tren
 
-        $userReviews = $product->userReviews()->where('status', 'approved')->orderByDesc('created_at')->paginate(3);
+        $userReviewsForRating = $product->userReviews()->where('status', 'approved')->get();
+        $userReviews = $product->userReviews()->where('status', 'approved')->orderByDesc('created_at')->paginate(2);
         
         /* foreach($userReviews as $review){
             $comments = \App\Comment::where('product_review_id', 4)->get();
@@ -105,7 +104,7 @@ class HomeController extends Controller
 
         $countFive = $countFour = $countThree = $countTwo = $count= 0;
         $one = $two = $three = $four = $five = 0;
-        foreach ($userReviews as $review){
+        foreach ($userReviewsForRating as $review){
             switch($review->pivot->rating){
                 case 5:
                     $countFive++;

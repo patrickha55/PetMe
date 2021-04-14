@@ -137,7 +137,7 @@ Route::middleware(['auth'])->group(function () {
      */
     Route::resource('/order',  'OrderController');
     Route::get('/add-to-wishlist/{product}','FavoriteController@store')->name('wishlist.store');
-    Route::post('/wishlist/{product_id}/{user_id}', 'FavoriteController@delete')->name('wishlist.delete');
+    Route::delete('/wishlist/{product_id}/{user_id}', 'FavoriteController@delete')->name('wishlist.delete');
     Route::resource('/wishlist', 'FavoriteController')->except('store');
 });
 

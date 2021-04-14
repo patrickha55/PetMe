@@ -108,7 +108,7 @@
                             <div class="col-8 mt-5">
                                 @foreach($userReviews as $review)
                                     <div class="border-b">
-                                        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b">
                                             <dt class="text-sm">
                                                 <div class="h4">{{ $review->userName }} <span class="text-sm text-gray-500"> - {{ $review->pivot->created_at->toDayDateTimeString() }}</span></div>
                                                 <p>Reviews wrote: {{ \App\User::find($review->id)->reviews->count() }}</p>
@@ -123,7 +123,7 @@
                                             <div class="col-2 text-right">
                                                 <button id="displayReply" class="">Reply</button>
                                             </div>
-                                            <div class="col-10 hidden" id="reply">
+                                            <div class="col-10" id="reply">
                                                 <div class='block'>
                                                     <form action="{{ route('comment.store', $review->pivot->id) }}"  method="post" class="form-inline w-100">
                                                         @csrf
@@ -142,7 +142,7 @@
                                             <div class="col-4">
                                                 <button id="displayComments">Show Replies</button>
                                             </div>
-                                            <div class="col-8 hidden" id="comments">
+                                            <div class="col-8" id="comments">
                                                 <div class='row'>
                                                     @php
                                                         $comments = \App\Comment::where('product_review_id', $review->pivot->id)->get();
@@ -168,7 +168,7 @@
                 </div>
 
                 {{-- Review --}}
-                <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-hidden="true" >
+                <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria="true" >
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span class="pe-7s-close" aria-hidden="true"></span>
                     </button>
@@ -233,7 +233,7 @@
 
             {{-- Hien tat hoac an commet form va comment --}}
 
-            $('#displayReply').click(function(){
+            /* $('#displayReply').click(function(){
                 $('#reply').removeClass('hidden');
             });
 
@@ -251,8 +251,7 @@
                     $('#comments').addClass('hidden');
                     click = 0;
                 }
-                
-            });
+            }); */
         });
     </script>
 @endsection
