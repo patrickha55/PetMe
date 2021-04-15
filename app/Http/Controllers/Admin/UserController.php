@@ -20,7 +20,7 @@ class UserController extends Controller
 
     //Hiện list ở UserManagement, Customer
     public function index()
-    {
+    {   
         $customers = User::whereRoleIs('user')->paginate(10);
         return view('admin.user-management.show.showCustomers')->with('customers',$customers);
     }
@@ -141,11 +141,25 @@ class UserController extends Controller
         return redirect()->back()->with('status', 'Account banned successfully!');
     }
 
+    public function unban(User $user){
+        User::find($user->id)->update(['active' => 1 ]);
+
+        return redirect()->back()->with('status', 'Account unbanned successfully!');
+    }
+
     public function destroy(User $user)
     {
-        $user->delete();
-        $user->address->delete();
-        $user->reviews->delete();
+        if(isset($user)){
+            $user->delete();
+        }
+
+        if(isset($user->address)){
+            $user->address->delete();
+        }
+
+        /* if(isset($user->reviews)){
+            $user->reviews->delete();
+        } */
 
         return redirect()->back()->with('status', 'Account deleted successfully!');
     }

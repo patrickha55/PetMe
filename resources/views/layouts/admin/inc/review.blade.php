@@ -1,19 +1,19 @@
 <div class="mx-auto bg-white shadow-lg rounded-lg my-32 px-4 py-4 max-w-sm ">
     <div class="mb-1 tracking-wide px-4 py-4">
-        <div class="rating-number pt-4 pb-4 m-auto">
+        <div class="rating-number pt-4 pb-4 m-auto" >
             @php
                 $rating = \App\ProductReview::where('product_id', $product->id)->avg('rating');
             @endphp
             @for ($i = 0; $i < 5; $i++)
-                @if (floor($rating) - $i >= 1) <i class="fas fa-star fa-2x
-                m-auto" style="color: #facf2c"></i>
+                @if (floor($rating) - $i >= 1) 
+                <i class="fas fa-star fa-2x m-auto" style="color: #facf2c"></i>
             @elseif($rating -$i > 0)
                 <i class="fas fa-star-half fa-2x m-auto" style="color: #facf2c"></i>
             @else
                 <i class="far fa-star fa-2x m-auto"></i> @endif
             @endfor
         </div>
-        <h2 class="text-gray-800 font-semibold mt-1">{{ $product->userReviews->count() }} Reviewed</h2>
+        <h2 class="text-gray-800 font-semibold my-1">{{ round($rating, 2) }} - {{ $product->userReviews->count() }} Reviewed</h2>
         <div class="-mx-8 px-8 pb-3">
             <div class="flex items-center mt-1">
                 <div class=" w-1/5 text-indigo-500 tracking-tighter">

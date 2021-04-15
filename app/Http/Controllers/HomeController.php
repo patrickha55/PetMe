@@ -103,7 +103,7 @@ class HomeController extends Controller
 
         if ($count != 0){
             $one = $count;
-        }
+        }            
         
         return view('product.show',compact('product',$product))->with([
             'products'=>$products,

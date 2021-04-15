@@ -12,11 +12,6 @@
                             <div>
                                 <h4 class="card-title mt-0 text-dark "> Customers</h4>
                                 <p class="card-category text-dark "> Customer Management</p>
-                                @if (session('status'))
-                                    <div class="alert alert-success">
-                                        {{ session('status') }}
-                                    </div>
-                                @endif
                             </div>
                             <a type="button" class="btn btn-warning"
                                 href="{{ url('/admin/user-management/users/create') }}">Add a Customer</a>
@@ -54,7 +49,7 @@
                                             <th>
                                                 Status
                                             </th>
-                                            <th>
+                                            <th colspan="3">
                                                 Functions
                                             </th>
                                         </tr>
@@ -74,12 +69,22 @@
                                                 <th>{{ $customer->phoneNumber }}</th>
                                                 <th>{{ $customer->active }}</th>
                                                 <th>
-                                                    <a class="btn-sm btn-dark " href="{{ route('users.edit', $customer) }}">Edit</a>
-                                                    <a class="btn-sm btn-warning " href="{{ route('users.ban', $customer) }}">Ban</a>
+                                                    @if($customer->active == 1)
+                                                        <a href="{{ route('users.ban', $customer) }}"><i title="Ban" class="fas fa-ban"></i></a>
+                                                    @else
+                                                        <a href="{{ route('users.unban', $customer) }}"><i title="Unban" class="fas fa-unlock"></i></a>    
+                                                    @endif
+                                                </th>
+                                                <th>
+                                                    <a href="{{ route('users.edit', $customer) }}"><i title="Edit" class="fas fa-edit"></i></a>
+                                                </th>
+                                                <th>
                                                     <form action="{{ route('users.destroy', $customer) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn-sm btn-danger">Delete</button>
+                                                        <button type="submit">
+                                                            <a class=""><i title="Delete" class="fas fa-trash"></i></a>
+                                                        </button>
                                                     </form>
                                                 </th>
                                             </tr>

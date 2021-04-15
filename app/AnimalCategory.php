@@ -5,11 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AnimalCategory extends Model
 {
-    protected $fillable = ['id','name','status'];
+    use SoftDeletes;
 
+    protected $fillable = ['id','name','status'];
 
     /**
      * Animal category có nhiều danh mục khác nhau (đồ ăn, đồ chơi, ...)

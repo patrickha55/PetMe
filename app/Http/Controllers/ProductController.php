@@ -211,7 +211,7 @@ class ProductController extends Controller
 
         if ($count != 0){
             $one = $count;
-        }
+        }    
 
         return view('admin.product-management.product.show', [
             'product' => $product,
