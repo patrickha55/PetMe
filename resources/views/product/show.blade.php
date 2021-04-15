@@ -122,8 +122,12 @@
 @endsection
 
 @section('script')
+
+    {{-- Hien status tra ve tu route --}}
+
     <script>
         $( "#statusSession" ).fadeIn( 500 ).delay( 2000 ).fadeOut( 500 );
     </script>
+
 @endsection
 

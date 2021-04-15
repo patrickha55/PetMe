@@ -100,7 +100,7 @@ Route::resource('/compare', 'User\CompareController')->only('index');
 //@User ------
 
 Route::group(['middleware'=>'auth', 'namespace'=>'User'], function () {
-    Route::get('/user/edit_password', 'UserController@editPassword')->name('user.editPassword');
+    Route::get('/user/edit_password', 'UserController@editPassword')->middleware(['auth', 'password.confirm'])->name('user.editPassword');
 
     Route::resource('/user/address', 'AddressController');
     Route::resource('/user', 'UserController');
