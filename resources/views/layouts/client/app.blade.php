@@ -1,11 +1,9 @@
 <!doctype html>
 <html class="no-js" lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.png">
@@ -24,9 +22,13 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
 <<<<<<< HEAD
+<<<<<<< HEAD
     @livewireStyles
 =======
 
+>>>>>>> main
+=======
+    @livewireStyles
 >>>>>>> main
     @yield('style')
     <script src="/assets/js/vendor/modernizr-2.8.3.min.js"></script>
@@ -34,12 +36,6 @@
 
 <body>
     <header>
-      {{--@if(auth()->check())
-        <h1>{{   auth()->user()->userName }}</h1>
-      @else
-    <h2>vui long dang nhap</h2>--}}{{--
-    @endif--}}
-   
     <div class="header-top-wrapper-2 border-bottom-2">
             <div class="header-info-wrapper pl-200 pr-200">
                 <div class="header-contact-info">
@@ -66,9 +62,9 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (auth()->user()->img != null)
-                                        <img src="{{ auth()->user()->img }}" alt="{{ auth()->user()->name }} image" class="rounded-circle" height="30px" width="30px">
+                                        <img src="/storage/Image/user/{{ auth()->user()->img }}" alt="{{ auth()->user()->userName }}" class="rounded-circle" height="30px" width="30px">
                                     @else
-                                        <img src="/storage/Image/product/noimage.jpg" alt="{{auth()->user()->name}}" class="rounded-circle" height="30px" width="30px">
+                                        <img src="/storage/Image/user/user_default.png" alt="{{ auth()->user()->userName}}" class="rounded-circle" height="30px" width="30px">
                                     @endif
                                     {{ auth()->user()->userName }} <span class="caret"></span>
                                 </a>
@@ -79,8 +75,13 @@
                                         </a>
                                     </div>
                                     <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="{{ route('order.index') }}">
                                             Orders
+                                        </a>
+                                    </div>
+                                    <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('review.index') }}">
+                                            Reviews
                                         </a>
                                     </div>
                                     <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -106,12 +107,12 @@
             <div class="header-bottom-wrapper pr-200 pl-200">
                 <div class="logo-3">
                     <a href="{{route('home')}}">
-{{--                        <img src="/assets/img/logo/logo-3.png" alt="pet me logo">--}}
+                        {{--<img src="/assets/img/logo/logo-3.png" alt="pet me logo">--}}
                         <p class="font-weight-bold font-italic h1" style="color: #ff2c2c;">PetMe</p>
                     </a>
                 </div>
-           {{-- //search --}}
-             @livewire('search-product')
+            {{-- //search --}}
+            @livewire('search-product')
                 {{-- endsearch  --}}
                 <div class="trace-cart-wrapper">
                     <div class="categories-cart same-style">
@@ -367,20 +368,14 @@
             </div>
         </div>
     </div>
-
-
-
-
-
     <!-- all js here -->
     <script>
-        $('#productModal').on('show', function(e) {
+        /* $('#productModal').on('show', function(e) {
             var link     = e.relatedTarget(),
                 modal    = $(this),
                 object = link.data("object");
 
-            modal.find("#object").val(object);
-        });
+            modal.find("#object").val(object);}); */
     </script>
 
     <!--Search-->
@@ -394,8 +389,7 @@
           });
         });
     </script>
-    @yield('script')
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="/assets/js/jquery.magnific-popup.min.js"></script>
@@ -407,7 +401,8 @@
     <script src="/assets/js/owl.carousel.min.js"></script>
     <script src="/assets/js/plugins.js"></script>
     <script src="/assets/js/main.js"></script>
+    <script src="https://kit.fontawesome.com/c4201aab66.js" crossorigin="anonymous"></script>
     @livewireScripts
+    @yield('script')
 </body>
-
 </html>

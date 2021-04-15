@@ -37,6 +37,7 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
     Route::get('/statistic', 'DashboardController@statistic')->name('admin.statistic');
 
     Route::prefix('user-management')->group(function (){
+        Route::get('users/{user}/ban', 'UserController@ban')->name('users.ban');
         Route::resource('/users','UserController');
         Route::resource('/admins', 'AdminController');
     });
@@ -44,6 +45,10 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
     Route::resource('/wishlists', 'AdminFavoriteController');
 
     Route::resource('/orders', 'AdminOrderController');
+
+    Route::patch('/reviews/{user_id}/product/{product_id}', 'ProductReviewController@update')->name('reviews.update');
+    Route::delete('/reviews/{user_id}/product/{product_id}', 'ProductReviewController@destroy')->name('reviews.destroy');
+    Route::resource('/reviews', 'ProductReviewController')->except(['update', 'destroy']);
 });
 
 Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
@@ -57,10 +62,15 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
         ]);
         Route::resource('/category', 'CategoryController');
 
+        // Product
+
+        Route::get('product_categories/get_by_category', 'ProductController@get_by_category')->name('admin.product_categories.get_by_category');
+
         Route::resource('/product', 'ProductController');
-        Route::get('/store-locations', function(){
-            return view('admin.location.index');
-        })->name('admin.store-location');
+
+        // Route::get('/store-locations', function(){
+        //     return view('admin.location.index');
+        // })->name('admin.store-location');
     });
 });
 
@@ -79,6 +89,11 @@ Route::get('/contact', function() {
 Route::get('/about', function(){
     return view('user.about');
 });
+
+//Compare product
+Route::get('/compare/{product}', 'User\CompareController@store')->name('compare.store');
+Route::get('/compare/{product}/delete', 'User\CompareController@destroy')->name('compare.destroy');
+Route::resource('/compare', 'User\CompareController')->only('index');
 
 //@endGuest ------
 
@@ -99,11 +114,17 @@ Route::group(['namespace' => 'Auth'], function(){
     Route::post('/logout', 'LoginController@logout');
 });
 
-// Review
-Route::resource('/product/{product}/review', 'ProductReviewController');
-
-//Cart and Order
 Route::middleware(['auth'])->group(function () {
+    // Review
+    Route::get('/my-reviews', 'ProductReviewController@index')->name('review.index');
+    Route::resource('/product/{product}/review', 'ProductReviewController')->except('index');
+
+    //Comment
+    Route::prefix('comment')->group(function(){
+        Route::post('/{product_review_id}', 'CommentController@store')->name('comment.store');
+        Route::resource('/', 'CommentController')->only('index');
+    });
+
     /*
      * Cart
     */
@@ -121,17 +142,12 @@ Route::middleware(['auth'])->group(function () {
      */
     Route::resource('/order',  'OrderController');
     Route::get('/add-to-wishlist/{product}','FavoriteController@store')->name('wishlist.store');
-    Route::post('/wishlist/{product_id}/{user_id}', 'FavoriteController@delete')->name('wishlist.delete');
+    Route::delete('/wishlist/{product_id}/{user_id}', 'FavoriteController@delete')->name('wishlist.delete');
     Route::resource('/wishlist', 'FavoriteController')->except('store');
 });
 
 
 //@endUser  ------
 
-
-//Ngan check route
-Route::get('/compare', function() {
-    return view('product.compare');
-});
 
 

@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+
+
     public function add(Product $product): RedirectResponse
     {
        // add the product to cart
@@ -54,12 +56,13 @@ class CartController extends Controller
     }
 
     public function updateMinusCart(Product $product)
-    {
+    {   
+        // dd(\Cart::session()->);
 //        dd(\Cart::session(auth()->id())->getContent($product->id));
         \Cart::session(auth()->id())->update($product->id, array(
             'quantity' => -1,
         ));
-
+        
         return redirect()->back();
     }
 

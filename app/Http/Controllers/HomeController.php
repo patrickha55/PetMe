@@ -6,6 +6,7 @@ use App\Product;
 use App\Category;
 use App\AnimalCategory;
 use App\ProductCategory;
+use App\ProductReview;
 use \Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
@@ -14,31 +15,30 @@ class HomeController extends Controller
 {
     public function index(): Renderable
     {
-        $totalRate = $productWithHighRating = collect([
-            ['id' => '', 'avg' => '']
-        ]);
+        // $totalRate = $productWithHighRating = collect([]);
+        /* $productsForRating = Product::has('userReviews')->get();
 
-        $products = Product::paginate(20);
-        $productsForRating = Product::has('userReviews')->get();
         foreach ($productsForRating as $product){
             $rating = $count = 0;
             foreach ($product->userReviews as $review ){
                 $rating += ($review->pivot->rating);
                 $count++;
             }
-            $totalRate->put($product->id, $rating/$count);
+            $totalRate->put('product' ,[$product->id, $rating/$count]);
             if ($rating/$count > 4){
                 $productWithHighRating->put($product->id, $rating/$count);
             }
-        }
+        } */
+
+        $products = Product::paginate(20);
 
         $categories = AnimalCategory::all();
         $subCat = ProductCategory::all();
 
         return view('product.index')->with([
-            'products'=>$products,
-            'categories'=>$categories,
-            'subCat'=>$subCat,
+            'products' => $products,
+            'categories' => $categories,
+            'subCat' => $subCat
         ]);
     }
 
@@ -48,7 +48,7 @@ class HomeController extends Controller
         ]);
 
         $products = Product::paginate(5);
-        $productsForRating = Product::has('userReviews')->get();
+        /* $productsForRating = Product::has('userReviews')->get();
         foreach ($productsForRating as $product){
             $rating = $count = 0;
             foreach ($product->userReviews as $review ){
@@ -59,7 +59,7 @@ class HomeController extends Controller
             if ($rating/$count > 4){
                 $productWithHighRating->put($product->id, $rating/$count);
             }
-        }
+        } */
 
         $topProducts = Product::whereHas('userReviews', function(Builder $query){
             $query->where('rating', '>', '3');
@@ -79,17 +79,32 @@ class HomeController extends Controller
         ]);
     }
 
+    // Hien trang product detail
+
     public function show(Product $product){
         $products = Product::all();
         $trend = $products->shuffle()->take(3);
         $categories = AnimalCategory::all();
         $subCats = ProductCategory::all();
 
-        $userReviews = $product->userReviews()->paginate(3);
+        //Lay thong tin user da review san pham o parameter phia tren
+
+        $userReviewsForRating = $product->userReviews()->where('status', 'approved')->get();
+        $userReviews = $product->userReviews()->where('status', 'approved')->orderByDesc('created_at')->paginate(2);
+        
+        /* foreach($userReviews as $review){
+            $comments = \App\Comment::where('product_review_id', 4)->get();
+        dd($comments); 
+        } */
+               
+
+
+
+        // dd($userReviews);
 
         $countFive = $countFour = $countThree = $countTwo = $count= 0;
         $one = $two = $three = $four = $five = 0;
-        foreach ($product->userReviews as $review){
+        foreach ($userReviewsForRating as $review){
             switch($review->pivot->rating){
                 case 5:
                     $countFive++;
@@ -128,7 +143,7 @@ class HomeController extends Controller
         if ($count != 0){
             $one = 100 / $count;
         }
-
+        
         return view('product.show',compact('product',$product))->with([
             'products'=>$products,
             'categories'=>$categories,

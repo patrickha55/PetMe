@@ -1,7 +1,16 @@
-@extends('layouts.client.app') 
-<style>
+@extends('layouts.client.app')
 
-</style>
+@section('style')
+    <style>
+        #statusSession{
+            position:absolute;
+            bottom:20px;
+            right:20px;
+            z-index:10;
+        }
+    </style>
+@endsection
+
 @section('content')
 
     <div class="electro-product-wrapper wrapper-padding pt-95 pb-45">
@@ -9,6 +18,11 @@
             <div class="h4 section-title-4 border-bottom-1 pb-15 font-weight-light">
                 <a href="">Products</a>
             </div>
+            @if (session('status'))
+                <div class="alert alert-success" id="statusSession">
+                    {{ session('status') }}
+                </div>
+            @endif
             <div class="section-title-4 text-center mb-40">
                 <h2>Products</h2>
             </div>
@@ -45,19 +59,19 @@
                                           <input type="checkbox" class="custom-control-input" id="Check1">
                                           <label class="custom-control-label" for="Check1">Top Star</label>
                                     </div> <!-- form-check.// -->
-                    
+
                                     <div class="custom-control custom-checkbox">
                                         <span class="float-right badge badge-light round">132</span>
                                           <input type="checkbox" class="custom-control-input" id="Check2">
                                          <label class="custom-control-label" for="Check2">Popular</label>
                                     </div> <!-- form-check.// -->
-                    
+
                                     <div class="custom-control custom-checkbox">
                                         <span class="float-right badge badge-light round">17</span>
                                           <input type="checkbox" class="custom-control-input" id="Check3">
                                           <label class="custom-control-label" for="Check3">Dog Toys</label>
                                     </div> <!-- form-check.// -->
-                    
+
                                     <div class="custom-control custom-checkbox">
                                         <span class="float-right badge badge-light round">7</span>
                                           <input type="checkbox" class="custom-control-input" id="Check4">
@@ -78,46 +92,61 @@
                                             <div class="product-img-3">
                                                 <a href="{{route('home.show', $product)}}">
                                                     @if(!empty($product->img))
-                                    
                                                     <img src="/storage/Image/product/{{ $product->img }}" alt="">
                                                     @else
                                                         <img src="/storage/Image/product/noimage.jpg" alt="">
                                                     @endif
                                                 </a>
-                                                <div class="product-action-right">
+                                                <div class="product-action-right productButton">
                                                     <a class="animate-right" href="{{route('home.show', $product)}}" title="View">
                                                         <i class="pe-7s-look"></i>
                                                     </a>
+                                                    @if(session()->has('product'.$product->id))
+                                                        @if(session()->get('product'.$product->id) != null)
+                                                            <a class="animate-right" href="{{route('compare.destroy', $product)}}" title="Remove From Compare">
+                                                                <i class="fas fa-exchange-alt text-danger"></i>
+                                                            </a>
+                                                        @endif    
+                                                    @else
+                                                        <a class="animate-right" href="{{route('compare.store', $product)}}" title="Compare">
+                                                            <i class="fas fa-exchange-alt"></i>
+                                                        </a>
+                                                    @endif
                                                     <a class="animate-top" title="Add To Cart" href="{{route('cart.add', $product)}}">
                                                         <i class="pe-7s-cart"></i>
                                                     </a>
-                                                    {{--@php
-                                                        $favorite = \App\Favorite::where('product_id', $product->id)->where('user_id', auth()->id())->get()
-                                                    @endphp
-                                                    @foreach($favorite as $fav)
-                                                        @if($fav != null)
-                                                            <form action="{{ route('wishlist.delete', [$fav->user_id, $fav->product_id]) }}" method="POST">
+                                                    
+                                                    {{-- Neu user da thich thi hien trai tim mau den, bam vao de xoa product khoi wishlist --}}        
+
+                                                    @if(isset($product->userFavorites->find(auth()->id())->id))
+                                                        @if($product->userFavorites->find(auth()->id())->id == auth()->id())
+                                                            <form action="{{ route('wishlist.delete', ['product_id' => $product->id, 'user_id' => auth()->id()]) }}" method="POST">
                                                                 @csrf
-                                                                @method('DELETE')
-                                                                <button class="animate-left" title="Remove From Wishlist" style="border: none;">
-                                                                    <i class="fa-fas-heart"></i>
-                                                                </button>
+                                                                @method('delete')
+                                                                <button type="submit" class='btn-lg b-none  animate-left' title="Remove from Wishlist"><i class="fas fa-heart"></i></button>
                                                             </form>
-                                                        @else--}}
+                                                        @endif    
+                                                    @else
                                                         <a class="animate-left" title="Wishlist" href="{{ route('wishlist.store', $product) }}">
-                                                            <i class="pe-7s-like"></i>
+                                                            <i class="far fa-heart"></i>
                                                         </a>
-                                                    {{--@endif
-                                                    @endforeach--}}
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="product-content-4 text-center">
                                                 <div class="product-rating-4">
-                                                    <i class="icofont icofont-star yellow"></i>
-                                                    <i class="icofont icofont-star yellow"></i>
-                                                    <i class="icofont icofont-star yellow"></i>
-                                                    <i class="icofont icofont-star yellow"></i>
-                                                    <i class="icofont icofont-star"></i>
+                                                    @php
+                                                        $rating = \App\ProductReview::where('product_id', $product->id)->avg('rating');
+                                                    @endphp
+                                                    @for($i = 0; $i < 5; $i++)
+                                                        @if(floor($rating) - $i >= 1)
+                                                            <i class="fas fa-star fa-2x" style="color: #facf2c"></i>
+                                                        @elseif($rating -$i > 0)
+                                                            <i class="fas fa-star-half fa-2x" style="color: #facf2c"></i>
+                                                        @else
+                                                            <i class="far fa-star fa-2x"></i>
+                                                        @endif
+                                                    @endfor
                                                 </div>
                                                 <h4>
                                                     <a href="{{route('home.show', $product)}}">{{$product->name}}</a>
@@ -125,6 +154,17 @@
                                                     {{--<span>{{ $product->description }}</span>--}}
                                                 <h5> @currency( $product->price ) VNĐ </h5>
                                                 <p>{{$product->supplier->name ?? 'N/A'}}</p>
+                                                <div class="mt-2 mb-2">
+                                                    @if($product->stock > 10)
+                                                        <p class="text-success">Available</p>
+                                                    @elseif($product->stock <= 10 && $product->stock > 1)
+                                                        <p class="text-danger">Only {{ $product->stock }} lefts</p>
+                                                    @elseif($product->stock == 1)
+                                                        <p class="text-danger">Only 1 left</p>
+                                                    @else
+                                                        <p class="text-danger">Out of stock. Please come back later.</p>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -138,4 +178,23 @@
     </div>
 @endsection
 
+{{-- Test hidden form --}}
+    
+@section('script')
+    {{-- <script type='text/javascript'>
+        let products = {!! json_encode($products, JSON_HEX_TAG) !!};
 
+        let a = 'ab';
+
+        for(let i=1; i<=products.data.length + 1; i++){
+            $('.productButton').ready(function(){
+                $('#removeWishlist' + i).click(function(){
+                    $('#wishlistHidden' + i).click();
+                });
+            });
+        }
+    </script> --}}
+    <script>
+          $( "#statusSession" ).fadeIn( 500 ).delay( 2000 ).fadeOut( 500 );
+    </script>
+@endsection

@@ -37,7 +37,5 @@ class DashboardController extends Controller
 
     public function statistic(){
         return view('admin.statistic.index');
-
-
     }
 }

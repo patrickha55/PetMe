@@ -118,10 +118,10 @@
                                                 </span></td>
                                             <td class="plantmore-product-add-cart"><a href="{{ route('cart.add', \App\Product::find($favorite->id)) }}">Add to Cart</a></td>
                                             <td class="plantmore-product-remove">
-                                                <form action="{{ route('wishlist.destroy', $favorite) }}" method="POST">
+                                                <form action="{{ route('wishlist.delete', ['product_id' => $favorite->pivot->product_id, 'user_id' => auth()->id()]) }}" method="POST">
                                                     @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" style="border:none;"><i class="fas fa-window-close"></i></button>
+                                                    @method('delete')
+                                                    <button type="submit" class="btn bg-white" title="Remove"  style="border:none;"><i class="fas  fa-window-close"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

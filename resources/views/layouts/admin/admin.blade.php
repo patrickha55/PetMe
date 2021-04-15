@@ -14,12 +14,19 @@
         <!--     Fonts and icons     -->
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
         <!-- CSS Files -->
             <!--Tailwind-->
             <link rel="stylesheet" href="{{ asset('/css/app.css') }}"/>
             {{--Bootstrap 4--}}
             <link href="{{ asset('/css/admin.css') }}" rel="stylesheet"/>
-        @yield('style')    
+        @yield('style')  
+        <style>
+            .fas {
+                color: black;
+            }
+        </style>  
     </head>
     <body>
     <div id="app">
@@ -56,6 +63,7 @@
     </div>
     <!--   Core JS Files   -->
     <script src="{{ asset('/js/core/jquery.min.js') }}"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script> --}}
     <script src="{{ asset('/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('/js/core/bootstrap-material-design.min.js') }}"></script>
     <script src="{{ asset('/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>

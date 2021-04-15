@@ -28,14 +28,37 @@ class ProductController extends Controller
         return view('admin.product-management.product.index')->with('products', $products);
     }
 
+    /*
+    *   Tra ve trang tao product voi data cho navbar
+    */
 
     public function create()
     {
-        return view('admin.product-management.product.create');
+        $animalCategories = AnimalCategory::all()->pluck('name', 'id')->prepend('Please Select', '');
+        return view('admin.product-management.product.create')->with([
+            'animalCategories' => $animalCategories
+        ]);
+    }
+
+    // Lay product categories tu animal categories
+
+    public function get_by_category(Request $request)
+    {
+        if(!$request->animal_id){
+            $html = "<option value=''>". "Please Select" . "</option>";
+        } else {
+            $html = '';
+            $product_categories = ProductCategory::where('animal_category_id', $request->animal_id)->get();
+            foreach($product_categories as $product_category){
+                $html .= '<option value="' . $product_category->id . '">' . $product_category->name . '</option>';
+            }
+        }
+
+        return response()->json(['html' => $html]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Tao Product moi
      *
      * @param Request $request
      *
@@ -44,8 +67,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'animal' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
+            'animal_id' => 'required',
+            'category_id' => 'required',
             'supplier' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -70,7 +93,11 @@ class ProductController extends Controller
             'moisture' => 'string|nullable|max:255',
             'img' => 'image|nullable|max:1999',
         ]);
+
+        
+
         /* Xu ly up anh */
+
         if ($request->hasFile('img')) {
             $fileNameToStore = Product::uploadImg($request);
             $path = $request->file('img')->storeAs('public/Image/product/', $fileNameToStore);
@@ -78,13 +105,24 @@ class ProductController extends Controller
             $fileNameToStore = 'noimage.jpg';
         }
 
+        // $categoryID = ProductCategory::getProductCategoryID($request->category);
+        // $supplierID = Supplier::getSupplierID($request->supplier);
 
-        $categoryID = ProductCategory::getProductCategoryID($request->category);
-        $supplierID = Supplier::getSupplierID($request->supplier);
+        /*         
+        *   Kiem tra supplier co chua, neu chua co thi tao supplier moi
+        */
+
+        if(!Supplier::where('name', $request->supplier)->count()){
+            Supplier::create([
+                'name' => $request->supplier
+            ]);
+        };
+
+        /* Tao Product moi */
 
         Product::create([
-            'product_category_id' => $categoryID,
-            'supplier_id' => $supplierID,
+            'product_category_id' => $request->category_id,
+            'supplier_id' => Supplier::firstWhere('name', $request->supplier)->id,
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
@@ -92,10 +130,10 @@ class ProductController extends Controller
             'img' => $fileNameToStore,
         ]);
 
-        $productID = Product::firstWhere('name', $request->name)->id;
+        /* Tao Product Detail */
 
         ProductDetail::create([
-            'product_id' => $productID,
+            'product_id' => Product::firstWhere('name', $request->name)->id,
             'origin' => $request->origin,
             'ingredients' => $request->ingredient,
             'materials' => $request->material,
@@ -103,6 +141,8 @@ class ProductController extends Controller
             'size' => $request->size,
             'instruction' => $request->instruction,
         ]);
+        
+        /* Tao Product Nutritions */
 
         if (isset($request->servingSize)){
             NutritionFact::create([
@@ -232,19 +272,26 @@ class ProductController extends Controller
             'img' => 'image|nullable|max:1999',
         ]);
 
-        $categoryID = ProductCategory::getProductCategoryID($request->category);
-        $supplierID = Supplier::getSupplierID($request->supplier);
-
         if ($request->hasFile('img')) {
             $fileNameToStore = Product::uploadImg($request);
             $path = $request->file('img')->storeAs('public/Image/product/', $fileNameToStore);
         } else {
-            $fileNameToStore = 'noimage.jpg';
+            $fileNameToStore = 'storage/Image/product/noimage.jpg';
         }
 
-        Product::updateOrCreate(['id' => $product->id],[
-            'product_category_id' => $categoryID,
-            'supplier_id' => $supplierID,
+        /*         
+        *   Kiem tra supplier co chua, neu chua co thi tao supplier moi
+        */
+
+        if(!Supplier::where('name', $request->supplier)->count()){
+            Supplier::create([
+                'name' => $request->supplier
+            ]);
+        };
+
+        Product::where('id', $product->id)->update([
+            'product_category_id' => $request->category_id,
+            'supplier_id' => Supplier::firstWhere('name', $request->supplier)->id,
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
@@ -301,14 +348,14 @@ class ProductController extends Controller
     {
         $product->delete();
         
-        if(count($product->detail)){
+        if($product->detail->count()){
             $product->detail->delete();
         }
 
-        if(count($product->detail->nutritionFact)){
-        $product->detail->nutritionFact->delete();
+        if($product->detail->nutritionFact->count()){
+            $product->detail->nutritionFact->delete();
         }
 
-        return redirect()->back()->with('status', 'Product deleted successfully!');
+        return redirect()->route('product.index')->with('status', 'Product deleted successfully!');
     }
 }

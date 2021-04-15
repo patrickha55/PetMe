@@ -66,7 +66,7 @@
                         </div>
                         <div class="card-footer">
                             <div class="stats">
-                                <i class="material-icons">local_offer</i> Pending {{ $orders->where('status', 1)->count() }}
+                                <i class="material-icons">local_offer</i> Pending {{ $orders->where('status', 'pending')->count() }}
                             </div>
                         </div>
                     </div>
@@ -396,10 +396,24 @@
                                 <tbody>
                                 @foreach($orders as $order)
                                     <tr>
-                                        <td>$order->id</td>
-                                        <td>$order->user_id</td>
-                                        <td>$order->products</td>
-                                        <td>$order->total_price</td>
+                                        <td>{{$order->id}}</td>
+                                        <td>{{$order->user_id}}</td>
+                                        <td>
+                                            @foreach($order->productDetails as $product)
+                                                {{$product->name}}/
+                                            @endforeach
+                                        </td>
+                                        <td>{{$order->total_price}}</td>
+                                        <td>{{$order->status }}</td>
+                                        <td>{{$order->name ?? 'N/A'}}</td>
+                                        <td>{{$order->phone ?? 'N/A' }}</td>
+                                        <td>{{$order->email ?? 'N/A' }}</td>
+                                        <td>{{$order->address ?? 'N/A' }}</td>
+                                        <td>{{$order->ward ?? 'N/A' }}</td>
+                                        <td>{{$order->district ?? 'N/A' }}</td>
+                                        <td>{{$order->city ?? 'N/A' }}</td>
+                                        <td>{{$order->created_at }}</td>
+                                        <td>{{$order->updated_at }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

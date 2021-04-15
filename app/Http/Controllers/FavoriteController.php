@@ -78,14 +78,15 @@ class FavoriteController extends Controller
 
     public function delete($product_id, $user_id): \Illuminate\Http\RedirectResponse
     {
-        Favorite::delete()->where('product_id', $product_id)->where('user_id', $user_id);
+        // dd(Favorite::where('product_id', $product_id)->where('user_id', $user_id))->get();
+        Favorite::where('product_id', $product_id)->where('user_id', $user_id)->delete();
 
         return redirect()->back()->with('status', 'Product removed from your wishlist!');
     }
 
-    public function destroy(Favorite $favorite)
+    public function destroy(Favorite $wishlist)
     {
-        $favorite->delete();
+        $wishlist->delete();
 
         return redirect()->back()->with('status', 'Product removed from your wishlist!');
     }

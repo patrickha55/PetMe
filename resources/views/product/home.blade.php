@@ -1,10 +1,26 @@
 @extends('layouts.client.app')
 
+@section('style')
+    <style>
+        #statusSession{
+            position:absolute;
+            bottom:20px;
+            right:20px;
+            z-index:10;
+        }
+    </style>
+@endsection
+
 @section('content')
 
     <div class="section-title-4 text-center mb-40">
         <h2>New Products</h2>
     </div>
+    @if (session('status'))
+        <div class="alert alert-success" id="statusSession">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="electronic-banner-area">
         <div class="custom-row-2">
              @foreach ($trend as $product)
@@ -14,7 +30,15 @@
                         <div class="electro-banner-style electro-banner-position bg-light " style="opacity:0.7; padding-left: 200px;">
                             <h4 class=" text-info opacity-5">{{ $product->name }}</h4>
                             <h5>@currency($product->price) VNĐ</h5>
-                            <p style="color: green;">Available</p>
+                            <div class="mt-2 mb-2">
+                                @if($product->stock > 5)
+                                    <p class="text-success">Available</p>
+                                @elseif($product->stock <= 5 && $product->stock > 0)
+                                    <p class="text-danger">Only {{ $product->stock }} lefts</p>
+                                @else
+                                    <p class="text-danger">Out of stock. Please come back later.</p>
+                                @endif
+                            </div>
                             <a style="margin-bottom: 50px;" href="{{ route('home.show',$product) }}">Buy Now→</a>
                         </div>
                     </div>
@@ -70,4 +94,10 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $( "#statusSession" ).fadeIn( 500 ).delay( 2000 ).fadeOut( 500 );
+    </script>
 @endsection
