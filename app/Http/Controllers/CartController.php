@@ -15,14 +15,9 @@ class CartController extends Controller
 
 
     public function add( Request $request,Product $product): RedirectResponse
-{
-        
-    
-
-  
-
-    return redirect()->route('cart.addItem',compact('product'));
-}
+    {   
+        return redirect()->route('cart.addItem',compact('product'));
+    }
 
 
 
