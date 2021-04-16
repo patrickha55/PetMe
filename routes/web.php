@@ -140,7 +140,7 @@ Route::middleware(['auth'])->group(function () {
     /*
      * Cart
     */
-Route::get('/cart/{product}/addotcart','CartController@addItem')->name('cart.addItem');
+    Route::get('/cart/{product}/addotcart','CartController@addItem')->name('cart.addItem');
     Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
     Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
     Route::get('/cart/{product}/plusQuantity', 'CartController@updatePlusCart')->name('cart.plus');

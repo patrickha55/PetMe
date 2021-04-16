@@ -31,38 +31,45 @@ class HomeController extends Controller
     }
 
     public function home(){
+
+        /*
+        * Kiem tra user hien dang co cart nao trong trang thai active (1),
+        * neu co thi lay thong tin cart ve va them vao session 
+        */
+
         if(Auth::check()){
       
-            $cartcount = Cart::all()->where('user_id',auth()->user()->id)->count();
+            $cart = Cart::where('user_id',auth()->id())->where('status', 1)->first();
         
-         
-            if($cartcount>0){
-                $cartId =Cart::all()->where('user_id',auth()->user()->id)->first()->id;  
-                $cartItems = CartDetail::all()->where('cart_id',$cartId);
-
             
-         
-                \Cart::session(auth()->user()->id)->clear();
-                foreach($cartItems as $item){
-                    $product_id =$item->product_id;  
-                    $prod = Product::find($product_id);
-                  
+            if(isset($cart)){ 
 
-                
-          
-                    $cartItems =   \Cart::session(auth()->user()->id)->add(array(
-                        'id' => $prod->id,
-                        'name' => $prod->name,
-                        'price' => $prod->price,
-                        'quantity' => 1,
+                // Lay tat ca cart items trong $cart
+
+                $cartItems = CartDetail::where('cart_id', $cart->id)->where('status', 1)->get();
+
+                // Tao cart moi trong session
+         
+                \Cart::session(auth()->id())->clear();
+
+                foreach($cartItems as $item){
+                     
+                    $product = Product::find($item->product_id);
+                  
+                    /*  Tao item moi trong cart tren session */      
+
+                    \Cart::session(auth()->user()->id)->add(array(
+                        'id' => $product->id,
+                        'name' => $product->name,
+                        'price' => $product->price,
+                        'quantity' => $item->quantity,
                         'attributes' => array(),
-                        'associatedModel' => $prod,
+                        'associatedModel' => $product,
                     )); 
-                        
-                    
                 }
             }
-        }
+         
+            
 
         $products = Product::paginate(5);
 
@@ -97,7 +104,15 @@ class HomeController extends Controller
         $userReviewsForRating = $product->userReviews()->where('status', 'approved')->get();
         $userReviews = $product->userReviews()->where('status', 'approved')->orderByDesc('created_at')->paginate(2);
         
-        // Tinh % rating theo tung muc rating
+        /* foreach($userReviews as $review){
+            $comments = \App\Comment::where('product_review_id', 4)->get();
+        dd($comments); 
+        } */
+               
+
+
+
+        // dd($userReviews);
 
         $countFive = $countFour = $countThree = $countTwo = $count= 0;
         $one = $two = $three = $four = $five = 0;
@@ -122,19 +137,19 @@ class HomeController extends Controller
         }
 
         if ($countFive != 0){
-            $five = $countFive ;
+            $five = 100 / $countFive ;
         }
 
         if ($countFour != 0){
-            $four = $countFour;
+            $four = 100 / $countFour;
         }
 
         if ($countThree != 0){
-            $three = $countThree;
+            $three = 100 / $countThree;
         }
 
         if ($countTwo != 0){
-            $two = $countTwo;
+            $two = 100 / $countTwo;
         }
 
         if ($count != 0){
