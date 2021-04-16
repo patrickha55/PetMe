@@ -24,7 +24,6 @@ class CreateCartDetailsTable extends Migration
 
             $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->unique(['cart_id','product_id'], 'cart_product_id_unique');
         });
     }
 

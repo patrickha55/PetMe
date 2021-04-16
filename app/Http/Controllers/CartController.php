@@ -80,15 +80,30 @@ class CartController extends Controller
 
     public function updateCart(Request $request, Product $product)
     {
+        //Kiem tra so luong nguoi dung nhap vao co nhieu hon so luong ton kho
+
         if ($request->quantity > $product->stock){
             return redirect()->back()->with('status', 'There are not enough items in our inventory. Sorry!');
         } else {
+
+            //Neu stock du thi thay doi so luong quantity
+
             \Cart::session(auth()->id())->update($product->id, array(
                 'quantity' => array(
                     'relative' => false,
                     'value' => $request->quantity,
                 ),
             ));
+
+            //Cap nhap quantity trong cart detail table
+            $cartId = Cart::find(auth()->id())->id;
+            $quantity = \Cart::session(auth()->id())->getContent()->where('id',$product->id)->first()->quantity ; 
+
+            CartDetail::where([
+                'cart_id' => $cartId,
+                'product_id' => $product->id,
+                'status' => 1
+            ])->update(['quantity' => $quantity]);
 
             return redirect()->back()->with('success', 'Item updated successfully!');
         }
@@ -98,15 +113,23 @@ class CartController extends Controller
 
     public function updatePlusCart(Product $product)
     {
-        $cartId = Cart::where('user_id',auth()->user()->id)->first()->id;
+        $cartId = Cart::find(auth()->id())->id;
     
-    
+        // Lay cart id va update quantity +1 cho cart tren session
    
         \Cart::session(auth()->id())->update($product->id, array(
             'quantity' => +1,
         ));
-       $quantity = \Cart::session(auth()->id())->getContent()->where('id',$product->id)->first()->quantity ; 
-      CartDetail::where('cart_id',$cartId)->where('product_id',$product->id)->update(['quantity' => $quantity]);;
+
+        //Cap nhap quantity trong cart detail table
+        
+        $quantity = \Cart::session(auth()->id())->getContent()->where('id',$product->id)->first()->quantity ; 
+
+        CartDetail::where([
+            'cart_id' => $cartId,
+            'product_id' => $product->id,
+            'status' => 1
+        ])->update(['quantity' => $quantity]);
       
       return redirect()->back();
 
@@ -114,16 +137,23 @@ class CartController extends Controller
 
     public function updateMinusCart(Product $product)
     {   
+        // Lay cart id va update quantity -1 cho cart tren session
+
         $cartId = Cart::where('user_id',auth()->user()->id)->first()->id;
         \Cart::session(auth()->id())->update($product->id, array(
          'quantity' => -1,
         ));  
 
-        $quantity = \Cart::session(auth()->id())->getContent()->where('id',$product->id)->first()->quantity ; 
-        CartDetail::where('cart_id',$cartId)->where('product_id',$product->id)->update(['quantity' => $quantity]);;
+        //Cap nhap quantity trong cart detail table
 
-   
-        
+        $quantity = \Cart::session(auth()->id())->getContent()->where('id',$product->id)->first()->quantity ; 
+
+        CartDetail::where([
+            'cart_id' => $cartId,
+            'product_id' => $product->id,
+            'status' => 1
+        ])->update(['quantity' => $quantity]);
+
         return redirect()->back();
     }
 
@@ -148,15 +178,24 @@ class CartController extends Controller
 
     public function destroyCartItem(Product $product)
     {
+        //Lay cartid va chuyen status cua cart detail co product_id bang voi id cua product o param = 0
+
         $cartId = Cart::where('user_id',auth()->user()->id)->first()->id;
    
-      CartDetail::where('cart_id',$cartId)->where('product_id',$product->id)->delete();
+        CartDetail::where('cart_id',$cartId)->where('product_id',$product->id)->update([
+            'status' => 0
+        ]);
+
+        //Xoa product khoi cart session
+
         \Cart::session(auth()->id())->remove($product->id);
         // CartDetail::where('cart_id',auth())
         return redirect()->back();
     }
 
-     public function index()
+    // Hien thi thong tin tat ca sp trong cart session
+
+    public function index()
     {
         $cartItems = \Cart::session(auth()->id())->getContent();
         $subTotal = $total = 0;

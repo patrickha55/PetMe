@@ -11,7 +11,7 @@ class Cart extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['user_id','note'];
+    protected $fillable = ['user_id','note', 'status'];
 
     public function user(): BelongsTo
     {
