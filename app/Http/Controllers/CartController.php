@@ -45,15 +45,28 @@ class CartController extends Controller
 
         // Update hoac tao cart details moi
 
-        CartDetail::updateOrCreate([
+        $cartDetail = CartDetail::where([
             'cart_id' => $cart->id,
-            'product_id' => $product->id, 
-            'status' => 1,
-        ],
-        [
-            'quantity' => CartDetail::where(['cart_id' => $cart->id, 'product_id' => $product->id, 'status' => 1])->first()->quantity + 1,
-            'price'=>$product->price,
-        ]);
+            'product_id' => $product->id,
+            'status' => 1
+        ])->first();
+
+
+        if(isset($cartDetail)){
+            $cartDetail->update([
+                'quantity' => $cartDetail->quantity + 1,
+                'price' => $product->price
+            ]);
+        } else {
+            CartDetail::create([
+                'cart_id' => $cart->id,
+                'product_id' => $product->id, 
+                'status' => 1,
+                'quantity' => 1,
+                'price' => $product->price,
+            ]);
+        }
+        
     }
 
         return redirect()->back()->with('addToCart', 'Item added to cart');

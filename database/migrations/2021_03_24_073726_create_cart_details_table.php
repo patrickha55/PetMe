@@ -14,17 +14,17 @@ class CreateCartDetailsTable extends Migration
     public function up()
     {
         Schema::create('cart_details', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('cart_id');
             $table->unsignedBigInteger('product_id');
             $table->double('price');
             $table->integer('quantity');
-            $table->tinyInteger('active')->default(1);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
 
             $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-
-            $table->primary(['cart_id','product_id']);
+            $table->unique(['cart_id','product_id'], 'cart_product_id_unique');
         });
     }
 

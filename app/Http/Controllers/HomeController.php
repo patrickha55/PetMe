@@ -30,8 +30,8 @@ class HomeController extends Controller
         ]);
     }
 
-    public function home(){
-
+    public function home()
+    {
         /*
         * Kiem tra user hien dang co cart nao trong trang thai active (1),
         * neu co thi lay thong tin cart ve va them vao session 
@@ -68,8 +68,7 @@ class HomeController extends Controller
                     )); 
                 }
             }
-         
-            
+        } 
 
         $products = Product::paginate(5);
 
