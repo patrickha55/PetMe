@@ -60,7 +60,9 @@ class HomeController extends Controller
                     )); 
                         
                     
-                }}}
+                }
+            }
+        }
 
         $products = Product::paginate(5);
 
