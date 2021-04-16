@@ -35,86 +35,86 @@ class OrderController extends Controller
     {
         return view('cart.orderSuccess');
             
-    //     $request->validate([
-    //         'address' => 'required',
-    //         'ward' => 'required',
-    //         'district' => 'required',
-    //         'city' => 'required',
-    //         // 'shipping_phone' => 'required',
-    //         // 'shipping_zipcode' => 'required',
-    //         // 'payment_method' => 'required',
-    //     ]);
-    //    //$orderDetail = new Order_Details();
-    //     $order = new Order();
+        $request->validate([
+            'address' => 'required',
+            'ward' => 'required',
+            'district' => 'required',
+            'city' => 'required',
+            // 'shipping_phone' => 'required',
+            // 'shipping_zipcode' => 'required',
+            // 'payment_method' => 'required',
+        ]);
+       //$orderDetail = new Order_Details();
+        $order = new Order();
 
-    //     // $order->order_number = uniqid('OrderNumber-');
-    //    //order -> product 
+        // $order->order_number = uniqid('OrderNumber-');
+       //order -> product 
 
-    //     $order->ward = $request->input('ward');
+        $order->ward = $request->input('ward');
             
-    //     $order->district = $request->input('district');
-    //     $order->address = $request->input('address');
-    //     $order->city = $request->input('city');
-    //     // $order->shipping_state = $request->input('shipping_state');
-    //     // $order->shipping_city = $request->input('shipping_city');
-    //     // $order->shipping_address = $request->input('shipping_address');
-    //     // $order->shipping_phone = $request->input('shipping_phone');
-    //     // $order->shipping_zipcode = $request->input('shipping_zipcode');
+        $order->district = $request->input('district');
+        $order->address = $request->input('address');
+        $order->city = $request->input('city');
+        // $order->shipping_state = $request->input('shipping_state');
+        // $order->shipping_city = $request->input('shipping_city');
+        // $order->shipping_address = $request->input('shipping_address');
+        // $order->shipping_phone = $request->input('shipping_phone');
+        // $order->shipping_zipcode = $request->input('shipping_zipcode');
 
-    //     // if(!$request->has('billing_fullname')) {
-    //     //     $order->billing_fullname = $request->input('shipping_fullname');
-    //     //     $order->billing_state = $request->input('shipping_state');
-    //     //     $order->billing_city = $request->input('shipping_city');
-    //     //     $order->billing_address = $request->input('shipping_address');
-    //     //     $order->billing_phone = $request->input('shipping_phone');
-    //     //     $order->billing_zipcode = $request->input('shipping_zipcode');
-    //     // }else {
-    //     //     $order->billing_fullname = $request->input('billing_fullname');
-    //     //     $order->billing_state = $request->input('billing_state');
-    //     //     $order->billing_city = $request->input('billing_city');
-    //     //     $order->billing_address = $request->input('billing_address');
-    //     //     $order->billing_phone = $request->input('billing_phone');
-    //     //     $order->billing_zipcode = $request->input('billing_zipcode');
-    //     // }
+        // if(!$request->has('billing_fullname')) {
+        //     $order->billing_fullname = $request->input('shipping_fullname');
+        //     $order->billing_state = $request->input('shipping_state');
+        //     $order->billing_city = $request->input('shipping_city');
+        //     $order->billing_address = $request->input('shipping_address');
+        //     $order->billing_phone = $request->input('shipping_phone');
+        //     $order->billing_zipcode = $request->input('shipping_zipcode');
+        // }else {
+        //     $order->billing_fullname = $request->input('billing_fullname');
+        //     $order->billing_state = $request->input('billing_state');
+        //     $order->billing_city = $request->input('billing_city');
+        //     $order->billing_address = $request->input('billing_address');
+        //     $order->billing_phone = $request->input('billing_phone');
+        //     $order->billing_zipcode = $request->input('billing_zipcode');
+        // }
 
 
-    //     $order->total_price = \Cart::session(auth()->id())->getTotal();
+        $order->total_price = \Cart::session(auth()->id())->getTotal();
        
-    // //    $str = "";
+    //    $str = "";
    
-    // //       $cartItems = \Cart::session(auth()->id())->getContent();
-    // //     foreach($cartItems as $item) {
-    // //        // $orderDetail->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
-    // //         $str +=  [$item->name] ;    
-    // //     }
+    //       $cartItems = \Cart::session(auth()->id())->getContent();
+    //     foreach($cartItems as $item) {
+    //        // $orderDetail->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
+    //         $str +=  [$item->name] ;    
+    //     }
    
-    //    $order->products = \Cart::session(auth()->id())->getContent();
+       $order->products = \Cart::session(auth()->id())->getContent();
 
-    //     $order->user_id = auth()->id();
+        $order->user_id = auth()->id();
 
-    //     // if (request('payment_method') == 'paypal') {
-    //     //     $order->payment_method = 'paypal';
-    //     // }
+        // if (request('payment_method') == 'paypal') {
+        //     $order->payment_method = 'paypal';
+        // }
 
-    //     $order->save();
+        $order->save();
 
-    //     // $cartItems = \Cart::session(auth()->id())->getContent();
+        // $cartItems = \Cart::session(auth()->id())->getContent();
 
-    //     // foreach($cartItems as $item) {
-    //     //     $order->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
-    //     // }
+        // foreach($cartItems as $item) {
+        //     $order->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
+        // }
 
-    //     // $order->generateSubOrders();
+        // $order->generateSubOrders();
 
-    //     // if (request('payment_method') == 'paypal') {
+        // if (request('payment_method') == 'paypal') {
 
-    //     //     return redirect()->route('paypal.checkout', $order->id);
+        //     return redirect()->route('paypal.checkout', $order->id);
 
-    //     // }
+        // }
 
-    //     \Cart::session(auth()->id())->clear();
+        \Cart::session(auth()->id())->clear();
 
-    //     return redirect()->route('home')->withMessage('Order has been placed');
+        return redirect()->route('home')->withMessage('Order has been placed');
 
     }
 

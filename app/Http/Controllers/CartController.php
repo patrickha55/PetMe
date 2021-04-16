@@ -4,30 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Product;
+use App\CartDetail;
 use App\AnimalCategory;
 use App\ProductCategory;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class CartController extends Controller
 {
 
 
-    public function add(Product $product): RedirectResponse
-    {
-       // add the product to cart
-        \Cart::session(auth()->id())->add(array(
-            'id' => $product->id,
-            'name' => $product->name,
-            'description'=> $product->description,
-            'price' => $product->price,
-            'quantity' => 1,
-            'attributes' => array(),
-            'associatedModel' => $product
-        ));
+    public function add( Request $request,Product $product): RedirectResponse
+{
+        
+    
 
-         return redirect()->back()->with('addToCart', 'Item added to cart');
-    }
+  
+
+    return redirect()->route('cart.addItem',compact('product'));
+}
+
+
+
+
+
+//dd(Cart::all()->where('user_id',auth()->user()->id)->first());
+//    dd((Cart::all()->where('user_id',auth()->user()->id) )) ;    
+//    if(count(Cart::all()->where('user_id',auth()->user()->id))){
+
+//    }
+
+
+   
 
     public function updateCart(Request $request, Product $product)
     {
@@ -45,11 +53,14 @@ class CartController extends Controller
         }
     }
 
+  
+
     public function updatePlusCart(Product $product)
     {
         \Cart::session(auth()->id())->update($product->id, array(
             'quantity' => 1,
         ));
+        
 
         return redirect()->back();
 
@@ -68,15 +79,21 @@ class CartController extends Controller
 
     public function checkout()
     {
-
+        $cartItems = \Cart::session(auth()->id())->getContent();
+        $total =0 ;
+        foreach($cartItems as $item){
+        $total += $item->getPriceSum();
+        }
         $categories = AnimalCategory::all();
         $subCat = ProductCategory::all();
-
+    
         return view('cart.checkout')->with([
-
             'categories'=>$categories,
             'subCat'=>$subCat,
-        ]);
+             'cartItems'=>$cartItems,
+             'total'=>$total,
+            ]);
+            
     }
 
     public function destroyCartItem(Product $product)
@@ -130,7 +147,7 @@ class CartController extends Controller
      */
     public function show(Cart $cart)
     {
-        //
+        
     }
 
     /**

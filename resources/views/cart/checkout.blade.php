@@ -3,10 +3,12 @@
 
 @section('content')
 
-@php $user = auth()->user();
- @endphp
-   
-@php 
+@php
+ $user = auth()->user();
+ 
+//   dd($total);
+
+
 
  $firstName = auth()->user()->firstName ;
  $lastName = auth()->user()->lastName ;
@@ -73,24 +75,9 @@
                 <div class="col-md-4 border-bottom-1 mt-3 mb-3">
                     {{ $user->userName }}
                 </div>
-                <div class="col-md-2 border-bottom-1 mt-3 mb-3">
-                    Email :
-                </div>
-                <div class="col-md-4 border-bottom-1 mt-3 mb-3">
-                    {{ $user->email }}
-                </div>
-                <div class="col-md-2 border-bottom-1 mt-3 mb-3" >
-                    Birthday :
-                </div>
-                <div class="col-md-4 border-bottom-1 mt-3 mb-3">
-                    {{ $user->dob }}
-                </div>
-                <div class="col-md-2 border-bottom-1 mt-3 mb-3">
-                    Gender :
-                </div>
-                <div class="col-md-4 border-bottom-1 mt-3 mb-3">
-                    {{ $user->gender }}
-                </div>
+              
+                
+             
                 <div class="col-md-4 border-bottom-1 mt-3 mb-3" >
                     Phone Number :
                 </div>
@@ -165,15 +152,11 @@
       </div>
       <div class="col-12">
         <div class="well well-lg clearfix ">
-         <form action="{{ route('order.store') }}" method="post">
-            @csrf
-             <button type="submit" class="btn btn-success  rounded">Order</button>
-         </form>
+        
         </div>
       </div>
 
 </div>
-{{--Modal--}}
 
     {{-- <div class="modal-dialog modal-quickview-width" role="document">
         <div class="modal-content">
@@ -231,26 +214,49 @@
 <div class="col-md-4 mt-100 mb-100 mr-auto ml-auto">
     <div class="summery-box" style="border:3px solid #f0f0f0;padding:20px;">
         <h4>Order Summery</h4>
-        <p>Excepteur sint occaecat cupidat non proi dent sunt.officia.</p>
+       <table class="table">
+           <thead>
+               <tr>
+                   <th>Name</th>
+                   <th>quantity</th>
+                   <th>price</th>
+                   <th>total</th>
+               </tr>
+           </thead>
+           <tbody>
+          @foreach($cartItems as $item)
+            <tr>
+                   <td scope="row">{{ $item->name }}</td>
+                   <td>{{ $item->quantity }}</td>
+                   <td>{{ $item->price }}</td>
+                   <td>{{ $item->getPriceSum() }}</td>
+               </tr>
+          @endforeach 
+       </table>
+      
+
+       <div class="border-top my-auto">
         <ul class="list-unstyled">
           <li class="d-flex justify-content-between">
             <span class="tag">Subtotal</span>
-            <span class="val">$237.00</span>
+            <span class="val"></span>
           </li>
           <li class="d-flex justify-content-between">
             <span class="tag">Shipping &amp; Handling</span>
             <span class="val">$12.00 </span>
           </li>
-          <li class="d-flex justify-content-between">
-            <span class="tag">Estimated Tax</span>
-            <span class="val">$0.00 </span>
-          </li>
+        
           <li class="d-flex justify-content-between">
             <span class="tag">Total</span>
-            <span class="val">USD  $249.00 </span>
+            <span class="val">USD {{ $total }} </span>
           </li>
         </ul>
+    </div>
+    
       </div>
+      <button type="button" class="btn btn-success px-4 py-10 rounded mt-5 ml-150">Order</button> 
+   
+  
 </div>
 </div>
 

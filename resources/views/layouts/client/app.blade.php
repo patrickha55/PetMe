@@ -21,22 +21,19 @@
     <link rel="stylesheet" href="/assets/css/bundle.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
-<<<<<<< HEAD
-<<<<<<< HEAD
-    @livewireStyles
-=======
 
->>>>>>> main
-=======
+
+
     @livewireStyles
->>>>>>> main
+
     @yield('style')
     <script src="/assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
     <header>
-    <div class="header-top-wrapper-2 border-bottom-2">
+     
+        <div class="header-top-wrapper-2 border-bottom-2">
             <div class="header-info-wrapper pl-200 pr-200">
                 <div class="header-contact-info">
                     <ul>

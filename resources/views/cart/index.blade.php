@@ -1,14 +1,18 @@
 @extends('layouts.client.appWithoutCategory')
 
 @section('content')
-    <div class="w-75 row m-auto" style="margin-top: 50px; margin-bottom: 200px;">
+@php 
+// dd($cartItems->first());
+@endphp 
+<div class="w-75 row m-auto" style="margin-top: 50px; margin-bottom: 200px;">
         <h1 class="text-center font-weight-bold col-12 mt-2 mb-5">
             {{ auth()->user()->userName }}'s Cart
         </h1>
-        @if(count($cartItems))
+        @if($cartItems->count()>0)
             <div class="col-9">
                 @foreach($cartItems as $cartItem)
-                    <div class="card mb-3 shadow-lg p-3 mb-5 bg-white rounded">
+       
+                <div class="card mb-3 shadow-lg p-3 mb-5 bg-white rounded">
                         <div class="card-body row">
                             <img src="/storage/Image/product/{{ $cartItem->associatedModel->img }}"  height="200px" width="80px" alt="" class="col-2">
                             <div class="col-7 m-auto">

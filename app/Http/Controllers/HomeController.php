@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Product;
 use App\Category;
+use App\CartDetail;
+use App\ProductReview;
 use App\AnimalCategory;
 use App\ProductCategory;
-use App\ProductReview;
-use \Illuminate\Contracts\Support\Renderable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
+use \Illuminate\Contracts\Support\Renderable;
 
 class HomeController extends Controller
 {
@@ -29,7 +32,10 @@ class HomeController extends Controller
                 $productWithHighRating->put($product->id, $rating/$count);
             }
         } */
+      
+     
 
+        //
         $products = Product::paginate(20);
 
         $categories = AnimalCategory::all();
@@ -43,6 +49,37 @@ class HomeController extends Controller
     }
 
     public function home(){
+        if(Auth::check()){
+      
+            $cartcount = Cart::all()->where('user_id',auth()->user()->id)->count();
+        
+         
+            if($cartcount>0){
+                $cartId =Cart::all()->where('user_id',auth()->user()->id)->first()->id;  
+                $cartItems = CartDetail::all()->where('cart_id',$cartId);
+
+            
+         
+                \Cart::session(auth()->user()->id)->clear();
+                foreach($cartItems as $item){
+                    $product_id =$item->product_id;  
+                    $prod = Product::find($product_id);
+                  
+
+                
+          
+                    $cartItems =   \Cart::session(auth()->user()->id)->add(array(
+                        'id' => $prod->id,
+                        'name' => $prod->name,
+                        'price' => $prod->price,
+                        'quantity' => 1,
+                        'attributes' => array(),
+                        'associatedModel' => $prod,
+                    )); 
+                        
+                    
+                }}}
+        // dd($cartItems->getContent()->count());
         $totalRate = $productWithHighRating = collect([
             ['id' => '', 'avg' => '']
         ]);
@@ -143,7 +180,7 @@ class HomeController extends Controller
         if ($count != 0){
             $one = 100 / $count;
         }
-        
+       
         return view('product.show',compact('product',$product))->with([
             'products'=>$products,
             'categories'=>$categories,
