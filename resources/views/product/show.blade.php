@@ -119,14 +119,29 @@
     <!-- related product area start -->
     @include('product._related-product')
     </div>
+
+    
 @endsection
 
 @section('script')
 
     {{-- Hien status tra ve tu route --}}
 
-    <script>
-        $( "#statusSession" ).fadeIn( 500 ).delay( 2000 ).fadeOut( 500 );
+    <script type="text/javascript">
+
+        $(function(){
+            $( "#statusSession" ).fadeIn( 500 ).delay( 2000 ).fadeOut( 500 );
+
+            $('#productModal').on('show.bs.modal', function(e) {
+                var link     = e.relatedTarget(),
+                    modal    = $(this),
+                    name = link.data("target-name"),
+                    price    = link.data("target-price");
+
+                modal.find("#price").val(price);
+                modal.find("#name").val(name);
+            });
+        })
     </script>
 
 @endsection
