@@ -8,11 +8,12 @@
             </h1>
             <div class="col-9">
                 <div class="card mb-3 shadow-lg p-3 mb-5 bg-white rounded">
+                    @foreach ($cartItems as $item)
                     <div class="card-body row">
                         <img src="/storage/Image/product/cat/dry/kitten-chicken-and-turkey.png"  height="200px" width="80px" alt="" class="col-2">
                         <div class="col-7 m-auto">
                             <a href="#">
-                                <h3>Kitten Chicken and Turkey</h3>
+                                <h3>{{$item->name}}</h3>
                             </a>
                             <a href="#">
                                 <h4>Whiskas</h4>
@@ -70,4 +71,5 @@
             </div>
         </div>
     </div>
+    @endforeach
 @endsection

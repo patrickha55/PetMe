@@ -14,7 +14,7 @@ class CartController extends Controller
        // add the product to cart
         \Cart::session(auth()->id())->add(array(
             'id' => $product->id,
-            'name' => $product->name,
+            'name' => '$product->name',
             'description'=> $product->description,
             'price' => $product->price,
             'quantity' => 1,
