@@ -53,6 +53,12 @@
             <p>User's Wishlist</p>
         </a>
     </li>
+    <li class="nav-item ">
+        <a class="nav-link" href="{{ route('reviews.index') }}">
+            <i class="material-icons">rate_review</i>
+            <p>User's Reviews</p>
+        </a>
+    </li>
 <!--    <li class="nav-item ">
         <a class="nav-link" href="./icons.html">
             <i class="material-icons">bubble_chart</i>

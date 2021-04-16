@@ -161,7 +161,9 @@
 <!--Content COntact us-->
 <body>
 	<div class="container-contact100">
-		<div class="contact100-map" id="google_map" data-map-x="40.722047" data-map-y="-73.986422" data-pin="images/icons/map-marker.png" data-scrollwhell="0" data-draggable="1"></div>
+		<div class="contact100-map" id="" style="background: url('https://wallpaperaccess.com/full/1447306.jpg')")>
+        
+        </div>
 
 		<button class="contact100-btn-show">
 			<i class="fa fa-envelope-o" aria-hidden="true"></i>

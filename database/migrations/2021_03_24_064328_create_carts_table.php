@@ -17,13 +17,6 @@ class CreateCartsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->text('note')->nullable();
-            $table->string('guest_name')->nullable();
-            $table->string('email')->unique()->nullable();
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
-            $table->string('ward')->nullable();
-            $table->string('district')->nullable();
-            $table->string('city')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

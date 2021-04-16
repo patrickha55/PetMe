@@ -39,6 +39,30 @@ class Product extends Model
             ->withPivot('quantity');
     }
 
+    public function userReviews(): BelongsToMany
+    {
+        return $this->belongsToMany('App\User',
+            'product_reviews'
+        )->withTimestamps()->as('pivot')->withPivot('title', 'rating', 'content', 'id');
+    }
+
+    public function userFavorites(): BelongsToMany
+    {
+        return $this->belongsToMany('App\User', 'favorites')
+            ->withTimestamps();
+    }
+
+    public function usersDetail(): BelongsToMany
+    {
+        return $this->belongsToMany('App\User', 'order_details')
+        ->withTimestamps()
+        ->withPivot(['price', 'quantity']);
+    }
+
+    public function isProductInUserWishlist(){
+        return $this->userFavorites()->where('user_id', auth()->id())->exists();
+    }
+
     /*
      * Upload img cho form tao product
     */
@@ -52,27 +76,10 @@ class Product extends Model
         $extension = $request->file('img')->getClientOriginalExtension();
         // File de luu
         // Lay chu dau tien trong cau
-        $category = explode(' ', trim(strtolower($request->category)));
+        $category = explode(' ', trim(strtolower(\App\ProductCategory::find($request->category_id)->name)));
 
-        $fileNameToStore = strtolower($request->animal) . '/' . $category[0] . '/' . $fileName . '_' . time() . '.' . $extension;
+        $fileNameToStore = strtolower(\App\Product::find($request->animal_id)->name) . '/' . $category[0] . '/' . $fileName . '_' . time() . '.' . $extension;
         // Upload image
         return $fileNameToStore;
-    }
-
-    public function userReviews(): BelongsToMany
-    {
-        return $this->belongsToMany('App\User',
-            'product_reviews'
-        )->withTimestamps()->as('pivot')->withPivot('title', 'rating', 'content');
-    }
-
-    public function userFavorites(): BelongsToMany
-    {
-        return $this->belongsToMany('App\User', 'favorites')
-            ->withTimestamps();
-    }
-
-    public function isProductInUserWishlist(){
-        return $this->userFavorites()->where('user_id', auth()->id())->exists();
     }
 }

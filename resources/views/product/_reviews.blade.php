@@ -30,7 +30,8 @@
                     </a>
                 @endif
                 <a href="#pro-review" data-toggle="tab" role="tab" aria-selected="false">
-                    Reviews ({{ $product->userReviews->count() }})
+                    {{-- Dem so luong review --}}
+                    Reviews ({{ $product->userReviews()->where('status', 'approved')->count() }})
                 </a>
             </div>
             <div class="description-review-text tab-content">
@@ -97,10 +98,8 @@
                 </div>
                 <div class="tab-pane fade" id="pro-review" role="tabpanel">
                     <link rel="stylesheet" href="/css/app.css">
-                    @if ($product->userReviews->count() == 0)
-                        <a href="#" title="Write Review" data-toggle="modal" data-target="#reviewModal"> 
-                            Be the first to write your review!
-                        </a>
+                    @if ($product->userReviews()->where('status', 'approved')->count() == 0)
+                        <h4 class="text-center p-3">There is no review for this product.</h4>
                     @else
                         <div class="row">
                             <div class="col-4">
@@ -109,21 +108,56 @@
                             <div class="col-8 mt-5">
                                 @foreach($userReviews as $review)
                                     <div class="border-b">
-                                        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b">
                                             <dt class="text-sm">
-                                                <p class="text-sm font-black">{{ $review->userName }} - {{ $review->pivot->created_at->toDayDateTimeString() }}</p>
-                                                <p>Reviews wrote: {{ \App\User::find( $review->id)->reviews->count() }}</p>
+                                                <div class="h4">{{ $review->userName }} <span class="text-sm text-gray-500"> - {{ $review->pivot->created_at->toDayDateTimeString() }}</span></div>
+                                                <p>Reviews wrote: {{ \App\User::find($review->id)->reviews->count() }}</p>
                                             </dt>
                                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                <p class="text-lg font-black">{{ $review->pivot->title }}</p>
+                                                <p class="text-lg font-semibold">{{ $review->pivot->title }}</p>
                                                 <p>{{ $review->pivot->rating }}</p>
                                                 <p>{{ $review->pivot->content }}</p>
                                             </dd>
                                         </div>
-                                        <div class="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <form action="" method="post">
-                                                <button type="submit">Reply</button>
-                                            </form>
+                                        <div class="px-4 py-2 row">
+                                            <div class="col-2 text-right">
+                                                <button id="displayReply" class="">Reply</button>
+                                            </div>
+                                            <div class="col-10" id="reply">
+                                                <div class='block'>
+                                                    <form action="{{ route('comment.store', $review->pivot->id) }}"  method="post" class="form-inline w-100">
+                                                        @csrf
+                                                        <div class="form-group w-100 mb-2" >
+                                                          <textarea class="form-control rounded" style="width: 100%;" name="body" id="body" rows="1"></textarea>
+                                                        </div>
+                                                        <div class="mb-2 flex">
+                                                            <div id="cancelReply" class="btn-sm btn-dark cursor-pointer mr-2">Cancel</div>
+                                                            <button type="submit" class="btn-sm btn-dark">Reply</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pl-2 py-2 row">
+                                            <div class="col-4">
+                                                <button id="displayComments">Show Replies</button>
+                                            </div>
+                                            <div class="col-8" id="comments">
+                                                <div class='row'>
+                                                    @php
+                                                        $comments = \App\Comment::where('product_review_id', $review->pivot->id)->get();
+                                                    @endphp
+                                                    @foreach($comments as $comment)
+                                                        <div class="col-2 mb-2">
+                                                            <img src="/storage/Image/noimage.jpg" alt="" width="70%">
+                                                        </div>
+                                                        <div class="col-10 mb-2 text-left block">
+                                                            <div class="h5">{{ \App\User::find($comment->user_id)->userName }} <span class="text-sm text-gray-500">{{ $comment->created_at->diffForHumans() }}</span></div>
+                                                            <div class="text-left">&#64;{{ $review->userName }} &nbsp; {{ $comment->body }}</div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach
@@ -132,9 +166,9 @@
                         </div>
                     @endif
                 </div>
-                
+
                 {{-- Review --}}
-                <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-hidden="true" >
+                <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria="true" >
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span class="pe-7s-close" aria-hidden="true"></span>
                     </button>
@@ -156,12 +190,12 @@
                                         </div>
                                         <div class="form-group col-12">
                                             <h3 class="h3">Rate this product</h3>
-                                            <div class="ratings pt-2 pb-2" id="ratings"> 
-                                                <i class="far fa-star fa-2x"></i> 
-                                                <i class="far fa-star fa-2x"></i> 
+                                            <div class="ratings pt-2 pb-2" id="ratings">
                                                 <i class="far fa-star fa-2x"></i>
-                                                <i class="far fa-star fa-2x"></i> 
-                                                <i class="far fa-star fa-2x"></i> 
+                                                <i class="far fa-star fa-2x"></i>
+                                                <i class="far fa-star fa-2x"></i>
+                                                <i class="far fa-star fa-2x"></i>
+                                                <i class="far fa-star fa-2x"></i>
                                             </div>
                                         </div>
                                         <div class="form-group col-12">
@@ -183,14 +217,41 @@
 </div>
 
 @section('script')
+
+    
+
     <script src="https://kit.fontawesome.com/c4201aab66.js" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function(){
+            {{-- Hien thong so luong rating ra ngoi sao --}}
+
             $('.ratings i').click(function() {
-            $('.ratings > i').removeClass('far');
-            $(this).addClass('fas');
-            $('.form').css('display', 'block');
-            })
+                $('.ratings > i').removeClass('far');
+                $(this).addClass('fas');
+                $('.form').css('display', 'block');
+            });
+
+            {{-- Hien tat hoac an commet form va comment --}}
+
+            /* $('#displayReply').click(function(){
+                $('#reply').removeClass('hidden');
+            });
+
+            $('#cancelReply').click(function(){
+                $('#reply').addClass('hidden');
+            });
+
+            let click = 0;
+
+            $('#displayComments').click(function(){
+                if(click == 0){
+                    $('#comments').removeClass('hidden');
+                    click++;
+                } else {
+                    $('#comments').addClass('hidden');
+                    click = 0;
+                }
+            }); */
         });
     </script>
 @endsection

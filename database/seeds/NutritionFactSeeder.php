@@ -1,5 +1,6 @@
 <?php
 
+use App\NutritionFact;
 use Illuminate\Database\Seeder;
 
 class NutritionFactSeeder extends Seeder
@@ -11,22 +12,90 @@ class NutritionFactSeeder extends Seeder
      */
     public function run()
     {
-    //  'serving_size', 'calories', 'protein','fat_content','total_carbonhydrate','sugar','crude_ash','crude_fiber','calcium','vitamin_A','moisture'
+        
+        $products = [
+            //Animal
+        // id   name   status 
+         
+    
+// `nutrition_facts` (`id`, `product_detail_id`, `serving_size`, `calories`, `protein`, `fat_content`, `total_carbohydrate`, `sugar`, `crude_ash`, `crude_fiber`, `calcium`, `vitamin_A`, `moisture`
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','9'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','2'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','4'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','4'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','5'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','6'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','7'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','8'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','9'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','10'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','11'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','12'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','13'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','14'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','15'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','16'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','17'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','18'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','19'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','20'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','21'],
+
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','22'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','23'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','24'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','25'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','26'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','27'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','28'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','29'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','30'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','31'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','32'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','33'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','34'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','35'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','36'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','37'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','38'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','39'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','40'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','41'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','42'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','43'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','44'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','45'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','46'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','47'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','48'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','49'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','50'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','39'],
+        ['200', '300 ', '1200 g', '200', '900', '50', NULL, NULL, 'dd', NULL, '3','39'],
    
-  
-            // $products = [
-            //     [1,'Dog', 1],
-            //     [2,'Cat', 1],
-            
-             
-            // ];
-            // foreach ($products as $pr) {
-            //     CartDetail::create([
-            //        'id'=>$pr[0],
-            //         'name' => $pr[1],
-            //         'status' => $pr[2],
-                  
-            //     ]);
-            // }   
+        
+        
+         
+        ];
+        foreach ($products as $pr) {
+            NutritionFact::create([
+           
+                
+                'serving_size' => $pr[0],
+                'calories' => $pr[1],
+                'protein' => $pr[2],
+                'fat_content' => $pr[3],
+                'total_carbohydrate' => $pr[4],
+                'sugar' => $pr[5],
+                'crude_ash' => $pr[6],
+                'crude_fiber' => $pr[7],
+                'calcium' => $pr[8],
+                'vitamin_A' => $pr[9],
+                'moisture' => $pr[10],
+                'product_detail_id' => $pr[11],
+              
+              
+            ]);
+        }
     }
 }

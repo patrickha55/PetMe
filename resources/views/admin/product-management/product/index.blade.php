@@ -26,7 +26,7 @@
                                 <table class="table table-hover text-center">
                                     <thead class="">
                                         <tr>
-                                            <th>ID</th> <th>Name</th> <th>Brand</th> <th>Description</th> <th>Price</th> <th>Stock</th> <th>Image</th> <th>Function</th>
+                                            <th>ID</th> <th>Name</th> <th>Brand</th> <th>Description</th> <th>Price</th> <th>Stock</th> <th>Image</th> <th colspan="2">Function</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -43,19 +43,15 @@
                                                 <th>
                                                     <img src="/storage/Image/product/{{ $product->img }}" alt="Whiskas Chicken & Turkey" width="50" height="auto">
                                                 </th>
-                                                <th class="mx-auto w-7" >
-                                                    <div class="row">
-                                                        <div class="">
-                                                            <a class="" href="{{ route('product.edit', $product) }}" style="font-size: 10px;">Edit</a>
-                                                        </div>
-                                                        <div class="">
-                                                            <form action="{{ route('product.destroy', $product) }}" method="post">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn-sm btn-danger" style=" font-size: 10px;">Delete</button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
+                                                <th>
+                                                    <a class="" href="{{ route('product.edit', $product) }}"><i title="Edit" class="fas fa-edit"></i></a>
+                                                </th>
+                                                <th>
+                                                    <form action="{{ route('product.destroy', $product) }}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit"><i title="Delete" class="fas fa-trash"></i></button>
+                                                    </form>
                                                 </th>
                                             </tr>
                                         @endforeach 

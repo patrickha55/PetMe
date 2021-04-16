@@ -37,6 +37,8 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
     Route::get('/statistic', 'DashboardController@statistic')->name('admin.statistic');
 
     Route::prefix('user-management')->group(function (){
+        Route::get('users/{user}/ban', 'UserController@ban')->name('users.ban');
+        Route::get('users/{user}/unban', 'UserController@unban')->name('users.unban');
         Route::resource('/users','UserController');
         Route::resource('/admins', 'AdminController');
     });
@@ -44,20 +46,43 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
     Route::resource('/wishlists', 'AdminFavoriteController');
 
     Route::resource('/orders', 'AdminOrderController');
+
+    Route::patch('/reviews/{user_id}/product/{product_id}', 'ProductReviewController@update')->name('reviews.update');
+    Route::delete('/reviews/{user_id}/product/{product_id}', 'ProductReviewController@destroy')->name('reviews.destroy');
+    Route::resource('/reviews', 'ProductReviewController')->except(['update', 'destroy']);
 });
 
 Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
     Route::group(['prefix' => 'product-management'], function () {
 
+        /*
+        * Supplier and Category 
+        */
+
         Route::resource('/supplier', 'SupplierController');
 
-        Route::get('/category/createSubCategory', 'CategoryController@createSubCategory');
-        Route::resource('/category', 'CategoryController');
+        //category.index
+        Route::get('/category', 'CategoryController')->name('category.index');
+
+        Route::resource('/productCategory', 'ProductCategoryController')->except([
+            'index'
+        ]);
+
+        Route::resource('/animalCategory', 'AnimalCategoryController')->except([
+            'index'
+        ]);
+
+        /*
+        * Product
+        */
+
+        Route::get('product_categories/get_by_category', 'ProductController@get_by_category')->name('admin.product_categories.get_by_category');
 
         Route::resource('/product', 'ProductController');
-        Route::get('/store-locations', function(){
-            return view('admin.location.index');
-        })->name('admin.store-location');
+
+        // Route::get('/store-locations', function(){
+        //     return view('admin.location.index');
+        // })->name('admin.store-location');
     });
 });
 
@@ -77,14 +102,20 @@ Route::get('/about', function(){
     return view('user.about');
 });
 
+//Compare product
+Route::get('/compare/{product}', 'User\CompareController@store')->name('compare.store');
+Route::get('/compare/{product}/delete', 'User\CompareController@destroy')->name('compare.destroy');
+Route::resource('/compare', 'User\CompareController')->only('index');
+
 //@endGuest ------
 
 //@User ------
 
 Route::group(['middleware'=>'auth', 'namespace'=>'User'], function () {
-    Route::get('/user/edit_password', 'UserController@editPassword')->name('user.editPassword');
-    Route::resource('/user', 'UserController');
+    Route::get('/user/edit_password', 'UserController@editPassword')->middleware(['auth', 'password.confirm'])->name('user.editPassword');
+
     Route::resource('/user/address', 'AddressController');
+    Route::resource('/user', 'UserController');
 });
 
 Route::group(['namespace' => 'Auth'], function(){
@@ -95,26 +126,40 @@ Route::group(['namespace' => 'Auth'], function(){
     Route::post('/logout', 'LoginController@logout');
 });
 
-// Review
-Route::resource('/product/{product}/review', 'ProductReviewController');
-
-//Cart and Order
 Route::middleware(['auth'])->group(function () {
+    // Review
+    Route::get('/my-reviews', 'ProductReviewController@index')->name('review.index');
+    Route::resource('/product/{product}/review', 'ProductReviewController')->except('index');
 
-    Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout');
+    //Comment
+    Route::prefix('comment')->group(function(){
+        Route::post('/{product_review_id}', 'CommentController@store')->name('comment.store');
+        Route::resource('/', 'CommentController')->only('index');
+    });
+
+    /*
+     * Cart
+    */
+
+    Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
     Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
+    Route::get('/cart/{product}/plusQuantity', 'CartController@updatePlusCart')->name('cart.plus');
+    Route::get('/cart/{product}/minusQuantity', 'CartController@updateMinusCart')->name('cart.minus');
+    Route::post('/cart/{product}/updateCart', 'CartController@updateCart')->name('cart.updateCart');
+    Route::get('/cart/{product}/destroyItem', 'CartController@destroyCartItem')->name('cart.deleteItem');
     Route::resource('/cart', 'CartController');
+
+    /*
+     * Order
+     */
     Route::resource('/order',  'OrderController');
     Route::get('/add-to-wishlist/{product}','FavoriteController@store')->name('wishlist.store');
-    Route::post('/wishlist/{product_id}/{user_id}', 'FavoriteController@delete')->name('wishlist.delete');
+    Route::delete('/wishlist/{product_id}/{user_id}', 'FavoriteController@delete')->name('wishlist.delete');
     Route::resource('/wishlist', 'FavoriteController')->except('store');
 });
+
+
 //@endUser  ------
 
-
-//Ngan check route
-Route::get('/compare', function() {
-    return view('product.compare');
-});
 
 

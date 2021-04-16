@@ -16,19 +16,34 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
+        <style>
+            .fas {
+                color: black;
+            }
+
+            #statusSession{
+            position:absolute;
+            bottom:20px;
+            right:20px;
+            z-index:10;
+            }
+        </style>  
+
         <!-- CSS Files -->
             <!--Tailwind-->
             <link rel="stylesheet" href="{{ asset('/css/app.css') }}"/>
             {{--Bootstrap 4--}}
             <link href="{{ asset('/css/admin.css') }}" rel="stylesheet"/>
+
         @yield('style')  
-        <style>
-            .fas {
-                color: black;
-            }
-        </style>  
+        
     </head>
     <body>
+    @if (session('status'))
+        <div class="alert alert-success" id="statusSession">
+            {{ session('status') }}
+        </div>
+    @endif
     <div id="app">
         <div class="wrapper ">
             <div class="sidebar" data-color="orange" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
@@ -63,6 +78,7 @@
     </div>
     <!--   Core JS Files   -->
     <script src="{{ asset('/js/core/jquery.min.js') }}"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script> --}}
     <script src="{{ asset('/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('/js/core/bootstrap-material-design.min.js') }}"></script>
     <script src="{{ asset('/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
@@ -287,9 +303,15 @@
           // Javascript method's body can be found in assets/js/demos.js
           demo.initGoogleMaps();
         });
-      </script>
+    </script>
 <!--    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>-->
+
+    {{-- Hien thi session message --}}
+
+    <script>
+        $( "#statusSession" ).fadeIn( 500 ).delay( 2000 ).fadeOut( 500 );
+    </script>
     @yield('script')
     </body>
 </html>

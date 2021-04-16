@@ -1,94 +1,199 @@
 @extends('layouts.client.appWithoutCategory')
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-<style>
-    .stock-green {
-        color: green;
-    }
-</style>
+
+@section('head')
+    <style>
+        #statusSession{
+            position:absolute;
+            bottom:20px;
+            right:20px;
+            z-index:10;
+        }
+    </style>
+@endsection
+
 @section('content')
-<div id="page-content">
-    <br>
-    <div class="page-title text-center"><h2 class="font-weight-bold">Compare Product</h2></div>
-    <br>
-    <div class="container">
-    <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
-    <div class="compare-page compare-page2">
-    <div class="table-wrapper table-responsive">
-    <table class="table">
-    <thead style="background-color: #fff;">
-    <tr class="th-compare">
-        <td class="item-row" valign="middle">
-            <div class="grid-link__title font-weight-bold">TIN TUNA FILLET (CATS) 156g
-                <button type="button" class="remove-compare"><i class="fas fa-times" aria-hidden="true"></i></button>
-            </div>
-            <div class="item-row"><img src="assets/img/product/catfood1.jpg" alt="" class="featured-image"></div>
-        </td>
-        <td class="item-row">
-            <div class="grid-link__title font-weight-bold">TUNA WHOLE MEAT WITH SALMON IN JELLY 85g
-                <button type="button" class="remove-compare"><i class="fas fa-times" aria-hidden="true"></i></button>
-            </div>
-            <div class="item-row"><img src="assets/img/product/catfood2.jpg" alt="" class="featured-image"></div>
-        </td>
-    </tr>
-    </thead>
-    <tbody id="table-compare">
-        <tr>
-            <th>Price</th>
-            <th>Price</th>
-        </tr>
-        <tr>
-            <td class="item-row" valign="middle">
-                <div class="product-price product_price"><span>70,000VND</span></div>
-            </td>
-            <td class="item-row">
-                <div class="product-price product_price"><span>20,000VND</span></div>
-            </td>
-        </tr>
-        <tr>
-            <th>Product Description</th>
-            <th>Product Description</th>
-        </tr>
-        <tr>
-            <td class="item-row" valign="middle">
-                <p class="description-compare">Each tin contains limited ingredients, using only the highest quality, human-grade tuna fillet with completely natural ingredients. Tuna is caught fresh from the sea using dolphin-friendly methods.</p>
-            </td>
-            <td class="item-row">
-                <p class="description-compare">Tuna whole meat with salmon in jelly recipe. It contains taurine to support heart and eye health.</p>
-            </td>
-        </tr>
-        <tr>
-            <th>Availability</th>
-            <th>Availability</th>
-        </tr>
-        <tr>
-        <td class="available-stock" valign="middle">
-            <p class="stock-green">In stock</p>
-        </td>
-        <td class="available-stock">
-            <p class="stock-green">In stock</p>
-        </td>
-        </tr>
-        <tr>
-        <td valign="middle" align="center">
-            <form class="variants clearfix">
-            <input type="hidden">
-            <button title="Add to Cart" class="add-to-cart btn btn-solid">Add to Cart</button>
-            </form>
-        </td>
-        <td valign="middle" align="center">
-            <form class="variants clearfix">
-            <input type="hidden">
-            <button title="Add to Cart" class="add-to-cart btn btn-solid">Add to Cart</button>
-            </form>
-        </td>
-        </tr>
-    </tbody>
-    </table>
+    <!--Content-->
+    @if(session('status'))
+        <div id="statusSession" class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+    <h2 class="text-center my-5 font-weight-bold">
+        Products Comparison
+    </h2>
+    <div class="mx-auto mb-100" style="width: 90%;">
+        <div class="row m-auto">
+            @foreach ($results as $product)
+                <div class="col-3 shadow bg-white rounded mx-auto px-5 pb-5">
+                    <div class="py-4 my-5 text-center border-bottom-1">
+                        <h4 class="font-weight-bold">{{ $product->name }}</h4>
+                    </div>
+                    <div class="product-details-5 mb-4 ">
+                        @if (!empty($product->img))
+                            <img class="" src="/storage/Image/product/{{ $product->img }}" alt="{{ $product->name }}"
+                                width="50%">
+                        @else
+                            <img class="" src="/storage/Image/product/noimage.jpg" alt="{{ $product->name }}">
+                        @endif
+                    </div>
+
+                    <div class="product-details-content">
+                        <h3>Brand: {{ $product->supplier->name }}</h3>
+                        <div class="rating-number pt-4 pb-4">
+                            @php
+                                $rating = \App\ProductReview::where('product_id', $product->id)->avg('rating');
+                            @endphp
+                            @for ($i = 0; $i < 5; $i++)
+                                @if (floor($rating) - $i >= 1) <i class="fas
+                                fa-star fa-2x" style="color: #facf2c"></i>
+                            @elseif($rating -$i > 0)
+                                <i class="fas fa-star-half fa-2x" style="color:
+                                #facf2c"></i>
+                            @else
+                                <i class="far fa-star fa-2x"></i> @endif
+                            @endfor
+                        </div>
+                        <div class="details-price">
+                            <span>@currency($product->price) VNĐ</span>
+                        </div>
+                        <div class="mt-2 mb-2">
+                            @if ($product->stock > 10)
+                                <p class="text-success">Available</p>
+                            @elseif($product->stock <= 10 && $product->stock > 1)
+                                    <p class="text-danger">Only {{ $product->stock }} lefts</p>
+                                @elseif($product->stock == 1)
+                                    <p class="text-danger">Only 1 left</p>
+                                @else
+                                    <p class="text-danger">Out of stock. Please come back later.</p>
+                            @endif
+                        </div>
+                        <div class="product-description-review">
+                            <div class="mb-4 border-b h6">
+
+                                {{-- Description --}}
+
+                                <div class="" id="pro-dec" role="tabpanel">
+                                    <h4 class="font-weight-bold" dec">
+                                        Description
+                                    </h4>
+                                    <div>
+                                        <p> {{ $product->description }}</p>
+                                    </div>
+                                </div>
+
+                                {{-- ingredient --}}
+
+                                @if ($product->detail->ingredients)
+                                    <div id="ingredient" role="tabpanel">
+                                        <h4 class="font-weight-bold">
+                                            Ingedients
+                                        </h4>
+                                        <p>
+                                            {{ $product->detail->ingredients }}
+                                        </p>
+                                    </div>
+
+                                    {{-- Nutrition --}}
+
+                                    <div>
+                                        <h4 class="font-weight-bold">
+                                            Nutrient Facts
+                                        </h4>
+                                        <div class="" id="nutrient" role="tabpanel">
+                                            <table class="table table-striped table-dark">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" colspan="2" class="bg-dark">Nutrition Facts</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">Serving Size</th>
+                                                        <td>{{ $product->detail->nutritionFact->serving_size }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Calories</th>
+                                                        <td>{{ $product->detail->nutritionFact->calories }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Protein</th>
+                                                        <td>{{ $product->detail->nutritionFact->protein }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Fat Content</th>
+                                                        <td>{{ $product->detail->nutritionFact->fat_content }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Crude Fiber</th>
+                                                        <td>{{ $product->detail->nutritionFact->crude_fiber }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Total Carbohydrate</th>
+                                                        <td>{{ $product->detail->nutritionFact->total_carbohydrate }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Sugar</th>
+                                                        <td>{{ $product->detail->nutritionFact->sugar }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Crude Ash</th>
+                                                        <td>{{ $product->detail->nutritionFact->crude_ash }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Calcium</th>
+                                                        <td>{{ $product->detail->nutritionFact->calcium }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Vitamin A</th>
+                                                        <td>{{ $product->detail->nutritionFact->vitamin_A }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Moisture</th>
+                                                        <td>{{ $product->detail->nutritionFact->moisture }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div>
+                                        <h4>
+                                            Materials
+                                        </h4>
+                                        <div>
+                                            <p>
+                                                {{ $product->detail->ingredients }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-6 m-auto  btn rounded btn-dark">
+                                <a class="uppercase text-white" href="{{ route('cart.add', $product) }}">add to cart</a>
+                            </div>
+                            <div class="col-4 m-auto  btn rounded btn-dark">
+                                <a class="uppercase text-white" href="{{ route('compare.destroy', $product) }}">Remove</a>
+                            </div>
+                            <div class="col-10 mx-auto mt-10  btn rounded btn-dark">
+                                <a class="uppercase text-white" href="">Buy Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    @endsection
+@endsection
+
+@section('script')
+
+    {{-- Hien status tra ve tu route --}}
+
+    <script>
+        $( "#statusSession" ).fadeIn( 500 ).delay( 2000 ).fadeOut( 500 );
+    </script>
+
+@endsection
