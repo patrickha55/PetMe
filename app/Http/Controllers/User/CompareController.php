@@ -41,23 +41,21 @@ class CompareController extends Controller
      */
     public function store(Product $product)
     {
-        if(!auth()->user()){
-            if(count(session()->all()) >= 6){
-                return redirect()->back()->with('status', 'Maximum products for comparison are 3. Please remove a product before adding another product.');
-            } else {
-                session()->put('product' . $product->id, $product);
+        $resultSession = preg_grep('/^product[\d]*/', array_keys(session()->all()));
+        $results = collect([]);
 
-                return redirect()->back()->with('status', 'Product ' . $product->name . ' added to compare page.');
-            }
-        } else {
-            if(count(session()->all()) >= 8){
-                return redirect()->back()->with('status', 'Maximum products for comparison are 3. Please remove a product before adding another product.');
-            } else {
-                session()->put('product' . $product->id, $product);
-
-                return redirect()->back()->with('status', 'Product ' . $product->name . ' added to compare page.');
-            }
+        foreach ($resultSession as $result){
+            $results->push(session()->get($result));
         }
+        
+        if(count($results) >= 3){
+            return redirect()->back()->with('status', 'Maximum products for comparison are 3. Please remove a product before adding another product.');
+        } else {
+            session()->put('product' . $product->id, $product);
+
+            return redirect()->back()->with('status', 'Product ' . $product->name . ' added to compare page.');
+        }
+        
     }
 
     /**

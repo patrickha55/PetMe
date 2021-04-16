@@ -1,20 +1,19 @@
 <div class="mx-auto bg-white shadow-lg rounded-lg my-32 px-4 py-4 max-w-sm ">
-    <div class="mb-1 tracking-wide px-4 py-4" >
-        <div class="rating-number pt-4 pb-4 m-auto">
+    <div class="mb-1 tracking-wide px-4 py-4">
+        <div class="rating-number pt-4 pb-4 m-auto" >
             @php
                 $rating = \App\ProductReview::where('product_id', $product->id)->avg('rating');
             @endphp
-            @for($i = 0; $i < 5; $i++)
-                @if(floor($rating) - $i >= 1)
-                    <i class="fas fa-star fa-2x m-auto" style="color: #facf2c"></i>
-                @elseif($rating -$i > 0)
-                    <i class="fas fa-star-half fa-2x m-auto" style="color: #facf2c"></i>
-                @else
-                    <i class="far fa-star fa-2x m-auto"></i>
-                @endif
+            @for ($i = 0; $i < 5; $i++)
+                @if (floor($rating) - $i >= 1) 
+                <i class="fas fa-star fa-2x m-auto" style="color: #facf2c"></i>
+            @elseif($rating -$i > 0)
+                <i class="fas fa-star-half fa-2x m-auto" style="color: #facf2c"></i>
+            @else
+                <i class="far fa-star fa-2x m-auto"></i> @endif
             @endfor
         </div>
-        <h2 class="text-gray-800 font-semibold mt-1">{{ $product->userReviews->count() }} Reviewed</h2>
+        <h2 class="text-gray-800 font-semibold my-1">{{ round($rating, 2) }} - {{ $product->userReviews->count() }} Reviewed</h2>
         <div class="-mx-8 px-8 pb-3">
             <div class="flex items-center mt-1">
                 <div class=" w-1/5 text-indigo-500 tracking-tighter">
@@ -22,11 +21,15 @@
                 </div>
                 <div class="w-3/5">
                     <div class="bg-gray-300 w-full rounded-lg h-2">
-                        <div class="bg-indigo-600 rounded-lg h-2" style="width: {{ $five }}%;"></div>
+                        @if ($five != 0)
+                            <div class="bg-indigo-600 rounded-lg h-2" style="width: {{ ($five / $product->userReviews->count()) * 100 }}%;"></div>
+                        @else
+                            <div class="bg-indigo-600 rounded-lg h-2" style="width: 0%;"></div>
+                        @endif
                     </div>
                 </div>
                 <div class="w-1/5 text-gray-700 pl-3">
-                    <span class="text-sm">{{ $five }}%</span>
+                    <span class="text-sm">{{ $five }}</span>
                 </div>
             </div><!-- first -->
             <div class="flex items-center mt-1">
@@ -35,11 +38,15 @@
                 </div>
                 <div class="w-3/5">
                     <div class="bg-gray-300 w-full rounded-lg h-2">
-                        <div class="bg-indigo-600 rounded-lg h-2" style="width: {{ $four }}%;"></div>
+                        @if ($four != 0)
+                            <div class="bg-indigo-600 rounded-lg h-2" style="width: {{ ($four / $product->userReviews->count()) * 100 }}%;"></div>
+                        @else
+                            <div class="bg-indigo-600 rounded-lg h-2" style="width: 0%;"></div>
+                        @endif
                     </div>
                 </div>
                 <div class="w-1/5 text-gray-700 pl-3">
-                    <span class="text-sm">{{ $four }}%</span>
+                    <span class="text-sm">{{ $four }}</span>
                 </div>
             </div><!-- second -->
             <div class="flex items-center mt-1">
@@ -48,11 +55,16 @@
                 </div>
                 <div class="w-3/5">
                     <div class="bg-gray-300 w-full rounded-lg h-2">
-                        <div class="bg-indigo-600 rounded-lg h-2" style="width: {{ $three }}%;"></div>
+                        @if ($three != 0)
+                            <div class="bg-indigo-600 rounded-lg h-2"
+                                style="width: {{ ($three / $product->userReviews->count()) * 100 }}%;"></div>
+                        @else
+                            <div class="bg-indigo-600 rounded-lg h-2" style="width: 0%;"></div>
+                        @endif
                     </div>
                 </div>
                 <div class="w-1/5 text-gray-700 pl-3">
-                    <span class="text-sm">{{ $three }}%</span>
+                    <span class="text-sm">{{ $three }}</span>
                 </div>
             </div><!-- third -->
             <div class="flex items-center mt-1">
@@ -61,11 +73,15 @@
                 </div>
                 <div class="w-3/5">
                     <div class="bg-gray-300 w-full rounded-lg h-2">
-                        <div class="bg-indigo-600 rounded-lg h-2" style="width: {{ $two }}%;"></div>
+                        @if($two != 0)
+                            <div class="bg-indigo-600 rounded-lg h-2" style="width: {{ ($two / $product->userReviews->count()) * 100 }}%;"></div>
+                        @else
+                            <div class="bg-indigo-600 rounded-lg h-2" style="width: 0%;"></div>
+                        @endif
                     </div>
                 </div>
                 <div class="w-1/5 text-gray-700 pl-3">
-                    <span class="text-sm">{{ $two }}%</span>
+                    <span class="text-sm">{{ $two }}</span>
                 </div>
             </div><!-- 4th -->
             <div class="flex items-center mt-1">
@@ -74,11 +90,15 @@
                 </div>
                 <div class="w-3/5">
                     <div class="bg-gray-300 w-full rounded-lg h-2">
-                        <div class="bg-indigo-600 rounded-lg h-2" style="width: {{ $one }}%;"></div>
+                        @if($one != 0)
+                            <div class="bg-indigo-600 rounded-lg h-2" style="width: {{ ($one / $product->userReviews->count()) * 100 }}%;"></div>
+                        @else
+                            <div class="bg-indigo-600 rounded-lg h-2" style="width: 0%;"></div>
+                        @endif
                     </div>
                 </div>
                 <div class="w-1/5 text-gray-700 pl-3">
-                    <span class="text-sm">{{ $one }}%</span>
+                    <span class="text-sm">{{ $one }}</span>
                 </div>
             </div><!-- 5th -->
         </div>

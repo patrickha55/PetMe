@@ -53,7 +53,7 @@
                                             <th>
                                                 Status
                                             </th>
-                                            <th>
+                                            <th colspan="2">
                                                 Function
                                             </th>
                                         </tr>
@@ -73,7 +73,16 @@
                                                 <th>{{ $admin->phoneNumber }}</th>
                                                 <th>{{ $admin->active }}</th>
                                                 <th>
-                                                  <a class="btn-sm btn-warning " href="{{ route('admins.edit', $admin) }}">Update</a>
+                                                  <a href="{{ route('admins.edit', $admin) }}"><i title="Edit" class="fas fa-edit"></i></a>
+                                                </th>
+                                                <th>
+                                                    <form action="" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit">
+                                                            <a class=""><i title="Delete" class="fas fa-trash"></i></a>
+                                                        </button>
+                                                    </form>
                                                 </th>
                                             </tr>
                                         @endforeach

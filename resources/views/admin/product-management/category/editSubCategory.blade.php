@@ -5,26 +5,34 @@
         <div class="container-fluid">
             <div class="w-full bg-white rounded shadow-lg p-8 m-4l">
                 <h2 class="text-center">Edit Sub Category</h2>
-                <form class="row g-3" action="{{ url('/admin/user-management/users') }}" method="POST">
+                <form class="row g-3" action="{{ route('productCategory.store') }}" method="POST">
                     @csrf
                     <div class="col-6 col-md-6">
-                        <label name="firstName" for="firstName" class="form-label font-semibold text-gray-500">Sub
-                            Category Name</label>
-                        <input type="text" class="form-control @error('firstName') border-red-500 @enderror" id="firstName" name="firstName">
-                        @error('firstName')
-                        <div class="text-sm text-danger mt-2">
-                            {{ $message }}
-                        </div>
-                        @enderror
+                        <label for="category" class="form-label font-semibold text-gray-500">Category</label>
+                        <select class="form-control @error('category') border-red-500 @enderror"" name="category_id" id="category">
+                            <option value="">Please Select</option>
+                            @foreach ($categories as $category)
+                                @if ($category->id == $productCategory->id)
+                                    <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                                @else
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                        @error('category')
+                            <div class="text-sm text-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror   
                     </div>
                     <div class="col-6 col-md-6">
-                        <label name="firstName" for="firstName" class="form-label font-semibold text-gray-500">Category
-                            Name</label>
-                        <input type="text" class="form-control @error('firstName') border-red-500 @enderror" id="firstName" name="firstName">
-                        @error('firstName')
-                        <div class="text-sm text-danger mt-2">
-                            {{ $message }}
-                        </div>
+                        <label name="name" for="name" class="form-label font-semibold text-gray-500">Sub
+                            Category Name</label>
+                        <input type="text" class="form-control @error('name') border-red-500 @enderror" id="name" name="name" value="{{ $productCategory->name }}">
+                        @error('name')
+                            <div class="text-sm text-danger mt-2">
+                                {{ $message }}
+                            </div>
                         @enderror
                     </div>
                     <div class="col-12">

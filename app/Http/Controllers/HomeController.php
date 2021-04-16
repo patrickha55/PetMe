@@ -18,24 +18,6 @@ class HomeController extends Controller
 {
     public function index(): Renderable
     {
-        // $totalRate = $productWithHighRating = collect([]);
-        /* $productsForRating = Product::has('userReviews')->get();
-
-        foreach ($productsForRating as $product){
-            $rating = $count = 0;
-            foreach ($product->userReviews as $review ){
-                $rating += ($review->pivot->rating);
-                $count++;
-            }
-            $totalRate->put('product' ,[$product->id, $rating/$count]);
-            if ($rating/$count > 4){
-                $productWithHighRating->put($product->id, $rating/$count);
-            }
-        } */
-      
-     
-
-        //
         $products = Product::paginate(20);
 
         $categories = AnimalCategory::all();
@@ -79,24 +61,8 @@ class HomeController extends Controller
                         
                     
                 }}}
-        // dd($cartItems->getContent()->count());
-        $totalRate = $productWithHighRating = collect([
-            ['id' => '', 'avg' => '']
-        ]);
 
         $products = Product::paginate(5);
-        /* $productsForRating = Product::has('userReviews')->get();
-        foreach ($productsForRating as $product){
-            $rating = $count = 0;
-            foreach ($product->userReviews as $review ){
-                $rating += ($review->pivot->rating);
-                $count++;
-            }
-            $totalRate->put($product->id, $rating/$count);
-            if ($rating/$count > 4){
-                $productWithHighRating->put($product->id, $rating/$count);
-            }
-        } */
 
         $topProducts = Product::whereHas('userReviews', function(Builder $query){
             $query->where('rating', '>', '3');
@@ -129,15 +95,7 @@ class HomeController extends Controller
         $userReviewsForRating = $product->userReviews()->where('status', 'approved')->get();
         $userReviews = $product->userReviews()->where('status', 'approved')->orderByDesc('created_at')->paginate(2);
         
-        /* foreach($userReviews as $review){
-            $comments = \App\Comment::where('product_review_id', 4)->get();
-        dd($comments); 
-        } */
-               
-
-
-
-        // dd($userReviews);
+        // Tinh % rating theo tung muc rating
 
         $countFive = $countFour = $countThree = $countTwo = $count= 0;
         $one = $two = $three = $four = $five = 0;
@@ -162,25 +120,25 @@ class HomeController extends Controller
         }
 
         if ($countFive != 0){
-            $five = 100 / $countFive ;
+            $five = $countFive ;
         }
 
         if ($countFour != 0){
-            $four = 100 / $countFour;
+            $four = $countFour;
         }
 
         if ($countThree != 0){
-            $three = 100 / $countThree;
+            $three = $countThree;
         }
 
         if ($countTwo != 0){
-            $two = 100 / $countTwo;
+            $two = $countTwo;
         }
 
         if ($count != 0){
-            $one = 100 / $count;
-        }
-       
+            $one = $count;
+        }            
+        
         return view('product.show',compact('product',$product))->with([
             'products'=>$products,
             'categories'=>$categories,
