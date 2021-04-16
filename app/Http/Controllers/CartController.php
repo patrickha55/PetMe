@@ -16,7 +16,18 @@ class CartController extends Controller
 
     public function add( Request $request,Product $product): RedirectResponse
     {   
-        return redirect()->route('cart.addItem',compact('product'));
+        // add the product to cart
+        \Cart::session(auth()->id())->add(array(
+            'id' => $product->id,
+            'name' => $product->name,
+            'description'=> $product->description,
+            'price' => $product->price,
+            'quantity' => 1,
+            'attributes' => array(),
+            'associatedModel' => $product
+        ));
+
+         return redirect()->back()->with('addToCart', 'Item added to cart');
     }
 
 
