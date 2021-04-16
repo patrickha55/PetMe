@@ -1,9 +1,7 @@
 @extends('layouts.client.appWithoutCategory')
 
 @section('content')
-@php 
-// dd($cartItems->first());
-@endphp 
+
 <div class="w-75 row m-auto" style="margin-top: 50px; margin-bottom: 200px;">
         <h1 class="text-center font-weight-bold col-12 mt-2 mb-5">
             {{ auth()->user()->userName }}'s Cart

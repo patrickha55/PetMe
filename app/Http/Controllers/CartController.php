@@ -8,6 +8,7 @@ use App\CartDetail;
 use App\AnimalCategory;
 use App\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 
 class CartController extends Controller
@@ -16,13 +17,56 @@ class CartController extends Controller
 
     public function add( Request $request,Product $product): RedirectResponse
 {
-        
-    
+ 
+// dd($product->id);        
+if(Auth::check()){
+      
+//   $cartcount = Cart::all()->where('user_id',auth()->user()->id)->count();
 
+ 
+
+       $cartId =Cart::all()->where('user_id',auth()->user()->id)->first()->id;  
+    //    dd($cartId);
+    //    $cartItems = CartDetail::all()->where('cart_id',$cartId);
+    CartDetail::create([
+        'cart_id'=>$cartId,
+        'product_id'=>$product->id, 
+        'quantity'=>1,
+        'active'=>1 ,
+        'price'=>$product->price,
+    ]);
+}
+
+ 
+       
+    
+          
+
+        \Cart::session(auth()->user()->id)->add(array(
+        
+  
+                'id' => $product->id,
+                'name' => $product->name,
+                'price' => $product->price,
+                'quantity' => 1,
+                'attributes' => array(),
+                'associatedModel' => $product,
+            )); 
+            
+                
+            
+        
+
+
+
+ 
+ 
+// $cartId  = Cart::where('user_id',auth()->user()->id);
+// dd($cartId->first()->id);
+    return redirect()->route('cart.index');
+}
   
 
-    return redirect()->route('cart.addItem',compact('product'));
-}
 
 
 
@@ -57,22 +101,30 @@ class CartController extends Controller
 
     public function updatePlusCart(Product $product)
     {
+        $cartId = Cart::where('user_id',auth()->user()->id)->first()->id;
+    
+    
+   
         \Cart::session(auth()->id())->update($product->id, array(
-            'quantity' => 1,
+            'quantity' => +1,
         ));
-        
-
-        return redirect()->back();
+       $quantity = \Cart::session(auth()->id())->getContent()->where('id',$product->id)->first()->quantity ; 
+      CartDetail::where('cart_id',$cartId)->where('product_id',$product->id)->update(['quantity' => $quantity]);;
+      
+      return redirect()->back();
 
     }
 
     public function updateMinusCart(Product $product)
     {   
-        // dd(\Cart::session()->);
-//        dd(\Cart::session(auth()->id())->getContent($product->id));
+        $cartId = Cart::where('user_id',auth()->user()->id)->first()->id;
         \Cart::session(auth()->id())->update($product->id, array(
-            'quantity' => -1,
-        ));
+         'quantity' => -1,
+));  
+$quantity = \Cart::session(auth()->id())->getContent()->where('id',$product->id)->first()->quantity ; 
+CartDetail::where('cart_id',$cartId)->where('product_id',$product->id)->update(['quantity' => $quantity]);;
+
+   
         
         return redirect()->back();
     }
@@ -98,8 +150,11 @@ class CartController extends Controller
 
     public function destroyCartItem(Product $product)
     {
+        $cartId = Cart::where('user_id',auth()->user()->id)->first()->id;
+   
+      CartDetail::where('cart_id',$cartId)->where('product_id',$product->id)->delete();
         \Cart::session(auth()->id())->remove($product->id);
-
+        // CartDetail::where('cart_id',auth())
         return redirect()->back();
     }
 

@@ -53,6 +53,11 @@ class HomeController extends Controller
       
             $cartcount = Cart::all()->where('user_id',auth()->user()->id)->count();
         
+            if($cartcount==0){
+                Cart::create([
+                    'user_id'=>auth()->user()->id,
+                ]);
+            };
          
             if($cartcount>0){
                 $cartId =Cart::all()->where('user_id',auth()->user()->id)->first()->id;  
@@ -72,7 +77,7 @@ class HomeController extends Controller
                         'id' => $prod->id,
                         'name' => $prod->name,
                         'price' => $prod->price,
-                        'quantity' => 1,
+                        'quantity' => $item->quantity,
                         'attributes' => array(),
                         'associatedModel' => $prod,
                     )); 
@@ -84,8 +89,19 @@ class HomeController extends Controller
             ['id' => '', 'avg' => '']
         ]);
 
-    public function home(){ 
         $products = Product::paginate(5);
+        /* $productsForRating = Product::has('userReviews')->get();
+        foreach ($productsForRating as $product){
+            $rating = $count = 0;
+            foreach ($product->userReviews as $review ){
+                $rating += ($review->pivot->rating);
+                $count++;
+            }
+            $totalRate->put($product->id, $rating/$count);
+            if ($rating/$count > 4){
+                $productWithHighRating->put($product->id, $rating/$count);
+            }
+        } */
 
         $topProducts = Product::whereHas('userReviews', function(Builder $query){
             $query->where('rating', '>', '3');
@@ -118,7 +134,15 @@ class HomeController extends Controller
         $userReviewsForRating = $product->userReviews()->where('status', 'approved')->get();
         $userReviews = $product->userReviews()->where('status', 'approved')->orderByDesc('created_at')->paginate(2);
         
-        // Tinh % rating theo tung muc rating
+        /* foreach($userReviews as $review){
+            $comments = \App\Comment::where('product_review_id', 4)->get();
+        dd($comments); 
+        } */
+               
+
+
+
+        // dd($userReviews);
 
         $countFive = $countFour = $countThree = $countTwo = $count= 0;
         $one = $two = $three = $four = $five = 0;
@@ -143,25 +167,25 @@ class HomeController extends Controller
         }
 
         if ($countFive != 0){
-            $five = $countFive ;
+            $five = 100 / $countFive ;
         }
 
         if ($countFour != 0){
-            $four = $countFour;
+            $four = 100 / $countFour;
         }
 
         if ($countThree != 0){
-            $three = $countThree;
+            $three = 100 / $countThree;
         }
 
         if ($countTwo != 0){
-            $two = $countTwo;
+            $two = 100 / $countTwo;
         }
 
         if ($count != 0){
-            $one = $count;
-        }            
-        
+            $one = 100 / $count;
+        }
+       
         return view('product.show',compact('product',$product))->with([
             'products'=>$products,
             'categories'=>$categories,

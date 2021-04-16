@@ -32,10 +32,6 @@
 
 <body>
     <header>
-<<<<<<< HEAD
-     
-=======
->>>>>>> main
         <div class="header-top-wrapper-2 border-bottom-2">
             <div class="header-info-wrapper pl-200 pr-200">
                 <div class="header-contact-info">
