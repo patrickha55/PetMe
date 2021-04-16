@@ -104,15 +104,7 @@ class HomeController extends Controller
         $userReviewsForRating = $product->userReviews()->where('status', 'approved')->get();
         $userReviews = $product->userReviews()->where('status', 'approved')->orderByDesc('created_at')->paginate(2);
         
-        /* foreach($userReviews as $review){
-            $comments = \App\Comment::where('product_review_id', 4)->get();
-        dd($comments); 
-        } */
-               
-
-
-
-        // dd($userReviews);
+        // Tinh % rating theo tung muc rating
 
         $countFive = $countFour = $countThree = $countTwo = $count= 0;
         $one = $two = $three = $four = $five = 0;
@@ -137,19 +129,19 @@ class HomeController extends Controller
         }
 
         if ($countFive != 0){
-            $five = 100 / $countFive ;
+            $five = $countFive ;
         }
 
         if ($countFour != 0){
-            $four = 100 / $countFour;
+            $four = $countFour;
         }
 
         if ($countThree != 0){
-            $three = 100 / $countThree;
+            $three = $countThree;
         }
 
         if ($countTwo != 0){
-            $two = 100 / $countTwo;
+            $two = $countTwo;
         }
 
         if ($count != 0){
@@ -168,7 +160,6 @@ class HomeController extends Controller
             'one' => $one,
             'userReviews' => $userReviews
         ]);
-
     }
 
     public function showFilterAnimalProducts(AnimalCategory $animal_category){
