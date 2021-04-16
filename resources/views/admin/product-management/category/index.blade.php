@@ -14,7 +14,7 @@
                             <p class="card-category text-dark ">Category Management</p>
                         </div>
                         <a type="button" class="btn btn-warning"
-                            href="{{ url('/admin/product-management/category/create') }}">Add a Category</a>
+                            href="{{ route('animalCategory.create') }}">Add a Category</a>
                     </div>
 
                     <div class="card-body">
@@ -44,7 +44,7 @@
                                     <tr>
                                         <th>{{ $category->id }}</th>
                                         <th>
-                                            <a class="text-yellow-700" href="{{ route('category.show', ['category' => $category]) }}">{{ $category->name }}</a>
+                                            <a class="text-yellow-700" href="">{{ $category->name }}</a>
                                         </th>
                                         <th>
                                             @foreach($category->productCategories as $proCat)
@@ -53,12 +53,14 @@
                                         </th>
                                         <th>{{ $category->status }}</th>
                                         <th>
-                                            <a class=""
-                                                href="{{ route('category.edit', $category) }}"><i class="fas fa-edit"></i></a>
+                                            <a class="" href="{{ route('animalCategory.edit', $category) }}"><i title="Edit" class="fas fa-edit"></i></a>
                                         </th>
                                         <th>
-                                            <a class=""
-                                                href=""><i class="fas fa-eye-slash"></i></a>
+                                            <form action="{{ route('animalCategory.destroy', $category) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit"><i title="Hide" class="fas fa-eye-slash"></i></button>
+                                            </form>
                                         </th>
                                     </tr>
                                 @endforeach
@@ -71,7 +73,7 @@
                             <p class="card-category text-dark ">Sub Category Management</p>
                         </div>
                         <a type="button" class="btn btn-warning"
-                           href="{{ url('admin/product-management/category/createSubCategory') }}">Add a Sub Category</a>
+                           href="{{ route('productCategory.create') }}">Add a Sub Category</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -100,7 +102,7 @@
                                     <tr>
                                         <th>{{ $subCategory->id }}</th>
                                         <th>
-                                            <a class="text-yellow-700" href="{{ route('category.show', ['category' => $category]) }}">{{ $subCategory->name }}</a>
+                                            <a class="text-yellow-700" href="">{{ $subCategory->name }}</a>
                                         </th>
                                         <th>
                                             @foreach($subCategory->products as $product)
@@ -109,12 +111,14 @@
                                         </th>
                                         <th>{{ $subCategory->status }}</th>
                                         <th>
-                                            <a class="" href="{{ url('/admins/product-management/product/{$Category}/edit') }}"><i class="fas fa-edit"></i></a>
+                                            <a class="" href="{{ route('productCategory.edit', $subCategory) }}"><i title="Edit" class="fas fa-edit"></i></a>
                                         </th>
                                         <th>
-                                            <a class="" href=""><i class="fas fa-eye-slash"></i></a>
-                                            <a class="btn-sm btn-warning "
-                                               href="{{ route('productCategory.edit', $subCategory) }}">Edit</a>
+                                            <form action="{{ route('productCategory.destroy', $subCategory) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit"><i title="Hide" class="fas fa-eye-slash"></i></button>
+                                            </form>
                                         </th>
                                     </tr>
                                 @endforeach

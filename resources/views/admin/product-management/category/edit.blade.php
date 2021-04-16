@@ -5,13 +5,13 @@
         <div class="container-fluid">
             <div class="w-full bg-white rounded shadow-lg p-8 m-4l">
                 <h2 class="text-center">Edit Category</h2>
-                <form class="row g-3" action="{{ url('/admin/user-management/users') }}" method="POST">
+                <form class="row g-3" action="{{ route('animalCategory.update',$category) }}" method="POST">
                     @csrf
                     <div class="col-8 col-md-8">
-                        <label name="firstName" for="firstName" class="form-label font-semibold text-gray-500">Category
+                        <label name="name" for="name" class="form-label font-semibold text-gray-500">Category
                             Name</label>
-                        <input type="text" class="form-control @error('firstName') border-red-500 @enderror" id="firstName" name="firstName">
-                        @error('firstName')
+                        <input type="text" class="form-control @error('name') border-red-500 @enderror" id="name" name="name" value={{ $category->name }}>
+                        @error('name')
                             <div class="text-sm text-danger mt-2">
                                 {{ $message }}
                             </div>

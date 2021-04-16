@@ -38,6 +38,7 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
 
     Route::prefix('user-management')->group(function (){
         Route::get('users/{user}/ban', 'UserController@ban')->name('users.ban');
+        Route::get('users/{user}/unban', 'UserController@unban')->name('users.unban');
         Route::resource('/users','UserController');
         Route::resource('/admins', 'AdminController');
     });
@@ -54,15 +55,26 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
 Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function () {
     Route::group(['prefix' => 'product-management'], function () {
 
+        /*
+        * Supplier and Category 
+        */
+
         Route::resource('/supplier', 'SupplierController');
 
-        Route::get('/category/createSubCategory', 'CategoryController@createSubCategory');
-        Route::resource('/productCategory', 'ProductCategoryController')->only([
-            'edit', 'destroy'
-        ]);
-        Route::resource('/category', 'CategoryController');
+        //category.index
+        Route::get('/category', 'CategoryController')->name('category.index');
 
-        // Product
+        Route::resource('/productCategory', 'ProductCategoryController')->except([
+            'index'
+        ]);
+
+        Route::resource('/animalCategory', 'AnimalCategoryController')->except([
+            'index'
+        ]);
+
+        /*
+        * Product
+        */
 
         Route::get('product_categories/get_by_category', 'ProductController@get_by_category')->name('admin.product_categories.get_by_category');
 
@@ -100,7 +112,7 @@ Route::resource('/compare', 'User\CompareController')->only('index');
 //@User ------
 
 Route::group(['middleware'=>'auth', 'namespace'=>'User'], function () {
-    Route::get('/user/edit_password', 'UserController@editPassword')->name('user.editPassword');
+    Route::get('/user/edit_password', 'UserController@editPassword')->middleware(['auth', 'password.confirm'])->name('user.editPassword');
 
     Route::resource('/user/address', 'AddressController');
     Route::resource('/user', 'UserController');

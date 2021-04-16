@@ -194,24 +194,24 @@ class ProductController extends Controller
         }
 
         if ($countFive != 0){
-            $five = 100 / $countFive ;
+            $five = $countFive ;
         }
 
         if ($countFour != 0){
-            $four = 100 / $countFour;
+            $four = $countFour;
         }
 
         if ($countThree != 0){
-            $three = 100 / $countThree;
+            $three = $countThree;
         }
 
         if ($countTwo != 0){
-            $two = 100 / $countTwo;
+            $two = $countTwo;
         }
 
         if ($count != 0){
-            $one = 100 / $count;
-        }
+            $one = $count;
+        }    
 
         return view('admin.product-management.product.show', [
             'product' => $product,
