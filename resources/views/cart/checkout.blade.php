@@ -254,8 +254,11 @@
     </div>
     
       </div>
-      <button type="button" class="btn btn-success px-4 py-10 rounded mt-5 ml-150">Order</button> 
-   
+     <form action="{{ route('order.store') }}" method="POST">
+        @csrf 
+      <button type="submit"   class="btn btn-success px-4 py-10 rounded mt-5 ml-150">Order</button> 
+    </form>
+      
   
 </div>
 </div>

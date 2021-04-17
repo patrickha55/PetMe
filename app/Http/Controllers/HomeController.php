@@ -36,10 +36,12 @@ class HomeController extends Controller
         * Kiem tra user hien dang co cart nao trong trang thai active (1),
         * neu co thi lay thong tin cart ve va them vao session 
         */
-
+       
         if(Auth::check()){
       
             $cart = Cart::where('user_id',auth()->id())->where('status', 1)->first();
+          
+            // dd(\Cart::session(auth()->id())->getContent());
             if(isset($cart)){ 
 
                 // Lay tat ca cart items trong $cart
@@ -49,7 +51,7 @@ class HomeController extends Controller
                 // Tao cart moi trong session
          
                 \Cart::session(auth()->id())->clear();
-
+               
                 foreach($cartItems as $item){
                      
                     $product = Product::find($item->product_id);

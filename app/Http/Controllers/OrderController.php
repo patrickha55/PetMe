@@ -2,9 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Order;
+use App\Product;
+use App\CartDetail;
+
+use App\OrderDetail;
 use App\Order_Details;
+
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class OrderController extends Controller
 {
@@ -31,92 +40,100 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        return view('cart.orderSuccess');
-            
-        $request->validate([
-            'address' => 'required',
-            'ward' => 'required',
-            'district' => 'required',
-            'city' => 'required',
-            // 'shipping_phone' => 'required',
-            // 'shipping_zipcode' => 'required',
-            // 'payment_method' => 'required',
-        ]);
+   
+     public function store(Request $request)   //store Data to Orders 
+    {   
+        $address = auth()->user()->address->address;
+        $ward = auth()->user()->address->ward;
+        $district = auth()->user()->address->district;
+        $city = auth()->user()->address->city;
+        $user_id = auth()->user()->id ;
+        $cartItems =\Cart::session(auth()->id())->getContent();
+        $total_price  = 0;
+        foreach ($cartItems as $cartItem){
+            $total_price += $cartItem->getPriceSum();
+        }
+        $phone = auth()->user()->phoneNumber;
+        $email = auth()->user()->email; //
+        $firstName = auth()->user()->firstName;
+        $lastName = auth()->user()->lastName;
+        $name = $firstName .' '. $lastName; 
+        // dd($name);
+
+
+        // $request->validate([
+        //     'address' => 'required',
+        //     'ward' => 'required',
+        //     'district' => 'required',
+        //     'city' => 'required',
+        //     'name'=>'required',
+
+   
+        // ]);
        //$orderDetail = new Order_Details();
-        $order = new Order();
+     Order::create([
+         'user_id'=>auth()->user()->id ,
+         'total_price'=>$total_price ,
+         'status'=>1 ,
+         'name'=>$name,
+         'phone'=>$phone ,
+         'email'=>$email ,  
+        'address'=>$address,
+         'ward' =>$ward ,
+        'district' =>$district ,
+        'city' =>$city ,
 
-        // $order->order_number = uniqid('OrderNumber-');
-       //order -> product 
+        
+     ]);
 
-        $order->ward = $request->input('ward');
-            
-        $order->district = $request->input('district');
-        $order->address = $request->input('address');
-        $order->city = $request->input('city');
-        // $order->shipping_state = $request->input('shipping_state');
-        // $order->shipping_city = $request->input('shipping_city');
-        // $order->shipping_address = $request->input('shipping_address');
-        // $order->shipping_phone = $request->input('shipping_phone');
-        // $order->shipping_zipcode = $request->input('shipping_zipcode');
+     return redirect()->route('order.storeOrderDetail'); 
 
-        // if(!$request->has('billing_fullname')) {
-        //     $order->billing_fullname = $request->input('shipping_fullname');
-        //     $order->billing_state = $request->input('shipping_state');
-        //     $order->billing_city = $request->input('shipping_city');
-        //     $order->billing_address = $request->input('shipping_address');
-        //     $order->billing_phone = $request->input('shipping_phone');
-        //     $order->billing_zipcode = $request->input('shipping_zipcode');
-        // }else {
-        //     $order->billing_fullname = $request->input('billing_fullname');
-        //     $order->billing_state = $request->input('billing_state');
-        //     $order->billing_city = $request->input('billing_city');
-        //     $order->billing_address = $request->input('billing_address');
-        //     $order->billing_phone = $request->input('billing_phone');
-        //     $order->billing_zipcode = $request->input('billing_zipcode');
-        // }
-
-
-        $order->total_price = \Cart::session(auth()->id())->getTotal();
-       
-    //    $str = "";
-   
-    //       $cartItems = \Cart::session(auth()->id())->getContent();
-    //     foreach($cartItems as $item) {
-    //        // $orderDetail->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
-    //         $str +=  [$item->name] ;    
-    //     }
-   
-       $order->products = \Cart::session(auth()->id())->getContent();
-
-        $order->user_id = auth()->id();
-
-        // if (request('payment_method') == 'paypal') {
-        //     $order->payment_method = 'paypal';
-        // }
-
-        $order->save();
-
-        // $cartItems = \Cart::session(auth()->id())->getContent();
-
-        // foreach($cartItems as $item) {
-        //     $order->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
-        // }
-
-        // $order->generateSubOrders();
-
-        // if (request('payment_method') == 'paypal') {
-
-        //     return redirect()->route('paypal.checkout', $order->id);
-
-        // }
-
-        \Cart::session(auth()->id())->clear();
-
-        return redirect()->route('home')->withMessage('Order has been placed');
 
     }
+
+
+        
+ 
+
+
+
+     
+
+
+  
+//store Data to orderDetail 
+    public function storeOrderDetail(){ 
+        
+    $orderId = Order::where('user_id',auth()->user()->id)->latest()->first()->id; //get last Order in Collection of auth .
+  
+       $cartItems =\Cart::session(auth()->id())->getContent();
+     //add product to orderDetail 
+
+    //  dd($orderId);
+     foreach($cartItems as $item){
+        OrderDetail::create([
+            'order_id'=>$orderId,
+            'product_id'=>$item->id,
+            'price'=>$item->price ,
+            'quantity'=>$item->quantity,
+       
+
+        ]);
+     }
+
+ 
+      $cart = Cart::where('user_id',auth()->user()->id)->where('status',1)->first();
+   
+        $cart->update([
+         'status' =>0 ,
+         ]);
+         \Cart::session(auth()->id())->clear();
+     
+
+ 
+        return view('cart.orderSuccess');
+
+     }
 
     /**
      * Display the specified resource.

@@ -96,7 +96,7 @@ class CartController extends Controller
             ));
 
             //Cap nhap quantity trong cart detail table
-            $cartId = Cart::find(auth()->id())->id;
+            $cartId = Cart::where('user_id',auth()->user()->id)->where('status',1)->first()->id;
             $quantity = \Cart::session(auth()->id())->getContent()->where('id',$product->id)->first()->quantity ; 
 
             CartDetail::where([
@@ -113,7 +113,8 @@ class CartController extends Controller
 
     public function updatePlusCart(Product $product)
     {
-        $cartId = Cart::find(auth()->id())->id;
+        $cartId = Cart::where('user_id',auth()->user()->id)->where('status',1)->first()->id;
+ 
     
         // Lay cart id va update quantity +1 cho cart tren session
    
@@ -139,7 +140,7 @@ class CartController extends Controller
     {   
         // Lay cart id va update quantity -1 cho cart tren session
 
-        $cartId = Cart::where('user_id',auth()->user()->id)->first()->id;
+        $cartId = Cart::where('user_id',auth()->user()->id)->where('status',1)->first()->id;
         \Cart::session(auth()->id())->update($product->id, array(
          'quantity' => -1,
         ));  
@@ -180,7 +181,8 @@ class CartController extends Controller
     {
         //Lay cartid va chuyen status cua cart detail co product_id bang voi id cua product o param = 0
 
-        $cartId = Cart::where('user_id',auth()->user()->id)->first()->id;
+        $cartId = Cart::where('user_id',auth()->user()->id)->where('status',1)->first()->id;
+
    
         CartDetail::where('cart_id',$cartId)->where('product_id',$product->id)->update([
             'status' => 0
