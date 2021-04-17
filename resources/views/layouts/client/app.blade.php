@@ -22,7 +22,14 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
 
-
+    <style>
+        #statusSession{
+            position:absolute;
+            bottom:20px;
+            right:20px;
+            z-index:10;
+            }
+    </style>
 
     @livewireStyles
 
@@ -104,7 +111,7 @@
                 <div class="logo-3">
                     <a href="{{route('home')}}">
                         {{--<img src="/assets/img/logo/logo-3.png" alt="pet me logo">--}}
-                        <p class="font-weight-bold font-italic h1" style="color: #ff2c2c;">PetMe</p>
+                        <h1 class="font-weight-bold font-italic " style="color: #ff2c2c;">PetMe</h1>
                     </a>
                 </div>
                 {{-- //search --}}
@@ -146,6 +153,14 @@
                 </div>
             </div>
         </div>
+
+        {{-- Hien thi message cua session --}}
+
+        @if (session('status'))
+            <div class="alert alert-success" id="statusSession">
+                {{ session('status') }}
+            </div>
+        @endif
     </header>
     <!-- header end -->
 
@@ -276,12 +291,12 @@
                 });
             }); */
 
-            $("header#searchInput").click( function(){
+            /* $("header#searchInput").click( function(){
                 $("main#bgcolor").css({
                     "backgroud-color": "rgba(0,0,0,0.5)",
                     "z-index": "5"
                 });
-            });
+            }); */
 
             /* $('#productModal').on('show', function(e) {
             var link     = e.relatedTarget(),
@@ -289,6 +304,10 @@
                 object = link.data("object");
 
             modal.find("#object").val(object);}); */
+
+            // session message
+
+            $( "#statusSession" ).fadeIn( 500 ).delay( 2000 ).fadeOut( 500 );
         });
     </script>
 </body>

@@ -10,7 +10,7 @@
             <div class="col-9">
                 @foreach($cartItems as $cartItem)
        
-                <div class="card mb-3 shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="card shadow-lg p-3 mb-5 bg-white rounded">
                         <div class="card-body row">
                             <img src="/storage/Image/product/{{ $cartItem->associatedModel->img }}"  height="200px" width="80px" alt="" class="col-2">
                             <div class="col-7 m-auto">
@@ -67,15 +67,6 @@
                 <div class="card h5 shadow-lg p-3 mb-5 bg-white rounded">
                     <div class="card-body">
                         <h5 class="card-title text-center m-2">Items in your Cart</h5>
-                        @if (session('success'))
-                            <p class="alert alert-success">
-                                {{ session('success') }}
-                            </p>
-                        @elseif (session('status'))
-                            <p class="alert alert-danger">
-                                {{ session('status') }}
-                            </p>
-                        @endif
                         <div class="row border-top-1 mt-5 mb-5 pb-5 pt-5">
                             <div class="col-5 text-left">Subtotal</div>
                             <div class="col-7 text-right">@currency($subTotal) VNĐ</div>
@@ -92,7 +83,7 @@
             </div>
         @else
             <div class="col-12">
-                <div class="card mb-3 shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="card shadow-lg p-3 mb-5 bg-white rounded">
                     <div class="card-body row text-center">
                         <div class="m-auto">
                             <img src="/storage/Image/empty-cart.png" alt="Empty Cart">
@@ -106,4 +97,5 @@
             </div>
         @endif
     </div>
+    @endforeach
 @endsection
