@@ -140,6 +140,13 @@
                 line-height: 18px
             }
         }
+
+        #statusSession{
+            position:absolute;
+            bottom:20px;
+            right:20px;
+            z-index:10;
+            }
     </style>
     @yield('head')
 </head>
@@ -271,6 +278,13 @@
                 </div>
             </div>
         </div>
+        {{-- Hien thi message cua session --}}
+
+        @if (session('status'))
+            <div class="alert alert-success" id="statusSession">
+                {{ session('status') }}
+            </div>
+        @endif
     </header>
     @include('layouts.client.includes.navWithoutCategory')
 
@@ -290,7 +304,13 @@
     <script src="/assets/js/owl.carousel.min.js"></script>
     <script src="/assets/js/plugins.js"></script>
     <script src="/assets/js/main.js"></script>
+    <script>
+        $(function(){
+            // session message
 
+            $( "#statusSession" ).fadeIn( 500 ).delay( 2000 ).fadeOut( 500 );
+        });
+    </script>
     @livewireScripts
     @yield('script')
 </body>

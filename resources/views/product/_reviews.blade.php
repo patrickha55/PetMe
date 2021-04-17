@@ -34,15 +34,15 @@
                     Reviews ({{ $product->userReviews()->where('status', 'approved')->count() }})
                 </a>
             </div>
-            <div class="description-review-text tab-content">
-                <div class="tab-pane active show fade" id="pro-dec" role="tabpanel">
+            <div class="description-review-text tab-content ">
+                <div class="tab-pane mt-5 active show fade text-left" id="pro-dec" role="tabpanel">
                     <p>{{ $product->description }}</p>
                 </div>
-                <div class="tab-pane fade" id="ingredient" role="tabpanel">
-                    <a href="#">{{ $product->detail->ingredients }}</a>
+                <div class="tab-pane mt-5 fade text-left" id="ingredient" role="tabpanel">
+                    <p>{{ $product->detail->ingredients }}</p>
                 </div>
-                <div class="tab-pane fade" id="nutrient" role="tabpanel">
-                    <table class="table table-striped table-dark">
+                <div class="tab-pane mt-5 fade" id="nutrient" role="tabpanel">
+                    <table class="w-75 mx-auto table table-striped table-dark">
                         <thead>
                             <tr>
                                 <th scope="col" colspan="2" class="bg-dark">Nutrition Facts</th>
@@ -218,7 +218,7 @@
 
 @section('script')
 
-    
+
 
     <script src="https://kit.fontawesome.com/c4201aab66.js" crossorigin="anonymous"></script>
     <script>

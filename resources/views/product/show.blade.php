@@ -89,7 +89,6 @@
                                     @foreach($category->productCategories as $proCat)
                                     <li><a href="">{{ $proCat->name }}</a></li>
                                     @endforeach
-                                    /
                                 @endforeach
                             </ul>
                         </div>
@@ -120,7 +119,7 @@
     @include('product._related-product')
     </div>
 
-    
+
 @endsection
 
 @section('script')

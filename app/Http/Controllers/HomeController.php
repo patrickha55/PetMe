@@ -38,13 +38,20 @@ class HomeController extends Controller
         */
 
         if(Auth::check()){
-      
-            $cart = Cart::where('user_id',auth()->id())->where('status', 1)->first();
+
+            $cart = \App\Cart::where([
+                'user_id' => auth()->id(),
+                'status' => 1
+            ])->first();
+
             if(isset($cart)){ 
 
                 // Lay tat ca cart items trong $cart
 
-                $cartItems = CartDetail::where('cart_id', $cart->id)->where('status', 1)->get();
+                $cartItems = \App\CartDetail::where([
+                    'cart_id' => $cart->id,
+                    'status' => 1
+                ])->get();
                 
                 // Tao cart moi trong session
          
@@ -52,7 +59,7 @@ class HomeController extends Controller
 
                 foreach($cartItems as $item){
                      
-                    $product = Product::find($item->product_id);
+                    $product = \App\Product::find($item->product_id);
                   
                     /*  Tao item moi trong cart tren session */      
 
