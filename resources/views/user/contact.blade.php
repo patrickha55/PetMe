@@ -34,6 +34,16 @@
         <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
         <link rel="stylesheet" href="css/util.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+
+
+        <style>
+            .maps iframe{
+                width: 100%;
+                height: 500px;
+            }
+        </style>
         <header>
             {{--@if(auth()->check())
               <h1>{{   auth()->user()->userName }}</h1>
@@ -166,14 +176,18 @@
         </div>
 
 		<button class="contact100-btn-show">
-			<i class="fa fa-envelope-o" aria-hidden="true"></i>
+			<i class="far fa-envelope" aria-hidden="true"></i>
 		</button>
 
 		<div class="wrap-contact100">
 			<button class="contact100-btn-hide">
 				<i class="fa fa-close" aria-hidden="true"></i>
 			</button>
+            <div class="col-6 maps">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4305403702365!2d106.6787936500889!3d10.77829979228258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f26169f8e3b%3A0x2fe71a17739a5d70!2zMSBDw6FjaCBN4bqhbmcgVGjDoW5nIFTDoW0sIFBoxrDhu51uZyAxMCwgUXXhuq1uIDMsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1618631101784!5m2!1svi!2s" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
 
+            <div class="col-6">
 			<form class="contact100-form validate-form">
 				<span class="contact100-form-title">
 					Contact Us
@@ -187,7 +201,7 @@
 
 				<div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">Email</span>
-					<input class="input100" type="text" name="email" placeholder="Enter your email addess">
+					<input class="input100" type="text" name="email" placeholder="Enter your email">
 					<span class="focus-input100"></span>
 				</div>
 
@@ -206,9 +220,13 @@
 					</button>
 				</div>
 			</form>
+            </div>  
 
 			<span class="contact100-more">
-				For any question contact our 24/7 call center: <span class="contact100-more-highlight">+001 345 6889</span>
+				For any question contact our 24/7 call center: <span class="contact100-more-highlight">+11 (019) 2518 4203</span><br>
+                <i class="fas fa-phone-alt"></i> +11 (251) 2223 3353<br>
+                <i class="fa fa-envelope mt-3"></i> petme@domain.info<br>
+                <i class="fas fa-globe mt-3"></i> 1 Cách Mạng Tháng 8, D.3 Ho Chi Minh - Vietnam<br>
 			</span>
 		</div>
 	</div>

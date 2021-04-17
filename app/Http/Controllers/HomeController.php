@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Product;
 use App\Category;
+use App\CartDetail;
+use App\ProductReview;
 use App\AnimalCategory;
 use App\ProductCategory;
-use App\ProductReview;
-use \Illuminate\Contracts\Support\Renderable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
+use \Illuminate\Contracts\Support\Renderable;
 
 class HomeController extends Controller
 {
@@ -27,7 +30,44 @@ class HomeController extends Controller
         ]);
     }
 
-    public function home(){ 
+    public function home()
+    {
+        /*
+        * Kiem tra user hien dang co cart nao trong trang thai active (1),
+        * neu co thi lay thong tin cart ve va them vao session 
+        */
+
+        if(Auth::check()){
+      
+            $cart = Cart::where('user_id',auth()->id())->where('status', 1)->first();
+            if(isset($cart)){ 
+
+                // Lay tat ca cart items trong $cart
+
+                $cartItems = CartDetail::where('cart_id', $cart->id)->where('status', 1)->get();
+                
+                // Tao cart moi trong session
+         
+                \Cart::session(auth()->id())->clear();
+
+                foreach($cartItems as $item){
+                     
+                    $product = Product::find($item->product_id);
+                  
+                    /*  Tao item moi trong cart tren session */      
+
+                    \Cart::session(auth()->user()->id)->add(array(
+                        'id' => $product->id,
+                        'name' => $product->name,
+                        'price' => $product->price,
+                        'quantity' => $item->quantity,
+                        'attributes' => array(),
+                        'associatedModel' => $product,
+                    )); 
+                }
+            }
+        } 
+
         $products = Product::paginate(5);
 
         $topProducts = Product::whereHas('userReviews', function(Builder $query){
@@ -117,7 +157,6 @@ class HomeController extends Controller
             'one' => $one,
             'userReviews' => $userReviews
         ]);
-
     }
 
     public function showFilterAnimalProducts(AnimalCategory $animal_category){

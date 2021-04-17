@@ -1,5 +1,5 @@
-
 @extends('layouts.client.appWithoutCategory')
+
 @section('head')
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
@@ -140,20 +140,5 @@
             </div>
         </div>
     </main>
-@endsection
-
-@section('script')
-        <script src="/assets/js/vendor/jquery-1.12.0.min.js"></script>
-        <script src="/assets/js/popper.js"></script>
-        <script src="/assets/js/bootstrap.min.js"></script>
-        <script src="/assets/js/jquery.magnific-popup.min.js"></script>
-        <script src="/assets/js/isotope.pkgd.min.js"></script>
-        <script src="/assets/js/imagesloaded.pkgd.min.js"></script>
-        <script src="/assets/js/jquery.counterup.min.js"></script>
-        <script src="/assets/js/waypoints.min.js"></script>
-        <script src="/assets/js/ajax-mail.js"></script>
-        <script src="/assets/js/owl.carousel.min.js"></script>
-        <script src="/assets/js/plugins.js"></script>
-        <script src="/assets/js/main.js"></script>
 @endsection
 
