@@ -229,7 +229,7 @@
                 <div class="logo-3">
                     <a href="{{route('home')}}">
                         {{--                        <img src="/assets/img/logo/logo-3.png" alt="pet me logo">--}}
-                        <p class="font-weight-bold font-italic h1" style="color: #ff2c2c;">PetMe</p>
+                        <h1 class="font-weight-bold font-italic" style="color: #ff2c2c;">PetMe</h1>
                     </a>
                 </div>
                 {{-- <div class="categories-search-wrapper">

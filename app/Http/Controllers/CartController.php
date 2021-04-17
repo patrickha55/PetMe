@@ -36,12 +36,7 @@ class CartController extends Controller
 
         \Cart::session(auth()->id())->add(array(
             'id' => $product->id,
-<<<<<<< HEAD
-            'name' => '$product->name',
-            'description'=> $product->description,
-=======
             'name' => $product->name,
->>>>>>> main
             'price' => $product->price,
             'quantity' => 1,
             'attributes' => array(),
