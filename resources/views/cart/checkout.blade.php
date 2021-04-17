@@ -82,29 +82,29 @@
            </table>
 
 
-           <div class="border-top my-auto">
-            <ul class="list-unstyled h5">
-              <li class="d-flex justify-content-between my-2">
-                <span class="tag">Subtotal</span>
-                <span class="val">VNĐ</span>
-              </li>
-              <li class="d-flex justify-content-between mb-2">
-                <span class="tag">Shipping</span>
-                <span class="val">0 VNĐ</span>
-              </li>
-
-              <li class="d-flex justify-content-between ">
-                <span class="tag">Total</span>
-                <span class="val">@currency($total) VNĐ</span>
-              </li>
-            </ul>
+            <div class="border-top my-auto">
+                <ul class="list-unstyled h5">
+                <li class="d-flex justify-content-between my-2">
+                    <span class="tag">Subtotal</span>
+                    <span class="val">VNĐ</span>
+                </li>
+                <li class="d-flex justify-content-between mb-2">
+                    <span class="tag">Shipping</span>
+                    <span class="val">0 VNĐ</span>
+                </li>
+                
+                <li class="d-flex justify-content-between ">
+                    <span class="tag">Total</span>
+                    <span class="val">@currency($total) VNĐ</span>
+                  </li>
+                </ul>
+            </div>
+    
         </div>
-
-          </div>
-          <button type="button" class="btn btn-success px-4 py-10 rounded mt-5 ml-150">Order</button>
-
-
+        <form action="{{ route('order.store') }}" method="POST">
+            @csrf 
+            <button type="submit"   class="btn btn-success px-4 py-10 rounded mt-5 ml-150">Order</button> 
+        </form>
     </div>
 </div>
-
 @endsection

@@ -155,6 +155,7 @@ Route::middleware(['auth'])->group(function () {
     /*
      * Order
      */
+    Route::get('order/storeOrderDetail','OrderController@storeOrderDetail')->name('order.storeOrderDetail');
     Route::resource('/order',  'OrderController');
     Route::get('/add-to-wishlist/{product}','FavoriteController@store')->name('wishlist.store');
     Route::delete('/wishlist/{product_id}/{user_id}', 'FavoriteController@delete')->name('wishlist.delete');
