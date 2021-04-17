@@ -10,5 +10,5 @@ class CartDetail extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['cart_id','product_id', 'price','quantity', 'active'];
+    protected $fillable = ['cart_id','product_id', 'price','quantity', 'status'];
 }

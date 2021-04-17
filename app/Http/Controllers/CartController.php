@@ -18,19 +18,19 @@ class CartController extends Controller
     public function add( Request $request,Product $product): RedirectResponse
     {
     if(Auth::check()){
-        
+
         // Lay cart co status la active(1), neu chua co thi tao cart moi.
 
-        $cart = Cart::where('user_id',auth()->id())->where('status', 1)->first();
+        $cart = Cart::where([
+            'user_id' => auth()->id(),
+            'status' => 1
+            ])->first();
 
         if(!isset($cart)){
             $cart = \App\Cart::create([
                 'user_id' => auth()->id(),
             ]);
         }
-        
-        //    dd($cartId);
-        //    $cartItems = CartDetail::all()->where('cart_id',$cartId);
 
         // Them item vao cart tren session
 
@@ -41,35 +41,52 @@ class CartController extends Controller
             'quantity' => 1,
             'attributes' => array(),
             'associatedModel' => $product,
-        )); 
+        ));
 
         // Update hoac tao cart details moi
 
-        CartDetail::updateOrCreate([
+        $cartDetail = CartDetail::where([
             'cart_id' => $cart->id,
-            'product_id' => $product->id, 
-            'status' => 1,
-        ],
-        [
-            'quantity' => CartDetail::where(['cart_id' => $cart->id, 'product_id' => $product->id, 'status' => 1])->first()->quantity + 1,
-            'price'=>$product->price,
-        ]);
+            'product_id' => $product->id,
+            'status' => 1
+        ])->first();
+
+        if(isset($cartDetail)){
+            $cartDetail->update([
+                'quantity' => $cartDetail->quantity + 1,
+                'price' => $product->price
+            ]);
+        } else {
+            CartDetail::create([
+                'cart_id' => $cart->id,
+                'product_id' => $product->id,
+                'status' => 1,
+                'quantity' => 1,
+                'price' => $product->price,
+            ]);
+        }
+
     }
 
         return redirect()->back()->with('addToCart', 'Item added to cart');
     }
 
 //dd(Cart::all()->where('user_id',auth()->user()->id)->first());
-//    dd((Cart::all()->where('user_id',auth()->user()->id) )) ;    
+//    dd((Cart::all()->where('user_id',auth()->user()->id) )) ;
 //    if(count(Cart::all()->where('user_id',auth()->user()->id))){
 
 //    }
 
     public function updateCart(Request $request, Product $product)
     {
+        //Kiem tra so luong nguoi dung nhap vao co nhieu hon so luong ton kho
+
         if ($request->quantity > $product->stock){
             return redirect()->back()->with('status', 'There are not enough items in our inventory. Sorry!');
         } else {
+
+            //Neu stock du thi thay doi so luong quantity
+
             \Cart::session(auth()->id())->update($product->id, array(
                 'quantity' => array(
                     'relative' => false,
@@ -77,40 +94,76 @@ class CartController extends Controller
                 ),
             ));
 
-            return redirect()->back()->with('success', 'Item updated successfully!');
+            //Cap nhap quantity trong cart detail table
+
+            $cartId = Cart::where([
+                'user_id' => auth()->id(),
+                'status' => 1
+                ])->first()->id;
+
+            $quantity = \Cart::session(auth()->id())->getContent()->where('id',$product->id)->first()->quantity ;
+
+            CartDetail::where([
+                'cart_id' => $cartId,
+                'product_id' => $product->id,
+                'status' => 1
+            ])->update(['quantity' => $quantity]);
+
+            return redirect()->back()->with('status', 'Item updated successfully!');
         }
     }
 
-  
+
 
     public function updatePlusCart(Product $product)
     {
-        $cartId = Cart::where('user_id',auth()->user()->id)->first()->id;
-    
-    
-   
+        $cartId = Cart::where([
+            'user_id' => auth()->id(),
+            'status' => 1
+            ])->first()->id;
+
+        // Lay cart id va update quantity +1 cho cart tren session
+
         \Cart::session(auth()->id())->update($product->id, array(
             'quantity' => +1,
         ));
-       $quantity = \Cart::session(auth()->id())->getContent()->where('id',$product->id)->first()->quantity ; 
-      CartDetail::where('cart_id',$cartId)->where('product_id',$product->id)->update(['quantity' => $quantity]);;
-      
+
+        //Cap nhap quantity trong cart detail table
+
+        $quantity = \Cart::session(auth()->id())->getContent()->where('id',$product->id)->first()->quantity ;
+
+        CartDetail::where([
+            'cart_id' => $cartId,
+            'product_id' => $product->id,
+            'status' => 1
+        ])->update(['quantity' => $quantity]);
+
       return redirect()->back();
 
     }
 
     public function updateMinusCart(Product $product)
-    {   
-        $cartId = Cart::where('user_id',auth()->user()->id)->first()->id;
+    {
+        // Lay cart id va update quantity -1 cho cart tren session
+
+        $cartId = Cart::where([
+            'user_id' => auth()->id(),
+            'status' => 1
+            ])->first()->id;
         \Cart::session(auth()->id())->update($product->id, array(
          'quantity' => -1,
-        ));  
+        ));
 
-        $quantity = \Cart::session(auth()->id())->getContent()->where('id',$product->id)->first()->quantity ; 
-        CartDetail::where('cart_id',$cartId)->where('product_id',$product->id)->update(['quantity' => $quantity]);;
+        //Cap nhap quantity trong cart detail table
 
-   
-        
+        $quantity = \Cart::session(auth()->id())->getContent()->where('id',$product->id)->first()->quantity ;
+
+        CartDetail::where([
+            'cart_id' => $cartId,
+            'product_id' => $product->id,
+            'status' => 1
+        ])->update(['quantity' => $quantity]);
+
         return redirect()->back();
     }
 
@@ -118,39 +171,55 @@ class CartController extends Controller
     {
         $cartItems = \Cart::session(auth()->id())->getContent();
         $total =0 ;
+
         foreach($cartItems as $item){
         $total += $item->getPriceSum();
         }
-        $categories = AnimalCategory::all();
-        $subCat = ProductCategory::all();
-    
+
         return view('cart.checkout')->with([
-            'categories'=>$categories,
-            'subCat'=>$subCat,
              'cartItems'=>$cartItems,
              'total'=>$total,
             ]);
-            
+
     }
 
     public function destroyCartItem(Product $product)
     {
-        $cartId = Cart::where('user_id',auth()->user()->id)->first()->id;
-   
-      CartDetail::where('cart_id',$cartId)->where('product_id',$product->id)->delete();
+        //Lay cartid va chuyen status cua cart detail co product_id bang voi id cua product o param = 0
+
+        $cartId = Cart::where([
+            'user_id' => auth()->id(),
+            'status' => 1
+            ])->first()->id;
+
+        CartDetail::where([
+            'cart_id' => $cartId,
+            'product_id' => $product->id
+            ])
+            ->update([
+            'status' => 0
+        ]);
+
+        //Xoa product khoi cart session
+
         \Cart::session(auth()->id())->remove($product->id);
         // CartDetail::where('cart_id',auth())
         return redirect()->back();
     }
 
-     public function index()
+    // Hien thi thong tin tat ca sp trong cart session
+
+    public function index()
     {
         $cartItems = \Cart::session(auth()->id())->getContent();
         $subTotal = $total = 0;
+
         foreach ($cartItems as $cartItem){
             $subTotal += $cartItem->getPriceSum();
         }
+
         $total = $subTotal;
+
         return view('cart.index')->with([
             'cartItems' => $cartItems,
             'subTotal' => $subTotal,
@@ -187,7 +256,7 @@ class CartController extends Controller
      */
     public function show(Cart $cart)
     {
-        
+
     }
 
     /**

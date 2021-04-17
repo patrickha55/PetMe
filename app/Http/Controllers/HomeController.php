@@ -30,47 +30,8 @@ class HomeController extends Controller
         ]);
     }
 
-    public function home(){
-
-        /*
-        * Kiem tra user hien dang co cart nao trong trang thai active (1),
-        * neu co thi lay thong tin cart ve va them vao session 
-        */
-
-        if(Auth::check()){
-      
-            $cart = Cart::where('user_id',auth()->id())->where('status', 1)->first();
-        
-            
-            if(isset($cart)){ 
-
-                // Lay tat ca cart items trong $cart
-
-                $cartItems = CartDetail::where('cart_id', $cart->id)->where('status', 1)->get();
-
-                // Tao cart moi trong session
-         
-                \Cart::session(auth()->id())->clear();
-
-                foreach($cartItems as $item){
-                     
-                    $product = Product::find($item->product_id);
-                  
-                    /*  Tao item moi trong cart tren session */      
-
-                    \Cart::session(auth()->user()->id)->add(array(
-                        'id' => $product->id,
-                        'name' => $product->name,
-                        'price' => $product->price,
-                        'quantity' => $item->quantity,
-                        'attributes' => array(),
-                        'associatedModel' => $product,
-                    )); 
-                }
-            }
-         
-            
-
+    public function home()
+    {
         $products = Product::paginate(5);
 
         $topProducts = Product::whereHas('userReviews', function(Builder $query){
@@ -104,15 +65,7 @@ class HomeController extends Controller
         $userReviewsForRating = $product->userReviews()->where('status', 'approved')->get();
         $userReviews = $product->userReviews()->where('status', 'approved')->orderByDesc('created_at')->paginate(2);
         
-        /* foreach($userReviews as $review){
-            $comments = \App\Comment::where('product_review_id', 4)->get();
-        dd($comments); 
-        } */
-               
-
-
-
-        // dd($userReviews);
+        // Tinh % rating theo tung muc rating
 
         $countFive = $countFour = $countThree = $countTwo = $count= 0;
         $one = $two = $three = $four = $five = 0;
@@ -137,19 +90,19 @@ class HomeController extends Controller
         }
 
         if ($countFive != 0){
-            $five = 100 / $countFive ;
+            $five = $countFive ;
         }
 
         if ($countFour != 0){
-            $four = 100 / $countFour;
+            $four = $countFour;
         }
 
         if ($countThree != 0){
-            $three = 100 / $countThree;
+            $three = $countThree;
         }
 
         if ($countTwo != 0){
-            $two = 100 / $countTwo;
+            $two = $countTwo;
         }
 
         if ($count != 0){
@@ -168,7 +121,6 @@ class HomeController extends Controller
             'one' => $one,
             'userReviews' => $userReviews
         ]);
-
     }
 
     public function showFilterAnimalProducts(AnimalCategory $animal_category){

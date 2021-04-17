@@ -26,7 +26,7 @@
             @foreach ($results as $product)
                 <div class="col-3 shadow bg-white rounded mx-auto px-5 pb-5">
                     <div class="py-4 my-5 text-center border-bottom-1">
-                        <h4 class="font-weight-bold">{{ $product->name }}</h4>
+                        <h4 class="font-weight-bold"><a href="{{ route('home.show', $product) }}">{{ $product->name }}</a></h4>
                     </div>
                     <div class="product-details-5 mb-4 ">
                         @if (!empty($product->img))
@@ -73,7 +73,7 @@
                                 {{-- Description --}}
 
                                 <div class="" id="pro-dec" role="tabpanel">
-                                    <h4 class="font-weight-bold" dec">
+                                    <h4 class="font-weight-bold">
                                         Description
                                     </h4>
                                     <div>
@@ -83,7 +83,7 @@
 
                                 {{-- ingredient --}}
 
-                                @if ($product->detail->ingredients)
+                                @if ($product->detail != null)
                                     <div id="ingredient" role="tabpanel">
                                         <h4 class="font-weight-bold">
                                             Ingedients
@@ -156,7 +156,7 @@
                                             </table>
                                         </div>
                                     </div>
-                                @else
+                                @elseif($product->detail != null)
                                     <div>
                                         <h4>
                                             Materials
@@ -167,6 +167,12 @@
                                             </p>
                                         </div>
                                     </div>
+                                @else
+                                    <div>
+                                    <h4>
+                                        N/A
+                                    </h4>
+                            </div>
                                 @endif
                             </div>
                         </div>

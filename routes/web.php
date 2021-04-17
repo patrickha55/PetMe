@@ -56,7 +56,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:administrator'], function (
     Route::group(['prefix' => 'product-management'], function () {
 
         /*
-        * Supplier and Category 
+        * Supplier and Category
         */
 
         Route::resource('/supplier', 'SupplierController');
@@ -141,13 +141,15 @@ Route::middleware(['auth'])->group(function () {
      * Cart
     */
     Route::get('/cart/{product}/addotcart','CartController@addItem')->name('cart.addItem');
-    Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
     Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add');
     Route::get('/cart/{product}/plusQuantity', 'CartController@updatePlusCart')->name('cart.plus');
     Route::get('/cart/{product}/minusQuantity', 'CartController@updateMinusCart')->name('cart.minus');
     Route::post('/cart/{product}/updateCart', 'CartController@updateCart')->name('cart.updateCart');
     Route::get('/cart/{product}/destroyItem', 'CartController@destroyCartItem')->name('cart.deleteItem');
-  
+
+    //Checkout
+    Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
+
     Route::resource('/cart', 'CartController');
 
     /*

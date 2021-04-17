@@ -6,7 +6,7 @@
             My Orders
         </h1>
         @if(count($orders))
-        <table class="table table-hover card mb-3 shadow-lg p-3 mb-5 bg-white rounded">
+        <table class="table table-hover card shadow-lg p-3 mb-5 bg-white rounded">
             <thead>
               <tr>
                 <th scope="col">Order Number</th>
@@ -30,7 +30,7 @@
         </table>
         @else
         <div class="col-12">
-            <div class="card mb-3 shadow-lg p-3 mb-5 bg-white rounded">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
                 <div class="card-body row text-center">
                     <div class="m-auto">
                         <img src="/storage/Image/order.png" width="80%" height="80%" alt="Empty Cart">
