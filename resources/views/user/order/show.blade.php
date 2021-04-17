@@ -48,7 +48,7 @@
         <div class="col-4">
             <h2>Customer's Address</h2>
 {{--            {{ dd($order->user) }}--}}
-            <div class="card mb-3 shadow-lg p-3 mb-5 bg-white rounded h-75">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded h-75">
                 <div class="row">
                     <div class="col-3 mt-1">
                         Address:
@@ -67,17 +67,17 @@
         </div>
         <div class="col-4">
             <h2>Delivery Method</h2>
-            <div class="card mb-3 shadow-lg p-3 mb-5 bg-white rounded h-75">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded h-75">
                 <p>Free Delivery</p>
             </div>
         </div>
         <div class="col-4">
             <h2>Payment Method</h2>
-            <div class="card mb-3 shadow-lg p-3 mb-5 bg-white rounded h-75">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded h-75">
                 card
             </div>
         </div>
-        <div class="col-12 card mb-3 shadow-lg p-3 mb-5 bg-white rounded mt-5">
+        <div class="col-12 card shadow-lg p-3 mb-5 bg-white rounded mt-5">
             <div class="row">
                 <div class="col-12">
                     <table class="table table-hover">
