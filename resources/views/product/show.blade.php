@@ -43,7 +43,10 @@
                         <h2>Brand: {{ $product->supplier->name }}</h2>
                         <div class="rating-number pt-4 pb-4">
                             @php
-                                $rating = \App\ProductReview::where('product_id', $product->id)->avg('rating');
+                                $rating = \App\ProductReview::where([
+                                                            'product_id' => $product->id,
+                                                            'status' => 'approved'
+                                            ])->avg('rating');
                             @endphp
                             @for($i = 0; $i < 5; $i++)
                                 @if(floor($rating) - $i >= 1)

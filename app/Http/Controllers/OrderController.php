@@ -71,69 +71,60 @@ class OrderController extends Controller
    
         // ]);
        //$orderDetail = new Order_Details();
-     Order::create([
-         'user_id'=>auth()->user()->id ,
-         'total_price'=>$total_price ,
-         'status'=>1 ,
-         'name'=>$name,
-         'phone'=>$phone ,
-         'email'=>$email ,  
+    Order::create([
+        'user_id'=>auth()->user()->id ,
+        'total_price'=>$total_price ,
+        'status'=>1 ,
+        'name'=>$name,
+        'phone'=>$phone ,
+        'email'=>$email ,  
         'address'=>$address,
-         'ward' =>$ward ,
+        'ward' =>$ward ,
         'district' =>$district ,
         'city' =>$city ,
+    ]);
 
-        
-     ]);
+    $order = Order::where('user_id',auth()->id())->latest()->first(); //get latest user's order.
 
-     return redirect()->route('order.storeOrderDetail'); 
+    $cartItems =\Cart::session(auth()->id())->getContent();
 
+    //add product to orderDetail 
 
-    }
-
-
-        
- 
-
-
-
-     
-
-
-  
-//store Data to orderDetail 
-    public function storeOrderDetail(){ 
-        
-    $orderId = Order::where('user_id',auth()->user()->id)->latest()->first()->id; //get last Order in Collection of auth .
-  
-       $cartItems =\Cart::session(auth()->id())->getContent();
-     //add product to orderDetail 
-
-    //  dd($orderId);
-     foreach($cartItems as $item){
+    foreach($cartItems as $item){
         OrderDetail::create([
-            'order_id'=>$orderId,
+            'order_id'=>$order->id,
             'product_id'=>$item->id,
             'price'=>$item->price ,
             'quantity'=>$item->quantity,
-       
-
         ]);
-     }
 
- 
-      $cart = Cart::where('user_id',auth()->user()->id)->where('status',1)->first();
-   
-        $cart->update([
-         'status' =>0 ,
-         ]);
-         \Cart::session(auth()->id())->clear();
-     
+        $product = \App\Product::find($item->id);
+        
+        $stock = $product->stock - $item->quantity;
 
- 
-        return view('cart.orderSuccess');
+        $product->update(['stock' => $stock]);
+    }
 
-     }
+    $cart = Cart::where([
+        'user_id' => auth()->id(),
+        'status' => 1
+    ])->first();
+
+    $cart->update([
+        'status' => 0 ,
+    ]);
+
+    CartDetail::where([
+        'cart_id' => $cart->id,
+        'status' => 1
+    ])->update([
+        'status' => 0
+    ]);
+
+    \Cart::session(auth()->id())->clear();
+
+    return view('cart.orderSuccess', compact('order'));
+    }
 
     /**
      * Display the specified resource.

@@ -18,12 +18,6 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 /*
- * Client
- */
-
-//Route::get('cart/add/', 'CartController@create')->name('cart.add');
-
-/*
  * Test Product review - phat
 */
 
@@ -114,6 +108,7 @@ Route::resource('/compare', 'User\CompareController')->only('index');
 Route::group(['middleware'=>'auth', 'namespace'=>'User'], function () {
     Route::get('/user/edit_password', 'UserController@editPassword')->middleware(['auth', 'password.confirm'])->name('user.editPassword');
 
+    Route::post('/user/addressInCheckout', 'AddressController@storeInCheckout')->name('address.storeInCheckout');
     Route::resource('/user/address', 'AddressController');
     Route::resource('/user', 'UserController');
 });
@@ -155,8 +150,13 @@ Route::middleware(['auth'])->group(function () {
     /*
      * Order
      */
-    Route::get('order/storeOrderDetail','OrderController@storeOrderDetail')->name('order.storeOrderDetail');
+    // Route::get('order/storeOrderDetail','OrderController@storeOrderDetail')->name('order.storeOrderDetail');
     Route::resource('/order',  'OrderController');
+
+    /*
+     * Wishlist 
+     */
+
     Route::get('/add-to-wishlist/{product}','FavoriteController@store')->name('wishlist.store');
     Route::delete('/wishlist/{product_id}/{user_id}', 'FavoriteController@delete')->name('wishlist.delete');
     Route::resource('/wishlist', 'FavoriteController')->except('store');

@@ -169,6 +169,7 @@ class CartController extends Controller
 
     public function checkout()
     {
+        $user = auth()->user();
         $cartItems = \Cart::session(auth()->id())->getContent();
         $total =0 ;
 
@@ -179,6 +180,7 @@ class CartController extends Controller
         return view('cart.checkout')->with([
              'cartItems'=>$cartItems,
              'total'=>$total,
+             'user' => $user
             ]);
 
     }
