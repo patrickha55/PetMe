@@ -40,11 +40,6 @@
         <h1 class="text-center font-weight-bold col-12 mt-5 mb-5">
             Order Detail - #{{ $order->id}}
         </h1>
-        @if(session('status'))
-            <div class="text-sm text-success text-center m-3">
-                {{ session('status') }}
-            </div>
-        @endif
         <div class="col-4">
             <h2>Customer's Address</h2>
 {{--            {{ dd($order->user) }}--}}
@@ -98,7 +93,7 @@
                                         <img src="/storage/Image/product/{{ $product->img }}" alt="{{ $product->name }}" width="60%" height="60%">
                                     </div>
                                     <div class="col-10">
-                                        <a class="h3" href="{{ route('home.show', $product->id) }}">{{ $product->name }}</a>
+                                        <a class="h3" href="{{ route('home.show', $product->id) }}">{{ $product->name }}</a>{{ $product->id}}
                                         <div>
                                             Brand: <a href="#"> {{ $product->supplier->name }}</a>
                                         </div>

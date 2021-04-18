@@ -96,14 +96,12 @@ class CartController extends Controller
 
             //Cap nhap quantity trong cart detail table
 
-
             $cartId = Cart::where([
                 'user_id' => auth()->id(),
                 'status' => 1
                 ])->first()->id;
 
             $quantity = \Cart::session(auth()->id())->getContent()->where('id',$product->id)->first()->quantity ;
-
 
             CartDetail::where([
                 'cart_id' => $cartId,
@@ -119,12 +117,10 @@ class CartController extends Controller
 
     public function updatePlusCart(Product $product)
     {
-
         $cartId = Cart::where([
             'user_id' => auth()->id(),
             'status' => 1
             ])->first()->id;
-
 
         // Lay cart id va update quantity +1 cho cart tren session
 
@@ -150,12 +146,10 @@ class CartController extends Controller
     {
         // Lay cart id va update quantity -1 cho cart tren session
 
-
         $cartId = Cart::where([
             'user_id' => auth()->id(),
             'status' => 1
             ])->first()->id;
-
         \Cart::session(auth()->id())->update($product->id, array(
          'quantity' => -1,
         ));
@@ -175,6 +169,7 @@ class CartController extends Controller
 
     public function checkout()
     {
+        $user = auth()->user();
         $cartItems = \Cart::session(auth()->id())->getContent();
         $total =0 ;
 
@@ -185,6 +180,7 @@ class CartController extends Controller
         return view('cart.checkout')->with([
              'cartItems'=>$cartItems,
              'total'=>$total,
+             'user' => $user
             ]);
 
     }
@@ -192,7 +188,6 @@ class CartController extends Controller
     public function destroyCartItem(Product $product)
     {
         //Lay cartid va chuyen status cua cart detail co product_id bang voi id cua product o param = 0
-
 
         $cartId = Cart::where([
             'user_id' => auth()->id(),
@@ -204,7 +199,6 @@ class CartController extends Controller
             'product_id' => $product->id
             ])
             ->update([
-
             'status' => 0
         ]);
 

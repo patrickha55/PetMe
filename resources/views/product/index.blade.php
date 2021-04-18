@@ -136,7 +136,10 @@
                                             <div class="product-content-4 text-center">
                                                 <div class="product-rating-4">
                                                     @php
-                                                        $rating = \App\ProductReview::where('product_id', $product->id)->avg('rating');
+                                                        $rating = \App\ProductReview::where([
+                                                            'product_id' => $product->id,
+                                                            'status' => 'approved'
+                                                        ])->avg('rating');
                                                     @endphp
                                                     @for($i = 0; $i < 5; $i++)
                                                         @if(floor($rating) - $i >= 1)

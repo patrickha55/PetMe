@@ -79,9 +79,19 @@ class HomeController extends Controller
 
         $products = Product::paginate(5);
 
-        $topProducts = Product::whereHas('userReviews', function(Builder $query){
-            $query->where('rating', '>', '3');
-        })->paginate(5);
+        $productIdsWithAvgRating = \App\ProductReview::selectRaw('product_id ,AVG(rating) rating')
+                                                    ->where('status','approved')
+                                                    ->where('rating', '>=', 4)
+                                                    ->groupBy('product_id')->get();
+
+        $productsWithAvgRating = collect([]);
+
+        foreach($productIdsWithAvgRating as $productIdWithAvgRating){
+            $product = \App\Product::find($productIdWithAvgRating->product_id);
+            $productsWithAvgRating->push($product);
+        }
+
+
 
         $trend = $products->sortByDesc('created_at')->take(3);
 
@@ -93,7 +103,7 @@ class HomeController extends Controller
             'categories'=>$categories,
             'subCat'=>$subCat,
             'trend'=>$trend,
-            'topProducts' => $topProducts,
+            'topProducts' => $productsWithAvgRating,
         ]);
     }
 

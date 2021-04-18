@@ -89,9 +89,6 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <span>{{ $topProducts->links() }}</span>
-            </div>
         </div>
     </div>
 @endsection

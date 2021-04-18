@@ -26,10 +26,10 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-           'address' => 'required',
-           'ward' => 'required|numeric|min:1|max:30',
-           'district' => 'required',
-           'city' => 'required'
+           'address' => 'required|string|max:255',
+           'ward' => 'required|string|min:1|max:255',
+           'district' => 'required|string|max:255',
+           'city' => 'required|string|max:255'
         ]);
 
         Address::create([
@@ -41,6 +41,26 @@ class AddressController extends Controller
         ]);
 
         return redirect()->route('user.show', auth()->user())->with('status', 'Address created successfully!');
+    }
+
+    public function storeInCheckout(Request $request)
+    {
+        $this->validate($request, [
+            'address' => 'required|string|max:255',
+            'ward' => 'required|string|min:1|max:255',
+            'district' => 'required|string|max:255',
+            'city' => 'required|string|max:255'
+        ]);
+
+        Address::create([
+            'user_id' => auth()->user()->id,
+            'address' => $request->address,
+            'ward' => $request->ward,
+            'district' => $request->district,
+            'city' => $request->city,
+        ]);
+
+        return redirect()->back()->with('status', 'Address created successfully!');
     }
 
 

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
-<div class="custom-col-style-2 custom-col-5 shadow p-3 mb-5 bg-white rounded mr-5" style="width:20%">
+<div class="custom-col-style-2 custom-col-5 shadow p-3 mb-5 bg-white rounded mx-3" style="width:20%">
     <div class="product-wrapper product-border mb-24">
         <div class="product-img-3">
             <a href="{{route('home.show', $product)}}">
