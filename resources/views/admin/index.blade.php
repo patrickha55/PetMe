@@ -123,255 +123,10 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-12">
+            <div class="row">                                      
+                <div class="col-lg-12 col-md-12">
                     <div class="card">
-                        <div class="card-header card-header-tabs card-header-primary">
-                            <div class="nav-tabs-navigation">
-                                <div class="nav-tabs-wrapper">
-                                    <span class="nav-tabs-title">Info:</span>
-                                    <ul class="nav nav-tabs" data-tabs="tabs">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" href="#profile" data-toggle="tab">
-                                                <i class="material-icons">business</i> Supplier
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#messages" data-toggle="tab">
-                                                <i class="material-icons">inventory_2</i> Product
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                        </li>
-<!--                                        <li class="nav-item">
-                                            <a class="nav-link" href="#settings" data-toggle="tab">
-                                                <i class="material-icons">cloud</i> Server
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                        </li>-->
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="profile">
-                                    <table class="table">
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                        <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                            </td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                        <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="tab-pane" id="messages">
-                                    <table class="table">
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                        <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                            </td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-<!--                                <div class="tab-pane" id="settings">
-                                    <table class="table">
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="">
-                                                        <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                        <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                            </td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" value="" checked>
-                                                        <span class="form-check-sign">
-                                    <span class="check"></span>
-                                  </span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                            <td class="td-actions text-right">
-                                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                                    <i class="material-icons">close</i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-12">
-                    <div class="card">
-                        <div class="card-header card-header-warning">
+                        <div class="card-header card-header-primary">
                             <h4 class="card-title">Orders</h4>
                             <p class="card-category">Last updated on 20:16 pm 05 April 2021</p>
                         </div>
@@ -380,7 +135,6 @@
                                 <thead class="text-warning">
                                 <th>ID</th>
                                 <th>User</th>
-                                <th>Products</th>
                                 <th>Total Price</th>
                                 <th>Status</th>
                                 <th>Name</th>
@@ -398,26 +152,25 @@
                                     <tr>
                                         <td>{{$order->id}}</td>
                                         <td>{{$order->user_id}}</td>
-                                        <td>
-                                            @foreach($order->productDetails as $product)
-                                                {{$product->name}}/
-                                            @endforeach
-                                        </td>
                                         <td>{{$order->total_price}}</td>
                                         <td>{{$order->status }}</td>
                                         <td>{{$order->name ?? 'N/A'}}</td>
                                         <td>{{$order->phone ?? 'N/A' }}</td>
                                         <td>{{$order->email ?? 'N/A' }}</td>
                                         <td>{{$order->address ?? 'N/A' }}</td>
-                                        <td>{{$order->ward ?? 'N/A' }}</td>
+                                        <td>{{$order->ward ?? 'N/A' }}</td>   
                                         <td>{{$order->district ?? 'N/A' }}</td>
                                         <td>{{$order->city ?? 'N/A' }}</td>
                                         <td>{{$order->created_at }}</td>
                                         <td>{{$order->updated_at }}</td>
                                     </tr>
                                 @endforeach
+                                
                                 </tbody>
                             </table>
+                            <div>
+                                <span>{{ $orders->links() }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>

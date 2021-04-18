@@ -13,11 +13,9 @@ class AdminOrderController extends Controller
 
     public function index()
     {
-        $orders = Order::all();
-        $orderDetails = OrderDetail::all();
+        $orders = Order::orderByDesc('created_at')->paginate(10);
         return view('admin.order.index')->with([
-            'orders' => $orders,
-            'orderDetails' => $orderDetails
+            'orders' => $orders
         ]);
     }
 
@@ -55,16 +53,30 @@ class AdminOrderController extends Controller
        // return back()->with('status', 'Order status updated successfully!');
     }
     public function checkOrderStatus(Order $order){ 
-       $status =$order->status;
-       if($status == "completed"){
-          $transactionId = Transaction::where('order_id',$order->id)->first()->id;
-        $tran = Transaction::find($transactionId)->update([
-            'status'=>1 ,
-        ]);
-        }
-         return back()->with('status', 'Order status updated successfully!');
-     
-       }
+
+        /**
+         *  Neu order status la completed thi: 
+         *      - Doi status co order_id o bang transaction thanh 1 
+         *      - Doi status co order_id o bang order_detail thanh 1
+         */
+
+        if($order->status == "completed"){
+            $transactionId = Transaction::where('order_id',$order->id)->first()->id;
+                Transaction::find($transactionId)->update([
+                'status'=>1,
+            ]);
+
+            $orderDetails = OrderDetail::where('order_id', $order->id)->get();
+
+            foreach($orderDetails as $orderDetail){
+                $orderDetail->update([
+                    'status' => 1
+                ]);
+            };
+        };
+
+        return back()->with('status', 'Order status updated successfully!');
+    }
     
 
 

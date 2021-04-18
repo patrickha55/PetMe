@@ -12,11 +12,6 @@
                             <div>
                                 <h4 class="card-title mt-0 text-dark ">Orders</h4>
                                 <p class="card-category text-dark ">Order Management</p>
-                                @if (session('status'))
-                                    <p class="text-green-500 font-black">
-                                        {{ session('status') }}
-                                    </p>
-                                @endif
                             </div>
                         </div>
 
@@ -132,12 +127,11 @@
                                             <td>{{$order->updated_at }}</td>
                                         </tr>
                                     @endforeach
-
                                     </tbody>
                                 </table>
-                                {{-- <div>
-                                    <span>{{ $products->links() }}</span>
-                                </div> --}}
+                                <div>
+                                    <span>{{ $orders->links() }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>

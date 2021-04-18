@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="card card-plain">
                     <div class="row shadow-lg p-3 bg-white rounded">
-                        <div class="col-12">
+                        <div class="col-12 mb-5">
                             <div class="card-header card-header-dark d-flex justify-content-between">
                                 <div>
                                     <h4 class="card-title mt-0 text-dark font-weight-bold">Shop Revenue</h4>
@@ -15,19 +15,30 @@
                             </div>
                             <div class="card-body text-center">
                                 <div>
-                                    <canvas id="myChart"></canvas>
+                                    <canvas id="myChart1" width="400" height="200" aria-label="Hello ARIA World" role="img">
+                                        <p>Hello Fallback World</p>
+                                    </canvas>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="col-12 mb-5">
                             <div class="card-header card-header-dark d-flex justify-content-between">
                                 <div>
                                     <h4 class="card-title mt-0 text-dark font-weight-bold">Favorite Products</h4>
                                 </div>
                             </div>
                             <div class="card-body text-center">
-{{--                                <div class="ct-chart-2" id="chart2"></div>--}}
-                                <canvas id="myChart2" width="400" height="400"></canvas>
+                                {{--<div class="ct-chart-2" id="chart2"></div>--}}
+                                <canvas id="myChart2" width="400" height="200" aria-label="Hello ARIA World" role="img">
+                                    <p>Hello Fallback World</p>
+                                </canvas>
+                                {{-- <div class="text-left">
+                                    <ul>
+                                        @foreach($products as $product)
+                                            <li><p>Product id #{{ $product->id }}: {{ $product->name}} </p></li>
+                                        @endforeach
+                                    </ul>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="col-12 row">
@@ -38,7 +49,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-{{--                                    <div class="ct-chart-3" id="chart3"></div>--}}
+                                    <canvas id="myChart3" width="200" height="200" ></canvas>
                                 </div>
                             </div>
                             <div class="col-8">
@@ -70,37 +81,45 @@
                                                   </tr>
                                                 </thead>
                                                 <tbody class="bg-white divide-y divide-gray-200">
-                                                  <tr>
-                                                    <td class="px-6 py-4 whitespace-nowrap">
-                                                      <div class="flex items-center">
-                                                        <div class="flex-shrink-0 h-10 w-10">
-                                                          <img class="h-10 w-10 rounded-full" src="/storage/Image/product/noimage.jpg" alt="">
-                                                        </div>
-                                                        <div class="ml-4">
-                                                          <div class="text-sm font-medium text-gray-900">
-                                                            Kitten
-                                                          </div>
-                                                          <div class="text-sm text-gray-500">
-                                                            Whiskas
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                    </td>
-                                                    <td class="px-6 py-4 whitespace-nowrap">
-                                                      <div class="text-sm text-gray-900">200.000 VND</div>
-                                                      <div class="text-sm text-gray-500">Bought 30 times</div>
-                                                    </td>
-                                                    <td class="px-6 py-4 whitespace-nowrap">
-                                                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        In stock : 30
-                                                      </span>
-                                                    </td>
-                                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                      <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                                    </td>
-                                                  </tr>
-
-                                                  <!-- More items... -->
+                                                    @foreach($productsOrdered as $productOrdered)
+                                                    <tr>
+                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                            <div class="flex items-center">
+                                                            <div class="flex-shrink-0 h-10 w-10">
+                                                                <img class="h-10 w-10 rounded-full" src="/storage/Image/product/{{ $productOrdered->img }}" alt="">
+                                                            </div>
+                                                            <div class="ml-4">
+                                                                <div class="text-sm font-medium text-gray-900">
+                                                                {{ $productOrdered->name }}
+                                                                </div>
+                                                                <div class="text-sm text-gray-500">
+                                                                {{ $productOrdered->supplier->name }}
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                            <div class="text-sm text-gray-900">@currency($productOrdered->price) VND</div>
+                                                            <div class="text-sm text-gray-500">Bought {{$productIdsOrdered->where('product_id', 2)->first()->timeOrdered}} times</div>
+                                                        </td>
+                                                        <td class="px-6 py-4 whitespace-nowrap">
+                                                            @if($productOrdered->stock > 5)
+                                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                                    In stock : {{ $productOrdered->stock }}
+                                                                </span>
+                                                            @elseif($productOrdered->stock < 5) 
+                                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                                    In stock : {{ $productOrdered->stock }}
+                                                                </span>
+                                                            @else
+                                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                                    Out of stock
+                                                                </span>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                    <!-- More items... -->
                                                 </tbody>
                                               </table>
                                             </div>
@@ -121,41 +140,78 @@
 
     {{-- Chart 1 --}}
     <script>
-        let data = {
-            labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'Sep', 'Oct', 'Nov', 'Dec'],
-            series: [
-                [5, 9, 7, 8, 5, 3, 5, 4, 3, 2, 1, 9]
+        let delayed1;
+        let labels1 = [
+            @foreach($salesByMonth as $month)
+                ['{{ $month->month }}'],
+            @endforeach
+        ]
+
+        let data1 = {
+            labels: labels1,
+            datasets: [
+                {
+                label: 'Sales',
+                data: [
+                        @foreach($salesByMonth as $sale)
+                            {{ $sale->price }},
+                        @endforeach
+                ],
+                borderColor: 'rgb(180, 100, 235)',
+                backgroundColor: 'rgba(180, 100, 235, 0.2)',
+                }
             ]
         };
 
-        new Chartist.Line('.ct-chart-1', data, {
-            low: 0,
-            showArea: true,
-            height: 500
-        });
-    </script>
-    {{-- Chart 2 --}}
-    <!--<script>
-        new Chartist.Bar('.ct-chart-2', {
-            labels:
-            series:
-        }, {
-            height: 500,
-            distributeSeries: true
-        });
-    </script>-->
+        let config1 = {
+            type: 'line',
+            data: data1,
+            options: {
+                animation: {
+                    onComplete: () => {
+                        delayed1 = true;
+                    },
+                    delay: (context) => {
+                        let delay1 = 0;
+                        if (context.type === 'data' && context.mode === 'default' && !delayed1) {
+                        delay1 = context.dataIndex * 300 + context.datasetIndex * 100;
+                        }
+                        return delay1;
+                    },
+                },
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                        display: true,
+                        text: 'Month'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'VNĐ'
+                        },
+                        beginAtZero: true,
+                    }
+                },  
+            },
+        };
+        
 
-    <script>
-        /*let DATA_COUNT = {{count($productsInCart)}};
-        let NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};*/
+        /* let chart1 = document.getElementById('myChart1').getContext('2d');
+        let myChart1 = new Chart(chart1, config1); */
 
-        let labels = [
+        {{-- Chart 2 --}}
+
+        let delayed2;
+        let labels2 = [
             @foreach($products as $product)
                 ['{{ $product->id }}'],
             @endforeach
         ];
-        let data = {
-            labels: labels,
+        let data2 = {
+            labels: labels2,
             datasets: [{
                     label: 'Product ID',
                     data: [
@@ -170,114 +226,97 @@
             ]
         };
 
-        const config = {
+        let config2 = {
             type: 'bar',
-            data: data,
+            data: data2,
             options: {
+                animation: {
+                    onComplete: () => {
+                        delayed2 = true;
+                    },
+                    delay: (context) => {
+                        let delay2 = 0;
+                        if (context.type === 'data' && context.mode === 'default' && !delayed2) {
+                        delay2 = context.dataIndex * 300 + context.datasetIndex * 100;
+                        }
+                        return delay2;
+                    },
+                },
                 responsive: true,
                 plugins: {
                     legend: {
                         position: 'bottom',
-                    },
-                    title: {
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
                         display: true,
-                        text: 'Favorite Products'
+                        text: 'Product'
+                        }
                     },
-                    scales: {
-                        y: {
-                            beginAtZero: true
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Time Added To Cart'
+                        },
+                        beginAtZero: true,
+                        ticks: {
+                            // forces step size to be 50 units
+                            stepSize: 2
                         }
                     }
                 }
             },
         };
 
-        let chart2 = document.getElementById('myChart2').getContext('2d');
-        let myChart2 = new Chart(chart2, {
-            type: 'bar',
-            data: {
-                labels: [
-                        @foreach($products as $product)
-                    ['{{ $product->id }}'],
-                    @endforeach
-                ],
-                datasets: [{
-                    label: 'Product ID',
-                    data: [
-                            @foreach($productsInCart as $productInCart)
-                        [{{ $productInCart->timeAddedToCart }}],
-                        @endforeach
-                    ],
-                    borderColor: 'rgb(54, 162, 235)',
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderWidth: 1,
-                }]
-            }
-        });
+/*         let chart2 = document.getElementById('myChart2').getContext('2d');
+        let myChart2 = new Chart(chart2, config2); */
 
+        window.onload = function(){
+            let chart1 = document.getElementById("myChart1").getContext("2d");
+            window.myLine = new Chart(chart1, config1);
+            let chart2 = document.getElementById('myChart2').getContext('2d');
+            window.myBar = new Chart(chart2, config2);
+        }
     </script>
 
+    
     {{-- Chart 3 --}}
-    <script>
-        var data = {
-            labels: ['Cat', 'Dog'],
-            series: [45, 55]
-        };
+    {{-- <script>
+        /* let DATA_COUNT = 5;
+        let NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100}; */
 
-        var options = {
-            labelInterpolationFnc: function(value) {
-                return value[0]
-            },
-            width: 300,
-            height: 300
-        };
-
-        var responsiveOptions = [
-            ['screen and (min-width: 640px)', {
-                chartPadding: 30,
-                labelOffset: 100,
-                labelDirection: 'explode',
-                labelInterpolationFnc: function(value) {
-                    return value;
+        let data = {
+            labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
+            datasets: [
+                {
+                label: 'Dataset 1',
+                data: Utils.numbers(NUMBER_CFG),
+                backgroundColor: Object.values(Utils.CHART_COLORS),
                 }
-            }],
-            ['screen and (min-width: 1024px)', {
-                labelOffset: 80,
-                chartPadding: 20
-            }]
-        ];
-
-        new Chartist.Pie('.ct-chart-3', data, options, responsiveOptions);
-    </script>
-
-    <script>
-        const labels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-        ];
-        const data = {
-            labels: labels,
-            datasets: [{
-                label: 'My First dataset',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-            }]
+            ]
         };
 
         const config = {
-            type: 'line',
-            data,
-            options: {}
+            type: 'doughnut',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Chart.js Doughnut Chart'
+                }
+                }
+            },
         };
 
-        var myChart = new Chart(
-            document.getElementById('myChart'),
-            config
-        );
-    </script>
+        let chart3 = document.getElementById('myChart3').getContext('2d');
+        let myChart3 = new Chart(chart3, config);
+    </script> --}}
+
 @endsection
