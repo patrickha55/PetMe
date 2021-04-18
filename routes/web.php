@@ -38,7 +38,7 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
     });
 
     Route::resource('/wishlists', 'AdminFavoriteController');
-
+    Route::get('orders/{order}/checkOrderStatus','AdminOrderController@checkOrderStatus')->name('orders.checkOrderStatus');
     Route::resource('/orders', 'AdminOrderController');
 
     Route::patch('/reviews/{user_id}/product/{product_id}', 'ProductReviewController@update')->name('reviews.update');
@@ -151,6 +151,9 @@ Route::middleware(['auth'])->group(function () {
      * Order
      */
     // Route::get('order/storeOrderDetail','OrderController@storeOrderDetail')->name('order.storeOrderDetail');
+   Route::get('/order/transaction', 'OrderController@transaction')->name('order.transaction');
+       
+ 
     Route::resource('/order',  'OrderController');
 
     /*

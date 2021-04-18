@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\OrderDetail;
-use Illuminate\Http\Request;
 use App\Order;
+use App\OrderDetail;
+use App\Transaction;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminOrderController extends Controller
 {
@@ -50,8 +51,21 @@ class AdminOrderController extends Controller
             'status' => $request->status
         ]);
 
-        return back()->with('status', 'Order status updated successfully!');
+        return redirect()->route('orders.checkOrderStatus',compact('order'));
+       // return back()->with('status', 'Order status updated successfully!');
     }
+    public function checkOrderStatus(Order $order){ 
+       $status =$order->status;
+       if($status == "completed"){
+          $transactionId = Transaction::where('order_id',$order->id)->first()->id;
+        $tran = Transaction::find($transactionId)->update([
+            'status'=>1 ,
+        ]);
+        }
+         return back()->with('status', 'Order status updated successfully!');
+     
+       }
+    
 
 
     public function destroy($id)

@@ -8,9 +8,10 @@ use App\Product;
 use App\CartDetail;
 
 use App\OrderDetail;
+use App\Transaction;
+
+
 use App\Order_Details;
-
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -122,10 +123,23 @@ class OrderController extends Controller
     ]);
 
     \Cart::session(auth()->id())->clear();
-
-    return view('cart.orderSuccess', compact('order'));
+    return redirect()->route('order.transaction',compact('order'));
+    //return view('cart.orderSuccess', compact('order'));
     }
 
+    public function transaction(Order $order){ 
+      $orderId =$order->latest()->first()->id ; 
+   
+      Transaction::create([
+        'order_id'=>$orderId ,
+        'payment_method'=>'cash',
+        'status'=>0 ,
+        'content'=>'this is content' ,
+        
+      ])  ;
+       return view('cart.orderSuccess', compact('order'));
+
+    }
     /**
      * Display the specified resource.
      *
