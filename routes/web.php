@@ -150,11 +150,12 @@ Route::middleware(['auth'])->group(function () {
     /*
      * Order
      */
-    // Route::get('order/storeOrderDetail','OrderController@storeOrderDetail')->name('order.storeOrderDetail');
-    Route::resource('/order',  'OrderController');
+
+    Route::get('/order/{order}/update', 'OrderController@update')->name('order.update');
+    Route::resource('/order',  'OrderController')->except('create', 'update');
 
     /*
-     * Wishlist 
+     * Wishlist
      */
 
     Route::get('/add-to-wishlist/{product}','FavoriteController@store')->name('wishlist.store');

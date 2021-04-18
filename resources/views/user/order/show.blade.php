@@ -38,7 +38,7 @@
 @section('content')
     <div class="w-75 row m-auto" style="margin-top: 50px; margin-bottom: 200px;">
         <h1 class="text-center font-weight-bold col-12 mt-5 mb-5">
-            Order Detail - #{{ $order->id}}
+            Order Detail - #{{ $order->id}} - <small class="text-secondary">{{ $order->status }}</small>
         </h1>
         <div class="col-4">
             <h2>Customer's Address</h2>
@@ -46,16 +46,16 @@
             <div class="card shadow-lg p-3 mb-5 bg-white rounded h-75">
                 <div class="row">
                     <div class="col-3 mt-1">
-                        Address:
+                        <h5>Address:</h5>
                     </div>
                     <div class="col-9 mt-1">
-                        {{ $order->user->address->address }}, Ward {{ $order->user->address->ward }}, district {{ $order->user->address->district }}, {{ $order->user->address->city }} City.
+                        <p>{{ $order->user->address->address }}, Ward {{ $order->user->address->ward }}, district {{ $order->user->address->district }}, {{ $order->user->address->city }} City.</p>
                     </div>
                     <div class="col-3 mt-3">
-                        Phone:
+                        <h5>Phone:</h5>
                     </div>
                     <div class="col-9 mt-3">
-                        {{ auth()->user()->phoneNumber }}
+                        <p>{{ auth()->user()->phoneNumber }}</p>
                     </div>
                 </div>
             </div>
@@ -63,13 +63,13 @@
         <div class="col-4">
             <h2>Delivery Method</h2>
             <div class="card shadow-lg p-3 mb-5 bg-white rounded h-75">
-                <p>Free Delivery</p>
+                <h5>Free Delivery</h5>
             </div>
         </div>
         <div class="col-4">
             <h2>Payment Method</h2>
             <div class="card shadow-lg p-3 mb-5 bg-white rounded h-75">
-                card
+                <h5>Pay with cash</h5>
             </div>
         </div>
         <div class="col-12 card shadow-lg p-3 mb-5 bg-white rounded mt-5">
@@ -100,7 +100,7 @@
                                         @php
                                             $productReview = \App\ProductReview::where('user_id', auth()->id())->where('product_id', $product->id)->first();
                                         @endphp
-                                        @if($productReview == null)
+                                        @if($productReview == null && $order->status == 'completed')
                                             <div class="row">
                                                 <div class="col-8">
                                                     <a href="#" class="btn btn-primary" title="Write Review" data-toggle="modal" data-target="#reviewModal">Write a Review</a>
@@ -117,13 +117,18 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-12 text-right pl-4 pr-4 mt-3">
+                <div class="col-12  pl-4 pr-4 mt-3">
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-8 my-auto">
+                            @if($order->status == 'pending')
+                                <a href="{{ route('order.update', $order) }}" class="btn-lg btn-danger">Cancel Order</a>
+                            @endif
+                        </div>
+                        <div class="col-2 text-right">
                             <p>Sub Total: </p>
                             <p>Total: </p>
                         </div>
-                        <div class="col-2">
+                        <div class="col-2 text-right">
                             <p>@currency($order->total_price) VNĐ</p>
                             <p>@currency($order->total_price) VNĐ</p>
                         </div>
