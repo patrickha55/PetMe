@@ -37,9 +37,20 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
         Route::resource('/admins', 'AdminController');
     });
 
+    /* 
+        Wishlist 
+    */
+
     Route::resource('/wishlists', 'AdminFavoriteController');
+
+    // Order
+
     Route::get('orders/{order}/checkOrderStatus','AdminOrderController@checkOrderStatus')->name('orders.checkOrderStatus');
     Route::resource('/orders', 'AdminOrderController');
+
+    /*
+        Reviews
+     */
 
     Route::patch('/reviews/{user_id}/product/{product_id}', 'ProductReviewController@update')->name('reviews.update');
     Route::delete('/reviews/{user_id}/product/{product_id}', 'ProductReviewController@destroy')->name('reviews.destroy');
@@ -150,14 +161,14 @@ Route::middleware(['auth'])->group(function () {
     /*
      * Order
      */
-    // Route::get('order/storeOrderDetail','OrderController@storeOrderDetail')->name('order.storeOrderDetail');
-   Route::get('/order/transaction', 'OrderController@transaction')->name('order.transaction');
-       
- 
-    Route::resource('/order',  'OrderController');
+
+    Route::get('/order/{order}/transaction', 'OrderController@transaction')->name('order.transaction');
+    Route::get('/order/{order}/update', 'OrderController@update')->name('order.update');
+    Route::resource('/order',  'OrderController')->except('create', 'update');
+
 
     /*
-     * Wishlist 
+     * Wishlist
      */
 
     Route::get('/add-to-wishlist/{product}','FavoriteController@store')->name('wishlist.store');

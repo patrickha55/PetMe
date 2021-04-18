@@ -1,11 +1,5 @@
 @extends('layouts.admin.admin')
 
-@section('style')
-    {{-- Chartist --}}
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-@endsection
-
-
 @section('content')
     <div class="content">
         <div class="container-fluid">
@@ -17,15 +11,23 @@
                             <div class="card-header card-header-dark d-flex justify-content-between">
                                 <div>
                                     <h4 class="card-title mt-0 text-dark font-weight-bold">Shop Revenue</h4>
-                                    @if (session('status'))
-                                        <p class="text-green-500 font-black">
-                                            {{ session('status') }}
-                                        </p>
-                                    @endif
                                 </div>
                             </div>
                             <div class="card-body text-center">
-                                <div class="ct-chart-1" id="chart1"></div>
+                                <div>
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card-header card-header-dark d-flex justify-content-between">
+                                <div>
+                                    <h4 class="card-title mt-0 text-dark font-weight-bold">Favorite Products</h4>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+{{--                                <div class="ct-chart-2" id="chart2"></div>--}}
+                                <canvas id="myChart2" width="400" height="400"></canvas>
                             </div>
                         </div>
                         <div class="col-12 row">
@@ -33,26 +35,16 @@
                                 <div class="card-header card-header-dark d-flex justify-content-between">
                                     <div>
                                         <h4 class="card-title mt-0 text-dark font-weight-bold">Favorite Cateogory</h4>
-                                        @if (session('status'))
-                                            <p class="text-green-500 font-black">
-                                                {{ session('status') }}
-                                            </p>
-                                        @endif
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="ct-chart-2" id="chart2"></div>
+{{--                                    <div class="ct-chart-3" id="chart3"></div>--}}
                                 </div>
                             </div>
                             <div class="col-8">
                                 <div class="card-header card-header-dark d-flex justify-content-between">
                                     <div>
-                                        <h4 class="card-title mt-0 text-dark font-weight-bold">Favorite Products</h4>
-                                        @if (session('status'))
-                                            <p class="text-green-500 font-black">
-                                                {{ session('status') }}
-                                            </p>
-                                        @endif
+                                        <h4 class="card-title mt-0 text-dark font-weight-bold">Most Bought Products</h4>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -107,7 +99,7 @@
                                                       <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                                     </td>
                                                   </tr>
-                                      
+
                                                   <!-- More items... -->
                                                 </tbody>
                                               </table>
@@ -126,9 +118,10 @@
 @endsection
 
 @section('script')
+
     {{-- Chart 1 --}}
     <script>
-        var data = {
+        let data = {
             labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'Sep', 'Oct', 'Nov', 'Dec'],
             series: [
                 [5, 9, 7, 8, 5, 3, 5, 4, 3, 2, 1, 9]
@@ -142,6 +135,89 @@
         });
     </script>
     {{-- Chart 2 --}}
+    <!--<script>
+        new Chartist.Bar('.ct-chart-2', {
+            labels:
+            series:
+        }, {
+            height: 500,
+            distributeSeries: true
+        });
+    </script>-->
+
+    <script>
+        /*let DATA_COUNT = {{count($productsInCart)}};
+        let NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};*/
+
+        let labels = [
+            @foreach($products as $product)
+                ['{{ $product->id }}'],
+            @endforeach
+        ];
+        let data = {
+            labels: labels,
+            datasets: [{
+                    label: 'Product ID',
+                    data: [
+                        @foreach($productsInCart as $productInCart)
+                            [{{ $productInCart->timeAddedToCart }}],
+                        @endforeach
+                    ],
+                    borderColor: 'rgb(54, 162, 235)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderWidth: 1,
+                }
+            ]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Favorite Products'
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            },
+        };
+
+        let chart2 = document.getElementById('myChart2').getContext('2d');
+        let myChart2 = new Chart(chart2, {
+            type: 'bar',
+            data: {
+                labels: [
+                        @foreach($products as $product)
+                    ['{{ $product->id }}'],
+                    @endforeach
+                ],
+                datasets: [{
+                    label: 'Product ID',
+                    data: [
+                            @foreach($productsInCart as $productInCart)
+                        [{{ $productInCart->timeAddedToCart }}],
+                        @endforeach
+                    ],
+                    borderColor: 'rgb(54, 162, 235)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderWidth: 1,
+                }]
+            }
+        });
+
+    </script>
+
+    {{-- Chart 3 --}}
     <script>
         var data = {
             labels: ['Cat', 'Dog'],
@@ -157,20 +233,51 @@
         };
 
         var responsiveOptions = [
-        ['screen and (min-width: 640px)', {
-            chartPadding: 30,
-            labelOffset: 100,
-            labelDirection: 'explode',
-            labelInterpolationFnc: function(value) {
-            return value;
-            }
-        }],
-        ['screen and (min-width: 1024px)', {
-            labelOffset: 80,
-            chartPadding: 20
-        }]
+            ['screen and (min-width: 640px)', {
+                chartPadding: 30,
+                labelOffset: 100,
+                labelDirection: 'explode',
+                labelInterpolationFnc: function(value) {
+                    return value;
+                }
+            }],
+            ['screen and (min-width: 1024px)', {
+                labelOffset: 80,
+                chartPadding: 20
+            }]
         ];
 
-        new Chartist.Pie('.ct-chart-2', data, options, responsiveOptions);
+        new Chartist.Pie('.ct-chart-3', data, options, responsiveOptions);
+    </script>
+
+    <script>
+        const labels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+        ];
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data,
+            options: {}
+        };
+
+        var myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
     </script>
 @endsection

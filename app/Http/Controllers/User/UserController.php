@@ -39,11 +39,17 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        if(auth()->id() != $user->id){
+            return back();
+        }
         return view('user.show')->with('user', $user);
     }
 
     public function edit(User $user)
     {
+        if(auth()->id() != $user->id){
+            return back();
+        }
         return view('user.edit')->with('user', $user);
     }
 
@@ -115,9 +121,9 @@ class UserController extends Controller
 
         if ($request->address && $request->ward && $request->district && $request->city != null){
             Address::updateOrCreate(['user_id' => $user->id], [
-                'address' => $request->address, 
-                'ward' => $request->ward, 
-                'district' => $request->district, 
+                'address' => $request->address,
+                'ward' => $request->ward,
+                'district' => $request->district,
                 'city' => $request->city]
             );
         }

@@ -36,6 +36,23 @@ class DashboardController extends Controller
     }
 
     public function statistic(){
-        return view('admin.statistic.index');
+
+        //Product added to cart
+        $productsInCart = \App\CartDetail::selectRaw('`product_id` ,count(*) as `timeAddedToCart`')->groupBy('product_id')->orderByDesc('timeAddedToCart')->get();
+//        dd(count($productsInCart));
+        /*
+         * Tao collection products de chua cac chi tiet product dc add vao cart nhieu
+         * */
+        $products = collect([]);
+
+        foreach($productsInCart as $productInCart){
+            $products->push(Product::find($productInCart->product_id));
+        }
+
+        return view('admin.statistic.index')
+            ->with([
+                'products' => $products,
+                'productsInCart' => $productsInCart,
+            ]);
     }
 }

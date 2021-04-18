@@ -49,7 +49,7 @@
                                     <input class="w-25" type="radio" name="gender" value="M" checked>Male
                                 </div>
                                 <div class="col-6">
-                                    <input class="w-25" type="radio" name="gender" value="F">Female 
+                                    <input class="w-25" type="radio" name="gender" value="F">Female
                                 </div>
                             @else
                                 <div class="col-6">
@@ -146,7 +146,7 @@
                             @enderror
                         </div>
                     </div>
-                {{-- @else
+                 @else
                     <div class="row py-2">
                         <div class="col-md-12">
                             <h4 class="pb-4 border-bottom-1 font-weight-bold">My Address</h4>
@@ -189,7 +189,7 @@
                                 </div>
                             @enderror
                         </div>
-                    </div> --}}
+                    </div>
                 @endif
                 <div class="py-3 pb-4 border-top-1 row">
                     <div class="col-5">
