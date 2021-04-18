@@ -107,7 +107,7 @@
                                                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                                     In stock : {{ $productOrdered->stock }}
                                                                 </span>
-                                                            @elseif($productOrdered->stock < 5) 
+                                                            @elseif($productOrdered->stock < 5)
                                                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                                                     In stock : {{ $productOrdered->stock }}
                                                                 </span>
@@ -138,9 +138,9 @@
 
 @section('script')
 
-    {{-- Chart 1 --}}
+
     <script>
-        let delayed1;
+        {{-- Chart 1 --}}
         let labels1 = [
             @foreach($salesByMonth as $month)
                 ['{{ $month->month }}'],
@@ -157,8 +157,10 @@
                             {{ $sale->price }},
                         @endforeach
                 ],
-                borderColor: 'rgb(180, 100, 235)',
-                backgroundColor: 'rgba(180, 100, 235, 0.2)',
+                borderColor: 'rgb(57,243,139)',
+                backgroundColor: 'rgba(57,243,139, 0.2)',
+                fill: true,
+                tension: 0.4,
                 }
             ]
         };
@@ -167,17 +169,19 @@
             type: 'line',
             data: data1,
             options: {
-                animation: {
-                    onComplete: () => {
-                        delayed1 = true;
-                    },
-                    delay: (context) => {
-                        let delay1 = 0;
-                        if (context.type === 'data' && context.mode === 'default' && !delayed1) {
-                        delay1 = context.dataIndex * 300 + context.datasetIndex * 100;
-                        }
-                        return delay1;
-                    },
+                animations: {
+                    radius: {
+                        duration: 400,
+                        easing: 'linear',
+                        loop: (context) => context.active
+                    }
+                },
+                hoverRadius: 12,
+                hoverBackgroundColor: 'yellow',
+                interaction: {
+                    mode: 'nearest',
+                    intersect: false,
+                    axis: 'x'
                 },
                 responsive: true,
                 scales: {
@@ -194,13 +198,9 @@
                         },
                         beginAtZero: true,
                     }
-                },  
+                },
             },
         };
-        
-
-        /* let chart1 = document.getElementById('myChart1').getContext('2d');
-        let myChart1 = new Chart(chart1, config1); */
 
         {{-- Chart 2 --}}
 
@@ -270,53 +270,70 @@
             },
         };
 
-/*         let chart2 = document.getElementById('myChart2').getContext('2d');
-        let myChart2 = new Chart(chart2, config2); */
+        {{-- Chart 3 --}}
+        let delayed3;
+        let data3 = {
+            labels: [
+                @foreach($totalProductsByCategory as $product)
+                    ['{{ $product->name }}'],
+                @endforeach
+            ],
+            datasets: [
+                {
+                    label: 'Dataset 1',
+                    data: [
+                        @foreach($totalProductsByCategory as $product)
+                            [{{ $product->products }}],
+                        @endforeach
+                    ],
+                    backgroundColor: [
+                            'rgba(33,164,250,0.7)',
+                            'rgba(205,12,212,0.7)',
+                            'rgba(212,243,36,0.7)',
+                            'rgba(250,181,3,0.7)',
+                            'rgba(0,0,0,0.7)',
+                    ],
+                }
+            ]
+        };
+
+
+        const config3 = {
+            type: 'doughnut',
+            data: data3,
+            options: {
+                animation: {
+                    onComplete: () => {
+                        delayed2 = true;
+                    },
+                    delay: (context) => {
+                        let delay2 = 0;
+                        if (context.type === 'data' && context.mode === 'default' && !delayed2) {
+                            delay2 = context.dataIndex * 300 + context.datasetIndex * 100;
+                        }
+                        return delay2;
+                    },
+                },
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Chart.js Doughnut Chart'
+                    }
+                }
+            },
+        };
 
         window.onload = function(){
             let chart1 = document.getElementById("myChart1").getContext("2d");
             window.myLine = new Chart(chart1, config1);
             let chart2 = document.getElementById('myChart2').getContext('2d');
             window.myBar = new Chart(chart2, config2);
+            let chart3 = document.getElementById('myChart3').getContext('2d');
+            window.myDoughnut = new Chart(chart3, config3);
         }
     </script>
-
-    
-    {{-- Chart 3 --}}
-    {{-- <script>
-        /* let DATA_COUNT = 5;
-        let NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100}; */
-
-        let data = {
-            labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
-            datasets: [
-                {
-                label: 'Dataset 1',
-                data: Utils.numbers(NUMBER_CFG),
-                backgroundColor: Object.values(Utils.CHART_COLORS),
-                }
-            ]
-        };
-
-        const config = {
-            type: 'doughnut',
-            data: data,
-            options: {
-                responsive: true,
-                plugins: {
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: 'Chart.js Doughnut Chart'
-                }
-                }
-            },
-        };
-
-        let chart3 = document.getElementById('myChart3').getContext('2d');
-        let myChart3 = new Chart(chart3, config);
-    </script> --}}
-
 @endsection
