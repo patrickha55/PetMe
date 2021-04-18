@@ -27,7 +27,7 @@
             right:20px;
             z-index:10;
             }
-        </style>  
+        </style>
 
         <!-- CSS Files -->
             <!--Tailwind-->
@@ -35,8 +35,8 @@
             {{--Bootstrap 4--}}
             <link href="{{ asset('/css/admin.css') }}" rel="stylesheet"/>
 
-        @yield('style')  
-        
+        @yield('style')
+
     </head>
     <body>
     @if (session('status'))
@@ -120,6 +120,9 @@
     <script src="{{ asset('/js/material-dashboard.js?v=2.1.2') }}" type="text/javascript"></script>
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ asset('/demo/demo.js') }}"></script>
+    <!-- Chart JS-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.1.1/dist/chart.min.js" integrity="sha256-lISRn4x2bHaafBiAb0H5C7mqJli7N0SH+vrapxjIz3k=" crossorigin="anonymous"></script>
+
     <script>
         $(document).ready(function() {
             $().ready(function() {
