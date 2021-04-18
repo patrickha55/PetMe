@@ -26,8 +26,8 @@
              @foreach ($trend as $product)
                 <div class="custom-col-style-2 electronic-banner-col-3 mb-30" id="myProduct">
                     <div class="electronic-banner-wrapper shadow p-3 mb-5 bg-white rounded">
-                        <img style="margin-top: 20px;" src="/storage/Image/product/{{ $product->img }}" width="auto" height="250px">
-                        <div class="electro-banner-style electro-banner-position bg-light " style="opacity:0.7; padding-left: 200px;">
+                        <img class="col-6" style="" src="/storage/Image/product/{{ $product->img }}" width="auto" height="">
+                        <div class="col-6" style="opacity:0.7;">
                             <h4 class=" text-info opacity-5">{{ $product->name }}</h4>
                             <h5>@currency($product->price) VNĐ</h5>
                             <div class="mt-2 mb-2">

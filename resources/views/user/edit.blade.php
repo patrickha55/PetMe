@@ -1,22 +1,25 @@
 @extends('layouts.client.appWithoutCategory')
 
 @section('content')
-    <div class="wrapper shadow p-3 mb-5 bg-white mt-sm-5">
+<div class="container-contact100" style="background: url('https://i.pinimg.com/originals/64/51/7a/64517ad62ff3f6fb1138d3aff998ccea.jpg');">
+    <div class="contact100-map" id="")>
+    </div>
+    <div class="wrapper shadow p-3 mb-5 bg-white mt-sm-5" style="" style="">
         <h4 class="pb-4 border-bottom-1 font-weight-bold">MY PROFILE</h4>
         <form action="{{ route('user.update', $user) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="d-flex align-items-start py-3 border-bottom">
             <img src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" id="avatar-img-tag" class="img" alt="Image">
-            <input type="file" class="form-control-file button border  @error('img') border-red-500 @enderror" name="img" id="img">
-            @error('img')
+            <input type="file" class="@error('img') border-red-500 @enderror" name="img" id="img">
+            @error('img')         
                 <div class="text-sm text-danger mt-2">
                     {{ $message }}
                 </div>
             @enderror
             <div class="pl-sm-4 pl-2" id="img-section">
                 <b>Profile Photo</b>
-                <p>Accepted file type .png. Less than 2MB</p>
+                <p style="color: red;">Accepted file type .png. Less than 2MB</p>
             </div>
         </div>
         <div class="py-2">
@@ -46,17 +49,17 @@
                         <div class="row mx-auto" style="margin-top: 20px;">
                             @if ($user->gender == 'M')
                                 <div class="col-6">
-                                    <input class="w-25" type="radio" name="gender" value="M" checked>Male
+                                    <input class="" style="height: unset; width: unset;" type="radio" name="gender" value="M" checked> Male
                                 </div>
                                 <div class="col-6">
-                                    <input class="w-25" type="radio" name="gender" value="F">Female 
+                                    <input class="" style="height: unset; width: unset;" type="radio" name="gender" value="F"> Female 
                                 </div>
                             @else
                                 <div class="col-6">
-                                    <input style="height: unset;" class="w-25" type="radio" name="gender" value="M" >Male
+                                    <input style="height: unset; width: unset;" class="" type="radio" name="gender" value="M" > Male
                                 </div>
                                 <div class="col-6">
-                                    <input style="height: unset;" class="w-25" type="radio" name="gender" value="F" checked>Female
+                                    <input style="height: unset; width: unset;" class="" type="radio" name="gender" value="F" checked> Female
                                 </div>
                             @endif
                         </div>
@@ -202,6 +205,7 @@
             </form>
         </div>
     </div>
+</div>
 @endsection
 
 @section('script')

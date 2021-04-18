@@ -43,7 +43,7 @@
                         <div class="m-auto">
                             <img src="/storage/Image/review.jpg" alt="Empty Cart">
                         </div>
-                        <h3 class="col-12 mt-20 mb-20">There is no review.</h3>
+                        <h3 class="col-12 mt-20 mb-20">There is no review</h3>
                         <div class="m-auto">
                             <a href="{{ route('order.index') }}" class="col-12 btn-lg rounded btn-danger">Rate your Purchased Product</a>
                         </div>

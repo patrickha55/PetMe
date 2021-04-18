@@ -43,7 +43,7 @@
             border-radius: 15px;
             margin: 10px auto;
             max-width: 600px;
-            background: url('https://wallpapercave.com/wp/wp2446975.jpg');
+            background: url('');
         }
 
         h4 {
