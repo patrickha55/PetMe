@@ -12,7 +12,7 @@
             </a>
             <div class="product-action-right">
                 <a class="animate-right" href="{{route('home.show', $product)}}" title="View">
-                    <i class="pe-7s-look"></i>
+                    <i class="far fa-eye"></i>
                 </a>
                 @if(session()->has('product'.$product->id))
                     @if(session()->get('product'.$product->id) != null)
