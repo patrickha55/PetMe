@@ -2,7 +2,7 @@
     <div class="categori-menu-slider-wrapper clearfix">
         <div class="categories-menu">
             <div class="category-heading" >
-                <h3><a href="{{ route('products') }}">Products</a>  <i class="pe-7s-angle-down"></i></h3>
+                <h3><a href="{{ route('products') }}">Categories</a>  <i class="pe-7s-angle-down"></i></h3>
             </div>
             <div class="category-menu-list">
                 <ul>
@@ -53,7 +53,7 @@
                             <a href="{{url('/about')}}">about us</a>
                         </li>
                         <li>
-                            <a href="#">product</a>
+                            <a href="{{ route('products') }}">product</a>
                         </li>
                         <li>
                             <a href="{{ url('/contact')}}">contact</a>

@@ -36,15 +36,14 @@
 @endsection
 
 @section('content')
-    <h2 class="text-center font-weight-bold my-5">Update Review</h2>
+    <h2 class="text-center font-weight-bold my-5">Review</h2>
     <div class="shadow w-50 mx-auto mb-100">
         <div class="p-3">
-            <form action="{{ route('review.update', $review) }}" method="post" class="row h4" name="rating-form">
+            <form action="{{ route('review.store', $product) }}" method="POST" class="row h4" name="rating-form">
                 @csrf
-                @method('PATCH')
                 <div class="form-group col-12">
                     <label for="title" class="h3">Title</label>
-                    <input type="text" class="form-control @error('title') border-red-500 @enderror" name="title" id="title" placeholder="Title" value="{{ $review->title }}" required>
+                    <input type="text" class="form-control @error('title') border-red-500 @enderror" name="title" id="title" placeholder="Title" value="{{ old('title') }}" required>
                     @error('title')
                     <div class="text-sm text-danger mt-2">
                         {{ $message }}
@@ -78,7 +77,7 @@
                 </div>
                 <div class="form-group col-12">
                     <label for="body" class="h3">Content</label >
-                    <textarea class="form-control @error('body') border-red-500 @enderror" name="body" id="body" rows="3">{{ $review->content }}</textarea>
+                    <textarea class="form-control @error('body') border-red-500 @enderror" name="body" id="body" rows="3"></textarea>
                     @error('body')
                     <div class="text-sm text-danger-mt-2">
                         {{ $message }}
@@ -86,7 +85,7 @@
                     @enderror
                 </div>
                 <div class="form-group col-2">
-                    <button type="submit" class="btn btn-outline-dark rounded w-75 h-75 p-3 h3">Update</button>
+                    <button type="submit" class="btn btn-outline-dark rounded w-75 h-75 p-3 h3">Submit</button>
                 </div>
             </form>
         </div>
@@ -106,6 +105,7 @@
 
                 //Get star data index
                 ratedIndex = parseInt($(this).attr('data-index'));
+                console.log(ratedIndex);
 
                 for(let x = 1; x <= ratedIndex; x++)
                     $('i.fa-star').eq(-x).removeClass("far").addClass('fas').css('color', '#ffff36');

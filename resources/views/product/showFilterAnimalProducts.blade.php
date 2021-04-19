@@ -5,8 +5,8 @@
     <div class="electro-product-wrapper wrapper-padding pt-95 pb-45">
         <div class="container-fluid">
             <div class="h4 section-title-4 border-bottom-1 pb-15 font-weight-light">
-                <a href="">Products</a>
-                <a href="#"> > {{ $animalCategory->name }}</a>
+                <a href="{{ route('products') }}">Products</a>
+                <a href="{{ route('home.showFilterAnimalProducts', $animalCategory) }}"> > {{ $animalCategory->name }}</a>
             </div>
             <div class="shadow p-3 mb-5 bg-white rounded">
                 <div class="section-title-4 text-center mb-40">
@@ -22,7 +22,7 @@
                                         <div class="product-img-3">
                                             <a href="{{route('home.show', $product)}}">
                                                 @if(!empty($product->img))
-                                
+
                                                 <img src="/storage/Image/product/{{ $product->img }}" alt="">
                                                 @else
                                                     <img src="/storage/Image/product/noimage.jpg" alt="">
@@ -56,13 +56,8 @@
                                             </div>
                                         </div>
                                         <div class="product-content-4 text-center">
-                                            <div class="product-rating-4">
-                                                <i class="icofont icofont-star yellow"></i>
-                                                <i class="icofont icofont-star yellow"></i>
-                                                <i class="icofont icofont-star yellow"></i>
-                                                <i class="icofont icofont-star yellow"></i>
-                                                <i class="icofont icofont-star"></i>
-                                            </div>
+                                            @include('layouts.client.includes.rating')
+
                                             <h4>
                                                 <a href="{{route('home.show', $product)}}">{{$product->name}}</a>
                                             </h4>
@@ -77,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 @endsection

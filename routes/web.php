@@ -37,8 +37,8 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
         Route::resource('/admins', 'AdminController');
     });
 
-    /* 
-        Wishlist 
+    /*
+        Wishlist
     */
 
     Route::resource('/wishlists', 'AdminFavoriteController');
@@ -135,13 +135,14 @@ Route::group(['namespace' => 'Auth'], function(){
 Route::middleware(['auth'])->group(function () {
     // Review
     Route::get('/my-reviews', 'ProductReviewController@index')->name('review.index');
-    Route::resource('/product/{product}/review', 'ProductReviewController')->except('index');
+    Route::get('/product/{product}/review', 'ProductReviewController@create')->name('review.create');
+    Route::post('/product/{product}/review', 'ProductReviewController@store')->name('review.store');
+    Route::resource('/review', 'ProductReviewController')->except('index','store', 'create');
 
     //Comment
-    Route::prefix('comment')->group(function(){
-        Route::post('/{product_review_id}', 'CommentController@store')->name('comment.store');
-        Route::resource('/', 'CommentController')->only('index');
-    });
+
+    Route::post('/comment/{product_review_id}', 'CommentController@store')->name('comment.store');
+    Route::resource('/comment', 'CommentController')->only('index');
 
     /*
      * Cart
