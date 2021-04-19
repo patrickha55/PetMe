@@ -21,9 +21,9 @@ class ProductReviewController extends Controller
     /**
      * Show the form for creating a new resources
      */
-    public function create()
+    public function create(Product $product)
     {
-
+        return view('user.review.create')->with('product', $product);
     }
 
     /**
@@ -44,51 +44,61 @@ class ProductReviewController extends Controller
             'content' => $request->body
         ]);
 
-        return back()->with('status', 'Thank you for your review, we will evaluate it and publish it as soon as possible!');
+        return redirect()->route('review.index')->with('status', 'Thank you for your review, we will evaluate it and publish it as soon as possible!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ProductReview  $productReview
-     * @return \Illuminate\Http\Response
+     * @param  ProductReview  $productReview
      */
     public function show(ProductReview $productReview)
     {
-        //
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ProductReview  $productReview
-     * @return \Illuminate\Http\Response
+     * @param  ProductReview  $productReview
      */
-    public function edit(ProductReview $productReview)
+    public function edit(ProductReview $review)
     {
-        //
+        return view('user.review.edit')->with('review', $review);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ProductReview  $productReview
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  ProductReview  $review
      */
-    public function update(Request $request, ProductReview $productReview)
+    public function update(Request $request, ProductReview $review)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required',
+            'body' => 'min:10'
+        ]);
+
+        $review->update([
+            'title' => $request->title,
+            'rating' => $request->rating,
+            'content' => $request->body
+        ]);
+
+        return redirect()->route('review.index')->with('status', 'Review updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ProductReview  $productReview
-     * @return \Illuminate\Http\Response
+     * @param \App\ProductReview $review
+     * @throws \Exception
      */
-    public function destroy(ProductReview $productReview)
+    public function destroy(ProductReview $review)
     {
-        //
+        $review->delete();
+
+        return redirect()->back()->with('status', 'Review deleted successfully!');
     }
 }

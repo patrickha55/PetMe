@@ -121,7 +121,7 @@
                                         </div>
                                         <div class="px-4 py-2 row">
                                             <div class="col-2 text-right">
-                                                <button id="displayReply" class="">Reply</button>
+                                                <button>Reply</button>
                                             </div>
                                             <div class="col-10" id="reply">
                                                 <div class='block'>
@@ -139,25 +139,34 @@
                                             </div>
                                         </div>
                                         <div class="pl-2 py-2 row">
-                                            <div class="col-4">
-                                                <button id="displayComments">Show Replies</button>
-                                            </div>
-                                            <div class="col-8" id="comments">
-                                                <div class='row'>
-                                                    @php
-                                                        $comments = \App\Comment::where('product_review_id', $review->pivot->id)->get();
-                                                    @endphp
-                                                    @foreach($comments as $comment)
-                                                        <div class="col-2 mb-2">
-                                                            <img src="/storage/Image/noimage.jpg" alt="" width="70%">
-                                                        </div>
-                                                        <div class="col-10 mb-2 text-left block">
-                                                            <div class="h5">{{ \App\User::find($comment->user_id)->userName }} <span class="text-sm text-gray-500">{{ $comment->created_at->diffForHumans() }}</span></div>
-                                                            <div class="text-left">&#64;{{ $review->userName }} &nbsp; {{ $comment->body }}</div>
-                                                        </div>
-                                                    @endforeach
+                                            @php
+                                                $comments = \App\Comment::where('product_review_id', $review->pivot->id)->get();
+                                            @endphp
+                                            @if(count($comments))
+                                                <div class="col-4">
+                                                    <button>Replies</button>
                                                 </div>
-                                            </div>
+                                                <div class="col-8" id="comments">
+                                                    <div class='row'>
+                                                        @foreach($comments as $comment)
+                                                            @php
+                                                                $user = \App\User::find($comment->user_id);
+                                                            @endphp
+                                                            <div class="col-2 mb-3">
+                                                                @if(isset($user->img))
+                                                                    <img src="/storage/Image/user/{{ $user->img }}" alt="" width="50px" height="50px">
+                                                                @else
+                                                                    <img src="/storage/Image/user/user_default.png" alt="" width="50px" height="50px">
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-10 mb-2 text-left block">
+                                                                <div class="h5">{{ \App\User::find($comment->user_id)->userName }} <span class="text-sm text-gray-500">{{ $comment->created_at->diffForHumans() }}</span></div>
+                                                                <div class="text-left">&#64;{{ $review->userName }} &nbsp; {{ $comment->body }}</div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                             @endif
                                         </div>
                                     </div>
                                 @endforeach
@@ -165,51 +174,6 @@
                             </div>
                         </div>
                     @endif
-                </div>
-
-                {{-- Review --}}
-                <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria="true" >
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span class="pe-7s-close" aria-hidden="true"></span>
-                    </button>
-                    <div class="modal-dialog modal-quickview-width" role="document" >
-                        <div class="modal-content p-10">
-                            <div class="modal-body">
-                                <div class="qwick-view-content text-left row">
-                                    <h2 class="text-center font-weight-bold h2">Review</h2>
-                                    <form action="" method="post" class="row h4">
-                                        @csrf
-                                        <div class="form-group col-12">
-                                            <label for="title" class="h3">Title</label>
-                                            <input type="text" class="form-control @error('title') border-red-500 @enderror" name="title" id="title" placeholder="Title">
-                                            @error('title')
-                                                <div class="text-sm text-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <h3 class="h3">Rate this product</h3>
-                                            <div class="ratings pt-2 pb-2" id="ratings">
-                                                <i class="far fa-star fa-2x"></i>
-                                                <i class="far fa-star fa-2x"></i>
-                                                <i class="far fa-star fa-2x"></i>
-                                                <i class="far fa-star fa-2x"></i>
-                                                <i class="far fa-star fa-2x"></i>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <label for="content" class="h3">Content</label>
-                                            <textarea class="form-control" name="content" id="content" rows="3">Your thought...</textarea>
-                                        </div>
-                                        <div class="form-group col-2">
-                                            <button type="submit" class="btn btn-outline-dark rounded w-75 h-75 p-3 h3">Submit</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -221,17 +185,9 @@
 
 
     <script src="https://kit.fontawesome.com/c4201aab66.js" crossorigin="anonymous"></script>
-    <script>
+<!--    <script>
         $(document).ready(function(){
-            {{-- Hien thong so luong rating ra ngoi sao --}}
 
-            $('.ratings i').click(function() {
-                $('.ratings > i').removeClass('far');
-                $(this).addClass('fas');
-                $('.form').css('display', 'block');
-            });
-
-            {{-- Hien tat hoac an commet form va comment --}}
 
             /* $('#displayReply').click(function(){
                 $('#reply').removeClass('hidden');
@@ -253,5 +209,5 @@
                 }
             }); */
         });
-    </script>
+    </script>-->
 @endsection

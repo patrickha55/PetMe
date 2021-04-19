@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class CommentController extends Controller
 {
@@ -21,13 +22,14 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * 
+     * @param \Illuminate\Http\Request $request
+     *
+     * @throws ValidationException
      */
     public function store(Request $request, $product_review_id)
     {
         $this->validate($request, [
-            'body' => 'required|string|min:5'
+            'body' => 'required|string'
         ]);
 
         Comment::create([
@@ -46,7 +48,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        
+
     }
 
     /**

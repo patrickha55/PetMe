@@ -1,22 +1,6 @@
 @extends('layouts.client.app')
 
-@section('style')
-    <style>
-        #statusSession{
-            position:absolute;
-            bottom:20px;
-            right:20px;
-            z-index:10;
-        }
-    </style>
-@endsection
-
 @section('content')
-    @if (session('status'))
-        <div class="alert alert-success" id="statusSession">
-            {{ session('status') }}
-        </div>
-    @endif
     <div class="product-details ptb-100 pb-90">
         <div class="h4 container section-title-4 border-bottom-1 pb-15 font-weight-light">
             <a href="">Products</a>
@@ -125,26 +109,4 @@
 
 @endsection
 
-@section('script')
-
-    {{-- Hien status tra ve tu route --}}
-
-    <script type="text/javascript">
-
-        $(function(){
-            $( "#statusSession" ).fadeIn( 500 ).delay( 2000 ).fadeOut( 500 );
-
-            $('#productModal').on('show.bs.modal', function(e) {
-                var link     = e.relatedTarget(),
-                    modal    = $(this),
-                    name = link.data("target-name"),
-                    price    = link.data("target-price");
-
-                modal.find("#price").val(price);
-                modal.find("#name").val(name);
-            });
-        })
-    </script>
-
-@endsection
 
