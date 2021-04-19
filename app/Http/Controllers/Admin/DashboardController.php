@@ -96,12 +96,13 @@ class DashboardController extends Controller
          * Lay tong so luong product theo tung category
          */
 
-        $totalProductsByCategory = DB::table('products')
-                                    ->join('product_categories', 'products.id', '=', 'product_categories.id')
-                                    ->join('animal_categories','product_categories.id', '=', 'animal_categories.id')
-                                    ->selectRaw('animal_categories.name, count(products.id) as products')
-                                    ->where('animal_categories.deleted_at', '=', null)
-                                    ->groupBy('animal_categories.name')->get();
+        $totalProductsByCategory = DB::table('products as p')
+            ->join('product_categories as pc','p.product_category_id','=','pc.id')
+            ->join('animal_categories as ac','pc.animal_category_id','=','ac.id')
+            ->selectRaw('ac.name, count(p.id) as products')
+            ->where('ac.deleted_at','=',null)
+            ->groupBy('ac.name')->get();
+
 //        dd($totalProductsByCategory);
         /**
          *    Shop Revenue (kind of)
