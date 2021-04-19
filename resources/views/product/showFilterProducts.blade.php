@@ -22,7 +22,7 @@
                                         <div class="product-img-3">
                                             <a href="{{route('home.show', $product)}}">
                                                 @if(!empty($product->img))
-                                
+
                                                 <img src="/storage/Image/product/{{ $product->img }}" alt="">
                                                 @else
                                                     <img src="/storage/Image/product/noimage.jpg" alt="">
@@ -56,13 +56,8 @@
                                             </div>
                                         </div>
                                         <div class="product-content-4 text-center">
-                                            <div class="product-rating-4">
-                                                <i class="icofont icofont-star yellow"></i>
-                                                <i class="icofont icofont-star yellow"></i>
-                                                <i class="icofont icofont-star yellow"></i>
-                                                <i class="icofont icofont-star yellow"></i>
-                                                <i class="icofont icofont-star"></i>
-                                            </div>
+                                            @include('layouts.client.includes.rating')
+
                                             <h4>
                                                 <a href="{{route('home.show', $product)}}">{{$product->name}}</a>
                                             </h4>

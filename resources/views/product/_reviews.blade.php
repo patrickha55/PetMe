@@ -17,7 +17,7 @@
                 <a class="active" href="#pro-dec" data-toggle="tab" role="tab" aria-selected="true">
                     Description
                 </a>
-                @if ($product->detail->ingredients)
+                @if ($product->detail->ingredients != null)
                     <a href="#ingredient" data-toggle="tab" role="tab" aria-selected="false">
                         Ingedients
                     </a>
@@ -41,14 +41,18 @@
                 <div class="tab-pane mt-5 fade text-left" id="ingredient" role="tabpanel">
                     <p>{{ $product->detail->ingredients }}</p>
                 </div>
+                <div class="tab-pane mt-5 fade text-left" id="material" role="tabpanel">
+                    <p>{{ $product->detail->materials }}</p>
+                </div>
                 <div class="tab-pane mt-5 fade" id="nutrient" role="tabpanel">
-                    <table class="w-75 mx-auto table table-striped table-dark">
-                        <thead>
+                    @if($product->detail->nutritionFact != null)
+                        <table class="w-75 mx-auto table table-striped table-dark">
+                            <thead>
                             <tr>
                                 <th scope="col" colspan="2" class="bg-dark">Nutrition Facts</th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
                             <tr>
                                 <th scope="row">Serving Size</th>
                                 <td>{{ $product->detail->nutritionFact->serving_size }}</td>
@@ -93,8 +97,9 @@
                                 <th scope="row">Moisture</th>
                                 <td>{{ $product->detail->nutritionFact->moisture }}</td>
                             </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    @endif
                 </div>
                 <div class="tab-pane fade" id="pro-review" role="tabpanel">
                     <link rel="stylesheet" href="/css/app.css">

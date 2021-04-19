@@ -32,52 +32,7 @@ class HomeController extends Controller
 
     public function home()
     {
-        /*
-        * Kiem tra user hien dang co cart nao trong trang thai active (1),
-        * neu co thi lay thong tin cart ve va them vao session 
-        */
-       
-        if(Auth::check()){
-
-
-            $cart = \App\Cart::where([
-                'user_id' => auth()->id(),
-                'status' => 1
-            ])->first();
-
-
-            if(isset($cart)){ 
-
-                // Lay tat ca cart items trong $cart
-
-                $cartItems = \App\CartDetail::where([
-                    'cart_id' => $cart->id,
-                    'status' => 1
-                ])->get();
-                
-                // Tao cart moi trong session
-         
-                \Cart::session(auth()->id())->clear();
-               
-                foreach($cartItems as $item){
-                     
-                    $product = \App\Product::find($item->product_id);
-                  
-                    /*  Tao item moi trong cart tren session */      
-
-                    \Cart::session(auth()->user()->id)->add(array(
-                        'id' => $product->id,
-                        'name' => $product->name,
-                        'price' => $product->price,
-                        'quantity' => $item->quantity,
-                        'attributes' => array(),
-                        'associatedModel' => $product,
-                    )); 
-                }
-            }
-        } 
-
-        $products = Product::paginate(5);
+        $products = Product::paginate(10);
 
         $productIdsWithAvgRating = \App\ProductReview::selectRaw('product_id ,AVG(rating) rating')
                                                     ->where('status','approved')
@@ -119,7 +74,7 @@ class HomeController extends Controller
 
         $userReviewsForRating = $product->userReviews()->where('status', 'approved')->get();
         $userReviews = $product->userReviews()->where('status', 'approved')->orderByDesc('created_at')->paginate(2);
-        
+
         // Tinh % rating theo tung muc rating
 
         $countFive = $countFour = $countThree = $countTwo = $count= 0;
@@ -162,8 +117,8 @@ class HomeController extends Controller
 
         if ($count != 0){
             $one = $count;
-        }            
-        
+        }
+
         return view('product.show',compact('product',$product))->with([
             'products'=>$products,
             'categories'=>$categories,

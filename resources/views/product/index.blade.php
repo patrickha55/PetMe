@@ -106,7 +106,7 @@
                                                             <a class="animate-right" href="{{route('compare.destroy', $product)}}" title="Remove From Compare">
                                                                 <i class="fas fa-exchange-alt text-danger"></i>
                                                             </a>
-                                                        @endif    
+                                                        @endif
                                                     @else
                                                         <a class="animate-right" href="{{route('compare.store', $product)}}" title="Compare">
                                                             <i class="fas fa-exchange-alt"></i>
@@ -115,8 +115,8 @@
                                                     <a class="animate-top" title="Add To Cart" href="{{route('cart.add', $product)}}">
                                                         <i class="pe-7s-cart"></i>
                                                     </a>
-                                                    
-                                                    {{-- Neu user da thich thi hien trai tim mau den, bam vao de xoa product khoi wishlist --}}        
+
+                                                    {{-- Neu user da thich thi hien trai tim mau den, bam vao de xoa product khoi wishlist --}}
 
                                                     @if(isset($product->userFavorites->find(auth()->id())->id))
                                                         @if($product->userFavorites->find(auth()->id())->id == auth()->id())
@@ -125,7 +125,7 @@
                                                                 @method('delete')
                                                                 <button type="submit" class='btn-lg b-none  animate-left' title="Remove from Wishlist"><i class="fas fa-heart"></i></button>
                                                             </form>
-                                                        @endif    
+                                                        @endif
                                                     @else
                                                         <a class="animate-left" title="Wishlist" href="{{ route('wishlist.store', $product) }}">
                                                             <i class="far fa-heart"></i>
@@ -134,23 +134,7 @@
                                                 </div>
                                             </div>
                                             <div class="product-content-4 text-center">
-                                                <div class="product-rating-4">
-                                                    @php
-                                                        $rating = \App\ProductReview::where([
-                                                            'product_id' => $product->id,
-                                                            'status' => 'approved'
-                                                        ])->avg('rating');
-                                                    @endphp
-                                                    @for($i = 0; $i < 5; $i++)
-                                                        @if(floor($rating) - $i >= 1)
-                                                            <i class="fas fa-star fa-2x" style="color: #facf2c"></i>
-                                                        @elseif($rating -$i > 0)
-                                                            <i class="fas fa-star-half fa-2x" style="color: #facf2c"></i>
-                                                        @else
-                                                            <i class="far fa-star fa-2x"></i>
-                                                        @endif
-                                                    @endfor
-                                                </div>
+                                                @include('layouts.client.includes.rating')
                                                 <h4>
                                                     <a href="{{route('home.show', $product)}}">{{$product->name}}</a>
                                                 </h4>
@@ -172,6 +156,7 @@
                                         </div>
                                     </div>
                                 @endforeach
+                                {{ $products->links() }}
                             </div>
                         </div>
                     </div>
@@ -182,7 +167,7 @@
 @endsection
 
 {{-- Test hidden form --}}
-    
+
 @section('script')
     {{-- <script type='text/javascript'>
         let products = {!! json_encode($products, JSON_HEX_TAG) !!};
