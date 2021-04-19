@@ -155,7 +155,7 @@ Route::middleware(['auth'])->group(function () {
 
     //Checkout
     Route::get('/checkout', 'CartController@checkout')->name('cart.checkout');
-
+    Route::get('/cart/{product}/buynow', 'CartController@buynow')->name('cart.buynow');
     Route::resource('/cart', 'CartController');
 
     /*
