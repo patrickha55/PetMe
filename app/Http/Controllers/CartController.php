@@ -184,6 +184,59 @@ class CartController extends Controller
             ]);
 
     }
+    public function buynow(Product $product){ 
+        if(Auth::check()){
+
+            // Lay cart co status la active(1), neu chua co thi tao cart moi.
+    
+            $cart = Cart::where([
+                'user_id' => auth()->id(),
+                'status' => 1
+                ])->first();
+    
+            if(!isset($cart)){
+                $cart = \App\Cart::create([
+                    'user_id' => auth()->id(),
+                ]);
+            }
+    
+            // Them item vao cart tren session
+    
+            \Cart::session(auth()->id())->add(array(
+                'id' => $product->id,
+                'name' => $product->name,
+                'price' => $product->price,
+                'quantity' => 1,
+                'attributes' => array(),
+                'associatedModel' => $product,
+            ));
+    
+            // Update hoac tao cart details moi
+    
+            $cartDetail = CartDetail::where([
+                'cart_id' => $cart->id,
+                'product_id' => $product->id,
+                'status' => 1
+            ])->first();
+    
+            if(isset($cartDetail)){
+                $cartDetail->update([
+                    'quantity' => $cartDetail->quantity + 1,
+                    'price' => $product->price
+                ]);
+            } else {
+                CartDetail::create([
+                    'cart_id' => $cart->id,
+                    'product_id' => $product->id,
+                    'status' => 1,
+                    'quantity' => 1,
+                    'price' => $product->price,
+                ]);
+            }
+    
+        }
+        return redirect()->route('cart.index');
+    }
 
     public function destroyCartItem(Product $product)
     {

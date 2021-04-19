@@ -9,7 +9,7 @@ class SearchProduct extends Component
 {
     public $search;
 
-    protected $queryString = ['search'];
+    // protected $queryString = ['search'];
 
     public function render()
     {
