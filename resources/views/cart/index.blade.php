@@ -9,7 +9,7 @@
         @if($cartItems->count()>0)
             <div class="col-9">
                 @foreach($cartItems as $cartItem)
-       
+
                 <div class="card shadow-lg p-3 mb-5 bg-white rounded">
                         <div class="card-body row">
                             <img src="/storage/Image/product/{{ $cartItem->associatedModel->img }}"  height="200px" width="80px" alt="" class="col-2">
@@ -20,6 +20,7 @@
                                 <a href="#">
                                     <h4>{{ $cartItem->associatedModel->supplier->name }}</h4>
                                 </a>
+                                <h3 class="text-success">@currency($cartItem->price) VNĐ</h3>
                                 @if($cartItem->associatedModel->stock > 10)
                                     <p class="text-primary">In stock</p>
                                 @else
@@ -98,7 +99,7 @@
         @endif
     </div>
 <<<<<<< HEAD
-  
+
 =======
 >>>>>>> main
 @endsection

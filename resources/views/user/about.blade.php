@@ -25,8 +25,8 @@
     font-family: "Poppins, sans-serif";
     }
     </style>
-@endsection    
-  
+@endsection
+
 @section('content')
     <div class="bg_image container py-5">
       <div class="row h-100 align-items-center py-5">
@@ -38,7 +38,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="bg-white py-5">
     <div class="container py-5">
       <div class="row align-items-center mb-5">
@@ -60,7 +60,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="bg-light py-5">
     <div class="container py-5">
       <div class="row mb-4">
@@ -69,16 +69,16 @@
           {{-- <p class="font-italic text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> --}}
         </div>
       </div>
-  
+
       <div class="row text-center">
         <!-- Team item-->
         <div class="col-xl-4 col-sm-6 mb-5">
           <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556834132/avatar-4_ozhrib.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-            <h5 class="mb-0">Ngan Nguyen</h5><span class="small text-uppercase text-muted">Developer</span>
+            <h5 class="mb-0">Ngan Nguyen</h5><span class="small text-uppercase text-muted">Team Member</span>
           </div>
         </div>
         <!-- End-->
-  
+
         <!-- Team item-->
         <div class="col-xl-4 col-sm-6 mb-5">
           <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556834130/avatar-3_hzlize.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -86,15 +86,15 @@
           </div>
         </div>
         <!-- End-->
-  
+
         <!-- Team item-->
         <div class="col-xl-4 col-sm-6 mb-5">
           <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556834133/avatar-2_f8dowd.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-            <h5 class="mb-0">Hoang Thach</h5><span class="small text-uppercase text-muted">Developer</span>
+            <h5 class="mb-0">Hoang Thach</h5><span class="small text-uppercase text-muted">Team Member</span>
           </div>
         </div>
         <!-- End-->
-  
+
       </div>
     </div>
   </div>
