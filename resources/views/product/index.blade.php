@@ -1,4 +1,4 @@
-@extends('layouts.client.app')
+@extends('layouts.client.appWithoutCategory')
 
 @section('style')
     <style>

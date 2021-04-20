@@ -2,6 +2,7 @@
 
 
 
+
   {{-- {{  $selectedProducts}} --}}
     <div class="container-fluid">
         <div class="h4 section-title-4 border-bottom-1 pb-15 font-weight-light">
@@ -71,7 +72,7 @@
                            $box = $box.$count ;
                            @endphp
                          
-                            <input   value='{{ $cat->id }}' wire:model='{{$box  }}'  type="checkbox" class="custom-control-input" id="{{ $count }}">
+                            <input   value='{{ $cat->id }}' wire:model='{{$box  }}'   type="checkbox" class="custom-control-input" id="{{ $count }}">
                               <label class="custom-control-label" for="{{ $count }}".$count>{{ $cat->name }}</label>
                             
                         </div> <!-- form-check.// -->
