@@ -13,15 +13,18 @@
 
 @section('content')
 
+
 @livewire('filter')
    
+
+  
 @endsection
 
                 
  
 
 {{-- Test hidden form --}}
-    
+
 @section('script')
     {{-- <script type='text/javascript'>
         let products = {!! json_encode($products, JSON_HEX_TAG) !!};

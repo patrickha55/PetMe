@@ -63,13 +63,13 @@
                         @endguest
                         @auth
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle d-inline" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (auth()->user()->img != null)
-                                        <img src="/storage/Image/user/{{ auth()->user()->img }}" alt="{{ auth()->user()->userName }}" class="rounded-circle" height="30px" width="auto">
+                                        <img src="/storage/Image/user/{{ auth()->user()->img }}" alt="{{ auth()->user()->userName }}" class="rounded-circle" height="30px" width="30px">
                                     @else
-                                        <img src="/storage/Image/user/user_default.png" alt="{{ auth()->user()->userName}}" class="rounded-circle" height="30px" width="auto">
+                                        <img src="/storage/Image/user/user_default.png" alt="{{ auth()->user()->userName}}" class="rounded-circle" height="30px" width="30px">
                                     @endif
-                                    {{ auth()->user()->userName }} <span class="caret"></span>
+                                     <span class="caret">{{ auth()->user()->userName }}</span>
                                 </a>
                                 <div class="dropdown-menu">
                                     <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -117,7 +117,7 @@
                 {{-- //search --}}
 
                 @livewire('search-product')
-                
+
                 {{-- endsearch  --}}
                 <div class="trace-cart-wrapper">
                     <div class="categories-cart same-style">
@@ -265,7 +265,7 @@
         </div>
     </div> --}}
     <!-- all js here -->
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

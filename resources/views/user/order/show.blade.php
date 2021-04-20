@@ -1,40 +1,5 @@
 @extends('layouts.client.appWithoutCategory')
 
-@section('head')
-    <style>
-        .ratings {
-            display: inline-block;
-            padding-left: 5px;
-        }
-
-        .ratings * {
-            float: right;
-        }
-
-        .ratings input {
-            display: none;
-        }
-        .ratings label {
-            font-size: 30px;
-        }
-
-        .ratings i {
-            padding-top: 2px;
-            padding-bottom: 2px;
-            cursor: pointer;
-            transition: all 0.5s
-        }
-
-        .ratings i:hover {
-            transform: scale(1.3)
-        }
-
-        form .error{
-            color: #ff0000;
-        }
-    </style>
-@endsection
-
 @section('content')
     <div class="w-75 row m-auto" style="margin-top: 50px; margin-bottom: 200px;">
         <h1 class="text-center font-weight-bold col-12 mt-5 mb-5">
@@ -93,7 +58,7 @@
                                         <img src="/storage/Image/product/{{ $product->img }}" alt="{{ $product->name }}" width="60%" height="60%">
                                     </div>
                                     <div class="col-10">
-                                        <a class="h3" href="{{ route('home.show', $product->id) }}">{{ $product->name }}</a>{{ $product->id}}
+                                        <a class="h3" href="{{ route('home.show', $product->id) }}">{{ $product->name }}</a>
                                         <div>
                                             Brand: <a href="#"> {{ $product->supplier->name }}</a>
                                         </div>
@@ -103,7 +68,7 @@
                                         @if($productReview == null && $order->status == 'completed')
                                             <div class="row">
                                                 <div class="col-8">
-                                                    <a href="#" class="btn btn-primary" title="Write Review" data-toggle="modal" data-target="#reviewModal">Write a Review</a>
+                                                    <a href="{{ route('review.create', $product) }}" class="btn btn-primary">Write a Review</a>
                                                 </div>
                                             </div>
                                         @endif
@@ -202,49 +167,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('script')
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
-    <script>
-        $(document).ready(function()
-        {
-            let ratedIndex = -1;
-
-            $('i.fa-star').click(function() {
-                //Reset the star
-                resetRating();
-
-                //Get star data index
-                ratedIndex = parseInt($(this).attr('data-index'));
-                console.log(ratedIndex);
-
-                for(let x = 1; x <= ratedIndex; x++)
-                    $('i.fa-star').eq(-x).removeClass("far").addClass('fas').css('color', '#ffff36');
-            });
-
-            /* $('.fa-star').mouseover(function() {
-                 let currentIndex = parseInt($(this).attr('data-index'));
-
-             });*/
-        })
-
-        $(function () {
-            $("form[name='rating-form']").validate({
-                rules: {
-                    rating: 'required'
-                },
-                message: {
-                  rating: 'Please choose a rating'
-                },
-                submitHandler: function(form){
-                    form.submit();
-                }
-            });
-        });
-
-        function resetRating(){
-            $('i.fa-star').removeClass('fas').addClass('far').css('color', 'gray')
-        }
-    </script>
 @endsection

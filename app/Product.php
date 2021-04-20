@@ -78,7 +78,7 @@ class Product extends Model
         // Lay chu dau tien trong cau
         $category = explode(' ', trim(strtolower(\App\ProductCategory::find($request->category_id)->name)));
 
-        $fileNameToStore = strtolower(\App\Product::find($request->animal_id)->name) . '/' . $category[0] . '/' . $fileName . '_' . time() . '.' . $extension;
+        $fileNameToStore = strtolower(\App\AnimalCategory::find($request->animal_id)->name) . '/' . $category[0] . '/' . $fileName . '_' . time() . '.' . $extension;
         // Upload image
         return $fileNameToStore;
     }

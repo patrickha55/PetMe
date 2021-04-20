@@ -45,7 +45,7 @@
                             <div class="col-4">
                                 <div class="card-header card-header-dark d-flex justify-content-between">
                                     <div>
-                                        <h4 class="card-title mt-0 text-dark font-weight-bold">Favorite Cateogory</h4>
+                                        <h4 class="card-title mt-0 text-dark font-weight-bold">Cateogory</h4>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -319,10 +319,6 @@
                     legend: {
                         position: 'top',
                     },
-                    title: {
-                        display: true,
-                        text: 'Chart.js Doughnut Chart'
-                    }
                 }
             },
         };

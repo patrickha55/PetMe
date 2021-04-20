@@ -94,7 +94,7 @@ class ProductController extends Controller
             'img' => 'image|nullable|max:1999',
         ]);
 
-        
+
 
         /* Xu ly up anh */
 
@@ -108,7 +108,7 @@ class ProductController extends Controller
         // $categoryID = ProductCategory::getProductCategoryID($request->category);
         // $supplierID = Supplier::getSupplierID($request->supplier);
 
-        /*         
+        /*
         *   Kiem tra supplier co chua, neu chua co thi tao supplier moi
         */
 
@@ -130,6 +130,8 @@ class ProductController extends Controller
             'img' => $fileNameToStore,
         ]);
 
+        $productID = Product::where('name', $request->name)->first()->id;
+
         /* Tao Product Detail */
 
         ProductDetail::create([
@@ -141,7 +143,7 @@ class ProductController extends Controller
             'size' => $request->size,
             'instruction' => $request->instruction,
         ]);
-        
+
         /* Tao Product Nutritions */
 
         if (isset($request->servingSize)){
@@ -211,7 +213,7 @@ class ProductController extends Controller
 
         if ($count != 0){
             $one = $count;
-        }    
+        }
 
         return view('admin.product-management.product.show', [
             'product' => $product,
@@ -279,7 +281,7 @@ class ProductController extends Controller
             $fileNameToStore = 'storage/Image/product/noimage.jpg';
         }
 
-        /*         
+        /*
         *   Kiem tra supplier co chua, neu chua co thi tao supplier moi
         */
 
@@ -347,7 +349,7 @@ class ProductController extends Controller
     public function destroy(Product $product): RedirectResponse
     {
         $product->delete();
-        
+
         if($product->detail->count()){
             $product->detail->delete();
         }
