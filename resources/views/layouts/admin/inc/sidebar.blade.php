@@ -48,6 +48,12 @@
         </a>
     </li>
     <li class="nav-item ">
+        <a class="nav-link" href="{{ route('orders.index') }}">
+            <i class="material-icons">fact_check</i>
+            <p>Orders</p>
+        </a>
+    </li>
+    <li class="nav-item ">
         <a class="nav-link" href="{{ route('wishlists.index') }}">
             <i class="material-icons">bookmarks</i>
             <p>User's Wishlist</p>
@@ -65,12 +71,7 @@
             <p>Icons</p>
         </a>
     </li>-->
-    <li class="nav-item ">
-        <a class="nav-link" href="{{ route('orders.index') }}">
-            <i class="material-icons">fact_check</i>
-            <p>Orders</p>
-        </a>
-    </li>
+
     <li class="nav-item ">
         <a class="nav-link" href="{{ route('admin.statistic') }}">
             <i class="material-icons">analytics</i>

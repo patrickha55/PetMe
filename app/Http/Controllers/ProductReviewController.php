@@ -33,7 +33,7 @@ class ProductReviewController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'body' => 'min:10'
+            'body' => 'string|nullable',
         ]);
 
         ProductReview::create([
