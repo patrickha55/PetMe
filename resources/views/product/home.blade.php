@@ -39,7 +39,7 @@
                                     <p class="text-danger">Out of stock. Please come back later.</p>
                                 @endif
                             </div>
-                            <a style="margin-bottom: 50px;" href="{{ route('home.show',$product) }}">Buy Now→</a>
+                            <a style="margin-bottom: 50px;" href="{{ route('cart.buynow',$product) }}">Buy Now→</a>
                         </div>
                     </div>
                 </div>
