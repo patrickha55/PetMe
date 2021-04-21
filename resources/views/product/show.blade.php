@@ -64,7 +64,7 @@
                                 <a class="btn-hover-black" href="{{route('cart.add', $product)}}">add to cart</a>
                             </div>
                             <div class="quickview-btn-cart">
-                                <a class="btn-hover-black" href="">Buy Now</a>
+                                <a class="btn-hover-black" href="{{ route('cart.buynow',$product) }}">Buy Now</a>
                             </div>
 
                         </div>

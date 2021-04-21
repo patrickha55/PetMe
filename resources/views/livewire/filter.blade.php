@@ -72,7 +72,7 @@
                            $box = $box.$count ;
                            @endphp
                          
-                            <input   value='{{ $cat->id }}' wire:model='{{$box  }}'   type="checkbox" class="custom-control-input" id="{{ $count }}">
+                            <input   value='{{ $cat->id }}' wire:model='{{$box  }}' wire:click='checked'  type="checkbox" class="custom-control-input" id="{{ $count }}">
                               <label class="custom-control-label" for="{{ $count }}".$count>{{ $cat->name }}</label>
                             
                         </div> <!-- form-check.// -->
