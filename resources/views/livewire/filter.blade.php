@@ -24,7 +24,7 @@
             <div class="card shadow p-3 mb-5 bg-white rounded">
                 <article class="card-group-item">
                     <header class="card-header" style="background: #2B2B2B";>
-                        <h6 class="title font-weight-bold" style="color: #fff;">Range input </h6>
+                        <h6 class="title font-weight-bold" style="color: #fff;">Price Range </h6>
                     </header>
                     <div class="filter-content">
                         <div class="card-body">
@@ -43,7 +43,7 @@
                 </article> <!-- card-group-item.// -->
                 <article class="card-group-item">
                     <header class="card-header" style="background: #2B2B2B">
-                        <h6 class="title font-weight-bold" style="color: #fff;">Selection </h6>
+                        <h6 class="title font-weight-bold" style="color: #fff;">Category</h6>
                     </header>
                     <div class="filter-content">
                         <div class="card-body">
