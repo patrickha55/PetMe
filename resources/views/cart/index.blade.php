@@ -81,8 +81,8 @@
                             <div class="col-5 text-left">Total</div>
                             <div class="col-7 text-right">@currency($total) VNĐ</div>
                         </div>
-                        <div class="text-center bs-example">
-                            <a href="/checkout" class="btn btn-primary btn-lg rounded" style="font-size: 1.3rem; height:40px; line-height: 40px;">Proceed to Checkout</a>
+                        <div class="text-center">
+                            <a href="/checkout" class="btn btn-primary rounded" style="height:40px; line-height: 40px;">Proceed to Checkout</a>
                         </div>                     
                     </div>
                 </div>

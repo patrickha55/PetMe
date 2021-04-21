@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="mt-50">
-    <h1 class="text-center">Checkout</h1>
+    <h1 class="text-center font-weight-bold col-12 mt-5 mb-5">Checkout</h1>
 </div>
 <div class="w-75 shadow bg-white rounded p-2 mt-50 mb-100 mx-auto row">
     <div class="col-md-4 pt-3">
