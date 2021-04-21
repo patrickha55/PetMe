@@ -152,11 +152,6 @@
     </head>
     <body>
         <header>
-            {{--@if(auth()->check())
-            <h1>{{   auth()->user()->userName }}</h1>
-            @else
-        <h2>vui long dang nhap</h2>--}}{{--
-        @endif--}}
             <div class="header-top-wrapper-2 border-bottom-2">
                 <div class="header-info-wrapper pl-200 pr-200">
                     <div class="header-contact-info">
@@ -172,51 +167,46 @@
                             <li><a href="{{ route('wishlist.index') }}"><i class="pe-7s-like"></i>Wishlist</a></li>
                             {{-- <li><a href="#"><i class="pe-7s-flag"></i>US</a></li> --}}
                             {{-- <li><a class="border-none" href="#"><span>$</span>USD</a></li> --}}
-
                             <li>
-                            @guest
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endguest
-                            @auth
+                                @guest
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    </li>
+                                @endguest
+                                @auth
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         @if (auth()->user()->img != null)
-                                            <img src="/storage/Image/user/{{ auth()->user()->img }}" alt="{{ auth()->user()->userName }}" class="rounded-circle" height="30px">
+                                            <img src="/storage/Image/user/{{ auth()->user()->img }}" alt="{{ auth()->user()->userName }}" class="rounded-circle" height="30px" width="30px">
                                         @else
-                                            <img src="/storage/Image/user/user_default.png" alt="{{ auth()->user()->userName }}" class="rounded-circle" height="30px">
+                                            <img src="/storage/Image/user/user_default.png" alt="{{ auth()->user()->userName }}" class="rounded-circle" height="30px" width="30px">
                                         @endif
                                         {{ auth()->user()->userName }} <span class="caret"></span>
                                     </a>
-                                    <div class="dropdown-menu">
-                                        <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{ route('user.show', auth()->user()) }}">
-                                                Profile
-                                            </a>
-                                        </div>
-                                        <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{ route('order.index') }}">
-                                                Orders
-                                            </a>
-                                        </div>
-                                        <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{ route('review.index') }}">
-                                                Reviews
-                                            </a>
-                                        </div>
-                                        <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{ url('/logout') }}"
-                                            onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
-
-                                            <form id="logout-form" action="{{ '/logout' }}" method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
-                                        </div>
-                                    </div>
+                                        <div class="dropdown-menu">
+                                            <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="{{ route('user.show', auth()->user()) }}">
+                                                    Profile
+                                                </a>
+                                            </div>
+                                            <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="{{ route('order.index') }}">
+                                                    Orders
+                                                </a>
+                                            </div>
+                                            <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="{{ route('review.index') }}">
+                                                    Reviews
+                                                </a>
+                                            </div>
+                                            <div class="dropdown-item dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="{{ url('/logout') }}"
+                                                onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                                    {{ __('Logout') }}
+                                                </a>
+                                            </div>
+                                        </div>        
                                 </li>
                                 @endauth
                             </li>

@@ -87,7 +87,7 @@
                         @if (count($user->favorites))
                             <div class=" table-content table-responsive">
                                 <table class="table table-hover">
-                                    <thead style="background-color: #D0D0D0; font-weight:600;">
+                                    <thead style="background-color: #D0D0D0;">
                                         <tr>
                                             <th class="plantmore-product-thumbnail">Images</th>
                                             <th class="cart-product-name">Product</th>
@@ -100,7 +100,7 @@
                                     <tbody>
                                     @foreach($user->favorites as $favorite)
 {{--                                        {{dd($favorite)}}--}}
-                                        <tr>
+                                        <tr style="font-size: 15px;">
                                             <td class="plantmore-product-thumbnail"><a href="#"><img src="/storage/Image/product/{{ $favorite->img }}" alt="{{ $favorite->name }}" width="100px"></a></td>
                                             <td class="plantmore-product-name"><a href="{{ route('home.show', \App\Product::find($favorite->id)) }}">{{ $favorite->name }}</a></td>
                                             <td class="plantmore-product-price">

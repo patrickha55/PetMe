@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="mt-50">
-    <h1 class="text-center">Checkout</h1>
+    <h1 class="text-center font-weight-bold col-12 mt-5 mb-5">Checkout</h1>
 </div>
 <div class="w-75 shadow bg-white rounded p-2 mt-50 mb-100 mx-auto row">
     <div class="col-md-4 pt-3">
@@ -105,9 +105,9 @@
             <form action="{{ route('order.store') }}" method="POST">
                 @csrf 
                 @if($user->address == null)
-                    <h5 class="mt-5 text-danger font-weight-bold">Please provide an address to order.</h5>
+                    <h5 class="mt-5 text-danger font-weight-bold">*Please provide an address to order</h5>
                 @elseif($user->phoneNumber == null)
-                    <h5 class="mt-5 text-danger font-weight-bold">Please provide a phone number to order.</h5>
+                    <h5 class="mt-5 text-danger font-weight-bold">*Please provide a phone number to order</h5>
                 @else
                     <button type="submit"  class="btn px-5 pb-5 pt-3 cursor-pointer btn-success font-weight-bold rounded mt-5">Order</button> 
                 @endif    
