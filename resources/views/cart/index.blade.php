@@ -48,7 +48,7 @@
                                             @csrf
                                             <div class="form-group">
                                                 <label for="quantity"></label>
-                                                <input type="text" class="form-control text-center" name="quantity" value="{{ $cartItem->quantity }}">
+                                                <input type="number" class="form-control text-center" name="quantity" value="{{ $cartItem->quantity }}" min="1" required>
                                             </div>
                                             {{-- <button type="submit" style="color: white;"></button> --}}
                                         </form>
