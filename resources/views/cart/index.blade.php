@@ -1,9 +1,14 @@
 @extends('layouts.client.appWithoutCategory')
 
 @section('content')
+<style>
+    .w-85 {
+    width: 85%!important;
+}
+</style>
 
-<div class="w-75 row m-auto" style="margin-top: 50px; margin-bottom: 200px;">
-        <h1 class="text-center font-weight-bold col-12 mt-2 mb-5">
+<div class="w-85 row m-auto" style="margin-top: 50px; margin-bottom: 200px;">
+        <h1 class="text-center font-weight-bold col-12 mt-5 mb-5">
             {{ auth()->user()->userName }}'s Cart
         </h1>
         @if($cartItems->count()>0)
@@ -12,8 +17,8 @@
 
                 <div class="card shadow-lg p-3 mb-5 bg-white rounded">
                         <div class="card-body row">
-                            <img src="/storage/Image/product/{{ $cartItem->associatedModel->img }}"  height="200px" width="80px" alt="" class="col-2">
-                            <div class="col-7 m-auto">
+                            <img src="/storage/Image/product/{{ $cartItem->associatedModel->img }}"  height="200px" width="80px" alt="" class="col-3" style="padding: unset;">
+                            <div class="col-6 m-auto">
                                 <a href="#">
                                     <h3>{{ $cartItem->name }}</h3>
                                 </a>
@@ -43,12 +48,12 @@
                                             @csrf
                                             <div class="form-group">
                                                 <label for="quantity"></label>
-                                                <input type="number" class="form-control" name="quantity" id="quantity" min="1" value="{{ $cartItem->quantity }}">
+                                                <input type="text" class="form-control text-center" name="quantity" value="{{ $cartItem->quantity }}">
                                             </div>
-                                            <button type="submit" style="color: white;"></button>
+                                            {{-- <button type="submit" style="color: white;"></button> --}}
                                         </form>
                                     </div>
-                                    <div class="col-3 m-auto">
+                                    <div class="col-3 m-auto" style="padding-left: 5px;">
                                         <a href="{{ route('cart.plus', $cartItem->associatedModel) }}">
                                             <i class="fas fa-plus-circle fa-lg"></i>
                                         </a>
@@ -67,7 +72,7 @@
             <div class="col-3">
                 <div class="card h5 shadow-lg p-3 mb-5 bg-white rounded">
                     <div class="card-body">
-                        <h5 class="card-title text-center m-2">Items in your Cart</h5>
+                        <h4 class="card-title text-center m-2 font-weight-bold">Items in your cart</h4>
                         <div class="row border-top-1 mt-5 mb-5 pb-5 pt-5">
                             <div class="col-5 text-left">Subtotal</div>
                             <div class="col-7 text-right">@currency($subTotal) VNĐ</div>
@@ -76,12 +81,12 @@
                             <div class="col-5 text-left">Total</div>
                             <div class="col-7 text-right">@currency($total) VNĐ</div>
                         </div>
-                        <div class="text-center">
-                            <a href="/checkout" class="btn btn-danger rounded w-100 h-75" style="font-size: 1.2rem; padding: 20px;">Proceed to Checkout</a>
-                        </div>
+                        <div class="text-center bs-example">
+                            <a href="/checkout" class="btn btn-primary btn-lg rounded" style="font-size: 1.3rem; height:40px; line-height: 40px;">Proceed to Checkout</a>
+                        </div>                     
                     </div>
                 </div>
-            </div>
+            </div>  
         @else
             <div class="col-12">
                 <div class="card shadow-lg p-3 mb-5 bg-white rounded">

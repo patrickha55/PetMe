@@ -5,13 +5,13 @@
     <div class="container-contact100 p-2 mr-auto ml-auto" style="background: url(https://images.hdqwalls.com/wallpapers/chloe-the-secret-life-of-pets-2-j0.jpgv');";>
         <div class="w-75 shadow bg-white rounded p-2 mt-100 mb-100 mr-auto ml-auto" style="">
             <div class="row m-auto">
-                <div class="col-3 p-2 m-auto">
+                <div class="col-3 p-2 m-auto" style="margin: unset;">
                     <div class="row">   
                         <div class="col-12 text-center">
                             @if($user->img != null)
-                                <img src="/storage/Image/user/{{ $user->img }}" alt="{{ $user->userName }}" class="rounded-circle" height="200px">
+                                <img src="/storage/Image/user/{{ $user->img }}" alt="{{ $user->userName }}" class="rounded-circle" height="200px" width="200px">
                             @else
-                                <img src="https://freepikpsd.com/wp-content/uploads/2019/10/default-user-profile-image-png-2-Transparent-Images.png" alt="{{ $user->userName }}" class="rounded-circle" height="200px">
+                                <img src="https://www.nursingadmissions.com/nursing/Assets/Images/user-default.png" alt="{{ $user->userName }}" class="rounded-circle" height="200px" width="200px">
                             @endif
                         </div>
                         <div class="col-12 text-center">
@@ -118,7 +118,7 @@
                             <form action="{{ route('address.destroy', $user->address) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-outline-dark rounded">Delete Address</button>
+                                <button type="submit" class="btn btn-outline-dark rounded mb-30">Delete Address</button>
                             </form>
                         </div>
                     @else

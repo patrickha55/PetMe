@@ -105,9 +105,9 @@
             <form action="{{ route('order.store') }}" method="POST">
                 @csrf 
                 @if($user->address == null)
-                    <h5 class="mt-5 text-danger font-weight-bold">Please provide an address to order.</h5>
+                    <h5 class="mt-5 text-danger font-weight-bold">*Please provide an address to order</h5>
                 @elseif($user->phoneNumber == null)
-                    <h5 class="mt-5 text-danger font-weight-bold">Please provide a phone number to order.</h5>
+                    <h5 class="mt-5 text-danger font-weight-bold">*Please provide a phone number to order</h5>
                 @else
                     <button type="submit"  class="btn px-5 pb-5 pt-3 cursor-pointer btn-success font-weight-bold rounded mt-5">Order</button> 
                 @endif    
