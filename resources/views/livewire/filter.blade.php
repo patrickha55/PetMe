@@ -55,13 +55,13 @@
 
                             <div class="custom-control custom-checkbox">
                                 <span class="float-right badge badge-light round">132</span>
-                                  <input type="checkbox" class="custom-control-input" id="Check2">
+                                  <input type="checkbox" class="custom-control-input" wire:click='checkall'  id="Check2">
                                  <label class="custom-control-label" for="Check2">Popular</label>
                                 </div> <!-- card-body.// -->
 
                       @php
                       $count =0;
-                    $box ='box';
+                    // $box ='box';
                      @endphp 
                         @foreach($categories as $cat)
                    
@@ -69,10 +69,10 @@
                         <div class="custom-control custom-checkbox">
                             <span class="float-right badge badge-light round">{{ $cat->products->count() }}</span>
                            @php $count+=1 ; 
-                           $box = $box.$count ;
+                        //    $box = $box.$count ;
                            @endphp
                          
-                            <input   value='{{ $cat->id }}' wire:model='{{$box  }}'   type="checkbox" class="custom-control-input" id="{{ $count }}">
+                            <input   value='{{ $cat->id }}'   type="checkbox" class="custom-control-input" id="{{ $count }}">
                               <label class="custom-control-label" for="{{ $count }}".$count>{{ $cat->name }}</label>
                             
                         </div> <!-- form-check.// -->
