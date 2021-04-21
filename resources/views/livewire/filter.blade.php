@@ -1,13 +1,9 @@
 <div class="electro-product-wrapper wrapper-padding pt-95 pb-45">
-<<<<<<< HEAD
 
 
 
 
-
-=======
-  {{-- {{  $selectedProducts}} --}}
->>>>>>> 74b2bd8d726729b58ddb7ebb8c6b2ad59881406f
+{{ $minPrice }}
     <div class="container-fluid">
         <div class="h4 section-title-4 border-bottom-1 pb-15 font-weight-light">
             <a href="">Products</a>
@@ -76,17 +72,17 @@
                            $box = $box.$count ;
                            @endphp
                          
-                            <input   value='{{ $cat->id }}' wire:model='{{$box  }}' wire:click='checked'  type="checkbox" class="custom-control-input" id="{{ $count }}">
+                            <input   value='{{ $cat->id }}' wire:model='{{$box  }}'   type="checkbox" class="custom-control-input" id="{{ $count }}">
                               <label class="custom-control-label" for="{{ $count }}".$count>{{ $cat->name }}</label>
                             
-                            <div class="custom-control custom-checkbox">
+                            {{-- <div class="custom-control custom-checkbox">
                                 <span class="float-right badge badge-light round">{{ $cat->products->count() }}</span>
                                 @php $count+=1 ; 
                                 $box = $box.$count ;
                                 @endphp
                                 
                                 <input   value='{{ $cat->id }}' wire:model='{{$box  }}'   type="checkbox" class="custom-control-input" id="{{ $count }}">
-                                    <label class="custom-control-label" for="{{ $count }}".$count>{{ $cat->name }}</label>
+                                    <label class="custom-control-label" for="{{ $count }}".$count>{{ $cat->name }}</label> --}}
                                 
                             </div> <!-- form-check.// -->
                                 @endforeach 
