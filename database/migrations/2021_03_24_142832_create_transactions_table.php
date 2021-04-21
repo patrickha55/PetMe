@@ -18,7 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->unsignedBigInteger('order_id');
             $table->enum('payment_method', ['cash', 'bank transfers']);
             $table->string('status');
-            $table->string('content');
+            $table->string('content')->nullable();
             $table->timestamps();
 
             $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade')->onDelete('cascade');

@@ -45,13 +45,14 @@ class AdminOrderController extends Controller
 
     public function update(Request $request, Order $order)
     {
-        Order::find($order->id)->update([
+        $order->update([
             'status' => $request->status
         ]);
 
-        return redirect()->route('orders.checkOrderStatus',compact('order'));
+        return redirect()->route('orders.checkOrderStatus', compact('order'));
        // return back()->with('status', 'Order status updated successfully!');
     }
+
     public function checkOrderStatus(Order $order){ 
 
         /**
@@ -60,10 +61,12 @@ class AdminOrderController extends Controller
          *      - Doi status co order_id o bang order_detail thanh 1
          */
 
+        $transaction = Transaction::where('order_id',$order->id)->first();
+ 
         if($order->status == "completed"){
-            $transactionId = Transaction::where('order_id',$order->id)->first()->id;
-                Transaction::find($transactionId)->update([
-                'status'=>1,
+
+            $transaction->update([
+                'status' => 1,
             ]);
 
             $orderDetails = OrderDetail::where('order_id', $order->id)->get();
