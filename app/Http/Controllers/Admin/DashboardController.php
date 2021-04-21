@@ -6,11 +6,11 @@ use App\AnimalCategory;
 use App\CartDetail;
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\OrderDetail;
 use App\Product;
 use App\Supplier;
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -26,10 +26,13 @@ class DashboardController extends Controller
     }
 
     public function index(){
+        $totalProducts = Product::all();
         $users = User::whereRoleIs('user')->get();
         $suppliers = Supplier::all();
         $animal_cats = AnimalCategory::all();
         $orders = Order::orderByDesc('created_at')->paginate(5);
+        $allOrders = Order::all();
+        $pendingOrders = Order::where('status','pending')->count();
 
         /**
          *    Shop Revenue (kind of)
@@ -64,7 +67,7 @@ class DashboardController extends Controller
          */
         $productsOrdered = collect([]);
 
-        $productIdsOrdered = \App\OrderDetail::selectRaw('`product_id`, count(*) as `timeOrdered`')
+        $productIdsOrdered = OrderDetail::selectRaw('`product_id`, count(*) as `timeOrdered`')
             ->where('status', 1)
             ->groupBy('product_id')
             ->orderByDesc('timeOrdered')
@@ -73,7 +76,6 @@ class DashboardController extends Controller
         foreach($productIdsOrdered as $productIdOrdered){
             $productsOrdered->push(Product::find($productIdOrdered->product_id));
         }
-
 
         return view('admin.index')->with([
             'users' => $users,
@@ -85,6 +87,9 @@ class DashboardController extends Controller
             'productsOrdered' => $productsOrdered,
             'productIdsOrdered' => $productIdsOrdered,
             'salesByMonth' => $salesByMonth,
+            'totalProducts' => $totalProducts,
+            'pendingOrders' => $pendingOrders,
+            'allOrders' => $allOrders
         ]);
 
 
@@ -137,7 +142,7 @@ class DashboardController extends Controller
          */
         $productsOrdered = collect([]);
 
-        $productIdsOrdered = \App\OrderDetail::selectRaw('`product_id`, count(*) as `timeOrdered`')
+        $productIdsOrdered = OrderDetail::selectRaw('`product_id`, count(*) as `timeOrdered`')
                                 ->where('status', 1)
                                 ->groupBy('product_id')
                                 ->orderByDesc('timeOrdered')

@@ -19,7 +19,10 @@ class CreateOrderDetailsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->double('price');
             $table->integer('quantity');
-            $table->tinyInteger('status')->defaul(0);
+
+            // status incomplete = 0, complete = 1
+
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products');

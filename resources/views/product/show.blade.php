@@ -8,7 +8,7 @@
             <a href="{{ route('home.showFilterProducts', $product->productCategory) }}"> > {{ $product->productCategory->name }}</a>
         </div>
         <div class="container shadow p-3 mb-5 bg-white rounded">
-            <div class="section-title-4 text-center mb-40">
+            <div class="section-title-4 text-center mb-10">
                 <h2>Product Detail</h2>
             </div>
             <div class="row mb-20">

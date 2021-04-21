@@ -13,10 +13,8 @@
 
 @section('content')
 
-
-@livewire('filter')
+    @livewire('filter')
    
-
   
 @endsection
 

@@ -93,9 +93,9 @@
                                                 {{ $product->detail->ingredients }}
                                             </p>
                                         </div>
-
+                                    @endif
                                         {{-- Nutrition --}}
-                                    @elseif($product->detail->nutritionFact != null)
+                                    @if($product->detail->nutritionFact != null)
                                         <div>
                                             <h4 class="font-weight-bold">
                                                 Nutrient Facts
@@ -157,7 +157,8 @@
                                                 </table>
                                             </div>
                                         </div>
-                                    @elseif($product->detail->materials != null)
+                                    @endif
+                                    @if($product->detail->materials != null)
                                         <div>
                                             <h4>
                                                 Materials
@@ -167,12 +168,6 @@
                                                     {{ $product->detail->materials }}
                                                 </p>
                                             </div>
-                                        </div>
-                                    @else
-                                        <div>
-                                            <h4>
-                                                N/A
-                                            </h4>
                                         </div>
                                     @endif
                                 </div>
