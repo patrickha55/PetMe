@@ -19,27 +19,39 @@ class Filter extends Component
     public $box12345='';
     public $box123456='';
     public  $products ;
- 
+  
+  public $test='';
+   
+  
 
   public function mount(Product $products){ 
-    $this->products = Product::all();
-  }
-  public function checked(){ 
    
-      // $this->box12=1;
-      // $this->box1=1;
-      // $this->box1=1;
-      // $this->box1=1;
-      // $this->box1=1;
+ 
+    $this->products = Product::all();
     
-   //  $this->products = Product::where('product_category_id',1);
-  
   }
+  
+  public function checked(){ 
+if($this->box1!= '' or  $this->box12!='' or $this->box123 !='' or $this->box1234 != '' or $this->box12345 !='' or $this->box123456 !=''){
+  $this->products = Product::whereBetween('price',[$this->minPrice,$this->maxPrice])->whereIn('product_category_id', [$this->box1,$this->box12,$this->box123,$this->box1234,$this->box12345,$this->box123456])->get();
+//  $this->products = Product::all()->where('product_category_id',$this->box1)->orWhere('product_category_id',$this->box12);
+}else{
+$this->products = Product::all() ;
+}
+
+
+  
+ 
+  }
+    
+  
 
     public function render()
-    { $products = $this->products; 
-      // dd($products);
-return view('livewire.filter',['categories'=>ProductCategory::all(),'products'=>$products ]) ;
+    {
+     // $this->products = Product::all()->where('product_category_id',1);
+  
+  //  $this->products = Product::whereBetween('price',[$this->minPrice,$this->maxPrice])->whereIn('product_category_id', ['1', 2])->get();
+    return view('livewire.filter',['categories'=>ProductCategory::all(),'products'=>$this->products ]) ;
 //return view('livewire.filter',['categories'=>ProductCategory::all(),'products'=>::whereBetween('price',[$this->minPrice,$this->maxPrice])-> paginate(15) ]) ;
 //filter price
 // return view('livewire.filter',['categories'=>ProductCategory::all(),'products'=>Product::whereBetween('price',[$this->minPrice,$this->maxPrice])->where('product_category_id',$this->box1)->orWhere('product_category_id',$this->box12)->orWhere('product_category_id',$this->box123)->orwhere('product_category_id',$this->box1234)->orWhere('product_category_id',$this->box12345)->orWhere('product_category_id',$this->box123456)->get()]) ;   

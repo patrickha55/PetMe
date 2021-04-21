@@ -3,7 +3,7 @@
 
 
 
-  {{-- {{  $selectedProducts}} --}}
+
     <div class="container-fluid">
         <div class="h4 section-title-4 border-bottom-1 pb-15 font-weight-light">
             <a href="">Products</a>
