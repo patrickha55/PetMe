@@ -37,8 +37,10 @@ trait AuthenticatesUsers
     
         $user = \App\User::where('email',$request->email)->first();
         
-        if ($user->active == 0){
-            return redirect()->back()->with('status','Your account has been banned!');
+        if(isset($user)){
+            if ($user->active == 0){
+                return redirect()->back()->with('status','Your account has been banned!');
+            }
         }
 
         $this->validateLogin($request);

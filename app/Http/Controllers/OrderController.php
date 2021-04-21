@@ -38,9 +38,11 @@ class OrderController extends Controller
         $user_id = auth()->user()->id ;
         $cartItems =\Cart::session(auth()->id())->getContent();
         $total_price  = 0;
+
         foreach ($cartItems as $cartItem){
             $total_price += $cartItem->getPriceSum();
         }
+
         $phone = auth()->user()->phoneNumber;
         $email = auth()->user()->email; //
         $firstName = auth()->user()->firstName;
@@ -48,19 +50,24 @@ class OrderController extends Controller
         $name = $firstName .' '. $lastName;
 
         Order::create([
-            'user_id'=>auth()->user()->id ,
-            'total_price'=>$total_price ,
-            'status'=>1 ,
-            'name'=>$name,
-            'phone'=>$phone ,
-            'email'=>$email ,
-            'address'=>$address,
-            'ward' =>$ward ,
-            'district' =>$district ,
-            'city' =>$city ,
+            'user_id' => auth()->user()->id ,
+            'total_price' => $total_price ,
+            'status' => 1 ,
+            'name' => $name,
+            'phone' => $phone ,
+            'email' => $email ,
+            'address' => $address,
+            'ward' => $ward ,
+            'district' => $district ,
+            'city' => $city ,
         ]);
 
-        $order = Order::where('user_id',auth()->id())->latest()->first(); //get latest user's order.
+        $order = Order::where([
+            'user_id' => auth()->id(),
+            'status' => 'pending'
+        ])->latest()->first();
+
+         //get latest user's order.
 
         $cartItems =\Cart::session(auth()->id())->getContent();
 
@@ -103,22 +110,21 @@ class OrderController extends Controller
     }
 
     public function transaction(Order $order){ 
-      $orderId =$order->latest()->first()->id ; 
-   
-      Transaction::create([
-        'order_id'=>$orderId ,
-        'payment_method'=>'cash',
-        'status'=>0 ,
-        'content'=>'this is content' ,
-        
-      ])  ;
-       return view('cart.orderSuccess', compact('order'));
 
+        Transaction::create([
+        'order_id' => $order->id,
+        'payment_method' => 'cash',
+        'status'=> 0,
+        ]);
+
+        return view('cart.orderSuccess', compact('order'));
     }
+
     /**
      * Display the specified resource.
      *
      */
+    
     public function show(Order $order)
     {
         if(auth()->id() != $order->user_id){

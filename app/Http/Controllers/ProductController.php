@@ -102,11 +102,8 @@ class ProductController extends Controller
             $fileNameToStore = Product::uploadImg($request);
             $path = $request->file('img')->storeAs('public/Image/product/', $fileNameToStore);
         } else {
-            $fileNameToStore = 'noimage.jpg';
+            $fileNameToStore = '/storage/Image/product/noimage.jpg';
         }
-
-        // $categoryID = ProductCategory::getProductCategoryID($request->category);
-        // $supplierID = Supplier::getSupplierID($request->supplier);
 
         /*
         *   Kiem tra supplier co chua, neu chua co thi tao supplier moi
@@ -233,7 +230,11 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.product-management.product.edit')->with('product', $product);
+        $animalCategories = AnimalCategory::all()->pluck('name', 'id')->prepend('Please Select', '');
+        return view('admin.product-management.product.edit')->with([
+            'product' => $product,
+            'animalCategories' => $animalCategories
+        ]);
     }
 
     /*
@@ -246,39 +247,56 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product): RedirectResponse
     {
-        $this->validate($request,[
-            'animal' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-            'supplier' => 'required|string|max:255',
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|min:0',
-            'stock' => 'required|min:1',
-            'origin' => 'required|string|max:255',
-            'color' => 'required|string|nullable|max:255',
-            'size' => 'required|string|max:255',
-            'ingredient' => 'string|nullable',
-            'material' => 'string|nullable',
-            'instruction' => 'string|nullable',
-            'servingSize' => 'string|nullable|max:255',
-            'calories' => 'string|nullable|max:255',
-            'protein' => 'string|nullable|max:255',
-            'fatContent' => 'string|nullable|max:255',
-            'carbohydrate' => 'string|nullable|max:255',
-            'sugar' => 'string|nullable|max:255',
-            'crudeAsh' => 'string|nullable|max:255',
-            'crudeFiber' => 'string|nullable|max:255',
-            'calcium' => 'string|nullable|max:255',
-            'vitaminA' => 'string|nullable|max:255',
-            'moisture' => 'string|nullable|max:255',
-            'img' => 'image|nullable|max:1999',
-        ]);
+        if(($product->detail->nutritionFact) != null){
+            $this->validate($request, [
+                'animal_id' => 'required',
+                'category_id' => 'required',
+                'supplier' => 'required|string|max:255',
+                'name' => 'required|string|max:255',
+                'description' => 'required|string',
+                'price' => 'required|min:0',
+                'stock' => 'required|min:1',
+                'origin' => 'required|string|max:255',
+                'color' => 'required|string|nullable|max:255',
+                'size' => 'required|string|max:255',
+                'ingredient' => 'string|nullable',
+                'material' => 'string|nullable',
+                'instruction' => 'string|nullable',
+                'servingSize' => 'string|nullable|max:255',
+                'calories' => 'string|nullable|max:255',
+                'protein' => 'string|nullable|max:255',
+                'fatContent' => 'string|nullable|max:255',
+                'carbohydrate' => 'string|nullable|max:255',
+                'sugar' => 'string|nullable|max:255',
+                'crudeAsh' => 'string|nullable|max:255',
+                'crudeFiber' => 'string|nullable|max:255',
+                'calcium' => 'string|nullable|max:255',
+                'vitaminA' => 'string|nullable|max:255',
+                'moisture' => 'string|nullable|max:255',
+                'img' => 'image|nullable|max:1999',
+            ]);
+        } else {
+            $this->validate($request, [
+                'animal_id' => 'required',
+                'category_id' => 'required',
+                'supplier' => 'required|string|max:255',
+                'name' => 'required|string|max:255',
+                'description' => 'required|string',
+                'price' => 'required|min:0',
+                'stock' => 'required|min:1',
+                'origin' => 'required|string|max:255',
+                'color' => 'required|string|nullable|max:255',
+                'size' => 'required|string|max:255',
+                'ingredient' => 'string|nullable',
+                'material' => 'string|nullable',
+                'instruction' => 'string|nullable',
+                'img' => 'image|nullable|max:1999',
+            ]);
+        }
 
         if ($request->hasFile('img')) {
             $fileNameToStore = Product::uploadImg($request);
             $path = $request->file('img')->storeAs('public/Image/product/', $fileNameToStore);
-        } else {
-            $fileNameToStore = 'storage/Image/product/noimage.jpg';
         }
 
         /*
@@ -291,15 +309,27 @@ class ProductController extends Controller
             ]);
         };
 
-        Product::where('id', $product->id)->update([
-            'product_category_id' => $request->category_id,
-            'supplier_id' => Supplier::firstWhere('name', $request->supplier)->id,
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => $request->price,
-            'stock' => $request->stock,
-            'img' => $fileNameToStore,
-        ]);
+        if(isset($fileNameToStore)){
+            Product::where('id', $product->id)->update([
+                'product_category_id' => $request->category_id,
+                'supplier_id' => Supplier::firstWhere('name', $request->supplier)->id,
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'stock' => $request->stock,
+                'img' => $fileNameToStore,
+            ]);
+        } else {
+            Product::where('id', $product->id)->update([
+                'product_category_id' => $request->category_id,
+                'supplier_id' => Supplier::firstWhere('name', $request->supplier)->id,
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'stock' => $request->stock
+            ]);
+        }
+
 
        /* Product::where('id', $product->id)->update([
             'product_category_id' => $categoryID,

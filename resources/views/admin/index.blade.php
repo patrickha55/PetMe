@@ -11,14 +11,14 @@
                                 <i class="material-icons">inventory</i>
                             </div>
                             <p class="card-category">Total Products</p>
-                            <h3 class="card-title">{{ $products->count() }}
+                            <h3 class="card-title">{{ $totalProducts->count() }}
                                 <small>Products</small>
                             </h3>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
                                 <i class="material-icons">add_box</i>
-                                <a href="javascript:;">Add more products</a>
+                                <a href="{{ route('product.create') }}">Add more products</a>
                             </div>
                         </div>
                     </div>
@@ -62,11 +62,11 @@
                                 <i class="material-icons">fact_check</i>
                             </div>
                             <p class="card-category">Orders</p>
-                            <h3 class="card-title">{{ $orders->count() }}</h3>
+                            <h3 class="card-title">{{ $allOrders->count() }}</h3>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
-                                <i class="material-icons">local_offer</i> Pending {{ $orders->where('status', 'pending')->count() }}
+                                <i class="material-icons">local_offer</i> Pending {{ $pendingOrders }}
                             </div>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                     <div class="card">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title">Orders</h4>
-                            <p class="card-category">Last updated on 20:16 pm 05 April 2021</p>
+                            <p class="card-category">Last updated on {{ $orders->first()->updated_at }}</p>
                         </div>
                         <div class="card-body table-responsive">
                             <table class="table table-hover">

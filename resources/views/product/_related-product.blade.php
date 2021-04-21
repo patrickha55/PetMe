@@ -24,7 +24,7 @@
                                         <a class="animate-right" href="{{route('compare.destroy', $product)}}" title="Remove From Compare">
                                             <i class="fas fa-exchange-alt text-danger"></i>
                                         </a>
-                                    @endif    
+                                    @endif
                                 @else
                                     <a class="animate-right" href="{{route('compare.store', $product)}}" title="Compare">
                                         <i class="fas fa-exchange-alt"></i>
@@ -40,7 +40,7 @@
                                             @method('delete')
                                             <button type="submit" class='btn-lg b-none  animate-left' title="Remove from Wishlist"><i class="fas fa-heart"></i></button>
                                         </form>
-                                    @endif    
+                                    @endif
                                 @else
                                     <a class="animate-left" title="Wishlist" href="{{ route('wishlist.store', $product) }}">
                                         <i class="far fa-heart"></i>
@@ -49,6 +49,7 @@
                             </div>
                         </div>
                         <div class="product-content text-center">
+                            @include('layouts.client.includes.rating')
                             <h4><a href="{{ route('home.show', $product) }}">{{ $product->name }}</a></h4>
                             <span>@currency($product->price) VNĐ</span>
                         </div>
@@ -141,5 +142,5 @@
                 @endforeach
             </div>
         </div>
-    </div> 
+    </div>
 </div>
