@@ -81,11 +81,11 @@ class OrderController extends Controller
                 'quantity'=>$item->quantity,
             ]);
 
-            $product = \App\Product::find($item->id);
+            /* $product = \App\Product::find($item->id);
 
             $stock = $product->stock - $item->quantity;
 
-            $product->update(['stock' => $stock]);
+            $product->update(['stock' => $stock]); */
         }
 
         $cart = Cart::where([

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Order;
 use App\OrderDetail;
 use App\Transaction;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -62,6 +63,17 @@ class AdminOrderController extends Controller
          */
 
         $transaction = Transaction::where('order_id',$order->id)->first();
+        $orderDetails = OrderDetail::where('order_id', $order->id)->get();
+
+        /* 
+        *   Tao collection products de chua cac product trong $orderDetails cua $order parameter
+        */
+
+        $products = collect([]);
+
+        foreach($orderDetails as $orderDetail){
+            $products->push([$orderDetail->product_id, $orderDetail->quantity]);
+        };
  
         if($order->status == "completed"){
 
@@ -69,13 +81,53 @@ class AdminOrderController extends Controller
                 'status' => 1,
             ]);
 
-            $orderDetails = OrderDetail::where('order_id', $order->id)->get();
-
             foreach($orderDetails as $orderDetail){
                 $orderDetail->update([
                     'status' => 1
                 ]);
             };
+
+            /* 
+            *   Khong duoc doi thang tu pending sang completed, stock se ko giam
+            */
+
+        } else if($order->status == "canceled"){ // Neu admin doi status thanh canceled thi cho status transaction va order detail = 0
+
+            $transaction->update([
+                'status' => 0,
+            ]);
+
+            foreach($orderDetails as $orderDetail){
+                $orderDetail->update([
+                    'status' => 0
+                ]);
+            };
+
+            /* 
+            *   Cong lai stock cho product 
+            *   
+            *   Neu Order dang o trang thai pending ma admin doi thanh canceled thi stock van cong them 1 mac du stock chua bi tru
+            *   De check dieu kien nay thi tuong lai phai them 1 du lieu status khac de phan biet xem stock da bi tru hay chua
+            */
+
+            foreach($products as $product){
+                $p = Product::find($product[0]);
+                $p->update([
+                    'stock' => $p->stock  + $product[1],
+                ]);
+            }
+        } else if($order->status != 'pending' || $order->status != 'canceled' || $order->status != 'completed') {
+
+            /* 
+            *   Neu status la nhung trang thai ngoai 3 trang thai tren thi giam so luong stock trong kho
+            */
+
+            foreach($products as $product){
+                $p = Product::find($product[0]);
+                $p->update([
+                    'stock' => $p->stock - $product[1],
+                ]);
+            }
         };
 
         return back()->with('status', 'Order status updated successfully!');
