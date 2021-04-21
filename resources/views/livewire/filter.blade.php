@@ -1,5 +1,9 @@
 <div class="electro-product-wrapper wrapper-padding pt-95 pb-45">
-  {{-- {{  $selectedProducts}} --}}
+
+
+
+
+{{ $minPrice }}
     <div class="container-fluid">
         <div class="h4 section-title-4 border-bottom-1 pb-15 font-weight-light">
             <a href="">Products</a>
@@ -55,21 +59,30 @@
                                         <label class="custom-control-label" for="Check2">Popular</label>
                                     </div> <!-- card-body.// -->
 
-                            @php
-                            $count =0;
-                        $box ='box';
-                            @endphp 
-                            @foreach($categories as $cat)
-                        
+                      @php
+                      $count =0;
+                    $box ='box';
+                     @endphp 
+                        @foreach($categories as $cat)
+                   
+                     
+                        <div class="custom-control custom-checkbox">
+                            <span class="float-right badge badge-light round">{{ $cat->products->count() }}</span>
+                           @php $count+=1 ; 
+                           $box = $box.$count ;
+                           @endphp
+                         
+                            <input   value='{{ $cat->id }}' wire:model='{{$box  }}'   type="checkbox" class="custom-control-input" id="{{ $count }}">
+                              <label class="custom-control-label" for="{{ $count }}".$count>{{ $cat->name }}</label>
                             
-                            <div class="custom-control custom-checkbox">
+                            {{-- <div class="custom-control custom-checkbox">
                                 <span class="float-right badge badge-light round">{{ $cat->products->count() }}</span>
                                 @php $count+=1 ; 
                                 $box = $box.$count ;
                                 @endphp
                                 
                                 <input   value='{{ $cat->id }}' wire:model='{{$box  }}'   type="checkbox" class="custom-control-input" id="{{ $count }}">
-                                    <label class="custom-control-label" for="{{ $count }}".$count>{{ $cat->name }}</label>
+                                    <label class="custom-control-label" for="{{ $count }}".$count>{{ $cat->name }}</label> --}}
                                 
                             </div> <!-- form-check.// -->
                                 @endforeach 
