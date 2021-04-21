@@ -49,7 +49,7 @@ class ProductCategoryController extends Controller
         return view('admin.product-management.category.editSubCategory')->with([
             'productCategory' => $productCategory,
              'categories' => $categories
-             ]);
+        ]);
     }
 
     /**

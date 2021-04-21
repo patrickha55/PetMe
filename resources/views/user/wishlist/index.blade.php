@@ -78,11 +78,6 @@
         <h1 class="text-center m-5">{{ auth()->user()->userName }}'s Wishlist</h1>
         <div class="wishlist-main-content section-ptb">
             <div class="container">
-                <h4 class="font-weight-bold text-success">
-                    @if (session('status'))
-                        {{ session('status') }}
-                    @endif
-                </h4>
                 <div class="row shadow-lg p-3 mb-5 bg-white rounded">
                     <div class="col-12">
                         @if (count($user->favorites))

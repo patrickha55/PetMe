@@ -7,6 +7,7 @@
                 <h2 class="text-center">Edit Category</h2>
                 <form class="row g-3" action="{{ route('animalCategory.update',$category) }}" method="POST">
                     @csrf
+                    @method('PATCH')
                     <div class="col-8 col-md-8">
                         <label name="name" for="name" class="form-label font-semibold text-gray-500">Category
                             Name</label>
