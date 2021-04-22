@@ -235,7 +235,7 @@ class CartController extends Controller
             }
     
         }
-        return redirect()->route('cart.index');
+        return redirect()->route('cart.checkout');
     }
 
     public function destroyCartItem(Product $product)

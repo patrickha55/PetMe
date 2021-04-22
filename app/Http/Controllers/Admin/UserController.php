@@ -7,7 +7,7 @@ use App\User;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Database\Eloquent\Builder;
 class UserController extends Controller
 {
     /**
@@ -78,8 +78,21 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        // $user = User::where('id',$id)->get();
-        return view('admin.user-management.show.show', ['user' => $user]);
+        $reviews = \App\ProductReview::where([
+            'user_id' => $user->id,
+            'status' => 'approved',
+        ])->paginate(4);
+
+        $users = User::whereRoleIs('user')->inRandomOrder()->limit(6)->get();
+                    
+        $admins = User::whereRoleIs('administrator')->inRandomOrder()->limit(6)->get();
+
+        return view('admin.user-management.show.show', [
+            'user' => $user,
+            'reviews' => $reviews,
+            'users' => $users,
+            'admins' => $admins
+        ]);
     }
 
     public function edit(User $user)

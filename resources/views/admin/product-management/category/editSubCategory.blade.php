@@ -5,8 +5,9 @@
         <div class="container-fluid">
             <div class="w-full bg-white rounded shadow-lg p-8 m-4l">
                 <h2 class="text-center">Edit Sub Category</h2>
-                <form class="row g-3" action="{{ route('productCategory.store') }}" method="POST">
+                <form class="row g-3" action="{{ route('productCategory.update', $productCategory) }}" method="POST">
                     @csrf
+                    @method('PATCH')
                     <div class="col-6 col-md-6">
                         <label for="category" class="form-label font-semibold text-gray-500">Category</label>
                         <select class="form-control @error('category') border-red-500 @enderror"" name="category_id" id="category">

@@ -180,7 +180,7 @@
                                     <a class="uppercase text-white" href="{{ route('compare.destroy', $product) }}">Remove</a>
                                 </div>
                                 <div class="col-10 mx-auto mt-10  btn rounded btn-dark">
-                                    <a class="uppercase text-white" href="">Buy Now</a>
+                                    <a class="uppercase text-white" href="{{ route('cart.buynow',$product) }}">Buy Now</a>
                                 </div>
                             </div>
                         </div>

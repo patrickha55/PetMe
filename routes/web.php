@@ -40,8 +40,8 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'role:admin
     /*
         Wishlist
     */
-
-    Route::resource('/wishlists', 'AdminFavoriteController');
+    Route::delete('/wishlists/{product_id}/{user_id}', 'AdminFavoriteController@delete')->name('wishlists.delete');
+    Route::resource('/wishlists', 'AdminFavoriteController')->only('index');
 
     // Order
 

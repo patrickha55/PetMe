@@ -60,12 +60,21 @@
 
                         <div class="quickview-plus-minus">
 
-                            <div class="quickview-btn-cart">
-                                <a class="btn-hover-black" href="{{route('cart.add', $product)}}">add to cart</a>
-                            </div>
-                            <div class="quickview-btn-cart">
-                                <a class="btn-hover-black" href="">Buy Now</a>
-                            </div>
+                            @if($product->stock == 0)
+                                <div class="quickview-btn-cart">
+                                    <a class="btn-hover-black">add to cart</a>
+                                </div>
+                                <div class="quickview-btn-cart">
+                                    <a class="btn-hover-black">Buy Now</a>
+                                </div>
+                            @else
+                                <div class="quickview-btn-cart">
+                                    <a class="btn-hover-black" href="{{route('cart.add', $product)}}">add to cart</a>
+                                </div>
+                                <div class="quickview-btn-cart">
+                                    <a class="btn-hover-black" href="{{ route('cart.buynow',$product) }}">Buy Now</a>
+                                </div>
+                            @endif
 
                         </div>
                         <div class="product-details-cati-tag mt-35">
