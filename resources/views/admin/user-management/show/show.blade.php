@@ -203,7 +203,17 @@
                                 <div class="text-teal-600">Review #{{ $review->id }}:</div>
                                 <div class="text-gray-500 text-sm">Product: {{ \App\Product::find($review->product_id)->name }}</div>
                                 <div class="text-gray-500 text-sm">Tittle: {{ $review->title }}</div>
-                                <div class="text-gray-500 text-sm">Rating: {{ $review->rating }}</div>
+                                <div class="text-gray-500 text-sm">Rating: 
+                                    @for($i = 0; $i < 5; $i++)
+                                    @if(floor($review->rating) - $i >= 1)
+                                        <i class="fas fa-star" style="color: #facf2c"></i>
+                                    @elseif($review->rating -$i > 0)
+                                        <i class="fas fa-star-half" style="color: #facf2c"></i>
+                                    @else
+                                        <i class="far fa-star"></i>
+                                    @endif
+                                @endfor    
+                                </div>
                                 <div class="text-gray-500 text-sm">Content: {{ $review->content }}</div>
                                 <div class="text-gray-500 text-sm">Date: {{ $review->created_at->toDateTimeString() }}</div>
                               </li>
