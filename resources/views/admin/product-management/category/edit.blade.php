@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="w-full bg-white rounded shadow-lg p-8 m-4l">
                 <h2 class="text-center">Edit Category</h2>
-                <form class="row g-3" action="{{ route('animalCategory.update',$category) }}" method="POST">
+                <form class="row g-3" action="{{ route('animalCategory.update', $category) }}" method="POST">
                     @csrf
                     @method('PATCH')
                     <div class="col-8 col-md-8">

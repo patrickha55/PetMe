@@ -15,10 +15,16 @@
                                 <img src="/storage/Image/product/{{ $product->img }}" alt="{{ $product->name }}" class="mx-auto">
                             </a>
                             <div class="product-action">
+
+                                {{-- Product detail --}}
+
                                 <a class="animate-right" title="Quick View" {{-- data-toggle="modal" data-target="#productModal" --}}
                                    href="{{ route('home.show', $product) }}">
                                     <i class="pe-7s-look"></i>
                                 </a>
+
+                                {{-- Compare --}}
+
                                 @if(session()->has('product'.$product->id))
                                     @if(session()->get('product'.$product->id) != null)
                                         <a class="animate-right" href="{{route('compare.destroy', $product)}}" title="Remove From Compare">
@@ -30,9 +36,22 @@
                                         <i class="fas fa-exchange-alt"></i>
                                     </a>
                                 @endif
-                                <a class="animate-top" title="Add To Cart" href="{{ route('cart.add', $product) }}">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
+
+
+                                {{-- Add to cart --}}
+
+                                @if($product->stock == 0)
+                                    <a class="animate-top" title="Add To Cart">
+                                        <i class="pe-7s-cart"></i>
+                                    </a>
+                                @else
+                                    <a class="animate-top" title="Add To Cart" href="{{route('cart.add', $product)}}">
+                                        <i class="pe-7s-cart"></i>
+                                    </a>
+                                @endif
+
+                                {{-- Wishlist --}}
+
                                 @if(isset($product->userFavorites->find(auth()->id())->id))
                                     @if($product->userFavorites->find(auth()->id())->id == auth()->id())
                                         <form action="{{ route('wishlist.delete', ['product_id' => $product->id, 'user_id' => auth()->id()]) }}" method="POST">

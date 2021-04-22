@@ -107,9 +107,15 @@
                                                 @endif
                                             </a>
                                             <div class="product-action-right productButton">
+
+                                                {{-- Product detail --}}
+
                                                 <a class="animate-right" href="{{route('home.show', $product)}}" title="View">
                                                     <i class="pe-7s-look"></i>
                                                 </a>
+
+                                                {{-- Compare --}}
+
                                                 @if(session()->has('product'.$product->id))
                                                     @if(session()->get('product'.$product->id) != null)
                                                         <a class="animate-right" href="{{route('compare.destroy', $product)}}" title="Remove From Compare">
@@ -121,9 +127,18 @@
                                                         <i class="fas fa-exchange-alt"></i>
                                                     </a>
                                                 @endif
-                                                <a class="animate-top" title="Add To Cart" href="{{route('cart.add', $product)}}">
-                                                    <i class="pe-7s-cart"></i>
-                                                </a>
+
+                                                {{-- Add to cart --}}
+
+                                                @if($product->stock == 0)
+                                                    <a class="animate-top" title="Add To Cart">
+                                                        <i class="pe-7s-cart"></i>
+                                                    </a>
+                                                @else
+                                                    <a class="animate-top" title="Add To Cart" href="{{route('cart.add', $product)}}">
+                                                        <i class="pe-7s-cart"></i>
+                                                    </a>
+                                                @endif
                                                 
                                                 {{-- Neu user da thich thi hien trai tim mau den, bam vao de xoa product khoi wishlist --}}        
 

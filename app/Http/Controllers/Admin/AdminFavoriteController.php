@@ -43,10 +43,13 @@ class AdminFavoriteController extends Controller
 
     }
 
-    public function destroy(Favorite $wishlists)
+    public function delete($product_id, $user_id)
     {
-//        dd($wishlists);
-        $wishlists->delete();
+        Favorite::where([
+            'product_id' => $product_id,
+            'user_id' => $user_id,
+        ])->delete();
+
         return redirect()->back()->with('status','User\'s wishlist deleted successfully');
     }
 }

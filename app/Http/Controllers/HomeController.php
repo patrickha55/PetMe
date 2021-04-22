@@ -66,7 +66,6 @@ class HomeController extends Controller
 
     public function show(Product $product){
         $products = Product::all();
-        $trend = $products->shuffle()->take(3);
         $categories = AnimalCategory::all();
         $subCats = ProductCategory::all();
 
