@@ -111,7 +111,7 @@
     <!-- Library for adding dinamically elements -->
     <script src="{{ asset('/js/plugins/arrive.min.js') }}"></script>
     <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_gdNpReCRY9fzGtlc0QEJ7FWQVbtgta4"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key="></script>
     <!-- Chartist JS -->
     <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     <!--  Notifications Plugin    -->
